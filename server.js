@@ -35,8 +35,8 @@ app.post('/submit', async (req, res) => {
   console.log('Request received:', req.body);
   
   try {
-    const { companyName, description, formName } = req.body;
-    console.log('Extracted fields:', { companyName, description, formName });
+    const { companyName, description } = req.body;
+    console.log('Extracted fields:', { companyName, description });
     
     // Get space and environment
     console.log('Connecting to Contentful...');
@@ -45,58 +45,43 @@ app.post('/submit', async (req, res) => {
     const environment = await space.getEnvironment(process.env.CONTENTFUL_ENVIRONMENT);
     console.log('Environment retrieved');
     
-    // Create a form field entry (just a text field for now)
-    console.log('Creating form field entry...');
-    const formFieldEntry = await environment.createEntry('formField', {
-      fields: {
-        label: { 'en-US': 'Default Field' },
-        type: { 'en-US': 'text' },
-        required: { 'en-US': true }  // Added the required boolean field
-      }
-    });
-    console.log('Form field created with ID:', formFieldEntry.sys.id);
-    
-    // Create a form entry
-    console.log('Creating form entry...');
-    const formEntry = await environment.createEntry('form', {
-      fields: {
-        name: { 'en-US': formName },
-        formFields: { 
-          'en-US': [
-            { sys: { type: 'Link', linkType: 'Entry', id: formFieldEntry.sys.id } }
-          ]
-        }
-      }
-    });
-    console.log('Form entry created with ID:', formEntry.sys.id);
+    // Use existing form ID instead of creating a new form
+    const EXISTING_FORM_ID = "7dT9dxsmMOtyBbujasLGMn"; // Replace with your actual form ID if needed
     
     // Create a company entry
     console.log('Creating company entry...');
-    const companyEntry = await environment.createEntry('company', {
+    const companyPayload = {
       fields: {
         name: { 'en-US': companyName },
         description: { 'en-US': description },
         form: { 
           'en-US': { 
-            sys: { type: 'Link', linkType: 'Entry', id: formEntry.sys.id } 
+            sys: { type: 'Link', linkType: 'Entry', id: EXISTING_FORM_ID } 
           }
         }
       }
-    });
+    };
+    
+    console.log('COMPANY PAYLOAD:', JSON.stringify(companyPayload, null, 2));
+    console.log('This matches the curl format you provided:');
+    console.log(`curl -X POST "https://api.contentful.com/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/${process.env.CONTENTFUL_ENVIRONMENT}/entries" \\
+    -H "Authorization: Bearer ${process.env.CONTENTFUL_MANAGEMENT_TOKEN}" \\
+    -H "Content-Type: application/vnd.contentful.management.v1+json" \\
+    -H "X-Contentful-Content-Type: company" \\
+    -d '${JSON.stringify(companyPayload)}'`);
+    
+    const companyEntry = await environment.createEntry('company', companyPayload);
     console.log('Company entry created with ID:', companyEntry.sys.id);
     
-    // Publish all entries
-    console.log('Publishing form field entry...');
-    await formFieldEntry.publish();
-    console.log('Publishing form entry...');
-    await formEntry.publish();
+    // Publish company entry
     console.log('Publishing company entry...');
     await companyEntry.publish();
-    console.log('All entries published successfully');
+    console.log('Company entry published successfully');
     
     const responseData = {
       message: 'Company created successfully',
-      companyId: companyEntry.sys.id
+      companyId: companyEntry.sys.id,
+      formId: EXISTING_FORM_ID
     };
     console.log('Sending response:', JSON.stringify(responseData));
     
