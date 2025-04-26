@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tap Health Webpage</title>
+    <link rel="stylesheet" href="./styles/tailwind.css">
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <script src="./menuHandler.js"></script>
+</head>
+<body class="bg-gray-100">
+
+
+    <div class="lg:px-6 2xl:px-0">
+        <div class="container mx-auto relative z-20">
+            <nav class="w-full absolute">
+                <div class="hidden lg:flex w-full f-f-p justify-between items-center py-6 relative">
+                    <div class="w-2/3" aria-label="pivot. logo" role="img">
+                        <img class="dark:bg-white pb-1 px-2" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/left_aligned_with_cta_and_placeholder-svg1.svg" alt="logo"/>     
+                    </div>
+                    <div class="md:w-1/2 xl:w-1/3">
+                        <ul class="flex justify-between w-full items-center text-gray-600 dark:text-gray-200">
+                            <li class="border-b-4 border-red-600 pb-1">
+                                <a href="javascript:void(0)">Home</a>
+                            </li>
+                            <li class="border-b-4 hover:border-red-600 border-transparent pb-1">
+                                <a href="javascript:void(0)">Stats</a>
+                            </li>
+                            <li class="border-b-4  hover:border-red-600 border-transparent pb-1">
+                                <a href="javascript:void(0)">Coins</a>
+                            </li>
+                            <li class="border-b-4  hover:border-red-600 border-transparent pb-1">
+                                <a href="javascript:void(0)">Blog</a>
+                            </li>
+                            <li class="border-b-4  hover:border-red-600 border-transparent pb-1">
+                                <a href="javascript:void(0)">Contact Us</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <nav class="lg:hidden">
+                <div class="flex py-6 justify-between items-center px-4">
+                    <div aria-label="pivot. Logo" role="img">
+                        <img class="dark:bg-white pb-1 px-2" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/left_aligned_with_cta_and_placeholder-svg1.svg" alt="logo"/>
+                    </div>
+                    <div class="visible flex items-center">
+                        <button id="open" class="xl:hidden dark:bg-white focus:ring-2 focus:outline-none focus:ring-gray-600" onclick="MenuHandler(true)" >
+                            <img onclick="MenuHandler(true)" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/left_aligned_with_cta_and_placeholder-svg2.svg" alt="menuhandler"/>
+                            
+                        </button>
+                        <ul id="list" class="hidden p-2 border-r bg-white absolute rounded top-0 left-0 right-0 shadow mt-16 md:mt-16">
+                            <li class="flex cursor-pointer text-gray-600 dark:text-gray-200 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-red-700 focus:text-red-700 focus:outline-none">
+                                <a href="javascript:void(0)" class="ml-2 focus:outline-none focus:ring-2 focus:ring-gray-600">
+                                    <span class="font-bold">Home</span>
+                                </a>
+                            </li>
+                            <li class="flex cursor-pointer text-gray-600 dark:text-gray-200 text-sm leading-3 tracking-normal py-2 hover:text-red-700 focus:text-red-700 focus:outline-none" onclick="dropdownHandler(this)">
+                                <a href="javascript:void(0)" class="ml-2 focus:outline-none focus:ring-2 focus:ring-gray-600">
+                                    <span class="font-bold">Stats</span>
+                                </a>
+                            </li>
+                            <li class="flex cursor-pointer text-gray-600 dark:text-gray-200 text-sm leading-3 tracking-normal py-2 hover:text-red-700 flex items-center focus:text-red-700 focus:outline-none">
+                                <a href="javascript:void(0)" class="ml-2 focus:outline-none focus:ring-2 focus:ring-gray-600">
+                                    <span class="font-bold">Coins</span>
+                                </a>
+                            </li>
+                            <li class="flex cursor-pointer text-gray-600 dark:text-gray-200 text-sm leading-3 tracking-normal py-2 hover:text-red-700 focus:text-red-700 focus:outline-none" onclick="dropdownHandler(this)">
+                                <a href="javascript:void(0)" class="ml-2 focus:outline-none focus:ring-2 focus:ring-gray-600">
+                                    <span class="font-bold">Blog</span>
+                                </a>
+                            </li>
+                            <li class="flex cursor-pointer text-gray-600 dark:text-gray-200 text-sm leading-3 tracking-normal pt-2 pb-4 hover:text-red-700 focus:text-red-700 focus:outline-none" onclick="dropdownHandler(this)">
+                                <a href="javascript:void(0)" class="ml-2 focus:outline-none focus:ring-2 focus:ring-gray-600">
+                                    <span class="font-bold">About Us</span>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="xl:hidden">
+                            <button id="close" class="hidden close-m-menu focus:ring-2 focus:outline-none focus:ring-gray-600" onclick="MenuHandler(false)">
+                                <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/left_aligned_with_cta_and_placeholder-svg3.svg" alt="close handler"/>
+                                
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <div class="mx-auto container relative z-0 px-4 xl:px-0">
+            <div class="flex flex-col-reverse md:flex-row">
+                <div class="md:w-3/5 md:pt-24 pb-10 lg:py-32 xl:py-48">
+                    <h1 class="text-3xl lg:text-6xl xl:text-8xl font-black text-gray-900 dark:text-white text-center md:text-left tracking-tighter f-f-i md:w-7/12 leading-tight text-heading-color">ONE WALLET TO RULE THEM ALL</h1>
+                    <h2 class="md:w-8/12 my-4 text-center md:text-left md:my-8 text-gray-700 dark:text-gray-200 text-lg lg:text-2xl">Do you want to control your expenses and be always aware of how much money you have spent?</h2>
+                    <div class="w-full flex justify-center md:block">
+                        <button class="hover:opacity-90 bg-red-700 py-3 px-10 lg:py-7 lg:px-20 rounded-full text-white text-sm md:text-lg f-f-p focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-700">Learn More</button>
+                    </div>
+                </div>
+                <div class="w-1/2 sm:w-2/5 h-64 md:h-auto m-auto flex items-center overflow-hidden">
+                   
+                    <img class="md:absolute md:w-1/2 md:-ml-28" src="https://cdn.tuk.dev/assets/components/111220/Hero4/Device - Macbook Pro.png" alt="Laptop with pivot page on screen" role="img" />
+                </div>
+            </div>
+        </div>
+    </div>
+  
+
+    
+    <div class="relative pt-16 px-4">
+        <img src="https://cdn.tuk.dev/assets/components/111220/fs-22/background.png" class="absolute xl:w-7/12 xl:h-full xl:h-auto xl:w-auto top-0 left-0 h-image flex-no-shrink flex -mt-2 z-0" alt="bg image"/>
+        <div class=" lg:flex-row flex flex-col-reverse items-center lg:space-x-32 justify-center mx-auto container relative z-20 xl:px-0 px-4">
+            <div tabindex="0" aria-label="group of cards" class="focus:outline-none lg:w-1/2 mt-16 lg:flex">
+                <div class="flex flex-col">
+                    <div tabindex="0" aria-label="card 1" class="focus:outline-none rounded mb-8 bg-white dark:bg-gray-800 px-4 xl:px-8 shadow-md">
+                        <div class="mt-8">
+                           <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/right_aligned_with_cta-svg1.svg" alt=" Affordable Price">
+                        </div>
+                        <div>
+                            <h1 tabindex="0" class="focus:outline-none font-semibold text-2xl f-m-m  dark:text-white pt-10">
+                                Affordable Price
+                                <br />
+                                Guranteed
+                            </h1>
+                            <p tabindex="0" class="focus:outline-none text-base font-normal f-m-m  dark:text-white leading-loose pb-8 pt-5">Offering the best prices on the market so you don’t have to search around </p>
+                        </div>
+                    </div>
+                    <div tabindex="0" aria-label="card 2" class="focus:outline-none rounded bg-white dark:bg-gray-800 px-4 xl:px-8 mb-8 lg:mb-0 shadow-md">
+                        <div class="mt-8">
+                           <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/right_aligned_with_cta-svg3.svg" alt=" Highly Qualified">
+                        </div>
+                        <div>
+                            <h1 tabindex="0" class="focus:outline-none font-semibold text-2xl f-m-m  dark:text-white pt-10">
+                                Highly Qualified
+                                <br />
+                                Service
+                            </h1>
+                            <p tabindex="0" class="focus:outline-none text-base font-normal f-m-m  dark:text-white leading-loose pb-8 pt-5">Highly trained employees to tend to your needs </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col lg:ml-10 ml-0 lg:mt-10 mt-0">
+                    <div tabindex="0" aria-label="card 3" class="focus:outline-none rounded bg-red-700 lg:mt-20 mt-0 px-4 xl:px-8 box-shadow-light">
+                        <div class="mt-8">
+                           <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/right_aligned_with_cta-svg2.svg" alt="Hand Picked">
+                        </div>
+                        <div>
+                            <h1 tabindex="0" class="focus:outline-none font-semibold text-2xl f-m-m  dark:text-white pt-10 text-white">
+                                Hand Picked
+                                <br />
+                                Hotels
+                            </h1>
+                            <p tabindex="0" class="focus:outline-none text-base font-normal f-m-m  dark:text-white leading-loose pb-8 pt-5 text-white">Hand picked hotels and resorts that are chosen by a team of professionals. Stay at the best places</p>
+                        </div>
+                    </div>
+                    <div tabindex="0" aria-label="card 4" class="focus:outline-none rounded bg-white dark:bg-gray-800 lg:mt-8 mt-8 px-4 xl:px-8 shadow-md">
+                        <div class="mt-8">
+                           <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/right_aligned_with_cta-svg4.svg" alt="Wide Variety of Destinations">
+                        </div>
+                        <div>
+                            <h1 tabindex="0" class="focus:outline-none font-semibold text-2xl f-m-m  dark:text-white pt-10">
+                                Wide Variety of 
+                                <br />
+                                Destinations
+                            </h1>
+                            <p tabindex="0" class="focus:outline-none text-base font-normal f-m-m  dark:text-white leading-loose pb-8 pt-5">Destinations from all around the world. Exploring the world was never easier</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="lg:w-4/12 ">
+                <h1 tabindex="0" class="focus:outline-none lg:text-5xl text-3xl f-m-w text-red-700 font-bold">Why you should choose us?</h1>
+                <p tabindex="0" class="focus:outline-none lg:text-base text-sm f-m-m  dark:text-white leading-loose mt-3 mb-8">Our goal since inception has been providing the best possible experiences that is totally worth the money. We do the research for you so you never have a bad trip </p>
+                <button class="focus:outline-none focus:opacity-90 focus:ring-2 focus:ring-offset-2 focus:ring-red-700 hover:opacity-90 text-base font-bold bg-red-700 rounded f-m-m  dark:text-white md:py-4 py-2 px-4 md:px-8 foucus:outline-none text-white">View More</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
