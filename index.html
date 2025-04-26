@@ -39,6 +39,16 @@
         .mobile-menu.open {
             display: block;
         }
+
+        /* Add this style block anywhere in your <head> or near the bottom of your file */
+        .glow-team {
+            box-shadow: 0 0 32px 8px rgba(220, 38, 38, 0.4), 0 4px 32px 0 rgba(0, 0, 0, 0.10);
+            transition: box-shadow 0.3s;
+        }
+
+        .glow-team:hover {
+            box-shadow: 0 0 48px 16px rgba(220, 38, 38, 0.7), 0 8px 40px 0 rgba(0, 0, 0, 0.15);
+        }
     </style>
     <script src="https://eyeto-ai.com/OpenAIChatbot.js"></script>
     <script>
@@ -518,9 +528,10 @@
                         <h2 class="text-4xl font-bold text-gray-800 mb-4">The Tap Health Team: Ready to Take on Sandbox</h2>
                     </div>
                     <div class="flex flex-col md:flex-row items-center justify-center gap-10">
-                        <!-- Team Image -->
+                        <!-- Team Image with Glow Effect -->
                         <div class="flex-shrink-0 mb-8 md:mb-0">
-                            <img src="/media/team.jpg" alt="Tap Health Team" class="rounded-2xl shadow-xl w-80 md:w-96 border-4 border-red-700" />
+                            <img src="/media/team.jpg" alt="Tap Health Team"
+                                class="rounded-2xl shadow-xl w-80 md:w-96 border-4 border-red-700 ring-4 ring-red-400 ring-opacity-50 glow-team" />
                         </div>
                         <!-- Names List -->
                         <div class="flex flex-col items-center md:items-start">
