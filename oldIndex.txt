@@ -523,18 +523,16 @@
                             Our MVP
                         </h2>
                         <p class="text-lg text-gray-600 dark:text-gray-300 mb-8">
-                            Tap Health’s early-stage system is designed to test and refine our backend before full public launch.<br><br>
-                            When you fill out our internal ‘Create a Demo’ form, it generates a unique QR code on our side (visible only to our team) which directs you to create your own custom form.<br><br>
-                            This QR-based system is a temporary tool for internal demos and backend validation.<br><br>
-                            To fully experience the process, a Tap Health team member will guide you through it during a private session.<br><br>
-                            In production, Tap Health will enable true one-tap NFC check-ins—no scanning required.
+                            Currently, we have xxxxx. (You can fill in this part later to describe what your MVP
+                            includes.)
                         </p>
                     </div>
 
                     <!-- Image Placeholder -->
                     <div class="md:w-1/2 flex justify-center mt-10 md:mt-0">
-                        <div class="w-80 h-64 bg-gray-200 dark:bg-gray-700 rounded-2xl flex items-center justify-center">
-                            <img src="/media/qr_mvp.png" alt="Tap Health MVP QR Example" class="max-h-full max-w-full rounded-xl" />
+                        <div
+                            class="w-80 h-64 bg-gray-200 dark:bg-gray-700 rounded-2xl flex items-center justify-center">
+                            <span class="text-gray-500 dark:text-gray-300">Image Placeholder</span>
                         </div>
                     </div>
 
