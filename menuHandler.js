@@ -1,3 +1,5 @@
+//todo delete
+
 document.addEventListener('DOMContentLoaded', function() {
     // Get the menu elements
     const openButton = document.getElementById('open');
