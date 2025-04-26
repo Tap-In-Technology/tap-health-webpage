@@ -446,7 +446,33 @@
 
 
             <script src="/typewriter.js"></script>
-            <script src="/menuHandler.js"></script>
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                  // Get the menu elements
+                  const openButton = document.getElementById('open');
+                  const closeButton = document.getElementById('close');
+                  const menuList = document.getElementById('list');
+                  
+                  // Only attach event listeners if the elements exist
+                  if (openButton) {
+                    openButton.addEventListener('click', function() {
+                      // Show menu when open button is clicked
+                      if (menuList) menuList.classList.remove("hidden");
+                      if (closeButton) closeButton.classList.remove("hidden");
+                      if (openButton) openButton.classList.add("hidden");
+                    });
+                  }
+                  
+                  if (closeButton) {
+                    closeButton.addEventListener('click', function() {
+                      // Hide menu when close button is clicked
+                      if (menuList) menuList.classList.add("hidden");
+                      if (closeButton) closeButton.classList.add("hidden");
+                      if (openButton) openButton.classList.remove("hidden");
+                    });
+                  }
+                });
+              </script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
             <script>
                 AOS.init({
