@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "serve .",
-    "build": "mkdir -p build && cp -r * build"
+    "build": "mkdir -p build && cp -r index.html styles media typewriter.js build"
   },
   "dependencies": {
     "aos": "^2.3.4",
