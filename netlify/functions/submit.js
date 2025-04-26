@@ -145,19 +145,6 @@ exports.handler = async function (event, context) {
 
         console.log('Operation completed successfully');
 
-        const qrCodeContainer = document.getElementById('qrCodeContainer');
-
-        // Create QR code for the company ID
-        const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(result.companyId)}&size=200x200`;
-
-        qrCodeContainer.innerHTML = `
-  <div class="text-center">
-    <p class="text-gray-700 mb-2">Scan to copy Company ID:</p>
-    <img src="${qrCodeUrl}" alt="QR Code for Company ID" class="mx-auto rounded shadow-md">
-  </div>
-`;
-        qrCodeContainer.classList.remove('hidden');
-
 
         return {
             statusCode: 201,
