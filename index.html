@@ -218,11 +218,14 @@
 
                         <!-- Feature 1: One Tap Check-In -->
                         <div class="flex flex-col items-center">
-                            <div class="w-16 h-16 bg-red-100 text-red-700 flex justify-center items-center rounded-full mb-4">
+                            <div
+                                class="w-16 h-16 bg-red-100 text-red-700 flex justify-center items-center rounded-full mb-4">
                                 <!-- Number 1 in a circle SVG -->
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 48 48" class="w-8 h-8">
-                                    <circle cx="24" cy="24" r="22" stroke="currentColor" stroke-width="4" fill="white"/>
-                                    <text x="24" y="32" text-anchor="middle" font-size="24" font-weight="bold" fill="currentColor" font-family="Arial, sans-serif">1</text>
+                                    <circle cx="24" cy="24" r="22" stroke="currentColor" stroke-width="4"
+                                        fill="white" />
+                                    <text x="24" y="32" text-anchor="middle" font-size="24" font-weight="bold"
+                                        fill="currentColor" font-family="Arial, sans-serif">1</text>
                                 </svg>
                             </div>
                             <h3 class="text-2xl font-bold text-gray-800 mb-2">One Tap Check-In</h3>
@@ -474,30 +477,40 @@
             </section>
 
             <!-- MVP Section -->
-            <section class="mx-auto pt-24 px-4">
-                <div class="relative xl:px-20 lg:px-20 md:px-12 pt-10 flex flex-col md:flex-row items-center">
+            <section id="mvp" class="py-24 px-4 bg-gray-50">
+                <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
 
-                    <!-- Text Content -->
-                    <div class="md:w-1/2 text-center md:text-left">
-                        <h2 class="text-4xl font-bold text-gray-800 dark:text-gray-100 mb-6">
+                    <!-- Left Side: Text Content -->
+                    <div class="text-center md:text-left">
+                        <h2 class="text-5xl font-extrabold text-gray-900 mb-8">
                             Our MVP
                         </h2>
-                        <p class="text-lg text-gray-600 dark:text-gray-300 mb-8">
-                            Tap Health’s early-stage system is designed to test and refine our backend before full public launch.<br><br>
-                            When you fill out our internal ‘Create a Demo’ form, it generates a unique QR code on our side (visible only to our team) which directs you to create your own custom form.<br><br>
-                            This QR-based system is a temporary tool for internal demos and backend validation.<br><br>
-                            To fully experience the process, a Tap Health team member will guide you through it during a private session.<br><br>
+                        <p class="text-xl text-gray-700 mb-8">
+                            Tap Health’s early-stage system is designed to test and refine our backend before full
+                            public launch.
+                            <br><br>
+                            When you fill out our internal ‘Create a Demo’ form, it generates a unique QR code (visible
+                            only to our team)
+                            which directs you to create your own custom form.
+                            <br><br>
+                            This QR-based system is a temporary tool for internal demos and backend validation.
+                            <br><br>
+                            To fully experience the process, a Tap Health team member will guide you through it during a
+                            private session.
+                            <br><br>
                             In production, Tap Health will enable true one-tap NFC check-ins—no scanning required.
                         </p>
                     </div>
 
-                    <!-- Image Placeholder -->
-                    <div class="md:w-1/2 flex justify-center mt-10 md:mt-0">
-                            <img src="/media/qr_mvp.png" alt="Tap Health MVP QR Example" class="max-h-full max-w-full rounded-xl" />
+                    <!-- Right Side: Image -->
+                    <div class="flex justify-center" data-aos="fade-left">
+                        <img src="/media/qr_mvp.png" alt="Tap Health MVP QR Example"
+                            class="rounded-xl shadow-lg w-80 h-auto" />
                     </div>
 
                 </div>
             </section>
+
 
 
 
