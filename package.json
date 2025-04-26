@@ -4,8 +4,7 @@
   "private": true,
   "scripts": {
     "start": "serve .",
-    "build": "echo 'No build step required for static files'",
-    "test": "echo 'No tests configured' && exit 0"
+    "build": "mkdir -p build && cp -r * build"
   },
   "dependencies": {
     "aos": "^2.3.4",
