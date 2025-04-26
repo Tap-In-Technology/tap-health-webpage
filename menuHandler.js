@@ -1,33 +1,39 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Only try to add event listeners if the elements exist
-    function safeAddEventListener(id, event, handler) {
-        const element = document.getElementById(id);
-        if (element) {
-            element.addEventListener(event, handler);
-        }
+    // Get the menu elements
+    const openButton = document.getElementById('open');
+    const closeButton = document.getElementById('close');
+    const menuList = document.getElementById('list');
+    
+    // Only attach event listeners if the elements exist
+    if (openButton) {
+        openButton.addEventListener('click', function() {
+            toggleMenu(true);
+        });
     }
     
-    // Replace direct event listener assignments with this function
-    safeAddEventListener('open', 'click', function() {
-        MenuHandler(true);
-    });
+    if (closeButton) {
+        closeButton.addEventListener('click', function() {
+            toggleMenu(false);
+        });
+    }
     
-    safeAddEventListener('close', 'click', function() {
-        MenuHandler(false);
-    });
-    
-    // Your existing MenuHandler function
-    window.MenuHandler = function(flag) {
-        if (flag) {
-            document.getElementById("list")?.classList.remove("hidden");
-            document.getElementById("close")?.classList.remove("hidden");
-            document.getElementById("open")?.classList.add("hidden");
+    // Function to toggle menu visibility
+    function toggleMenu(isOpen) {
+        if (!menuList || !openButton || !closeButton) return;
+        
+        if (isOpen) {
+            menuList.classList.remove("hidden");
+            closeButton.classList.remove("hidden");
+            openButton.classList.add("hidden");
         } else {
-            document.getElementById("list")?.classList.add("hidden");
-            document.getElementById("close")?.classList.add("hidden");
-            document.getElementById("open")?.classList.remove("hidden");
+            menuList.classList.add("hidden");
+            closeButton.classList.add("hidden");
+            openButton.classList.remove("hidden");
         }
     }
+    
+    // Make the function available globally if needed elsewhere
+    window.MenuHandler = toggleMenu;
 
     // slider js starts
     let slides = document.querySelectorAll(".slide-ana>div");
@@ -57,8 +63,14 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    safeAddEventListener('next', 'click', goNext);
-    safeAddEventListener('prev', 'click', goPrev);
+    if (next) {
+        next.addEventListener('click', goNext);
+    }
+
+    if (prev) {
+        prev.addEventListener('click', goPrev);
+    }
+
     document.addEventListener("keydown", function (e) {
         if (e.code === "ArrowRight") {
             goNext();
