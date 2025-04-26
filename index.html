@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tap Health Webpage</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <link rel="icon" href="public/favicon.ico" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
     <style>
         html {
             scroll-behavior: smooth;
@@ -35,12 +36,12 @@
 
 <body class="bg-gray-100">
     <div class="lg:px-6 2xl:px-0">
-        <div class="container mx-auto relative z-20">
-            <nav class="w-full fixed top-0 bg-white/80 backdrop-blur-md z-50 shadow-sm">
-                <div class="hidden lg:flex w-full f-f-p items-center py-3 relative justify-between">
+        <div class="mx-auto relative z-20">
+            <nav class="w-full fixed top-0 bg-white/80 backdrop-blur-md z-50 shadow-sm py-2">
+                <div class="hidden lg:flex items-center justify-between px-4 max-w-7xl mx-auto w-full">
                     <!-- Logo on the far left -->
                     <div class="w-auto" aria-label="Tap Health logo" role="img">
-                        <img class="dark:bg-white pb-1 px-2 w-32 h-auto" src="/media/tap_health_logo.png"
+                        <img class="dark:bg-white pb-1 px-2 w-32 h-auto" src="/public/media/tap_health_logo.png"
                             alt="Tap Health Logo" />
                     </div>
 
@@ -49,37 +50,37 @@
                         <ul class="flex justify-start items-center text-gray-600 dark:text-gray-200 space-x-10">
                             <li class="pb-1">
                                 <a href="#home"
-                                    class="border-b-4 border-red-600 hover:border-red-600 border-transparent pb-2 hover:text-red-700 transition-all duration-200">
+                                    class="border-b-4 border-red-600 hover:border-red-600 border-transparent pb-1 hover:text-red-700 transition-all duration-200">
                                     Home
                                 </a>
                             </li>
                             <li class="pb-1">
                                 <a href="#problem"
-                                    class="border-b-4 hover:border-red-600 border-transparent pb-2 hover:text-red-700 transition-all duration-200">
+                                    class="border-b-4 hover:border-red-600 border-transparent pb-1 hover:text-red-700 transition-all duration-200">
                                     The Problem
                                 </a>
                             </li>
                             <li class="pb-1">
                                 <a href="#solution"
-                                    class="border-b-4 hover:border-red-600 border-transparent pb-2 hover:text-red-700 transition-all duration-200">
+                                    class="border-b-4 hover:border-red-600 border-transparent pb-1 hover:text-red-700 transition-all duration-200">
                                     Our Solution
                                 </a>
                             </li>
                             <li class="pb-1">
                                 <a href="#opportunity"
-                                    class="border-b-4 hover:border-red-600 border-transparent pb-2 hover:text-red-700 transition-all duration-200">
+                                    class="border-b-4 hover:border-red-600 border-transparent pb-1 hover:text-red-700 transition-all duration-200">
                                     Market Opportunity
                                 </a>
                             </li>
                             <li class="pb-1">
                                 <a href="#security"
-                                    class="border-b-4 hover:border-red-600 border-transparent pb-2 hover:text-red-700 transition-all duration-200">
+                                    class="border-b-4 hover:border-red-600 border-transparent pb-1 hover:text-red-700 transition-all duration-200">
                                     Security
                                 </a>
                             </li>
                             <li class="pb-1">
                                 <a href="#future"
-                                    class="border-b-4 hover:border-red-600 border-transparent pb-2 hover:text-red-700 transition-all duration-200">
+                                    class="border-b-4 hover:border-red-600 border-transparent pb-1 hover:text-red-700 transition-all duration-200">
                                     The Future
                                 </a>
                             </li>
@@ -88,9 +89,10 @@
                 </div>
             </nav>
             <nav class="lg:hidden fixed top-0 bg-white/80 backdrop-blur-md z-50 shadow-sm w-full">
-                <div class="flex py-6 justify-between items-center px-4">
+                <div class="flex items-center justify-between px-4 max-w-7xl mx-auto w-full">
                     <div aria-label="Tap Health Logo" role="img">
-                        <img class="dark:bg-white pb-1 px-2" src="/media/tap_health_logo.png" alt="Tap Health Logo" />
+                        <img class="dark:bg-white pb-1 px-2" src="/public/media/tap_health_logo.png"
+                            alt="Tap Health Logo" />
                     </div>
                     <div class="visible flex items-center">
                         <button id="open"
@@ -151,9 +153,9 @@
             </nav>
         </div>
 
-        <div class="mx-auto container relative z-0 px-4 xl:px-0">
+        <div class="mx-auto relative z-0 px-4 xl:px-0">
             <div class="flex flex-col-reverse md:flex-row">
-                <div class="md:w-3/5 md:pt-24 pb-10 lg:py-32 xl:py-48">
+                <div class="md:w-3/5 md:pt-24 pb-10 lg:py-32 xl:py-48 pl-4 md:pl-8">
                     <div class="h-[100px] sm:h-[120px] md:h-[140px] lg:h-[160px] mb-6 flex items-start">
                         <h1
                             class="text-2xl lg:text-5xl xl:text-7xl font-black text-gray-900 dark:text-white leading-tight break-words">
@@ -169,63 +171,63 @@
                     <div class="w-full flex justify-center md:block">
                         <button
                             class="hover:opacity-90 bg-red-700 py-3 px-10 lg:py-7 lg:px-20 rounded-full text-white text-sm md:text-lg f-f-p focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-700">
-                            Book a Demo
+                            Try Our Demo
                         </button>
                     </div>
                 </div>
                 <div class="w-1/2 sm:w-2/5 h-64 md:h-auto m-auto flex items-center overflow-hidden">
-                    <img class="md:absolute md:w-2/5 md:-ml-28"
-                        src="https://cdn.tuk.dev/assets/components/111220/Hero4/Device%20-%20Macbook%20Pro.png"
+                    <img class="md:absolute md:w-2/5 md:-ml-28" src="public/media/forms.svg"
                         alt="Phone tap check-in illustration" role="img" />
                 </div>
             </div>
 
             <section id="problem" class="py-24 px-6 bg-gray-50">
                 <div class="max-w-6xl mx-auto">
-                  
-                  <!-- Title -->
-                  <h2 class="text-5xl font-extrabold text-center text-gray-900 mb-12">
-                    The Problem
-                  </h2>
-              
-                  <!-- Panels Container -->
-                  <div class="flex flex-col space-y-12">
-              
-                    <!-- Panel 1 -->
-                    <div class="flex flex-col sm:flex-row items-center bg-white rounded-lg shadow-md p-8 sm:p-12">
-                      <div class="text-6xl font-black text-red-600 mb-4 sm:mb-0 sm:mr-12">
-                        93%
-                      </div>
-                      <p class="text-gray-700 text-lg">
-                        of patients are frustrated by filling out the same forms at every clinic visit.
-                      </p>
+
+                    <!-- Title -->
+                    <h2 class="text-5xl font-extrabold text-center text-gray-900 mb-12">
+                        The Problem
+                    </h2>
+
+                    <!-- Panels Container -->
+                    <div class="flex flex-col space-y-12">
+
+                        <!-- Panel 1 -->
+                        <div class="flex flex-col sm:flex-row items-center bg-white rounded-lg shadow-md p-8 sm:p-12">
+                            <div class="text-6xl font-black text-red-600 mb-4 sm:mb-0 sm:mr-12">
+                                93%
+                            </div>
+                            <p class="text-gray-700 text-lg">
+                                of patients are frustrated by filling out the same forms at every clinic visit.
+                            </p>
+                        </div>
+
+                        <!-- Panel 2 -->
+                        <div
+                            class="flex flex-col sm:flex-row-reverse items-center bg-white rounded-lg shadow-md p-8 sm:p-12">
+                            <div class="text-6xl font-black text-red-600 mb-4 sm:mb-0 sm:ml-12">
+                                70%
+                            </div>
+                            <p class="text-gray-700 text-lg text-center sm:text-left">
+                                of clinics still rely on manual data entry from outdated paper forms.
+                            </p>
+                        </div>
+
+                        <!-- Panel 3 -->
+                        <div class="flex flex-col sm:flex-row items-center bg-white rounded-lg shadow-md p-8 sm:p-12">
+                            <div class="text-6xl font-black text-red-600 mb-4 sm:mb-0 sm:mr-12">
+                                $21B
+                            </div>
+                            <p class="text-gray-700 text-lg">
+                                is wasted annually in U.S. healthcare on inefficient manual intake processes.
+                            </p>
+                        </div>
+
                     </div>
-              
-                    <!-- Panel 2 -->
-                    <div class="flex flex-col sm:flex-row-reverse items-center bg-white rounded-lg shadow-md p-8 sm:p-12">
-                      <div class="text-6xl font-black text-red-600 mb-4 sm:mb-0 sm:ml-12">
-                        70%
-                      </div>
-                      <p class="text-gray-700 text-lg text-center sm:text-left">
-                        of clinics still rely on manual data entry from outdated paper forms.
-                      </p>
-                    </div>
-              
-                    <!-- Panel 3 -->
-                    <div class="flex flex-col sm:flex-row items-center bg-white rounded-lg shadow-md p-8 sm:p-12">
-                      <div class="text-6xl font-black text-red-600 mb-4 sm:mb-0 sm:mr-12">
-                        $21B
-                      </div>
-                      <p class="text-gray-700 text-lg">
-                        is wasted annually in U.S. healthcare on inefficient manual intake processes.
-                      </p>
-                    </div>
-              
-                  </div>
                 </div>
-              </section>
-              
-              
+            </section>
+
+
 
             <!-- Our Solution Section -->
             <section id="solution" class="py-24 px-4 bg-white">
@@ -340,12 +342,8 @@
                         </div>
                     </div>
                     <!-- Market Opportunity & Market Size Section -->
-                    <div class="container mx-auto pt-24 px-4">
+                    <div class="mx-auto pt-24 px-4">
                         <div class="relative xl:px-20 lg:px-20 md:px-12 pt-10">
-                            <h2
-                                class="text-center xl:text-5xl text-4xl xl:w-4/6 w-5/6 mx-auto font-extrabold text-gray-800 dark:text-white mb-6">
-                                Market Opportunity & Competitive Edge
-                            </h2>
                             <p
                                 class="text-xl text-center text-gray-600 dark:text-gray-200 xl:w-4/6 w-5/6 mx-auto pt-5 pb-8 font-normal">
                                 Tap Health is positioned to modernize check-ins across over 400,000 U.S. clinics. Our
@@ -392,63 +390,70 @@
                 </div>
             </section>
 
-            <section id="future" class="py-28 bg-white">
-                <div class="2xl:container 2xl:mx-auto px-6">
+            <section id="future" class="relative bg-white overflow-hidden pt-20 pb-80">
+                <div class="absolute inset-0 overflow-hidden z-0">
+                    <img src="/public/media/flow.svg" alt="Flow background"
+                        class="w-full h-full object-cover scale-150">
+                </div>
 
-                    <!-- Title -->
-                    <h2 class="font-bold text-5xl text-center text-gray-900 mb-6">
-                        The Future of Tap Health
-                    </h2>
+                <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <!-- Title and Description -->
+                    <!-- Title and Description -->
+                    <div class="max-w-3xl">
+                        <h2 class="text-5xl font-bold text-left text-gray-900 mb-4 leading-tight">
+                            The Future of Tap Health
+                        </h2>
+                    </div>
 
-                    <!-- Description -->
-                    <p class="text-lg text-center text-gray-600 w-full md:w-2/3 lg:w-1/2 mx-auto mb-24">
-                        Tap Health starts in healthcare — but the future is bigger. Imagine a world where you never fill out paperwork again, whether at the clinic, gym, or your favorite store. Tap once. You're in control.
-                    </p>
 
-                    <!-- Timeline Bar + Cards -->
-                    <div class="relative">
+                    <!-- Three Phases, rising up -->
+                    <div class="relative flex flex-col sm:flex-row items-end gap-16 text-center">
 
-                        <!-- Horizontal Line -->
-                        <hr class="absolute top-1/2 transform -translate-y-1/2 w-full border-t-4 border-red-600 z-0" />
-
-                        <!-- Cards -->
-                        <div class="grid sm:grid-cols-3 grid-cols-1 gap-16 relative z-10">
-
-                            <!-- Card 1 -->
-                            <div class="flex flex-col items-center text-center">
-                                <div class="w-16 h-16 bg-red-600 rounded-full flex justify-center items-center mb-6 shadow-lg">
-                                    <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/about-us-3-svg1.svg" alt="healthcare icon" class="w-8 h-8 text-white" />
-                                </div>
+                        <!-- Phase 1 (Lowest) -->
+                        <div class="flex flex-col items-center" style="transform: translateY(80px);" data-aos="fade-up"
+                            data-aos-delay="100">
+                            <div class="bg-white/80 backdrop-blur rounded-xl p-6 shadow-md">
                                 <h3 class="font-semibold text-2xl text-gray-800 mb-2">Healthcare First</h3>
-                                <p class="text-base text-gray-600">Start by eliminating clinic intake forms with one tap. No paperwork. No waiting rooms full of clipboards.</p>
+                                <p class="text-base text-gray-600">Start by eliminating clinic intake forms with one
+                                    tap. No paperwork. No waiting rooms full of clipboards.</p>
                             </div>
+                        </div>
 
-                            <!-- Card 2 -->
-                            <div class="flex flex-col items-center text-center">
-                                <div class="w-16 h-16 bg-red-600 rounded-full flex justify-center items-center mb-6 shadow-lg">
-                                    <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/about-us-3-svg2.svg" alt="retail icon" class="w-8 h-8 text-white" />
-                                </div>
+                        <!-- Phase 2 (Middle) -->
+                        <div class="flex flex-col items-center" style="transform: translateY(40px);" data-aos="fade-up"
+                            data-aos-delay="300">
+                            <div class="bg-white/80 backdrop-blur rounded-xl p-6 shadow-md">
                                 <h3 class="font-semibold text-2xl text-gray-800 mb-2">Expansion to Retail</h3>
-                                <p class="text-base text-gray-600">Extend Tap Health to stores, gyms, salons, and beyond — anywhere you need to check in or sign up instantly.</p>
+                                <p class="text-base text-gray-600">Extend Tap Health to stores, gyms, salons, and beyond
+                                    — anywhere you need to check in or sign up instantly.</p>
                             </div>
+                        </div>
 
-                            <!-- Card 3 -->
-                            <div class="flex flex-col items-center text-center">
-                                <div class="w-16 h-16 bg-red-600 rounded-full flex justify-center items-center mb-6 shadow-lg">
-                                    <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/about-us-3-svg3.svg" alt="data ownership icon" class="w-8 h-8 text-white" />
-                                </div>
+                        <!-- Phase 3 (Highest) -->
+                        <div class="flex flex-col items-center" style="transform: translateY(0px);" data-aos="fade-up"
+                            data-aos-delay="500">
+                            <div class="bg-white/80 backdrop-blur rounded-xl p-6 shadow-md">
                                 <h3 class="font-semibold text-2xl text-gray-800 mb-2">Data Ownership</h3>
-                                <p class="text-base text-gray-600">Stay in control of your information: easily update accounts, share when you want, and maintain total privacy.</p>
+                                <p class="text-base text-gray-600">Stay in control of your information: easily update
+                                    accounts, share when you want, and maintain total privacy.</p>
                             </div>
-
                         </div>
 
                     </div>
-
                 </div>
             </section>
 
-            <script src="./typewriter.js"></script>
+
+
+            <script src="/public/typewriter.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+            <script>
+                AOS.init({
+                    duration: 1000, // Animation duration in milliseconds
+                    easing: 'ease-in-out', // Easing function
+                    once: true // Whether animation should happen only once
+                });
+            </script>
 </body>
 
 </html>

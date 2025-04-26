@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "serve public",
+    "start": "serve .",
     "build": "echo 'No build step required for static files'",
     "test": "echo 'No tests configured' && exit 0"
   },
   "dependencies": {
+    "aos": "^2.3.4",
     "autoprefixer": "^10.4.2",
     "postcss": "^8.4.5",
     "process": "^0.11.10",

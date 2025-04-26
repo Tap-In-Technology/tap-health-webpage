@@ -1,7 +1,7 @@
 // === Typewriter Text Animation ===
 const phrases = [
     "Tired of filling out the same forms?",
-    "Filling out forms is outdated.",
+    "Filling out forms is outdated!!",
     "Upgrade your experience today."
 ];
 let i = 0, j = 0, currentPhrase = [], isDeleting = false, isEnd = false;
