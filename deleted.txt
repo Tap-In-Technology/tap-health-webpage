@@ -82,3 +82,15 @@
                             class="hover:opacity-90 bg-black py-3 px-10 lg:py-7 lg:px-20 rounded-full text-white text-sm md:text-lg f-f-p focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black inline-block text-center cursor-pointer no-underline">
                             Schedule a Meeting
                         </a>
+
+
+
+
+
+
+                    <!-- Figma Embed at the very bottom -->
+                    <div class="mt-16 flex justify-center">
+                        <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450"
+                            src="https://embed.figma.com/proto/UX8iPZUupD9uipg9Xb30jg/Tap-Health-App-UX?node-id=3-2&starting-point-node-id=3%3A2&embed-host=share"
+                            allowfullscreen></iframe>
+                    </div>
