@@ -194,3 +194,60 @@
                     </div>
                 </div>
             </section>
+
+
+
+
+
+
+
+            <!-- Market Opportunity & Competitive Edge Section -->
+            <section id="opportunity" class="py-24 px-4 bg-gray-50">
+                <div class="max-w-7xl mx-auto text-center">
+                    <h2 class="text-5xl font-bold text-gray-900 mb-16">Market Opportunity & Competitive Edge</h2>
+
+                    <!-- Competition -->
+                    <div class="mb-20">
+                        <h3 class="text-3xl font-semibold text-gray-800 mb-10">Competition</h3>
+                        <div class="flex overflow-x-auto space-x-6 pb-4 snap-x snap-mandatory">
+                            <div class="snap-center min-w-[300px] bg-white rounded-lg shadow-lg p-6">
+                                <h4 class="text-xl font-bold mb-4">Epic (MyChart)</h4>
+                                <p class="text-gray-700">EHR is too expensive for many clinics, redundant intake, and
+                                    admins still manually scrub insurance info.</p>
+                            </div>
+                            <div class="snap-center min-w-[300px] bg-white rounded-lg shadow-lg p-6">
+                                <h4 class="text-xl font-bold mb-4">Intake Form Plug-In Companies</h4>
+                                <p class="text-gray-700">Patients re-enter data redundantly, admins scrub insurance,
+                                    frequent errors, and expensive.</p>
+                            </div>
+                            <div class="snap-center min-w-[300px] bg-white rounded-lg shadow-lg p-6">
+                                <h4 class="text-xl font-bold mb-4">Paper/PDF Forms</h4>
+                                <p class="text-gray-700">High admin labor, inefficient scan to PDFs, prone to errors,
+                                    and manual insurance scrubbing required.</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Pricing -->
+                    <div class="mb-20">
+                        <h3 class="text-3xl font-semibold text-gray-800 mb-10">Pricing Plan</h3>
+                        <div class="flex flex-col md:flex-row justify-center gap-8">
+                            <!-- Early Adopters Box -->
+                            <div
+                                class="bg-red-50 border border-red-600 bg-black rounded-lg p-6 w-full md:w-1/2 hover:shadow-md transition-all duration-300">
+                                <h4 class="text-2xl font-bold mb-2">Early Adopters</h4>
+                                <p class="text-lg">$200/month per location</p>
+                                <p class="text-md mt-2">First 3 months free</p>
+                            </div>
+                            <!-- Standard Pricing Box -->
+                            <div
+                                class="bg-gray-100 border border-gray-400 text-gray-700 rounded-lg p-6 w-full md:w-1/2 hover:shadow-md transition-all duration-300">
+                                <h4 class="text-2xl font-bold mb-2">Standard Pricing</h4>
+                                <p class="text-lg">$400/month per location</p>
+                                <p class="text-md mt-2">Up to 3 NFC readers per clinic</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
