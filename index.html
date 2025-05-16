@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tap Health Webpage</title>
+    <title>Tap Webpage</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="icon" href="favicon.ico" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
@@ -153,12 +153,18 @@
                         It's time for filling out medical forms to get an upgrade. Fill out a form field once, and never
                         again--just tap.
                     </h2>
+                    <!-- Calendly widget script -->
+                    <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js"
+                        async></script>
+
                     <div class="w-full flex justify-center md:block">
-                        <a href="demo.html"
-                            class="hover:opacity-90 bg-red-700 py-3 px-10 lg:py-7 lg:px-20 rounded-full text-white text-sm md:text-lg f-f-p focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-700 inline-block text-center cursor-pointer no-underline">
+                        <a href="#"
+                            onclick="Calendly.initPopupWidget({url: 'https://calendly.com/aris-tap-technology'}); return false;"
+                            class="hover:opacity-90 bg-black py-3 px-10 lg:py-7 lg:px-20 rounded-full text-white text-sm md:text-lg f-f-p focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black inline-block text-center cursor-pointer no-underline">
                             Try Our Demo
                         </a>
                     </div>
+
                 </div>
                 <div class="w-1/2 sm:w-2/5 h-64 md:h-auto m-auto flex items-center overflow-hidden">
                     <img class="md:absolute md:w-2/5 md:-ml-28" src="/media/forms.svg"
@@ -518,43 +524,6 @@
                             class="rounded-xl shadow-lg w-80 h-auto" />
                     </div>
 
-                </div>
-            </section>
-
-            <!-- Our Team Section -->
-            <section class="py-16 bg-gray-100" id="team">
-                <div class="container mx-auto px-4">
-                    <div class="text-center mb-12">
-                        <h2 class="text-4xl font-bold text-gray-800 mb-4">The Tap Health Team: Ready to Take on Sandbox</h2>
-                    </div>
-                    <div class="flex flex-col md:flex-row items-center justify-center gap-10">
-                        <!-- Team Image with Glow Effect -->
-                        <div class="flex-shrink-0 mb-8 md:mb-0">
-                            <img src="/media/team.jpg" alt="Tap Health Team"
-                                class="rounded-2xl shadow-xl w-80 md:w-96 border-4 border-red-700 ring-4 ring-red-400 ring-opacity-50 glow-team" />
-                        </div>
-                        <!-- Names List -->
-                        <div class="flex flex-col items-center md:items-start">
-                            <ul class="space-y-4 text-2xl font-semibold text-gray-800">
-                                <li class="flex items-center">
-                                    <span class="inline-block w-3 h-3 bg-red-700 rounded-full mr-3"></span>
-                                    Alex Coronado
-                                </li>
-                                <li class="flex items-center">
-                                    <span class="inline-block w-3 h-3 bg-red-700 rounded-full mr-3"></span>
-                                    Aris Vetter
-                                </li>
-                                <li class="flex items-center">
-                                    <span class="inline-block w-3 h-3 bg-red-700 rounded-full mr-3"></span>
-                                    David Castro
-                                </li>
-                                <li class="flex items-center">
-                                    <span class="inline-block w-3 h-3 bg-red-700 rounded-full mr-3"></span>
-                                    Kayden Humphries
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
                 </div>
             </section>
 

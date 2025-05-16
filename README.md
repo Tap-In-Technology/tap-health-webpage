@@ -47,3 +47,24 @@ Contributions are welcome! Please open an issue or submit a pull request for any
 
 ## License
 This project is licensed under the MIT License. See the LICENSE file for details.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// todo:
+
+add invest button by market opportunity
+add sign LOI button
+"Want to ensure priority access to Tap? Sign an LOI today
+"Want to know more? Schedule a Meeting
+"Stay Connected: Sign up for our email list
