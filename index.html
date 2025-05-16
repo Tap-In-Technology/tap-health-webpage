@@ -185,18 +185,13 @@
             <section id="solution" class="py-24 bg-white relative overflow-hidden">
                 <!-- Background image -->
                 <img src="/media/background_1.jpg" alt=""
-                    class="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none" style="opacity:0.95;">
+                    class="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none bg-fixed"
+                    style="opacity: 0.95; transform: translateZ(0);">
+
                 <div class="max-w-7xl mx-auto px-6 relative z-10">
                     <div class="grid grid-cols-1 lg:grid-cols-4 gap-16 items-center">
-                        <!-- Left Side: Illustration (1/4 width on large screens) -->
-                        <div class="flex justify-center lg:col-span-1 col-span-1" data-aos="fade-right">
-                            <img src="/media/tap_icon.png" alt="Tap Solution Illustration"
-                                class="w-full max-w-none h-auto object-contain"
-                                style="min-width:400px; max-width:700px;">
-                        </div>
-
-                        <!-- Right Side: Solution Content (3/4 width on large screens) -->
-                        <div class="text-center lg:text-left lg:col-span-3 col-span-1" data-aos="fade-left">
+                        <!-- Right Side: Solution Content (now full width on large screens) -->
+                        <div class="text-center lg:text-left lg:col-span-4 col-span-1" data-aos="fade-left">
                             <h2 class="text-4xl font-extrabold text-white mb-6">Our Solution</h2>
                             <p class="text-xl text-white mb-10 max-w-2xl">
                                 Tap makes sign-ins and sign-ups instant — just tap to securely share your verified info.
@@ -248,42 +243,51 @@
             </section>
 
             <section id="benefits" class="py-24 px-6 bg-white">
-                <div class="max-w-3xl mx-auto text-center">
-                    <h2 class="text-5xl font-extrabold text-gray-900 mb-12">Core Benefits</h2>
+                <div class="max-w-5xl mx-auto flex flex-col lg:flex-row items-center gap-12">
+                    <!-- Icon on the left -->
+                    <div class="flex-shrink-0 flex justify-center w-full lg:w-1/3 mb-10 lg:mb-0">
+                        <img src="/media/tap_icon.png" alt="Tap Icon" class="w-64 h-64 object-contain">
+                    </div>
+                    <!-- Benefits on the right -->
+                    <div class="w-full lg:w-2/3">
+                        <h2 class="text-5xl font-extrabold text-gray-900 mb-12 text-center lg:text-left">Core Benefits
+                        </h2>
+                        <div class="space-y-12 text-left text-gray-800">
+                            <div>
+                                <h3 class="text-2xl font-semibold mb-2">Secure</h3>
+                                <p class="text-gray-600">
+                                    Only user-approved data is shared — giving people full control over what they share,
+                                    and
+                                    with whom.
+                                </p>
+                            </div>
 
-                    <div class="space-y-12 text-left text-gray-800">
+                            <div>
+                                <h3 class="text-2xl font-semibold mb-2">Fast</h3>
+                                <p class="text-gray-600">
+                                    Tap eliminates form-fill and waiting rooms. Onboard in seconds with a single tap.
+                                </p>
+                            </div>
 
-                        <div>
-                            <h3 class="text-2xl font-semibold mb-2">Secure</h3>
-                            <p class="text-gray-600">
-                                Only user-approved data is shared — giving people full control over what they share, and
-                                with whom.
-                            </p>
+                            <div>
+                                <h3 class="text-2xl font-semibold mb-2">Accurate</h3>
+                                <p class="text-gray-600">
+                                    Verified information lowers data entry errors, improves compliance, and boosts trust
+                                    in
+                                    every interaction.
+                                </p>
+                            </div>
+
+                            <div>
+                                <h3 class="text-2xl font-semibold mb-2">Universal</h3>
+                                <p class="text-gray-600">
+                                    Tap is industry-agnostic. It works anywhere — from clinics to hotels to banks —
+                                    wherever
+                                    identity or info is needed.
+                                </p>
+                            </div>
+
                         </div>
-
-                        <div>
-                            <h3 class="text-2xl font-semibold mb-2">Fast</h3>
-                            <p class="text-gray-600">
-                                Tap eliminates form-fill and waiting rooms. Onboard in seconds with a single tap.
-                            </p>
-                        </div>
-
-                        <div>
-                            <h3 class="text-2xl font-semibold mb-2">Accurate</h3>
-                            <p class="text-gray-600">
-                                Verified information lowers data entry errors, improves compliance, and boosts trust in
-                                every interaction.
-                            </p>
-                        </div>
-
-                        <div>
-                            <h3 class="text-2xl font-semibold mb-2">Universal</h3>
-                            <p class="text-gray-600">
-                                Tap is industry-agnostic. It works anywhere — from clinics to hotels to banks — wherever
-                                identity or info is needed.
-                            </p>
-                        </div>
-
                     </div>
                 </div>
             </section>
