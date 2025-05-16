@@ -151,7 +151,7 @@ preview 9Rn0avGpMeWEMaE7CoLmFc_5uLpuHukkOy6txgxNP5c
       </form>
       
       <div class="mt-6 text-center">
-        <a href="index.html" class="text-red-700 hover:text-red-600 underline">Back to Home</a>
+        <a href="index.html" class="bg-black hover:text-red-600 underline">Back to Home</a>
       </div>
     </div>
   </div>
