@@ -246,7 +246,7 @@
                 <div class="max-w-5xl mx-auto flex flex-col lg:flex-row items-center gap-12">
                     <!-- Icon on the left -->
                     <div class="flex-shrink-0 flex justify-center w-full lg:w-1/3 mb-10 lg:mb-0">
-                        <img src="/media/tap_icon.png" alt="Tap Icon" class="w-64 h-64 object-contain">
+                        <img src="/media/tap_icon.png" alt="Tap Icon" class="w-[28rem] h-[28rem] max-w-full object-contain">
                     </div>
                     <!-- Benefits on the right -->
                     <div class="w-full lg:w-2/3">
@@ -556,6 +556,17 @@
                         <feDropShadow dx="0" dy="0" stdDeviation="2" flood-opacity="0.3" />
                     </filter>
                 </svg>
+                <!-- New sub-header and CTA below the SVG headline -->
+                <div class="mt-8 text-center">
+                    <h3 class="text-2xl md:text-3xl font-semibold text-gray-800 mb-4">
+                        Want to ensure priority access to Tap? Schedule a meeting and sign an LOI today.
+                    </h3>
+                    <a href="#"
+                        onclick="Calendly.initPopupWidget({url: 'https://calendly.com/aris-tap-technology'}); return false;"
+                        class="inline-block bg-black text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-800 transition">
+                        Schedule a Meeting
+                    </a>
+                </div>
             </section>
 
 
