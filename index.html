@@ -154,21 +154,25 @@
                         It's time for filling out medical forms to get an upgrade. Fill out a form field once, and never
                         again--just tap.
                     </h2>
+                    <!-- Calendly link widget begin -->
+                    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+                    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript"
+                        defer></script>
+
                     <div class="w-full flex justify-center md:block">
                         <h2
                             class="md:w-8/12 my-4 text-center md:text-left md:my-8 text-gray-700 dark:text-gray-200 text-lg lg:text-2xl">
                             Want to know more?
                         </h2>
 
-                        <!-- Calendly link widget begin -->
-                        <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
-                        <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript"
-                            async></script>
-                        <a href=""
-                            onclick="Calendly.initPopupWidget({url: 'https://calendly.com/aris-tap-technology'});return false;">Schedule
-                            time with me</a>
-                        <!-- Calendly link widget end -->
+                        <a href="#"
+                            onclick="Calendly.initPopupWidget({url: 'https://calendly.com/aris-tap-technology'}); return false;"
+                            class="hover:opacity-90 bg-black py-3 px-10 lg:py-7 lg:px-20 rounded-full text-white text-sm md:text-lg f-f-p focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black inline-block text-center cursor-pointer no-underline">
+                            Schedule a Meeting
+                        </a>
                     </div>
+                    <!-- Calendly link widget end -->
+
 
                 </div>
                 <div class="w-1/2 sm:w-2/5 h-64 md:h-auto m-auto flex items-center overflow-hidden">
@@ -506,7 +510,7 @@
                     <input type="email" name="email" placeholder="Enter your email" required
                         class="flex-grow px-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500" />
                     <button type="submit"
-                        class="bg-gray-600 hover:bg-blue-700 px-6 py-3 rounded-lg font-semibold transition">
+                        class="bg-grey-600 hover:bg-blue-700 px-6 py-3 rounded-lg font-semibold transition">
                         Sign Up
                     </button>
                 </form>
