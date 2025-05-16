@@ -562,7 +562,7 @@
                                 alert('Thanks for signing up!');
                                 form.reset();
                             })
-                            .catch((err) => alert('Error!'));
+                            .catch((err) => alert('Error! ' + JSON.stringify(err)));
                     });
                 </script>
             </section>
