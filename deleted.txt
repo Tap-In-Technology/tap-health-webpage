@@ -251,3 +251,230 @@
                     </div>
                 </div>
             </section>
+
+
+
+
+
+
+
+
+
+                       <section class="py-12 px-6 bg-gray-100">
+                <svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Background -->
+                    <rect width="800" height="600" fill="#f3f4f6" />
+
+                    <!-- Background Text Pattern -->
+                    <g font-family="Arial, sans-serif" font-size="9" fill="#e5e7eb" letter-spacing="0.5">
+                        <!-- Using a pattern of words in multiple rows with varied opacity -->
+                        <text x="10" y="30">Sign in at daycare</text>
+                        <text x="140" y="30">Enroll kids at school</text>
+                        <text x="280" y="30">Register at vaccination sites</text>
+                        <text x="450" y="30">Apply for health insurance</text>
+                        <text x="620" y="30">Sign in for testing</text>
+
+                        <text x="20" y="50">Check in for bloodwork</text>
+                        <text x="170" y="50">Sign in at lab</text>
+                        <text x="260" y="50">Join new patient intake</text>
+                        <text x="410" y="50">Apply for new passport</text>
+                        <text x="570" y="50">Renew driver's license instantly</text>
+
+                        <text x="10" y="70">Sign in at courthouse</text>
+                        <text x="150" y="70">Tap to vote registration</text>
+                        <text x="320" y="70">Sign up for TSA PreCheck</text>
+                        <text x="480" y="70">Check in at DMV</text>
+                        <text x="590" y="70">Apply for business license</text>
+
+                        <text x="20" y="90">Sign in for licensing exam</text>
+                        <text x="200" y="90">Join job fair instantly</text>
+                        <text x="350" y="90">Apply for unemployment benefits</text>
+                        <text x="560" y="90">Register for workforce programs</text>
+
+                        <text x="30" y="110">Tap to join gym</text>
+                        <text x="130" y="110">Check into nail salon</text>
+                        <text x="270" y="110">Sign up for hair appointment</text>
+                        <text x="450" y="110">Enroll in career center</text>
+                        <text x="600" y="110">Register at trade school</text>
+
+                        <text x="20" y="130">Tap to join class</text>
+                        <text x="140" y="130">Check in for tutoring</text>
+                        <text x="290" y="130">Sign in for mentorship</text>
+                        <text x="440" y="130">Join networking event instantly</text>
+
+                        <text x="40" y="150">Sign up for housing tour</text>
+                        <text x="210" y="150">Register at security gate</text>
+                        <text x="380" y="150">Access private workspace fast</text>
+                        <text x="580" y="150">Sign in for HOA meeting</text>
+
+                        <text x="10" y="170">Check in at clinics</text>
+                        <text x="140" y="170">Verify ID at pharmacy</text>
+                        <text x="290" y="170">Register at urgent care</text>
+                        <text x="450" y="170">Sign-in to dental appointment fast</text>
+
+                        <text x="30" y="190">Check in for vision appointment</text>
+                        <text x="220" y="190">Verify for vaccinations instantly</text>
+                        <text x="430" y="190">Sign in at hospitals</text>
+                        <text x="570" y="190">Tap to open accounts</text>
+
+                        <text x="50" y="210">Apply for loan instantly</text>
+                        <text x="210" y="210">Verify ID for banking</text>
+                        <text x="350" y="210">Check in at notary</text>
+                        <text x="480" y="210">Begin wealth onboarding</text>
+
+                        <text x="20" y="230">Join loyalty program instantly</text>
+                        <text x="210" y="230">Link receipts to profile</text>
+                        <text x="360" y="230">Return items without receipt</text>
+                        <text x="560" y="230">Sign-in to car rental</text>
+
+                        <text x="40" y="250">Unlock EV charging station</text>
+                        <text x="220" y="250">Check in for service</text>
+                        <text x="360" y="250">Tap to confirm license</text>
+                        <text x="520" y="250">Speed through hotel check-in</text>
+
+                        <text x="20" y="270">Enter bar w/ verified ID</text>
+                        <text x="180" y="270">Board cruise with ID</text>
+                        <text x="330" y="270">Tap for rental gear</text>
+                        <text x="460" y="270">Check in at campus</text>
+                        <text x="600" y="270">Enter class with tap</text>
+
+                        <text x="50" y="290">Verify ID for exams</text>
+                        <text x="190" y="290">Check out library books</text>
+                        <text x="350" y="290">Sign in for meetings</text>
+                        <text x="500" y="290">Access coworking with TapID</text>
+
+                        <text x="20" y="310">Enter events with TapID</text>
+                        <text x="180" y="310">Enter government building fast</text>
+                        <text x="390" y="310">Check in for permits</text>
+                        <text x="530" y="310">Sign in for benefits</text>
+
+                        <text x="40" y="330">Verify at jury duty</text>
+                        <text x="170" y="330">Tap at leasing office</text>
+                        <text x="300" y="330">Attend open house quickly</text>
+                        <text x="490" y="330">Sign lease with TapID</text>
+
+                        <text x="30" y="350">Sign-up/access gym via tap</text>
+                        <text x="220" y="350">Fast sign-in to therapy with tap</text>
+                        <text x="430" y="350">Check in at notary</text>
+                        <text x="570" y="350">Join job fair instantly</text>
+
+                        <text x="10" y="370">Enter bar w/ verified ID</text>
+                        <text x="170" y="370">Sign in at lab</text>
+                        <text x="280" y="370">Verify ID for exams</text>
+                        <text x="420" y="370">Link receipts to profile</text>
+                        <text x="580" y="370">Join networking event instantly</text>
+
+                        <text x="30" y="390">Tap to vote registration</text>
+                        <text x="200" y="390">Check in at DMV</text>
+                        <text x="320" y="390">Sign in for testing</text>
+                        <text x="450" y="390">Apply for health insurance</text>
+                        <text x="620" y="390">Fast sign-in to therapy with tap</text>
+
+                        <text x="40" y="410">Check in for bloodwork</text>
+                        <text x="190" y="410">Sign in at courthouse</text>
+                        <text x="340" y="410">Register at vaccination sites</text>
+                        <text x="520" y="410">Apply for new passport</text>
+
+                        <text x="20" y="430">Sign in for licensing exam</text>
+                        <text x="200" y="430">Enroll kids at school</text>
+                        <text x="350" y="430">Check in at clinics</text>
+                        <text x="480" y="430">Apply for loan instantly</text>
+                        <text x="630" y="430">Tap to join gym</text>
+
+                        <text x="50" y="450">Check into nail salon</text>
+                        <text x="190" y="450">Sign up for hair appointment</text>
+                        <text x="360" y="450">Verify ID for banking</text>
+                        <text x="500" y="450">Begin wealth onboarding</text>
+
+                        <text x="20" y="470">Register at trade school</text>
+                        <text x="180" y="470">Tap to join class</text>
+                        <text x="300" y="470">Check in for tutoring</text>
+                        <text x="450" y="470">Sign in for mentorship</text>
+
+                        <text x="40" y="490">Access private workspace fast</text>
+                        <text x="240" y="490">Sign up for housing tour</text>
+                        <text x="400" y="490">Register at security gate</text>
+                        <text x="570" y="490">Sign in for HOA meeting</text>
+
+                        <text x="20" y="510">Sign-in to dental appointment fast</text>
+                        <text x="230" y="510">Check in for vision appointment</text>
+                        <text x="420" y="510">Verify for vaccinations instantly</text>
+
+                        <text x="30" y="530">Sign in at hospitals</text>
+                        <text x="170" y="530">Unlock EV charging station</text>
+                        <text x="350" y="530">Check in for service</text>
+                        <text x="490" y="530">Tap to confirm license</text>
+
+                        <text x="40" y="550">Board cruise with ID</text>
+                        <text x="180" y="550">Speed through hotel check-in</text>
+                        <text x="370" y="550">Enter events with TapID</text>
+                        <text x="530" y="550">Access coworking with TapID</text>
+                    </g>
+
+                    <!-- Center White Gradient Background for Main Text -->
+                    <radialGradient id="centerGradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+                        <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95" />
+                        <stop offset="70%" stop-color="#ffffff" stop-opacity="0.7" />
+                        <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+                    </radialGradient>
+                    <circle cx="400" cy="300" r="200" fill="url(#centerGradient)" />
+
+                    <!-- Main Headline -->
+                    <text x="400" y="300" font-family="Arial, sans-serif" font-weight="900" font-size="50"
+                        text-anchor="middle" fill="#000000">Let's Tap Everywhere.</text>
+
+                    <!-- Drop Shadow for Main Text (for better visibility) -->
+                    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+                        <feDropShadow dx="0" dy="0" stdDeviation="2" flood-opacity="0.3" />
+                    </filter>
+                </svg>
+                <!-- Sub-header directly below the SVG headline -->
+                <div class="mt-4 text-center">
+                    <h3 class="text-xl md:text-2xl font-semibold text-gray-800 mb-4">
+                        Want to ensure priority access to Tap? Schedule a meeting and sign an LOI today.
+                    </h3>
+                    <a href="#"
+                        onclick="Calendly.initPopupWidget({url: 'https://calendly.com/aris-tap-technology'}); return false;"
+                        class="inline-block bg-black text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-800 transition">
+                        Schedule a Meeting
+                    </a>
+                </div>
+            </section>
+
+            
+
+
+            <section class="bg-gray-900 text-white py-16 px-6 text-center">
+                <h2 class="text-4xl font-extrabold mb-8">Join Our Mailing List</h2>
+                <p class="text-gray-400 mb-8 max-w-xl mx-auto">
+                    Stay informed about Tap updates and early access opportunities.
+                </p>
+                <form id="emailForm" class="flex justify-center max-w-md mx-auto gap-4">
+                    <input type="email" name="email" placeholder="Enter your email" required
+                        class="flex-grow px-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                    <button type="submit"
+                        class="bg-grey-300 hover:bg-grey-150 px-6 py-3 rounded-lg font-semibold transition">
+                        Sign Up
+                    </button>
+                </form>
+
+                <script>
+                    const form = document.getElementById('emailForm');
+                    form.addEventListener('submit', (e) => {
+                        e.preventDefault();
+                        const formData = new FormData(form);
+                        fetch(
+                            'https://script.google.com/macros/s/AKfycbxZeJ9QZ3FHdOzsA5Y4q56QFlLxhqkhYDy4txL0UU7QBKmUiK3c7xfuMqRPmzr9jN9__Q/exec',
+                            {
+                                method: 'POST',
+                                body: formData,
+                            }
+                        )
+                            .then((res) => {
+                                alert('Thanks for signing up!');
+                                form.reset();
+                            })
+                            .catch((err) => alert('Error! ' + JSON.stringify(err)));
+                    });
+                </script>
+            </section>
