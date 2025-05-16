@@ -57,6 +57,7 @@
             new OpenAIChatbot(clientId); // Automatically initialize the chatbot
         });
     </script>
+    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript"></script>
 </head>
 
 <body class="bg-gray-100">
@@ -158,10 +159,14 @@
                         async></script>
 
                     <div class="w-full flex justify-center md:block">
+                        <h2
+                            class="md:w-8/12 my-4 text-center md:text-left md:my-8 text-gray-700 dark:text-gray-200 text-lg lg:text-2xl">
+                            Want to know more?
+                        </h2>
                         <a href="#"
                             onclick="Calendly.initPopupWidget({url: 'https://calendly.com/aris-tap-technology'}); return false;"
                             class="hover:opacity-90 bg-black py-3 px-10 lg:py-7 lg:px-20 rounded-full text-white text-sm md:text-lg f-f-p focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black inline-block text-center cursor-pointer no-underline">
-                            Want to know more? Schedule a Meeting
+                            Schedule a Meeting
                         </a>
                     </div>
 
@@ -529,28 +534,39 @@
 
             <section class="bg-gray-900 text-white py-16 px-6 mt-24 text-center">
                 <h2 class="text-4xl font-extrabold mb-8">Join Our Mailing List</h2>
-                <p class="text-gray-400 mb-8 max-w-xl mx-auto">Stay informed about Tap updates and early
-                    access opportunities.</p>
-                <form id="emailForm">
-                    <input type="email" name="email" placeholder="Enter your email" required />
-                    <button type="submit">Sign Up</button>
+                <p class="text-gray-400 mb-8 max-w-xl mx-auto">
+                    Stay informed about Tap updates and early access opportunities.
+                </p>
+                <form id="emailForm" class="flex justify-center max-w-md mx-auto gap-4">
+                    <input type="email" name="email" placeholder="Enter your email" required
+                        class="flex-grow px-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                    <button type="submit"
+                        class="bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-lg font-semibold transition">
+                        Sign Up
+                    </button>
                 </form>
+
                 <script>
                     const form = document.getElementById('emailForm');
-                    form.addEventListener('submit', e => {
+                    form.addEventListener('submit', (e) => {
                         e.preventDefault();
                         const formData = new FormData(form);
-                        fetch('https://script.google.com/macros/s/AKfycbxZeJ9QZ3FHdOzsA5Y4q56QFlLxhqkhYDy4txL0UU7QBKmUiK3c7xfuMqRPmzr9jN9__Q/exec', {
-                            method: 'POST',
-                            body: formData,
-                        }).then(res => {
-                            alert('Thanks for signing up!');
-                            form.reset();
-                        }).catch(err => alert('Error!'));
+                        fetch(
+                            'https://script.google.com/macros/s/AKfycbxZeJ9QZ3FHdOzsA5Y4q56QFlLxhqkhYDy4txL0UU7QBKmUiK3c7xfuMqRPmzr9jN9__Q/exec',
+                            {
+                                method: 'POST',
+                                body: formData,
+                            }
+                        )
+                            .then((res) => {
+                                alert('Thanks for signing up!');
+                                form.reset();
+                            })
+                            .catch((err) => alert('Error!'));
                     });
                 </script>
-
             </section>
+
 
 
 
