@@ -567,7 +567,7 @@
             </section>
 
             <!-- Removed the mt-24 margin from this section -->
-            <section class="bg-gray-900 text-white py-16 px-6 text-center">
+            <section id="stay-connected" class="bg-gray-900 text-white py-16 px-6 text-center">
                 <h2 class="text-4xl font-extrabold mb-8">Join Our Mailing List</h2>
                 <p class="text-gray-400 mb-8 max-w-xl mx-auto">
                     Stay informed about Tap updates and early access opportunities.
@@ -581,6 +581,19 @@
                     </button>
                 </form>
                 <script>
+                    // Smooth scroll for nav links (including Stay Connected)
+                    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                        anchor.addEventListener('click', function (e) {
+                            const targetId = this.getAttribute('href').slice(1);
+                            const target = document.getElementById(targetId);
+                            if (target) {
+                                e.preventDefault();
+                                target.scrollIntoView({ behavior: 'smooth' });
+                            }
+                        });
+                    });
+
+                    // Mailing list form handler
                     const form = document.getElementById('emailForm');
                     form.addEventListener('submit', (e) => {
                         e.preventDefault();
