@@ -254,7 +254,13 @@
 
 
 
-
+    <script src="https://eyeto-ai.com/OpenAIChatbot.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const clientId = 'tap';
+            new OpenAIChatbot(clientId); // Automatically initialize the chatbot
+        });
+    </script>
 
 
 
