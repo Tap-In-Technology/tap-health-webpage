@@ -81,7 +81,6 @@
                     <div class="visible flex items-center">
                         <button id="open"
                             class="xl:hidden dark:bg-white focus:ring-2 focus:outline-none focus:ring-gray-600 w-8 h-8">
-                            <!-- Add w-8 h-8 -->
                             <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/left_aligned_with_cta_and_placeholder-svg2.svg"
                                 alt="menuhandler" />
                         </button>
@@ -100,15 +99,9 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#opportunity"
+                                <a href="#why-now"
                                     class="block text-gray-600 dark:text-gray-200 text-sm font-bold hover:bg-gray-150 transition-all duration-200">
-                                    Market Opportunity
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#security"
-                                    class="block text-gray-600 dark:text-gray-200 text-sm font-bold hover:bg-grey-150 transition-all duration-200">
-                                    Security
+                                    Why Now
                                 </a>
                             </li>
                             <li>
@@ -117,11 +110,16 @@
                                     The Future
                                 </a>
                             </li>
+                            <li>
+                                <a href="#stay-connected"
+                                    class="block text-gray-600 dark:text-gray-200 text-sm font-bold hover:bg-gray-150 transition-all duration-200">
+                                    Stay Connected
+                                </a>
+                            </li>
                         </ul>
                         <div class="xl:hidden">
                             <button id="close"
                                 class="hidden close-m-menu focus:ring-2 focus:outline-none focus:ring-gray-600 w-8 h-8">
-                                <!-- Add w-8 h-8 -->
                                 <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/left_aligned_with_cta_and_placeholder-svg3.svg"
                                     alt="close handler" />
                             </button>
@@ -291,11 +289,10 @@
 
 
             <!-- Why Now Section -->
-            <section class="py-24 px-4 bg-black">
+            <section id="why-now" class="py-24 px-4 bg-black">
                 <div class="max-w-7xl mx-auto text-center">
                     <h2 class="lg:text-5xl text-3xl font-bold leading-10 text-white">Why Now?</h2>
                 </div>
-
                 <div
                     class="2xl:container 2xl:mx-auto grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-6 mt-16 lg:px-20 md:px-6 px-4">
                     <!-- Stat 1 -->
@@ -379,7 +376,7 @@
                     </div>
                 </div>
             </section>
-            <section class="py-12 px-6 bg-gray-100">
+            <section class="py-12 px-6 bg-gray-100 hidden md:block">
                 <svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
                     <!-- Background -->
                     <rect width="800" height="600" fill="#f3f4f6" />
@@ -582,7 +579,6 @@
                         Sign Up
                     </button>
                 </form>
-
                 <script>
                     const form = document.getElementById('emailForm');
                     form.addEventListener('submit', (e) => {
