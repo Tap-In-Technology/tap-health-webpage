@@ -1,0 +1,4 @@
+# Redirect all non-www traffic to www (force HTTPS too)
+https://tap-technology.com/* https://www.tap-technology.com/:splat 301!
+http://tap-technology.com/*  https://www.tap-technology.com/:splat 301!
+http://www.tap-technology.com/* https://www.tap-technology.com/:splat 301!
