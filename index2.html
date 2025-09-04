@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tap Health - Index 2</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" href="favicon.ico" />
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Background image styling */
+        .lightning-bg {
+            background-image: url('/media/lightning_bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            min-height: 100vh; /* Full viewport height */
+            position: relative;
+        }
+        
+        /* Tiny black section */
+        .black-section {
+            background-color: #000000;
+            min-height: 10vh; /* Half the size - very small section */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 10;
+        }
+        
+        /* Parallax phone movement */
+        .phone-parallax {
+            transition: transform 0.1s ease-out;
+        }
+        
+        /* Force phone aspect ratio */
+        #phone {
+            object-fit: contain;
+            max-width: none;
+            height: 80vh;
+            width: auto;
+        }
+        
+    </style>
+</head>
+
+<body class="min-h-screen">
+    <!-- Lightning background hero section -->
+    <section class="lightning-bg relative">
+            <!-- Tap logo in top left -->
+    <div class="fixed -top-2 left-6 z-20">
+        <img src="/media/Tap_inverted.png" alt="Tap Health Logo" class="h-36 w-auto">
+    </div>
+        
+        <!-- Phone image large and centered, fading into background -->
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 parallax-slow" id="phone-container">
+            <img src="/media/phone.png" alt="Phone" class="h-[80vh] w-auto opacity-90" id="phone">
+        </div>
+        
+        <!-- Main heading text -->
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 parallax-slow" id="text-container">
+            <h1 class="text-white font-bold text-center leading-tight" style="text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5); font-size: clamp(1.5rem, 6vw, 6rem);">
+                Your data.<br>In your hands.
+            </h1>
+        </div>
+    </section>
+    
+    <!-- Tiny black section with privacy policy and get in touch -->
+    <section class="black-section">
+        <div class="w-full flex justify-between items-center px-6">
+            <a href="#" class="text-xs text-gray-400 hover:text-white transition-colors">Privacy Policy</a>
+            <button class="bg-white text-black px-4 py-2 rounded-full text-sm font-medium hover:bg-gray-200 transition-colors">Get in Touch</button>
+        </div>
+    </section>
+
+    <script>
+        // Parallax scroll effect for phone and text
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallaxRate = 0.5; // Slower movement (0.5 = half speed)
+            
+            // Apply parallax to phone and text containers
+            const phoneContainer = document.getElementById('phone-container');
+            const textContainer = document.getElementById('text-container');
+            
+            if (phoneContainer && textContainer) {
+                const translateY = scrolled * parallaxRate;
+                phoneContainer.style.transform = `translate(-50%, calc(-50% + ${translateY}px))`;
+                textContainer.style.transform = `translate(-50%, calc(-50% + ${translateY}px))`;
+            }
+        });
+    </script>
+</body>
+
+</html>
