@@ -47,6 +47,51 @@
             width: auto;
         }
         
+        /* Typing animation */
+        .typing-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .typing-text {
+            font-family: 'Courier New', monospace;
+            font-size: 0.875rem;
+            color: #ffffff;
+            min-height: 1.25rem;
+            white-space: nowrap;
+        }
+        
+        .typing-cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1rem;
+            background-color: #ffffff;
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        
+        .request-button {
+            background-color: #ffffff;
+            color: #000000;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            white-space: nowrap;
+        }
+        
+        .request-button:hover {
+            background-color: #e5e5e5;
+        }
+        
     </style>
 </head>
 
@@ -60,7 +105,7 @@
         
         <!-- Phone image large and centered, fading into background -->
         <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 parallax-slow" id="phone-container">
-            <img src="/media/phone.png" alt="Phone" class="h-[80vh] w-auto opacity-90" id="phone">
+            <img src="/media/phone.png" alt="Phone" class="h-[80vh] w-auto opacity-40" id="phone">
         </div>
         
         <!-- Main heading text -->
@@ -74,8 +119,14 @@
     <!-- Tiny black section with privacy policy and get in touch -->
     <section class="black-section">
         <div class="w-full flex justify-between items-center px-6">
-            <a href="#" class="text-xs text-gray-400 hover:text-white transition-colors">Privacy Policy</a>
-            <button class="bg-white text-black px-4 py-2 rounded-full text-sm font-medium hover:bg-gray-200 transition-colors">Get in Touch</button>
+            <div class="typing-container">
+                <button class="request-button">Request Tap at a Business Near You</button>
+                <div class="typing-text" id="typing-text"></div>
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="#" class="text-xs text-gray-400 hover:text-white transition-colors">Privacy Policy</a>
+                <button class="bg-white text-black px-4 py-2 rounded-full text-sm font-medium hover:bg-gray-200 transition-colors">Get in Touch</button>
+            </div>
         </div>
     </section>
 
@@ -95,6 +146,105 @@
                 textContainer.style.transform = `translate(-50%, calc(-50% + ${translateY}px))`;
             }
         });
+
+        // Typing animation
+        const sentences = [
+            "Hate filling out forms?",
+            "It's time for filling out forms to get an upgrade",
+            "Where do you hate filling out forms?"
+        ];
+        
+        let currentSentenceIndex = 0;
+        let currentCharIndex = 0;
+        let isDeleting = false;
+        let isSpecialEffect = false;
+        const typingElement = document.getElementById('typing-text');
+        
+        // Initialize with empty text
+        typingElement.textContent = '';
+        
+        function typeText() {
+            const currentSentence = sentences[currentSentenceIndex];
+            
+            if (isDeleting) {
+                // Delete characters
+                typingElement.textContent = currentSentence.substring(0, currentCharIndex - 1);
+                currentCharIndex--;
+                
+                if (currentCharIndex === 0) {
+                    isDeleting = false;
+                    currentSentenceIndex = (currentSentenceIndex + 1) % sentences.length;
+                }
+            } else {
+                // Type characters
+                typingElement.textContent = currentSentence.substring(0, currentCharIndex + 1);
+                currentCharIndex++;
+                
+                if (currentCharIndex === currentSentence.length) {
+                    // Special effect for second sentence (index 1)
+                    if (currentSentenceIndex === 1) {
+                        // Add period
+                        typingElement.textContent = currentSentence + ".";
+                        setTimeout(() => {
+                            // Delete period
+                            typingElement.textContent = currentSentence;
+                            setTimeout(() => {
+                                // Add first exclamation point
+                                typingElement.textContent = currentSentence + "!";
+                                setTimeout(() => {
+                                    // Add second exclamation point
+                                    typingElement.textContent = currentSentence + "!!";
+                                    setTimeout(() => {
+                                        // Add third exclamation point
+                                        typingElement.textContent = currentSentence + "!!!";
+                                        setTimeout(() => {
+                                            // Start deleting everything
+                                            isDeleting = true;
+                                            typeText(); // Continue the animation
+                                        }, 1000);
+                                    }, 200);
+                                }, 200);
+                            }, 200);
+                        }, 1500);
+                        return;
+                    } else {
+                        // Normal pause before deleting
+                        setTimeout(() => {
+                            isDeleting = true;
+                            typeText(); // Continue the animation
+                        }, 2000);
+                        return;
+                    }
+                }
+            }
+            
+            // Set typing speed
+            const typingSpeed = isDeleting ? 50 : 100;
+            setTimeout(typeText, typingSpeed);
+        }
+        
+        // Start typing animation when user scrolls to the bottom section
+        let typingStarted = false;
+        
+        function checkScrollPosition() {
+            const blackSection = document.querySelector('.black-section');
+            const sectionTop = blackSection.offsetTop;
+            const sectionHeight = blackSection.offsetHeight;
+            const scrollPosition = window.pageYOffset + window.innerHeight;
+            
+            // Start typing when the bottom section is visible
+            if (scrollPosition >= sectionTop && !typingStarted) {
+                typingStarted = true;
+                // Reset to first sentence and start typing
+                currentSentenceIndex = 0;
+                currentCharIndex = 0;
+                isDeleting = false;
+                typeText();
+            }
+        }
+        
+        window.addEventListener('scroll', checkScrollPosition);
+        window.addEventListener('load', checkScrollPosition);
     </script>
 </body>
 
