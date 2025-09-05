@@ -330,13 +330,13 @@
                 }
             });
 
-            // Phase 1: Electric strike on current text (0-25ms) - ULTRA SHORT
+            // Phase 1: Electric strike on current text (0-50ms) - SLOWER
             console.log('Phase 1: Electric strike');
             currentElement.style.textShadow = '0 0 20px #c0c0c0, 0 0 40px #e0e0e0, 0 0 60px #f0f0f0, 0 0 80px #ffffff';
             currentElement.style.color = '#ffffff';
             currentElement.style.filter = 'brightness(2.5) contrast(2)';
             
-            // Phase 2: Ultra-fast flicker effect (25-50ms) - ULTRA SHORT
+            // Phase 2: Flicker effect (50-100ms) - SLOWER
             setTimeout(() => {
                 console.log('Phase 2: Flicker effect');
                 let flickerCount = 0;
@@ -347,10 +347,10 @@
                     }
                     currentElement.style.opacity = currentElement.style.opacity === '0.1' ? '1' : '0.1';
                     flickerCount++;
-                }, 15); // Ultra-fast flicker
-            }, 25);
+                }, 30); // Slower flicker
+            }, 50);
             
-            // Phase 3: Text replacement and electric entrance (50ms) - ULTRA SHORT
+            // Phase 3: Text replacement and electric entrance (100ms) - SLOWER
             setTimeout(() => {
                 console.log('Phase 3: Text replacement');
                 // Hide current text
@@ -364,7 +364,7 @@
                 nextElement.style.color = '#ffffff';
                 nextElement.style.filter = 'brightness(2) contrast(1.5)';
                 
-                // Phase 4: Settle to normal (50-75ms) - ULTRA SHORT
+                // Phase 4: Settle to normal (100-150ms) - SLOWER
                 setTimeout(() => {
                     console.log('Phase 4: Settle to normal');
                     nextElement.style.textShadow = '3px 3px 6px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5)';
@@ -372,8 +372,8 @@
                     currentTextIndex = nextIndex;
                     isAnimating = false;
                     console.log('Animation complete!');
-                }, 25);
-            }, 50);
+                }, 50);
+            }, 100);
         }
 
         function initText() {
@@ -421,7 +421,7 @@
             // Start the electric strike animation cycle after a short delay
             setTimeout(() => {
                 console.log('Starting electric strike animation...');
-                animationInterval = setInterval(electricStrike, 15000); // Change text every 15 seconds (much longer between zaps)
+                animationInterval = setInterval(electricStrike, 8000); // Change text every 8 seconds (more frequent zaps)
             }, 1000);
         }
 
