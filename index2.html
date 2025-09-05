@@ -205,7 +205,7 @@
     </div>
         
         <!-- Phone image large and centered, fading into background -->
-        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 parallax-smooth z-20" id="phone-container" style="top: 42%; left: 48%; transition: opacity 1s ease-in-out;">
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 parallax-smooth z-20" id="phone-container" style="top: 42%; left: 48%; transition: opacity 1s ease-in-out; opacity: 0;">
             <img src="/media/phone.png?v=2" alt="Phone" class="h-[80vh] w-auto opacity-100" id="phone">
             <div class="phone-gradient"></div>
             <div class="phone-gleam"></div>
@@ -636,26 +636,26 @@
         window.addEventListener('scroll', updateTextOpacity);
         window.addEventListener('load', updateTextOpacity);
 
-        // Phone fade out on scroll
+        // Phone fade in on scroll
         function updatePhoneOpacity() {
             const scrolled = window.pageYOffset;
             const phoneContainer = document.getElementById('phone-container');
             
             if (phoneContainer) {
-                // Fade out phone immediately when scrolling starts
-                // At scroll position 0: opacity 1 (fully visible)
-                // At scroll position 200: opacity 0 (fully hidden)
+                // Fade in phone as user scrolls down
+                // At scroll position 0: opacity 0 (invisible)
+                // At scroll position 200: opacity 1 (fully visible)
                 const fadeStart = 0;
-                const fadeEnd = 200; // Shorter fade distance
+                const fadeEnd = 200;
                 
                 if (scrolled <= fadeStart) {
-                    phoneContainer.style.opacity = '1';
-                } else if (scrolled >= fadeEnd) {
                     phoneContainer.style.opacity = '0';
+                } else if (scrolled >= fadeEnd) {
+                    phoneContainer.style.opacity = '1';
                 } else {
                     // Calculate opacity between fadeStart and fadeEnd
                     const progress = (scrolled - fadeStart) / (fadeEnd - fadeStart);
-                    const opacity = 1 - progress;
+                    const opacity = progress; // Now fades IN instead of out
                     phoneContainer.style.opacity = opacity.toString();
                 }
             }
