@@ -361,7 +361,7 @@
         }
 
         // Handle form submission
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
             const name = document.getElementById('name').value;
@@ -374,10 +374,34 @@
                 return;
             }
 
-            // For now, just show success message
-            alert('Thank you! Your message has been received. We\'ll get back to you soon at ' + email);
-            this.reset();
-            closeContactForm();
+            // Prepare data for Netlify function
+            const data = {
+                name: name,
+                email: email,
+                phone: phone,
+                message: message
+            };
+
+            try {
+                const response = await fetch('/netlify/functions/contact', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (response.ok) {
+                    alert('Thank you! Your message has been sent successfully.');
+                    this.reset();
+                    closeContactForm();
+                } else {
+                    throw new Error('Failed to send message');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Sorry, there was an error sending your message. Please try again.');
+            }
         });
 
         // Close popup when clicking outside
