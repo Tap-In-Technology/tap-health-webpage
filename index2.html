@@ -562,7 +562,10 @@
                 const windowHeight = window.innerHeight;
                 const maxScroll = documentHeight - windowHeight;
                 
-                if (scrolled >= maxScroll - 50) { // Within 50px of bottom
+                // Debug logging
+                console.log(`Scroll: ${scrolled}, Max: ${maxScroll}, Threshold: ${maxScroll - 200}`);
+                
+                if (scrolled >= maxScroll - 200) { // Within 200px of bottom (more generous)
                     console.log('Phone should be 100% opacity - at bottom of page');
                     phoneContainer.style.opacity = '1';
                 }
