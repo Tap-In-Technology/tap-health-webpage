@@ -454,27 +454,27 @@
                 }
             });
 
-            // Phase 1: Electric strike on current text (0-200ms) - MUCH FASTER
+            // Phase 1: Electric strike on current text (0-50ms) - LIGHTNING FAST
             console.log('Phase 1: Electric strike');
-            currentElement.style.textShadow = '0 0 20px #00ffff, 0 0 40px #0080ff, 0 0 60px #0040ff, 0 0 80px #0020ff';
+            currentElement.style.textShadow = '0 0 30px #00ffff, 0 0 60px #0080ff, 0 0 90px #0040ff, 0 0 120px #0020ff';
             currentElement.style.color = '#ffffff';
-            currentElement.style.filter = 'brightness(1.5) contrast(1.2)';
+            currentElement.style.filter = 'brightness(2) contrast(1.5)';
             
-            // Phase 2: Flicker effect (200-400ms) - MUCH FASTER
+            // Phase 2: Ultra-fast flicker effect (50-100ms) - LIGHTNING FAST
             setTimeout(() => {
                 console.log('Phase 2: Flicker effect');
                 let flickerCount = 0;
                 const flickerInterval = setInterval(() => {
-                    if (flickerCount >= 3) { // Fewer flicks for speed
+                    if (flickerCount >= 2) { // Just 2 quick flicks
                         clearInterval(flickerInterval);
                         return;
                     }
-                    currentElement.style.opacity = currentElement.style.opacity === '0.3' ? '1' : '0.3';
+                    currentElement.style.opacity = currentElement.style.opacity === '0.2' ? '1' : '0.2';
                     flickerCount++;
-                }, 50); // Faster flicker
-            }, 200);
+                }, 25); // Ultra-fast flicker
+            }, 50);
             
-            // Phase 3: Text replacement and electric entrance (400ms) - MUCH FASTER
+            // Phase 3: Text replacement and electric entrance (100ms) - LIGHTNING FAST
             setTimeout(() => {
                 console.log('Phase 3: Text replacement');
                 // Hide current text
@@ -484,11 +484,11 @@
                 
                 // Show new text with electric glow
                 nextElement.style.opacity = '1';
-                nextElement.style.textShadow = '0 0 30px #00ffff, 0 0 60px #0080ff, 0 0 90px #0040ff';
+                nextElement.style.textShadow = '0 0 40px #00ffff, 0 0 80px #0080ff, 0 0 120px #0040ff';
                 nextElement.style.color = '#ffffff';
-                nextElement.style.filter = 'brightness(1.3) contrast(1.1)';
+                nextElement.style.filter = 'brightness(1.5) contrast(1.3)';
                 
-                // Phase 4: Settle to normal (400-600ms) - MUCH FASTER
+                // Phase 4: Settle to normal (100-150ms) - LIGHTNING FAST
                 setTimeout(() => {
                     console.log('Phase 4: Settle to normal');
                     nextElement.style.textShadow = '3px 3px 6px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5)';
@@ -496,8 +496,8 @@
                     currentTextIndex = nextIndex;
                     isAnimating = false;
                     console.log('Animation complete!');
-                }, 200);
-            }, 400);
+                }, 50);
+            }, 100);
         }
 
         function initText() {
@@ -532,7 +532,7 @@
             // Start the electric strike animation cycle after a short delay
             setTimeout(() => {
                 console.log('Starting electric strike animation...');
-                animationInterval = setInterval(electricStrike, 4000); // Change text every 4 seconds (longer for electric effect)
+                animationInterval = setInterval(electricStrike, 7000); // Change text every 7 seconds (1.75x longer between zaps)
             }, 1000);
         }
 
