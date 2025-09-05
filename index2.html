@@ -352,7 +352,8 @@
     <script>
         // Contact form functionality
         function openContactForm() {
-            alert('Contact form temporarily disabled during deployment. Please email us directly at alex@tap-technology.com');
+            document.getElementById('contactPopup').classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
         }
 
         function closeContactForm() {
@@ -362,7 +363,7 @@
         }
 
         // Handle form submission
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
             const name = document.getElementById('name').value;
@@ -375,10 +376,28 @@
                 return;
             }
 
-            // Temporary: just show success message
-            alert('Thank you! Your message has been received. We\'ll get back to you soon at ' + email);
-            this.reset();
-            closeContactForm();
+            try {
+                const response = await fetch('/netlify/functions/contact', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ name, email, phone, message })
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok) {
+                    alert('Thank you! Your message has been sent successfully.');
+                    this.reset();
+                    closeContactForm();
+                } else {
+                    alert('Error: ' + result.error);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Sorry, there was an error sending your message. Please try again.');
+            }
         });
 
         // Close popup when clicking outside
