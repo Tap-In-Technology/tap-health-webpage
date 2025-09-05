@@ -205,7 +205,7 @@
     </div>
         
         <!-- Phone image large and centered, fading into background -->
-        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 parallax-smooth z-20" id="phone-container" style="top: 42%; left: 48%; transition: opacity 1s ease-in-out; opacity: 0;">
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 parallax-smooth z-20" id="phone-container" style="top: 50%; left: 48%; transition: opacity 1s ease-in-out; opacity: 0;">
             <img src="/media/phone.png?v=2" alt="Phone" class="h-[80vh] w-auto opacity-100" id="phone">
             <div class="phone-gradient"></div>
             <div class="phone-gleam"></div>
@@ -631,12 +631,12 @@
                     phoneContainer.style.opacity = '0';
                     // Start position (bottom, horizontally centered)
                     phoneContainer.style.top = '80%';
-                    phoneContainer.style.left = '50%';
+                    phoneContainer.style.left = '48%';
                 } else if (scrolled >= fadeEnd && scrolled < fadeOutStart) {
                     phoneContainer.style.opacity = '1';
-                    // End position (lower, aligned with lightning)
-                    phoneContainer.style.top = '60%';
-                    phoneContainer.style.left = '50%';
+                    // End position (aligned with lightning)
+                    phoneContainer.style.top = '50%';
+                    phoneContainer.style.left = '48%';
                 } else if (scrolled >= fadeOutStart) {
                     // Quick fade out
                     if (scrolled >= fadeOutEnd) {
@@ -646,8 +646,8 @@
                         const opacity = 1 - fadeOutProgress; // Fades OUT quickly
                         
                         phoneContainer.style.opacity = opacity.toString();
-                        phoneContainer.style.top = '60%';
-                        phoneContainer.style.left = '50%';
+                        phoneContainer.style.top = '50%';
+                        phoneContainer.style.left = '48%';
                     }
                 } else {
                     // Calculate opacity and position between fadeStart and fadeEnd
@@ -656,8 +656,8 @@
                     
                     // Interpolate position from bottom to lightning-aligned position
                     const startTop = 80; // Start from bottom
-                    const endTop = 60;   // End at lower lightning-aligned position
-                    const leftPosition = 50; // Always horizontally centered
+                    const endTop = 50;   // End at lightning-aligned position
+                    const leftPosition = 48; // Always horizontally centered
                     
                     const currentTop = startTop + (endTop - startTop) * progress;
                     
