@@ -5,6 +5,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tap Health - Index 2 v6</title>
+    
+    <!-- Mobile redirect script -->
+    <script>
+        // Redirect to mobile.html on small screens (768px and below)
+        function isMobile() {
+            return window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        }
+        
+        // Redirect immediately if on mobile
+        if (isMobile()) {
+            window.location.href = 'mobile.html';
+        }
+        
+        // Also redirect on window resize
+        window.addEventListener('resize', function() {
+            if (isMobile()) {
+                window.location.href = 'mobile.html';
+            }
+        });
+    </script>
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
