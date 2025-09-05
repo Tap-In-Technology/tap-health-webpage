@@ -632,34 +632,22 @@
                     // Start position (bottom, horizontally centered)
                     phoneContainer.style.top = '80%';
                     phoneContainer.style.left = '50%';
-                    phoneContainer.style.transform = 'translate(-50%, -50%) rotate(0deg)';
                 } else if (scrolled >= fadeEnd && scrolled < fadeOutStart) {
                     phoneContainer.style.opacity = '1';
                     // End position (lower, aligned with lightning)
                     phoneContainer.style.top = '60%';
                     phoneContainer.style.left = '50%';
-                    phoneContainer.style.transform = 'translate(-50%, -50%) rotate(0deg)';
                 } else if (scrolled >= fadeOutStart) {
-                    // Quick fade out with downward spinning motion
+                    // Quick fade out
                     if (scrolled >= fadeOutEnd) {
                         phoneContainer.style.opacity = '0';
-                        phoneContainer.style.top = '80%';
-                        phoneContainer.style.left = '50%';
-                        phoneContainer.style.transform = 'translate(-50%, -50%) rotate(90deg)';
                     } else {
                         const fadeOutProgress = (scrolled - fadeOutStart) / (fadeOutEnd - fadeOutStart);
                         const opacity = 1 - fadeOutProgress; // Fades OUT quickly
-                        const rotation = fadeOutProgress * 90; // Spins 90 degrees (to horizontal)
-                        
-                        // Move phone downward as it spins
-                        const startTop = 60;
-                        const endTop = 80;
-                        const currentTop = startTop + (endTop - startTop) * fadeOutProgress;
                         
                         phoneContainer.style.opacity = opacity.toString();
-                        phoneContainer.style.top = currentTop + '%';
+                        phoneContainer.style.top = '60%';
                         phoneContainer.style.left = '50%';
-                        phoneContainer.style.transform = `translate(-50%, -50%) rotate(${rotation}deg)`;
                     }
                 } else {
                     // Calculate opacity and position between fadeStart and fadeEnd
@@ -676,7 +664,6 @@
                     phoneContainer.style.opacity = opacity.toString();
                     phoneContainer.style.top = currentTop + '%';
                     phoneContainer.style.left = leftPosition + '%';
-                    phoneContainer.style.transform = 'translate(-50%, -50%) rotate(0deg)';
                 }
             }
         }
