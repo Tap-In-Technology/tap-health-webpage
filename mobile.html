@@ -503,6 +503,16 @@
         function initText() {
             console.log('Initializing mobile text animation...');
             
+            // Clear any existing animation interval
+            if (animationInterval) {
+                clearInterval(animationInterval);
+                animationInterval = null;
+            }
+            
+            // Reset animation state
+            isAnimating = false;
+            currentTextIndex = 0;
+            
             // Ensure elements exist
             if (!textElements[0].element || !textElements[1].element) {
                 console.log('Text elements not found, retrying...');
@@ -512,16 +522,19 @@
             
             console.log('Text elements found, setting up animation...');
             
+            // Force reset all elements first
             textElements.forEach((textObj, index) => {
                 const element = textObj.element;
-                if (index === 0) {
-                    element.style.opacity = '1'; // Show first text
-                } else {
-                    element.style.opacity = '0'; // Hide others
-                }
+                element.style.opacity = '0';
+                element.style.textShadow = '';
+                element.style.filter = '';
             });
             
-            // Sanity check: Ensure only one header is visible at startup
+            // Show only the first element
+            textElements[0].element.style.opacity = '1';
+            textElements[0].element.style.textShadow = '3px 3px 6px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5)';
+            
+            // Double sanity check: Ensure only one header is visible
             console.log('Sanity check: Ensuring only one header is visible');
             textElements.forEach((textObj, index) => {
                 if (index !== 0) {
@@ -537,6 +550,14 @@
         }
 
         window.addEventListener('load', initText);
+        
+        // Reinitialize when page becomes visible again (user comes back to tab)
+        document.addEventListener('visibilitychange', function() {
+            if (!document.hidden) {
+                console.log('Page became visible, reinitializing...');
+                setTimeout(initText, 100); // Small delay to ensure page is fully loaded
+            }
+        });
 
     </script>
 </body>
