@@ -255,6 +255,22 @@
         </div>
     </section>
 
+    <!-- Success Confirmation Popup -->
+    <div id="successPopup" class="fixed inset-0 bg-black bg-opacity-80 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-xl p-6 w-80 max-w-sm shadow-2xl text-center">
+            <div class="mb-4">
+                <svg class="w-16 h-16 text-green-500 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Message Sent!</h3>
+            <p class="text-gray-600 mb-6">Thank you for reaching out. We'll get back to you soon!</p>
+            <button onclick="closeSuccessPopup()" class="w-full bg-blue-600 text-white py-3 px-4 rounded-lg font-medium hover:bg-blue-700 transition-colors">
+                Got it
+            </button>
+        </div>
+    </div>
+
     <!-- Contact Form Popup -->
     <div id="contactPopup" class="fixed inset-0 bg-black bg-opacity-80 z-50 hidden flex items-center justify-center p-4">
         <div class="bg-white rounded-xl p-4 w-80 max-w-sm shadow-2xl" style="max-width: 320px; width: 320px; padding: 16px;">
@@ -321,6 +337,11 @@
             document.getElementById('contactForm').reset(); // Clear form
         }
 
+        function closeSuccessPopup() {
+            document.getElementById('successPopup').classList.add('hidden');
+            document.body.style.overflow = 'auto'; // Restore scrolling
+        }
+
         // Handle form submission
         document.getElementById('contactForm').addEventListener('submit', async function(e) {
             e.preventDefault();
@@ -335,16 +356,23 @@
                 return;
             }
 
-            // Simple contact form - shows success message
-            alert('Thank you! Your message has been received. We\'ll get back to you soon!');
-            this.reset();
-            closeContactForm();
+            // Show success popup instead of alert
+            closeContactForm(); // Close the form first
+            document.getElementById('successPopup').classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
         });
 
         // Close popup when clicking outside
         document.getElementById('contactPopup').addEventListener('click', function(e) {
             if (e.target === this) {
                 closeContactForm();
+            }
+        });
+
+        // Close success popup when clicking outside
+        document.getElementById('successPopup').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeSuccessPopup();
             }
         });
 
