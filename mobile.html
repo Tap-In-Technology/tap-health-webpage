@@ -415,104 +415,11 @@
         
         window.addEventListener('scroll', requestParallaxUpdate, { passive: true });
 
-        // Typing animation
-        const sentences = [
-            "Hate filling out forms?",
-            "It's time for filling out forms to get an upgrade",
-            "<---- Who has the most annoying forms? We want to hear!"
-        ];
+        // Mobile doesn't have typing animation - removed
         
-        let currentSentenceIndex = 0;
-        let currentCharIndex = 0;
-        let isDeleting = false;
-        let isSpecialEffect = false;
-        const typingElement = document.getElementById('typing-text');
+        // Mobile doesn't have typing animation - removed
         
-        // Initialize with empty text
-        typingElement.textContent = '';
-        
-        function typeText() {
-            const currentSentence = sentences[currentSentenceIndex];
-            
-            if (isDeleting) {
-                // Delete characters
-                typingElement.textContent = currentSentence.substring(0, currentCharIndex - 1);
-                currentCharIndex--;
-                
-                if (currentCharIndex === 0) {
-                    isDeleting = false;
-                    currentSentenceIndex = (currentSentenceIndex + 1) % sentences.length;
-                }
-            } else {
-                // Type characters
-                typingElement.textContent = currentSentence.substring(0, currentCharIndex + 1);
-                currentCharIndex++;
-                
-                if (currentCharIndex === currentSentence.length) {
-                    // Special effect for second sentence (index 1)
-                    if (currentSentenceIndex === 1) {
-                        // Add period
-                        typingElement.textContent = currentSentence + ".";
-                        setTimeout(() => {
-                            // Delete period
-                            typingElement.textContent = currentSentence;
-                            setTimeout(() => {
-                                // Add first exclamation point
-                                typingElement.textContent = currentSentence + "!";
-                                setTimeout(() => {
-                                    // Add second exclamation point
-                                    typingElement.textContent = currentSentence + "!!";
-                                    setTimeout(() => {
-                                        // Add third exclamation point
-                                        typingElement.textContent = currentSentence + "!!!";
-                                        setTimeout(() => {
-                                            // Start deleting everything
-                                            isDeleting = true;
-                                            typeText(); // Continue the animation
-                                        }, 1000);
-                                    }, 200);
-                                }, 200);
-                            }, 200);
-                        }, 1500);
-                        return;
-                    } else {
-                        // Normal pause before deleting
-                        setTimeout(() => {
-                            isDeleting = true;
-                            typeText(); // Continue the animation
-                        }, 2000);
-                        return;
-                    }
-                }
-            }
-            
-            // Set typing speed
-            const typingSpeed = isDeleting ? 50 : 100;
-            setTimeout(typeText, typingSpeed);
-        }
-        
-        // Start typing animation when user scrolls to the bottom section
-        let typingStarted = false;
-        
-        function checkScrollPosition() {
-            const blackSection = document.querySelector('.black-section');
-            const sectionTop = blackSection.offsetTop;
-            const sectionHeight = blackSection.offsetHeight;
-            const scrollPosition = window.pageYOffset + window.innerHeight;
-            
-            // Start typing when the bottom section is visible
-            if (scrollPosition >= sectionTop && !typingStarted) {
-                typingStarted = true;
-                // Reset to first sentence and start typing
-                currentSentenceIndex = 0;
-                currentCharIndex = 0;
-                isDeleting = false;
-                typeText();
-            }
-        }
-        
-        window.addEventListener('scroll', checkScrollPosition);
-        window.addEventListener('load', checkScrollPosition);
+        // Mobile doesn't have scroll-based typing animation - removed
 
         // Opacity shift text transitions
         let currentTextIndex = 0;
