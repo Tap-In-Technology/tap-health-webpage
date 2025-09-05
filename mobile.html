@@ -98,78 +98,6 @@
             transform: translateZ(0);
         }
         
-        /* Phone gradient overlay */
-        .phone-gradient {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(ellipse at 85% 15%, 
-                    transparent 0%, 
-                    transparent 20%, 
-                    rgba(0, 0, 0, 0.1) 35%, 
-                    rgba(0, 0, 0, 0.4) 50%, 
-                    rgba(0, 0, 0, 0.8) 70%, 
-                    rgba(0, 0, 0, 0.95) 100%),
-                linear-gradient(to bottom, 
-                    transparent 50%, 
-                    rgba(0, 0, 0, 0.3) 70%, 
-                    rgba(0, 0, 0, 0.7) 85%, 
-                    rgba(0, 0, 0, 1) 100%);
-            pointer-events: none;
-            mask: url('/media/phone.png');
-            mask-size: contain;
-            mask-repeat: no-repeat;
-            mask-position: center;
-            -webkit-mask: url('/media/phone.png');
-            -webkit-mask-size: contain;
-            -webkit-mask-repeat: no-repeat;
-            -webkit-mask-position: center;
-        }
-        
-        /* Phone gleam effect */
-        .phone-gleam {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            pointer-events: none;
-            mask: url('/media/phone.png');
-            mask-size: contain;
-            mask-repeat: no-repeat;
-            mask-position: center;
-            -webkit-mask: url('/media/phone.png');
-            -webkit-mask-size: contain;
-            -webkit-mask-repeat: no-repeat;
-            -webkit-mask-position: center;
-        }
-        
-        .phone-gleam::before {
-            content: '';
-            position: absolute;
-            top: -100%;
-            left: -100%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(135deg, transparent, rgba(255, 255, 255, 0.08), transparent);
-            animation: gleam 4s ease-in-out infinite;
-        }
-        
-        @keyframes gleam {
-            0% {
-                transform: translate(-100%, -100%);
-            }
-            75% {
-                transform: translate(100%, 100%);
-            }
-            100% {
-                transform: translate(100%, 100%);
-            }
-        }
         
         /* Typing animation */
         .typing-container {
@@ -231,12 +159,6 @@
     <!-- Lightning background hero section -->
     <section class="lightning-bg relative">
         
-        <!-- Phone image large and centered, fading into background -->
-        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 parallax-smooth z-20" id="phone-container" style="top: 55%; left: 50%; transition: opacity 1s ease-in-out; opacity: 0;">
-            <img src="/media/phone.png?v=2" alt="Phone" class="h-[50vh] w-auto opacity-100" id="phone">
-            <div class="phone-gradient"></div>
-            <div class="phone-gleam"></div>
-        </div>
         
         <!-- Main heading text with opacity shifts -->
         <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30" id="text-container" style="top: 50%; left: 50%;">
@@ -486,13 +408,6 @@
             const scrolled = window.pageYOffset;
             const parallaxRate = 0.3; // Gentler movement
             
-                    // Apply parallax to phone container only (text is now fixed)
-        const phoneContainer = document.getElementById('phone-container');
-        
-        if (phoneContainer) {
-            const translateY = scrolled * parallaxRate;
-            phoneContainer.style.transform = `translate(-50%, calc(-50% + ${translateY}px))`;
-        }
             
             ticking = false;
         }
@@ -626,17 +541,6 @@
 
         window.addEventListener('load', initText);
 
-        // Mobile: Show phone immediately (no scroll animations)
-        function showPhone() {
-            const phoneContainer = document.getElementById('phone-container');
-            if (phoneContainer) {
-                phoneContainer.style.opacity = '1';
-                phoneContainer.style.top = '55%';
-                phoneContainer.style.left = '50%';
-            }
-        }
-
-        window.addEventListener('load', showPhone);
     </script>
 </body>
 
