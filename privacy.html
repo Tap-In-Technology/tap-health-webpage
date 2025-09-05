@@ -61,6 +61,28 @@
             border: 1px solid rgba(59, 130, 246, 0.3);
             background: linear-gradient(135deg, rgba(59, 130, 246, 0.05), rgba(0, 0, 0, 0.8));
         }
+        
+        /* Mobile-specific styles */
+        @media (max-width: 768px) {
+            .lightning-bg {
+                padding-top: 120px; /* Add space for logo */
+            }
+            
+            .content-container {
+                margin-top: 2rem;
+            }
+            
+            .fixed {
+                position: fixed;
+                top: 1rem;
+                left: 1rem;
+                z-index: 30;
+            }
+            
+            .fixed img {
+                height: 4rem; /* Smaller logo on mobile */
+            }
+        }
     </style>
 </head>
 
@@ -140,7 +162,7 @@
                 </div>
                 
                 <div class="text-center mt-12">
-                    <a href="index2.html" 
+                    <a href="#" id="backToHome" 
                        class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full transition-colors glow-text">
                         Back to Home
                     </a>
@@ -148,6 +170,37 @@
             </div>
         </div>
     </section>
+    
+    <script>
+        // Detect if user is on mobile and redirect to appropriate home page
+        function isMobile() {
+            return window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        }
+        
+        // Set the correct home page link based on device
+        document.addEventListener('DOMContentLoaded', function() {
+            const backToHomeLink = document.getElementById('backToHome');
+            
+            if (isMobile()) {
+                backToHomeLink.href = 'mobile.html';
+                console.log('Mobile detected - linking to mobile.html');
+            } else {
+                backToHomeLink.href = 'index2.html';
+                console.log('Desktop detected - linking to index2.html');
+            }
+        });
+        
+        // Update link on window resize
+        window.addEventListener('resize', function() {
+            const backToHomeLink = document.getElementById('backToHome');
+            
+            if (isMobile()) {
+                backToHomeLink.href = 'mobile.html';
+            } else {
+                backToHomeLink.href = 'index2.html';
+            }
+        });
+    </script>
 </body>
 
 </html>
