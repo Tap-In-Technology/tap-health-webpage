@@ -35,7 +35,7 @@ exports.handler = async function(event, context) {
     }
 
     // Create transporter using Gmail SMTP
-    const transporter = nodemailer.createTransporter({
+    const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
         user: process.env.GMAIL_USER, // Your Gmail address
@@ -46,7 +46,7 @@ exports.handler = async function(event, context) {
     // Email content
     const mailOptions = {
       from: process.env.GMAIL_USER,
-      to: 'aris@tap-technology.com', // Send to Aris
+      to: 'alex@tap-technology.com', // Send to Alex
       subject: `New Contact Form Submission from ${name}`,
       html: `
         <h2>New Contact Form Submission</h2>
