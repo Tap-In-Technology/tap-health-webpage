@@ -68,22 +68,75 @@
         
         /* Mobile header */
         .mobile-header {
-            height: 15vh; /* Bigger header to fit larger elements */
+            min-height: 15vh; /* Use min-height instead of fixed height */
+            height: auto; /* Allow height to grow if needed */
             background-color: #000000;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
+            padding: 1rem 0; /* Add padding to ensure content doesn't touch edges */
+        }
+        
+        /* Ensure buttons are never cut off on very small screens */
+        @media (max-height: 600px) {
+            .mobile-header {
+                min-height: 120px; /* Minimum height to fit logo and button */
+            }
+        }
+        
+        @media (max-height: 500px) {
+            .mobile-header {
+                min-height: 140px; /* Even more space for very small screens */
+            }
+        }
+        
+        /* Responsive sizing for header elements on very small screens */
+        @media (max-width: 400px) {
+            .mobile-header .h-28 {
+                height: 5rem !important; /* Smaller logo on very small screens */
+            }
+            
+            .mobile-header button {
+                padding: 0.5rem 1rem !important; /* Smaller button padding */
+                font-size: 0.875rem !important; /* Smaller button text */
+            }
+        }
+        
+        @media (max-height: 600px) and (max-width: 400px) {
+            .mobile-header .h-28 {
+                height: 4rem !important; /* Even smaller logo on small screens */
+            }
+            
+            .mobile-header button {
+                padding: 0.375rem 0.75rem !important; /* Even smaller button */
+                font-size: 0.75rem !important;
+            }
         }
         
         /* Mobile footer */
         .mobile-footer {
-            height: 15vh; /* Bigger footer to fit larger elements */
+            min-height: 15vh; /* Use min-height instead of fixed height */
+            height: auto; /* Allow height to grow if needed */
             background-color: #000000;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
+            padding: 1rem 0; /* Add padding to ensure content doesn't touch edges */
+        }
+        
+        /* Ensure footer content is never cut off on very small screens */
+        @media (max-height: 600px) {
+            .mobile-footer {
+                min-height: 80px; /* Minimum height for footer content */
+            }
+        }
+        
+        @media (max-height: 500px) {
+            .mobile-footer {
+                min-height: 100px; /* Even more space for very small screens */
+            }
         }
         
         /* Tiny black section */
