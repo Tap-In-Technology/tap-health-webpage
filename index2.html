@@ -172,6 +172,8 @@
             display: flex;
             align-items: center;
             gap: 1rem;
+            position: relative;
+            z-index: 50;
         }
         
         .typing-text {
@@ -242,7 +244,7 @@
     </section>
     
     <!-- Tiny black section with privacy policy and get in touch -->
-    <section class="black-section">
+    <section class="black-section" style="position: relative; z-index: 40;">
         <div class="w-full flex justify-between items-center px-6">
             <div class="typing-container">
                 <button onclick="openBusinessRequestForm()" class="request-button">Request Tap at a Business Near You</button>
