@@ -562,11 +562,14 @@
                 const windowHeight = window.innerHeight;
                 const maxScroll = documentHeight - windowHeight;
                 
-                // Debug logging
-                console.log(`Scroll: ${scrolled}, Max: ${maxScroll}, Threshold: ${maxScroll - 200}`);
+                // Use 80% of max scroll as threshold (much more aggressive)
+                const threshold = maxScroll * 0.8;
                 
-                if (scrolled >= maxScroll - 200) { // Within 200px of bottom (more generous)
-                    console.log('Phone should be 100% opacity - at bottom of page');
+                // Debug logging
+                console.log(`Scroll: ${scrolled}, Max: ${maxScroll}, Threshold: ${threshold}`);
+                
+                if (scrolled >= threshold) {
+                    console.log('Phone should be 100% opacity - at 80% of scroll');
                     phoneContainer.style.opacity = '1';
                 }
             }
