@@ -66,25 +66,6 @@
             max-width: none;
             height: 80vh;
             width: auto;
-            opacity: 1 !important;
-            filter: none !important;
-            mix-blend-mode: normal !important;
-            background: white !important;
-            -webkit-background-clip: text;
-            background-clip: text;
-        }
-        
-        /* Phone solid background hack */
-        .phone-container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: white;
-            border-radius: 40px;
-            z-index: -1;
         }
         
         /* Smooth parallax effect */
@@ -226,8 +207,8 @@
     </div>
         
         <!-- Phone image large and centered, fading into background -->
-        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 parallax-smooth z-20 phone-container" id="phone-container" style="top: 60%; left: 48%; transition: opacity 1s ease-in-out; opacity: 0; background: white; border-radius: 40px; padding: 20px;">
-            <img src="/media/phone.png?v=2" alt="Phone" class="h-[80vh] w-auto opacity-100" id="phone" style="opacity: 1 !important; position: relative; z-index: 1;">
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 parallax-smooth z-20" id="phone-container" style="top: 60%; left: 48%; transition: opacity 1s ease-in-out; opacity: 0;">
+            <img src="/media/phone.png?v=2" alt="Phone" class="h-[80vh] w-auto" id="phone">
             <div class="phone-gradient"></div>
             <div class="phone-gleam"></div>
         </div>
