@@ -1,6 +1,6 @@
-const nodemailer = require('nodemailer');
-
-exports.handler = async function(event, context) {
+exports.handler = async (event, context) => {
+  const nodemailer = require('nodemailer');
+  
   const headers = {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Headers': 'Content-Type',
