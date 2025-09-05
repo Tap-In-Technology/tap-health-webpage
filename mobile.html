@@ -155,10 +155,10 @@
         
         <!-- Main heading text with opacity shifts -->
         <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30" id="text-container" style="top: 50%; left: 50%;">
-            <h1 class="text-white font-bold text-center leading-tight text-fade" id="text-1" style="text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5); font-size: clamp(1.2rem, 5vw, 2.5rem); opacity: 1; transition: opacity 1s ease-in-out;">
+            <h1 class="text-white font-bold text-center leading-tight text-fade" id="text-1" style="text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5); font-size: clamp(2rem, 8vw, 4rem); opacity: 1; transition: opacity 1s ease-in-out;">
                 Sign-In or Sign-Up Anywhere.
             </h1>
-            <h1 class="text-white font-bold text-center leading-tight text-fade" id="text-2" style="text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5); font-size: clamp(1.2rem, 5vw, 2.5rem); opacity: 0; transition: opacity 1s ease-in-out; position: absolute; top: 0; left: 0; width: 100%;">
+            <h1 class="text-white font-bold text-center leading-tight text-fade" id="text-2" style="text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5); font-size: clamp(2rem, 8vw, 4rem); opacity: 0; transition: opacity 1s ease-in-out; position: absolute; top: 0; left: 0; width: 100%;">
                 One Tap Is All It Takes.
             </h1>
         </div>
@@ -520,7 +520,29 @@
             { element: document.getElementById('text-2'), showAt: 200 }
         ];
 
-        // Mobile: Keep text static (no scroll animations)
+        // Mobile: Text fade animation
+        let currentTextIndex = 0;
+        let isAnimating = false;
+
+        function fadeText() {
+            if (isAnimating) return;
+            isAnimating = true;
+
+            const currentElement = textElements[currentTextIndex].element;
+            const nextIndex = (currentTextIndex + 1) % textElements.length;
+            const nextElement = textElements[nextIndex].element;
+
+            // Fade out current text
+            currentElement.style.opacity = '0';
+            
+            setTimeout(() => {
+                // Fade in next text
+                nextElement.style.opacity = '1';
+                currentTextIndex = nextIndex;
+                isAnimating = false;
+            }, 1000); // 1 second fade out, then fade in
+        }
+
         function initText() {
             textElements.forEach((textObj, index) => {
                 const element = textObj.element;
@@ -530,6 +552,9 @@
                     element.style.opacity = '0'; // Hide others
                 }
             });
+            
+            // Start the fade animation cycle
+            setInterval(fadeText, 3000); // Change text every 3 seconds
         }
 
         window.addEventListener('load', initText);
