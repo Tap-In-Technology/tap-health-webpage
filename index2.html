@@ -631,8 +631,8 @@
                     phoneContainer.style.left = '50%';
                 } else if (scrolled >= fadeEnd) {
                     phoneContainer.style.opacity = '1';
-                    // End position (aligned with lightning)
-                    phoneContainer.style.top = '42%';
+                    // End position (lower, aligned with lightning)
+                    phoneContainer.style.top = '60%';
                     phoneContainer.style.left = '50%';
                 } else {
                     // Calculate opacity and position between fadeStart and fadeEnd
@@ -641,7 +641,7 @@
                     
                     // Interpolate position from bottom to lightning-aligned position
                     const startTop = 80; // Start from bottom
-                    const endTop = 42;   // End at lightning-aligned position
+                    const endTop = 60;   // End at lower lightning-aligned position
                     const leftPosition = 50; // Always horizontally centered
                     
                     const currentTop = startTop + (endTop - startTop) * progress;
