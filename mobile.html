@@ -18,11 +18,11 @@
         /* Background image styling */
         .lightning-bg {
             background-image: url('/media/lightning_bg.jpg');
-            background-size: cover;
+            background-size: contain;
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: fixed;
-            min-height: 120vh; /* Extra height to prevent white flash */
+            height: 66.67vh; /* Two-thirds of viewport height */
             position: relative;
         }
         
@@ -45,7 +45,30 @@
         
         body {
             background-color: #000000;
-            overflow-x: hidden;
+            overflow: hidden; /* No scrolling on mobile */
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* Mobile header */
+        .mobile-header {
+            height: 16.67vh; /* One-sixth of viewport height */
+            background-color: #000000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        /* Mobile footer */
+        .mobile-footer {
+            height: 16.67vh; /* One-sixth of viewport height */
+            background-color: #000000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
         }
         
         /* Tiny black section */
@@ -196,48 +219,48 @@
     </style>
 </head>
 
-<body class="min-h-screen">
+<body>
+    <!-- Mobile header -->
+    <div class="mobile-header">
+        <!-- Tap logo in header -->
+        <div class="absolute top-4 left-4">
+            <img src="/media/Tap_inverted.png" alt="Tap Health Logo" class="h-16 w-auto">
+        </div>
+    </div>
+    
     <!-- Lightning background hero section -->
     <section class="lightning-bg relative">
-            <!-- Tap logo in top left -->
-    <div class="fixed -top-2 left-6 z-20">
-        <img src="/media/Tap_inverted.png" alt="Tap Health Logo" class="h-36 w-auto">
-    </div>
         
         <!-- Phone image large and centered, fading into background -->
-        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 parallax-smooth z-20" id="phone-container" style="top: 42%; left: 48%; transition: opacity 1s ease-in-out; opacity: 0;">
-            <img src="/media/phone.png?v=2" alt="Phone" class="h-[80vh] w-auto opacity-100" id="phone">
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 parallax-smooth z-20" id="phone-container" style="top: 50%; left: 50%; transition: opacity 1s ease-in-out; opacity: 0;">
+            <img src="/media/phone.png?v=2" alt="Phone" class="h-[50vh] w-auto opacity-100" id="phone">
             <div class="phone-gradient"></div>
             <div class="phone-gleam"></div>
         </div>
         
         <!-- Main heading text with opacity shifts -->
-        <div class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30" id="text-container">
-            <h1 class="text-white font-bold text-center leading-tight text-fade" id="text-1" style="text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5); font-size: clamp(1.5rem, 6vw, 6rem); opacity: 1; transition: opacity 1s ease-in-out;">
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30" id="text-container" style="top: 50%; left: 50%;">
+            <h1 class="text-white font-bold text-center leading-tight text-fade" id="text-1" style="text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5); font-size: clamp(1.2rem, 5vw, 2.5rem); opacity: 1; transition: opacity 1s ease-in-out;">
                 Sign-In or Sign-Up Anywhere.
             </h1>
-            <h1 class="text-white font-bold text-center leading-tight text-fade" id="text-2" style="text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5); font-size: clamp(1.5rem, 6vw, 6rem); opacity: 0; transition: opacity 1s ease-in-out; position: absolute; top: 0; left: 0; width: 100%;">
+            <h1 class="text-white font-bold text-center leading-tight text-fade" id="text-2" style="text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5); font-size: clamp(1.2rem, 5vw, 2.5rem); opacity: 0; transition: opacity 1s ease-in-out; position: absolute; top: 0; left: 0; width: 100%;">
                 One Tap Is All It Takes.
             </h1>
         </div>
     </section>
     
-    <!-- Tiny black section with privacy policy and get in touch -->
-    <section class="black-section">
-        <div class="w-full flex justify-between items-center px-6">
-            <div class="typing-container">
-                <button onclick="openBusinessRequestForm()" class="request-button">Request Tap at a Business Near You</button>
-                <div class="typing-text" id="typing-text"></div>
-            </div>
-            <div class="flex items-center gap-4">
-                <a href="privacy.html" class="text-xs text-gray-400 hover:text-white transition-colors">Privacy Policy</a>
-                <button onclick="openContactForm()"
-                    class="bg-white text-black px-4 py-2 rounded-full text-sm font-medium hover:bg-gray-200 transition-colors">
+    <!-- Mobile footer -->
+    <div class="mobile-footer">
+        <div class="flex flex-col items-center gap-4 w-full px-6">
+            <div class="flex gap-4">
+                <button onclick="openBusinessRequestForm()" class="request-button text-xs px-3 py-2">Request Tap at a Business Near You</button>
+                <button onclick="openContactForm()" class="bg-white text-black px-3 py-2 rounded-full text-xs font-medium hover:bg-gray-200 transition-colors">
                     Get in Touch
                 </button>
             </div>
+            <a href="privacy.html" class="text-xs text-gray-400 hover:text-white transition-colors">Privacy Policy</a>
         </div>
-    </section>
+    </div>
 
     <!-- Contact Form Popup -->
     <div id="contactPopup" class="fixed inset-0 bg-black bg-opacity-80 z-50 hidden flex items-center justify-center p-4">
@@ -589,87 +612,31 @@
             { element: document.getElementById('text-2'), showAt: 200 }
         ];
 
-        function updateTextOpacity() {
-            const scrolled = window.pageYOffset;
-            
+        // Mobile: Keep text static (no scroll animations)
+        function initText() {
             textElements.forEach((textObj, index) => {
                 const element = textObj.element;
-                const showAt = textObj.showAt;
-                
-                if (scrolled >= showAt) {
-                    // Show this text
-                    element.style.opacity = '1';
-                    // Hide all other texts
-                    textElements.forEach((otherTextObj, otherIndex) => {
-                        if (otherIndex !== index) {
-                            otherTextObj.element.style.opacity = '0';
-                        }
-                    });
+                if (index === 0) {
+                    element.style.opacity = '1'; // Show first text
+                } else {
+                    element.style.opacity = '0'; // Hide others
                 }
             });
         }
 
-        window.addEventListener('scroll', updateTextOpacity);
-        window.addEventListener('load', updateTextOpacity);
+        window.addEventListener('load', initText);
 
-        // Phone fade in on scroll
-        function updatePhoneOpacity() {
-            const scrolled = window.pageYOffset;
+        // Mobile: Show phone immediately (no scroll animations)
+        function showPhone() {
             const phoneContainer = document.getElementById('phone-container');
-            
             if (phoneContainer) {
-                // Fade in phone as user scrolls down (slower fade in)
-                // At scroll position 0: opacity 0 (invisible)
-                // At scroll position 400: opacity 1 (fully visible)
-                // At scroll position 450: opacity 0 (fade out very quickly)
-                const fadeStart = 0;
-                const fadeEnd = 400;  // Slower fade in - more scroll distance
-                const fadeOutStart = 450;  // Later start for fade out
-                const fadeOutEnd = 500;    // Very quick fade out
-                
-                if (scrolled <= fadeStart) {
-                    phoneContainer.style.opacity = '0';
-                    // Start position (bottom, horizontally centered)
-                    phoneContainer.style.top = '80%';
-                    phoneContainer.style.left = '50%';
-                } else if (scrolled >= fadeEnd && scrolled < fadeOutStart) {
-                    phoneContainer.style.opacity = '1';
-                    // End position (lower, aligned with lightning)
-                    phoneContainer.style.top = '60%';
-                    phoneContainer.style.left = '50%';
-                } else if (scrolled >= fadeOutStart) {
-                    // Quick fade out
-                    if (scrolled >= fadeOutEnd) {
-                        phoneContainer.style.opacity = '0';
-                    } else {
-                        const fadeOutProgress = (scrolled - fadeOutStart) / (fadeOutEnd - fadeOutStart);
-                        const opacity = 1 - fadeOutProgress; // Fades OUT quickly
-                        
-                        phoneContainer.style.opacity = opacity.toString();
-                        phoneContainer.style.top = '60%';
-                        phoneContainer.style.left = '50%';
-                    }
-                } else {
-                    // Calculate opacity and position between fadeStart and fadeEnd
-                    const progress = (scrolled - fadeStart) / (fadeEnd - fadeStart);
-                    const opacity = progress; // Fades IN
-                    
-                    // Interpolate position from bottom to lightning-aligned position
-                    const startTop = 80; // Start from bottom
-                    const endTop = 60;   // End at lower lightning-aligned position
-                    const leftPosition = 50; // Always horizontally centered
-                    
-                    const currentTop = startTop + (endTop - startTop) * progress;
-                    
-                    phoneContainer.style.opacity = opacity.toString();
-                    phoneContainer.style.top = currentTop + '%';
-                    phoneContainer.style.left = leftPosition + '%';
-                }
+                phoneContainer.style.opacity = '1';
+                phoneContainer.style.top = '50%';
+                phoneContainer.style.left = '50%';
             }
         }
 
-        window.addEventListener('scroll', updatePhoneOpacity);
-        window.addEventListener('load', updatePhoneOpacity);
+        window.addEventListener('load', showPhone);
     </script>
 </body>
 
