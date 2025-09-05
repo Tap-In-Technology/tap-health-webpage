@@ -626,13 +626,31 @@
                 
                 if (scrolled <= fadeStart) {
                     phoneContainer.style.opacity = '0';
+                    // Start position (centered)
+                    phoneContainer.style.top = '50%';
+                    phoneContainer.style.left = '50%';
                 } else if (scrolled >= fadeEnd) {
                     phoneContainer.style.opacity = '1';
+                    // End position (aligned with lightning)
+                    phoneContainer.style.top = '42%';
+                    phoneContainer.style.left = '48%';
                 } else {
-                    // Calculate opacity between fadeStart and fadeEnd
+                    // Calculate opacity and position between fadeStart and fadeEnd
                     const progress = (scrolled - fadeStart) / (fadeEnd - fadeStart);
-                    const opacity = progress; // Now fades IN instead of out
+                    const opacity = progress; // Fades IN
+                    
+                    // Interpolate position from center to lightning-aligned position
+                    const startTop = 50;
+                    const endTop = 42;
+                    const startLeft = 50;
+                    const endLeft = 48;
+                    
+                    const currentTop = startTop + (endTop - startTop) * progress;
+                    const currentLeft = startLeft + (endLeft - startLeft) * progress;
+                    
                     phoneContainer.style.opacity = opacity.toString();
+                    phoneContainer.style.top = currentTop + '%';
+                    phoneContainer.style.left = currentLeft + '%';
                 }
             }
         }
