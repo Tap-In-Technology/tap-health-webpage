@@ -626,31 +626,29 @@
                 
                 if (scrolled <= fadeStart) {
                     phoneContainer.style.opacity = '0';
-                    // Start position (centered)
-                    phoneContainer.style.top = '50%';
+                    // Start position (bottom, horizontally centered)
+                    phoneContainer.style.top = '80%';
                     phoneContainer.style.left = '50%';
                 } else if (scrolled >= fadeEnd) {
                     phoneContainer.style.opacity = '1';
                     // End position (aligned with lightning)
                     phoneContainer.style.top = '42%';
-                    phoneContainer.style.left = '48%';
+                    phoneContainer.style.left = '50%';
                 } else {
                     // Calculate opacity and position between fadeStart and fadeEnd
                     const progress = (scrolled - fadeStart) / (fadeEnd - fadeStart);
                     const opacity = progress; // Fades IN
                     
-                    // Interpolate position from center to lightning-aligned position
-                    const startTop = 50;
-                    const endTop = 42;
-                    const startLeft = 50;
-                    const endLeft = 48;
+                    // Interpolate position from bottom to lightning-aligned position
+                    const startTop = 80; // Start from bottom
+                    const endTop = 42;   // End at lightning-aligned position
+                    const leftPosition = 50; // Always horizontally centered
                     
                     const currentTop = startTop + (endTop - startTop) * progress;
-                    const currentLeft = startLeft + (endLeft - startLeft) * progress;
                     
                     phoneContainer.style.opacity = opacity.toString();
                     phoneContainer.style.top = currentTop + '%';
-                    phoneContainer.style.left = currentLeft + '%';
+                    phoneContainer.style.left = leftPosition + '%';
                 }
             }
         }
