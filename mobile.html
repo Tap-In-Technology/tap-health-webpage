@@ -123,9 +123,9 @@
         .request-button {
             background: white;
             color: black;
-            padding: 0.75rem 1.5rem;
+            padding: 1rem 2rem;
             border-radius: 0.5rem;
-            font-size: 1rem;
+            font-size: 1.125rem;
             font-weight: 700;
             border: none;
             cursor: pointer;
@@ -145,11 +145,11 @@
     <div class="mobile-header">
         <!-- Tap logo in header -->
         <div class="absolute top-2 left-4">
-            <img src="/media/Tap_inverted.png" alt="Tap Health Logo" class="h-20 w-auto">
+            <img src="/media/Tap_inverted.png" alt="Tap Health Logo" class="h-28 w-auto">
         </div>
         <!-- Get in Touch button in upper right -->
-        <div class="absolute top-2 right-4 flex items-center h-20">
-            <button onclick="openContactForm()" class="bg-white text-black px-4 py-2 rounded-lg text-base font-bold hover:bg-gray-200 transition-colors">
+        <div class="absolute top-2 right-4 flex items-center h-28">
+            <button onclick="openContactForm()" class="bg-white text-black px-6 py-3 rounded-lg text-lg font-bold hover:bg-gray-200 transition-colors">
                 Get in Touch
             </button>
         </div>
@@ -161,10 +161,10 @@
         
         <!-- Main heading text with opacity shifts -->
         <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30" id="text-container" style="top: 50%; left: 50%;">
-            <h1 class="text-white font-bold text-center leading-tight text-fade" id="text-1" style="text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5); font-size: clamp(2.5rem, 10vw, 5rem); opacity: 1; transition: opacity 1s ease-in-out;">
+            <h1 class="text-white font-bold text-center leading-tight text-fade" id="text-1" style="text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5); font-size: clamp(3rem, 12vw, 6rem); opacity: 1; transition: opacity 1s ease-in-out;">
                 Sign-In or Sign-Up Anywhere.
             </h1>
-            <h1 class="text-white font-bold text-center leading-tight text-fade" id="text-2" style="text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5); font-size: clamp(2.5rem, 10vw, 5rem); opacity: 0; transition: opacity 1s ease-in-out; position: absolute; top: 0; left: 0; width: 100%;">
+            <h1 class="text-white font-bold text-center leading-tight text-fade" id="text-2" style="text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5); font-size: clamp(3rem, 12vw, 6rem); opacity: 0; transition: opacity 1s ease-in-out; position: absolute; top: 0; left: 0; width: 100%;">
                 One Tap Is All It Takes.
             </h1>
         </div>
@@ -172,9 +172,9 @@
     
     <!-- Mobile footer -->
     <div class="mobile-footer">
-        <div class="flex flex-col items-center gap-3 w-full px-4">
+        <div class="flex flex-col items-center gap-4 w-full px-4">
             <button onclick="openBusinessRequestForm()" class="request-button">Request Tap at a Business Near You</button>
-            <a href="privacy.html" class="text-sm text-gray-400 hover:text-white transition-colors">Privacy Policy</a>
+            <a href="privacy.html" class="text-base text-gray-400 hover:text-white transition-colors">Privacy Policy</a>
         </div>
     </div>
 
