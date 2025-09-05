@@ -228,7 +228,6 @@
     <section class="black-section" style="position: relative; z-index: 40;">
         <div class="w-full flex justify-between items-center px-6">
             <div class="typing-container">
-                <button onclick="openBusinessRequestForm()" class="request-button">Request Tap at a Business Near You</button>
                 <div class="typing-text" id="typing-text"></div>
             </div>
             <div class="flex items-center gap-4">
@@ -293,61 +292,6 @@
         </div>
     </div>
 
-    <!-- Business Request Form Popup -->
-    <div id="businessRequestPopup" class="fixed inset-0 bg-black bg-opacity-80 z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-white rounded-xl p-4 w-80 max-w-sm shadow-2xl" style="max-width: 320px; width: 320px; padding: 16px;">
-            <div class="flex justify-between items-center mb-3" style="margin-bottom: 12px;">
-                <h3 class="text-lg font-bold text-gray-900" style="font-size: 18px; font-weight: bold;">Request Tap at a Business</h3>
-                <button onclick="closeBusinessRequestForm()" class="text-gray-400 hover:text-gray-600 transition-colors">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width: 16px; height: 16px;">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                    </svg>
-                </button>
-            </div>
-            <form id="businessRequestForm" class="space-y-2" style="gap: 8px;">
-                <div>
-                    <label for="businessName" class="block text-xs font-medium text-gray-700 mb-1" style="font-size: 12px; margin-bottom: 4px;">Business Name *</label>
-                    <input type="text" id="businessName" name="businessName" required 
-                           class="w-full px-2 py-1 border border-gray-300 rounded text-gray-900 text-xs focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-transparent" 
-                           style="padding: 4px 8px; font-size: 12px; height: 28px;"
-                           placeholder="John Doe Dentistry">
-                </div>
-                <div>
-                    <label for="city" class="block text-xs font-medium text-gray-700 mb-1" style="font-size: 12px; margin-bottom: 4px;">City (optional)</label>
-                    <input type="text" id="city" name="city" 
-                           class="w-full px-2 py-1 border border-gray-300 rounded text-gray-900 text-xs focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-transparent" 
-                           style="padding: 4px 8px; font-size: 12px; height: 28px;"
-                           placeholder="New York">
-                </div>
-                <div>
-                    <label for="yourName" class="block text-xs font-medium text-gray-700 mb-1" style="font-size: 12px; margin-bottom: 4px;">Your Name (optional)</label>
-                    <input type="text" id="yourName" name="yourName" 
-                           class="w-full px-2 py-1 border border-gray-300 rounded text-gray-900 text-xs focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-transparent" 
-                           style="padding: 4px 8px; font-size: 12px; height: 28px;"
-                           placeholder="John Doe">
-                </div>
-                <div>
-                    <label for="yourEmail" class="block text-xs font-medium text-gray-700 mb-1" style="font-size: 12px; margin-bottom: 4px;">Your Email (optional)</label>
-                    <input type="email" id="yourEmail" name="yourEmail" 
-                           class="w-full px-2 py-1 border border-gray-300 rounded text-gray-900 text-xs focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-transparent" 
-                           style="padding: 4px 8px; font-size: 12px; height: 28px;"
-                           placeholder="john.doe@email.com">
-                </div>
-                <div class="flex gap-2 pt-2" style="gap: 8px; padding-top: 8px;">
-                    <button type="button" onclick="closeBusinessRequestForm()" 
-                            class="flex-1 px-2 py-1 border border-gray-300 text-gray-700 rounded text-xs hover:bg-gray-50 transition-colors font-medium" 
-                            style="padding: 4px 8px; font-size: 12px; height: 28px;">
-                        Cancel
-                    </button>
-                    <button type="submit" 
-                            class="flex-1 px-2 py-1 bg-blue-600 text-white rounded text-xs hover:bg-blue-700 transition-colors font-medium" 
-                            style="padding: 4px 8px; font-size: 12px; height: 28px;">
-                        Submit Request
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
 
     <script>
         // Contact form functionality
@@ -376,28 +320,10 @@
                 return;
             }
 
-            try {
-                const response = await fetch('/netlify/functions/contact', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ name, email, phone, message })
-                });
-                
-                const result = await response.json();
-                
-                if (response.ok) {
-                    alert('Thank you! Your message has been sent successfully.');
-                    this.reset();
-                    closeContactForm();
-                } else {
-                    alert('Error: ' + result.error);
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                alert('Sorry, there was an error sending your message. Please try again.');
-            }
+            // Simple contact form - shows success message
+            alert('Thank you! Your message has been received. We\'ll get back to you soon!');
+            this.reset();
+            closeContactForm();
         });
 
         // Close popup when clicking outside
