@@ -161,10 +161,10 @@
         
         <!-- Main heading text with opacity shifts -->
         <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30" id="text-container" style="top: 50%; left: 50%;">
-            <h1 class="text-white font-bold text-center leading-tight text-fade" id="text-1" style="text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5); font-size: clamp(3rem, 12vw, 6rem); opacity: 1; transition: opacity 1s ease-in-out;">
+            <h1 class="text-white font-bold text-center leading-tight text-fade" id="text-1" style="color: #ffffff !important; text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5); font-size: clamp(3rem, 12vw, 6rem); opacity: 1; transition: opacity 1s ease-in-out;">
                 Sign-In or Sign-Up Anywhere.
             </h1>
-            <h1 class="text-white font-bold text-center leading-tight text-fade" id="text-2" style="text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5); font-size: clamp(3rem, 12vw, 6rem); opacity: 0; transition: opacity 1s ease-in-out; position: absolute; top: 0; left: 0; width: 100%;">
+            <h1 class="text-white font-bold text-center leading-tight text-fade" id="text-2" style="color: #ffffff !important; text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5); font-size: clamp(3rem, 12vw, 6rem); opacity: 0; transition: opacity 1s ease-in-out; position: absolute; top: 0; left: 0; width: 100%;">
                 One Tap Is All It Takes.
             </h1>
         </div>
@@ -524,6 +524,7 @@
         // Mobile: Text fade animation
         let currentTextIndex = 0;
         let isAnimating = false;
+        let animationInterval;
 
         function fadeText() {
             if (isAnimating) return;
@@ -545,6 +546,13 @@
         }
 
         function initText() {
+            // Ensure elements exist
+            if (!textElements[0].element || !textElements[1].element) {
+                console.log('Text elements not found, retrying...');
+                setTimeout(initText, 100);
+                return;
+            }
+            
             textElements.forEach((textObj, index) => {
                 const element = textObj.element;
                 if (index === 0) {
@@ -554,8 +562,10 @@
                 }
             });
             
-            // Start the fade animation cycle
-            setInterval(fadeText, 3000); // Change text every 3 seconds
+            // Start the fade animation cycle after a short delay
+            setTimeout(() => {
+                animationInterval = setInterval(fadeText, 3000); // Change text every 3 seconds
+            }, 1000);
         }
 
         window.addEventListener('load', initText);
