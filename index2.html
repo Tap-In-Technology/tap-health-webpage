@@ -632,21 +632,27 @@
                     // Start position (bottom, horizontally centered)
                     phoneContainer.style.top = '80%';
                     phoneContainer.style.left = '50%';
+                    phoneContainer.style.transform = 'translate(-50%, -50%) rotate(0deg)';
                 } else if (scrolled >= fadeEnd && scrolled < fadeOutStart) {
                     phoneContainer.style.opacity = '1';
                     // End position (lower, aligned with lightning)
                     phoneContainer.style.top = '60%';
                     phoneContainer.style.left = '50%';
+                    phoneContainer.style.transform = 'translate(-50%, -50%) rotate(0deg)';
                 } else if (scrolled >= fadeOutStart) {
-                    // Quick fade out
+                    // Quick fade out with clockwise spin
                     if (scrolled >= fadeOutEnd) {
                         phoneContainer.style.opacity = '0';
+                        phoneContainer.style.transform = 'translate(-50%, -50%) rotate(360deg)';
                     } else {
                         const fadeOutProgress = (scrolled - fadeOutStart) / (fadeOutEnd - fadeOutStart);
                         const opacity = 1 - fadeOutProgress; // Fades OUT quickly
+                        const rotation = fadeOutProgress * 360; // Spins 360 degrees clockwise
+                        
                         phoneContainer.style.opacity = opacity.toString();
                         phoneContainer.style.top = '60%';
                         phoneContainer.style.left = '50%';
+                        phoneContainer.style.transform = `translate(-50%, -50%) rotate(${rotation}deg)`;
                     }
                 } else {
                     // Calculate opacity and position between fadeStart and fadeEnd
@@ -663,6 +669,7 @@
                     phoneContainer.style.opacity = opacity.toString();
                     phoneContainer.style.top = currentTop + '%';
                     phoneContainer.style.left = leftPosition + '%';
+                    phoneContainer.style.transform = 'translate(-50%, -50%) rotate(0deg)';
                 }
             }
         }
