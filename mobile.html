@@ -447,27 +447,34 @@
             console.log('Current text:', currentElement.textContent);
             console.log('Next text:', nextElement.textContent);
 
-            // Phase 1: Electric strike on current text (0-500ms)
+            // Sanity check: Ensure only current element is visible
+            textElements.forEach((textObj, index) => {
+                if (index !== currentTextIndex) {
+                    textObj.element.style.opacity = '0';
+                }
+            });
+
+            // Phase 1: Electric strike on current text (0-200ms) - MUCH FASTER
             console.log('Phase 1: Electric strike');
             currentElement.style.textShadow = '0 0 20px #00ffff, 0 0 40px #0080ff, 0 0 60px #0040ff, 0 0 80px #0020ff';
             currentElement.style.color = '#ffffff';
             currentElement.style.filter = 'brightness(1.5) contrast(1.2)';
             
-            // Phase 2: Flicker effect (500-1000ms)
+            // Phase 2: Flicker effect (200-400ms) - MUCH FASTER
             setTimeout(() => {
                 console.log('Phase 2: Flicker effect');
                 let flickerCount = 0;
                 const flickerInterval = setInterval(() => {
-                    if (flickerCount >= 4) {
+                    if (flickerCount >= 3) { // Fewer flicks for speed
                         clearInterval(flickerInterval);
                         return;
                     }
                     currentElement.style.opacity = currentElement.style.opacity === '0.3' ? '1' : '0.3';
                     flickerCount++;
-                }, 100);
-            }, 500);
+                }, 50); // Faster flicker
+            }, 200);
             
-            // Phase 3: Text replacement and electric entrance (1000ms)
+            // Phase 3: Text replacement and electric entrance (400ms) - MUCH FASTER
             setTimeout(() => {
                 console.log('Phase 3: Text replacement');
                 // Hide current text
@@ -481,7 +488,7 @@
                 nextElement.style.color = '#ffffff';
                 nextElement.style.filter = 'brightness(1.3) contrast(1.1)';
                 
-                // Phase 4: Settle to normal (1000-1500ms)
+                // Phase 4: Settle to normal (400-600ms) - MUCH FASTER
                 setTimeout(() => {
                     console.log('Phase 4: Settle to normal');
                     nextElement.style.textShadow = '3px 3px 6px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5)';
@@ -489,8 +496,8 @@
                     currentTextIndex = nextIndex;
                     isAnimating = false;
                     console.log('Animation complete!');
-                }, 500);
-            }, 1000);
+                }, 200);
+            }, 400);
         }
 
         function initText() {
@@ -511,6 +518,14 @@
                     element.style.opacity = '1'; // Show first text
                 } else {
                     element.style.opacity = '0'; // Hide others
+                }
+            });
+            
+            // Sanity check: Ensure only one header is visible at startup
+            console.log('Sanity check: Ensuring only one header is visible');
+            textElements.forEach((textObj, index) => {
+                if (index !== 0) {
+                    textObj.element.style.opacity = '0';
                 }
             });
             
