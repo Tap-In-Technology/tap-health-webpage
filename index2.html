@@ -205,7 +205,7 @@
     </div>
         
         <!-- Phone image large and centered, fading into background -->
-        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 parallax-smooth z-20" id="phone-container" style="top: 42%; left: 48%;">
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 parallax-smooth z-20" id="phone-container" style="top: 42%; left: 48%; transition: opacity 1s ease-in-out;">
             <img src="/media/phone.png?v=2" alt="Phone" class="h-[80vh] w-auto opacity-100" id="phone">
             <div class="phone-gradient"></div>
             <div class="phone-gleam"></div>
@@ -611,6 +611,34 @@
 
         window.addEventListener('scroll', updateTextOpacity);
         window.addEventListener('load', updateTextOpacity);
+
+        // Phone fade out on scroll
+        function updatePhoneOpacity() {
+            const scrolled = window.pageYOffset;
+            const phoneContainer = document.getElementById('phone-container');
+            
+            if (phoneContainer) {
+                // Fade out phone as user scrolls up
+                // At scroll position 0: opacity 1 (fully visible)
+                // At scroll position 300: opacity 0 (fully hidden)
+                const fadeStart = 0;
+                const fadeEnd = 300;
+                
+                if (scrolled <= fadeStart) {
+                    phoneContainer.style.opacity = '1';
+                } else if (scrolled >= fadeEnd) {
+                    phoneContainer.style.opacity = '0';
+                } else {
+                    // Calculate opacity between fadeStart and fadeEnd
+                    const progress = (scrolled - fadeStart) / (fadeEnd - fadeStart);
+                    const opacity = 1 - progress;
+                    phoneContainer.style.opacity = opacity.toString();
+                }
+            }
+        }
+
+        window.addEventListener('scroll', updatePhoneOpacity);
+        window.addEventListener('load', updatePhoneOpacity);
     </script>
 </body>
 
