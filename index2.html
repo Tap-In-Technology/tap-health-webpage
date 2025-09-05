@@ -618,14 +618,14 @@
             const phoneContainer = document.getElementById('phone-container');
             
             if (phoneContainer) {
-                // Fade in phone as user scrolls down
+                // Fade in phone as user scrolls down (slower fade in)
                 // At scroll position 0: opacity 0 (invisible)
-                // At scroll position 200: opacity 1 (fully visible)
-                // At scroll position 300: opacity 0 (fade out very quickly)
+                // At scroll position 400: opacity 1 (fully visible)
+                // At scroll position 450: opacity 0 (fade out very quickly)
                 const fadeStart = 0;
-                const fadeEnd = 200;
-                const fadeOutStart = 300;
-                const fadeOutEnd = 350;
+                const fadeEnd = 400;  // Slower fade in - more scroll distance
+                const fadeOutStart = 450;  // Later start for fade out
+                const fadeOutEnd = 500;    // Very quick fade out
                 
                 if (scrolled <= fadeStart) {
                     phoneContainer.style.opacity = '0';
