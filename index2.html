@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tap Health - Index 2 v5</title>
+    <title>Tap Health - Index 2 v6</title>
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
@@ -238,44 +238,50 @@
 
     <!-- Contact Form Popup -->
     <div id="contactPopup" class="fixed inset-0 bg-black bg-opacity-80 z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-white rounded-xl p-8 w-full max-w-md shadow-2xl">
-            <div class="flex justify-between items-center mb-6">
-                <h3 class="text-2xl font-bold text-gray-900">Get in Touch</h3>
+        <div class="bg-white rounded-xl p-4 w-80 max-w-sm shadow-2xl" style="max-width: 320px; width: 320px; padding: 16px;">
+            <div class="flex justify-between items-center mb-3" style="margin-bottom: 12px;">
+                <h3 class="text-lg font-bold text-gray-900" style="font-size: 18px; font-weight: bold;">Get in Touch</h3>
                 <button onclick="closeContactForm()" class="text-gray-400 hover:text-gray-600 transition-colors">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width: 16px; height: 16px;">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                     </svg>
                 </button>
             </div>
-            <form id="contactForm" class="space-y-4">
+            <form id="contactForm" class="space-y-2" style="gap: 8px;">
                 <div>
-                    <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Name *</label>
+                    <label for="name" class="block text-xs font-medium text-gray-700 mb-1" style="font-size: 12px; margin-bottom: 4px;">Name *</label>
                     <input type="text" id="name" name="name" required 
-                           class="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                           class="w-full px-2 py-1 border border-gray-300 rounded text-gray-900 text-xs focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-transparent" 
+                           style="padding: 4px 8px; font-size: 12px; height: 28px;">
                 </div>
                 <div>
-                    <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email *</label>
+                    <label for="email" class="block text-xs font-medium text-gray-700 mb-1" style="font-size: 12px; margin-bottom: 4px;">Email *</label>
                     <input type="email" id="email" name="email" required 
-                           class="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                           class="w-full px-2 py-1 border border-gray-300 rounded text-gray-900 text-xs focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-transparent" 
+                           style="padding: 4px 8px; font-size: 12px; height: 28px;">
                 </div>
                 <div>
-                    <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">Phone</label>
+                    <label for="phone" class="block text-xs font-medium text-gray-700 mb-1" style="font-size: 12px; margin-bottom: 4px;">Phone</label>
                     <input type="tel" id="phone" name="phone" 
-                           class="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                           class="w-full px-2 py-1 border border-gray-300 rounded text-gray-900 text-xs focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-transparent" 
+                           style="padding: 4px 8px; font-size: 12px; height: 28px;">
                 </div>
                 <div>
-                    <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Message *</label>
-                    <textarea id="message" name="message" rows="4" required 
-                              class="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"></textarea>
+                    <label for="message" class="block text-xs font-medium text-gray-700 mb-1" style="font-size: 12px; margin-bottom: 4px;">Message *</label>
+                    <textarea id="message" name="message" rows="2" required 
+                              class="w-full px-2 py-1 border border-gray-300 rounded text-gray-900 text-xs focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-transparent resize-none" 
+                              style="padding: 4px 8px; font-size: 12px; height: 48px;"></textarea>
                 </div>
-                <div class="flex gap-3 pt-4">
+                <div class="flex gap-2 pt-2" style="gap: 8px; padding-top: 8px;">
                     <button type="button" onclick="closeContactForm()" 
-                            class="flex-1 px-4 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors font-medium">
+                            class="flex-1 px-2 py-1 border border-gray-300 text-gray-700 rounded text-xs hover:bg-gray-50 transition-colors font-medium" 
+                            style="padding: 4px 8px; font-size: 12px; height: 28px;">
                         Cancel
                     </button>
                     <button type="submit" 
-                            class="flex-1 px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium">
-                        Send Message
+                            class="flex-1 px-2 py-1 bg-blue-600 text-white rounded text-xs hover:bg-blue-700 transition-colors font-medium" 
+                            style="padding: 4px 8px; font-size: 12px; height: 28px;">
+                        Send
                     </button>
                 </div>
             </form>
