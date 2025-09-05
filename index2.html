@@ -623,34 +623,20 @@
                 // Fade in phone as user scrolls down (slower fade in)
                 // At scroll position 0: opacity 0 (invisible)
                 // At scroll position 400: opacity 1 (fully visible)
-                // At scroll position 450: opacity 0 (fade out very quickly)
+                // After 400px: opacity stays at 1 (100% visible)
                 const fadeStart = 0;
                 const fadeEnd = 400;  // Slower fade in - more scroll distance
-                const fadeOutStart = 450;  // Later start for fade out
-                const fadeOutEnd = 500;    // Very quick fade out
                 
                 if (scrolled <= fadeStart) {
                     phoneContainer.style.opacity = '0';
                     // Start position (bottom, horizontally centered)
                     phoneContainer.style.top = '80%';
                     phoneContainer.style.left = '48%';
-                } else if (scrolled >= fadeEnd && scrolled < fadeOutStart) {
+                } else if (scrolled >= fadeEnd) {
                     phoneContainer.style.opacity = '1';
                     // End position (aligned with lightning)
                     phoneContainer.style.top = '60%';
                     phoneContainer.style.left = '48%';
-                } else if (scrolled >= fadeOutStart) {
-                    // Quick fade out
-                    if (scrolled >= fadeOutEnd) {
-                        phoneContainer.style.opacity = '0';
-                    } else {
-                        const fadeOutProgress = (scrolled - fadeOutStart) / (fadeOutEnd - fadeOutStart);
-                        const opacity = 1 - fadeOutProgress; // Fades OUT quickly
-                        
-                        phoneContainer.style.opacity = opacity.toString();
-                        phoneContainer.style.top = '60%';
-                        phoneContainer.style.left = '48%';
-                    }
                 } else {
                     // Calculate opacity and position between fadeStart and fadeEnd
                     const progress = (scrolled - fadeStart) / (fadeEnd - fadeStart);
