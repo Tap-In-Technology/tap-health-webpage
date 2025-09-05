@@ -671,12 +671,18 @@
                     phoneContainer.style.transform = 'translateX(-50%)';
                 }
                 
+                // Update gradient opacity to match phone container opacity
+                const gradientElement = phoneContainer.querySelector('.phone-gradient');
+                if (gradientElement) {
+                    gradientElement.style.opacity = phoneContainer.style.opacity;
+                }
+                
                 // Sanity check: ensure phone is 100% opacity when scrolled to very bottom
                 const documentHeight = document.documentElement.scrollHeight;
                 const windowHeight = window.innerHeight;
                 const maxScroll = documentHeight - windowHeight;
                 
-                if (scrolled >= maxScroll - 100) { // Within 50px of bottom
+                if (scrolled >= maxScroll - 50) { // Within 50px of bottom
                     phoneContainer.style.opacity = '1';
                 }
             }
