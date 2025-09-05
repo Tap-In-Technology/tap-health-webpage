@@ -223,7 +223,7 @@
     <section class="black-section">
         <div class="w-full flex justify-between items-center px-6">
             <div class="typing-container">
-                <button class="request-button">Request Tap at a Business Near You</button>
+                <button onclick="openBusinessRequestForm()" class="request-button">Request Tap at a Business Near You</button>
                 <div class="typing-text" id="typing-text"></div>
             </div>
             <div class="flex items-center gap-4">
@@ -288,6 +288,48 @@
         </div>
     </div>
 
+    <!-- Business Request Form Popup -->
+    <div id="businessRequestPopup" class="fixed inset-0 bg-black bg-opacity-80 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-xl p-4 w-80 max-w-sm shadow-2xl" style="max-width: 320px; width: 320px; padding: 16px;">
+            <div class="flex justify-between items-center mb-3" style="margin-bottom: 12px;">
+                <h3 class="text-lg font-bold text-gray-900" style="font-size: 18px; font-weight: bold;">Request Tap at a Business</h3>
+                <button onclick="closeBusinessRequestForm()" class="text-gray-400 hover:text-gray-600 transition-colors">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width: 16px; height: 16px;">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <form id="businessRequestForm" class="space-y-2" style="gap: 8px;">
+                <div>
+                    <label for="businessName" class="block text-xs font-medium text-gray-700 mb-1" style="font-size: 12px; margin-bottom: 4px;">Business Name *</label>
+                    <input type="text" id="businessName" name="businessName" required 
+                           class="w-full px-2 py-1 border border-gray-300 rounded text-gray-900 text-xs focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-transparent" 
+                           style="padding: 4px 8px; font-size: 12px; height: 28px;"
+                           placeholder="e.g., Starbucks, McDonald's, etc.">
+                </div>
+                <div>
+                    <label for="yourName" class="block text-xs font-medium text-gray-700 mb-1" style="font-size: 12px; margin-bottom: 4px;">Your Name (optional)</label>
+                    <input type="text" id="yourName" name="yourName" 
+                           class="w-full px-2 py-1 border border-gray-300 rounded text-gray-900 text-xs focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-transparent" 
+                           style="padding: 4px 8px; font-size: 12px; height: 28px;"
+                           placeholder="Your name">
+                </div>
+                <div class="flex gap-2 pt-2" style="gap: 8px; padding-top: 8px;">
+                    <button type="button" onclick="closeBusinessRequestForm()" 
+                            class="flex-1 px-2 py-1 border border-gray-300 text-gray-700 rounded text-xs hover:bg-gray-50 transition-colors font-medium" 
+                            style="padding: 4px 8px; font-size: 12px; height: 28px;">
+                        Cancel
+                    </button>
+                    <button type="submit" 
+                            class="flex-1 px-2 py-1 bg-blue-600 text-white rounded text-xs hover:bg-blue-700 transition-colors font-medium" 
+                            style="padding: 4px 8px; font-size: 12px; height: 28px;">
+                        Submit Request
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <script>
         // Contact form functionality
         function openContactForm() {
@@ -325,6 +367,63 @@
         document.getElementById('contactPopup').addEventListener('click', function(e) {
             if (e.target === this) {
                 closeContactForm();
+            }
+        });
+
+        // Business request form functionality
+        function openBusinessRequestForm() {
+            document.getElementById('businessRequestPopup').classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+
+        function closeBusinessRequestForm() {
+            document.getElementById('businessRequestPopup').classList.add('hidden');
+            document.body.style.overflow = 'auto'; // Restore scrolling
+            document.getElementById('businessRequestForm').reset(); // Clear form
+        }
+
+        // Handle business request form submission
+        document.getElementById('businessRequestForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const businessName = document.getElementById('businessName').value;
+            const yourName = document.getElementById('yourName').value;
+
+            if (!businessName) {
+                alert('Please enter the business name.');
+                return;
+            }
+
+            // Prepare data for Google Apps Script
+            const formData = new FormData();
+            formData.append('email', yourName ? `${yourName} - ${businessName}` : businessName);
+            formData.append('businessName', businessName);
+            formData.append('yourName', yourName || 'Anonymous');
+
+            // Send to the same Google Apps Script endpoint as the mailing list
+            fetch('https://script.google.com/macros/s/AKfycbxZeJ9QZ3FHdOzsA5Y4q56QFlLxhqkhYDy4txL0UU7QBKmUiK3c7xfuMqRPmzr9jN9__Q/exec', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('Thank you! Your business request has been submitted. We\'ll work on getting Tap to ' + businessName + '!');
+                    this.reset();
+                    closeBusinessRequestForm();
+                } else {
+                    throw new Error('Failed to submit request');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Sorry, there was an error submitting your request. Please try again.');
+            });
+        });
+
+        // Close business request popup when clicking outside
+        document.getElementById('businessRequestPopup').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeBusinessRequestForm();
             }
         });
 
