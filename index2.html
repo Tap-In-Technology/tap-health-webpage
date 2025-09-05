@@ -621,11 +621,11 @@
                 // Fade in phone as user scrolls down
                 // At scroll position 0: opacity 0 (invisible)
                 // At scroll position 200: opacity 1 (fully visible)
-                // At scroll position 300: opacity 0 (fade out quickly)
+                // At scroll position 300: opacity 0 (fade out very quickly)
                 const fadeStart = 0;
                 const fadeEnd = 200;
                 const fadeOutStart = 300;
-                const fadeOutEnd = 400;
+                const fadeOutEnd = 350;
                 
                 if (scrolled <= fadeStart) {
                     phoneContainer.style.opacity = '0';
