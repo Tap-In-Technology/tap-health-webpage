@@ -207,7 +207,7 @@
     </div>
         
         <!-- Phone image large and centered, fading into background -->
-        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 parallax-smooth z-20" id="phone-container" style="top: 60%; left: 50%; transform: translateX(-50%); transition: opacity 0.3s ease-in-out; opacity: 0;">
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 parallax-smooth z-20" id="phone-container" style="top: 65%; left: 50%; transform: translateX(-50%); transition: opacity 0.3s ease-in-out; opacity: 0;">
             <img src="/media/phone.png?v=2" alt="Phone" class="h-[80vh] w-auto" id="phone">
             <div class="phone-gradient"></div>
             <div class="phone-gleam"></div>
@@ -365,7 +365,7 @@
         const sentences = [
             "Hate filling out forms? We do too!",
             "It's time for filling out forms to get an upgrade",
-            "<---- Who has the most annoying forms? We want to hear!"
+            "Who has the most annoying forms? We want to hear! ----->"
         ];
         
         let currentSentenceIndex = 0;
@@ -514,7 +514,7 @@
                 } else if (scrolled >= fadeEnd && scrolled < fadeOutStart) {
                     phoneContainer.style.opacity = '1';
                     // End position (aligned with lightning)
-                    phoneContainer.style.top = '60%';
+                    phoneContainer.style.top = '65%';
                     phoneContainer.style.left = '50%';
                     phoneContainer.style.transform = 'translateX(-50%)';
                 } else if (scrolled >= fadeOutStart) {
@@ -526,7 +526,7 @@
                         const opacity = 1 - fadeOutProgress; // Fades OUT quickly
                         
                         phoneContainer.style.opacity = opacity.toString();
-                        phoneContainer.style.top = '60%';
+                        phoneContainer.style.top = '65%';
                         phoneContainer.style.left = '50%';
                         phoneContainer.style.transform = 'translateX(-50%)';
                     }
@@ -537,7 +537,7 @@
                     
                     // Interpolate position from bottom to lightning-aligned position
                     const startTop = 80; // Start from bottom
-                    const endTop = 60;   // End at lightning-aligned position
+                    const endTop = 65;   // End at lightning-aligned position
                     
                     const currentTop = startTop + (endTop - startTop) * progress;
                     
@@ -563,6 +563,7 @@
                 const maxScroll = documentHeight - windowHeight;
                 
                 if (scrolled >= maxScroll - 50) { // Within 50px of bottom
+                    console.log('Phone should be 100% opacity - at bottom of page');
                     phoneContainer.style.opacity = '1';
                 }
             }
