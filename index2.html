@@ -314,6 +314,13 @@
                            style="padding: 4px 8px; font-size: 12px; height: 28px;"
                            placeholder="Your name">
                 </div>
+                <div>
+                    <label for="yourEmail" class="block text-xs font-medium text-gray-700 mb-1" style="font-size: 12px; margin-bottom: 4px;">Your Email (optional)</label>
+                    <input type="email" id="yourEmail" name="yourEmail" 
+                           class="w-full px-2 py-1 border border-gray-300 rounded text-gray-900 text-xs focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-transparent" 
+                           style="padding: 4px 8px; font-size: 12px; height: 28px;"
+                           placeholder="your@email.com">
+                </div>
                 <div class="flex gap-2 pt-2" style="gap: 8px; padding-top: 8px;">
                     <button type="button" onclick="closeBusinessRequestForm()" 
                             class="flex-1 px-2 py-1 border border-gray-300 text-gray-700 rounded text-xs hover:bg-gray-50 transition-colors font-medium" 
@@ -388,17 +395,25 @@
             
             const businessName = document.getElementById('businessName').value;
             const yourName = document.getElementById('yourName').value;
+            const yourEmail = document.getElementById('yourEmail').value;
 
             if (!businessName) {
                 alert('Please enter the business name.');
                 return;
             }
 
+            // Create a descriptive email that includes all the information
+            let emailContent = `BUSINESS REQUEST: ${businessName}`;
+            if (yourName) {
+                emailContent += ` | Requested by: ${yourName}`;
+            }
+            if (yourEmail) {
+                emailContent += ` | Contact: ${yourEmail}`;
+            }
+
             // Prepare data for Google Apps Script
             const formData = new FormData();
-            formData.append('email', yourName ? `${yourName} - ${businessName}` : businessName);
-            formData.append('businessName', businessName);
-            formData.append('yourName', yourName || 'Anonymous');
+            formData.append('email', emailContent);
 
             // Send to the same Google Apps Script endpoint as the mailing list
             fetch('https://script.google.com/macros/s/AKfycbxZeJ9QZ3FHdOzsA5Y4q56QFlLxhqkhYDy4txL0UU7QBKmUiK3c7xfuMqRPmzr9jN9__Q/exec', {
