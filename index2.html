@@ -211,10 +211,13 @@
             <div class="phone-gleam"></div>
         </div>
         
-        <!-- Main heading text -->
+        <!-- Main heading text with opacity shifts -->
         <div class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30" id="text-container">
-            <h1 class="text-white font-bold text-center leading-tight" style="text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5); font-size: clamp(1.5rem, 6vw, 6rem);">
+            <h1 class="text-white font-bold text-center leading-tight text-fade" id="text-1" style="text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5); font-size: clamp(1.5rem, 6vw, 6rem); opacity: 1; transition: opacity 1s ease-in-out;">
                 Sign-In or Sign-Up Anywhere.
+            </h1>
+            <h1 class="text-white font-bold text-center leading-tight text-fade" id="text-2" style="text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5); font-size: clamp(1.5rem, 6vw, 6rem); opacity: 0; transition: opacity 1s ease-in-out; position: absolute; top: 0; left: 0; width: 100%;">
+                <span style="font-size: clamp(2rem, 8vw, 8rem);">One Tap Is All It Takes.</span>
             </h1>
         </div>
     </section>
@@ -578,6 +581,36 @@
         
         window.addEventListener('scroll', checkScrollPosition);
         window.addEventListener('load', checkScrollPosition);
+
+        // Opacity shift text transitions
+        let currentTextIndex = 0;
+        const textElements = [
+            { element: document.getElementById('text-1'), showAt: 0 },
+            { element: document.getElementById('text-2'), showAt: 200 }
+        ];
+
+        function updateTextOpacity() {
+            const scrolled = window.pageYOffset;
+            
+            textElements.forEach((textObj, index) => {
+                const element = textObj.element;
+                const showAt = textObj.showAt;
+                
+                if (scrolled >= showAt) {
+                    // Show this text
+                    element.style.opacity = '1';
+                    // Hide all other texts
+                    textElements.forEach((otherTextObj, otherIndex) => {
+                        if (otherIndex !== index) {
+                            otherTextObj.element.style.opacity = '0';
+                        }
+                    });
+                }
+            });
+        }
+
+        window.addEventListener('scroll', updateTextOpacity);
+        window.addEventListener('load', updateTextOpacity);
     </script>
 </body>
 
