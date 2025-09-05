@@ -205,7 +205,7 @@
     </div>
         
         <!-- Phone image large and centered, fading into background -->
-        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 parallax-smooth z-20" id="phone-container" style="top: 40%; left: 48%; transition: opacity 1s ease-in-out; opacity: 0;">
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 parallax-smooth z-20" id="phone-container" style="top: 55%; left: 48%; transition: opacity 1s ease-in-out; opacity: 0;">
             <img src="/media/phone.png?v=2" alt="Phone" class="h-[80vh] w-auto" id="phone" style="opacity: 1;">
             <div class="phone-gradient"></div>
             <div class="phone-gleam"></div>
@@ -635,7 +635,7 @@
                 } else if (scrolled >= fadeEnd && scrolled < fadeOutStart) {
                     phoneContainer.style.opacity = '1';
                     // End position (aligned with lightning)
-                    phoneContainer.style.top = '40%';
+                    phoneContainer.style.top = '55%';
                     phoneContainer.style.left = '48%';
                 } else if (scrolled >= fadeOutStart) {
                     // Quick fade out
@@ -646,7 +646,7 @@
                         const opacity = 1 - fadeOutProgress; // Fades OUT quickly
                         
                         phoneContainer.style.opacity = opacity.toString();
-                        phoneContainer.style.top = '40%';
+                        phoneContainer.style.top = '55%';
                         phoneContainer.style.left = '48%';
                     }
                 } else {
@@ -656,7 +656,7 @@
                     
                     // Interpolate position from bottom to lightning-aligned position
                     const startTop = 80; // Start from bottom
-                    const endTop = 40;   // End at lightning-aligned position
+                    const endTop = 55;   // End at lightning-aligned position
                     const leftPosition = 48; // Always horizontally centered
                     
                     const currentTop = startTop + (endTop - startTop) * progress;
