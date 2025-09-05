@@ -147,6 +147,12 @@
         <div class="absolute top-2 left-4">
             <img src="/media/Tap_inverted.png" alt="Tap Health Logo" class="h-20 w-auto">
         </div>
+        <!-- Get in Touch button in upper right -->
+        <div class="absolute top-2 right-4">
+            <button onclick="openContactForm()" class="bg-white text-black px-4 py-2 rounded-lg text-base font-bold hover:bg-gray-200 transition-colors">
+                Get in Touch
+            </button>
+        </div>
     </div>
     
     <!-- Lightning background hero section -->
@@ -167,12 +173,7 @@
     <!-- Mobile footer -->
     <div class="mobile-footer">
         <div class="flex flex-col items-center gap-3 w-full px-4">
-            <div class="flex gap-3">
-                <button onclick="openBusinessRequestForm()" class="request-button">Request Tap at a Business Near You</button>
-                <button onclick="openContactForm()" class="bg-white text-black px-4 py-2 rounded-lg text-sm font-bold hover:bg-gray-200 transition-colors">
-                    Get in Touch
-                </button>
-            </div>
+            <button onclick="openBusinessRequestForm()" class="request-button">Request Tap at a Business Near You</button>
             <a href="privacy.html" class="text-sm text-gray-400 hover:text-white transition-colors">Privacy Policy</a>
         </div>
     </div>
