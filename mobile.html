@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tap Health - Mobile</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <script src="https://cdn.tailwindcss.com?v=4"></script>
+    <link rel="icon" href="favicon.ico" />
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Background image styling */
+        .lightning-bg {
+            background-image: url('/media/lightning_bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            min-height: 120vh; /* Extra height to prevent white flash */
+            position: relative;
+        }
+        
+        /* Vignette overlay */
+        .lightning-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at center, 
+                rgba(0, 0, 0, 0.2) 0%, 
+                rgba(0, 0, 0, 0.4) 40%, 
+                rgba(0, 0, 0, 0.7) 70%, 
+                rgba(0, 0, 0, 0.9) 100%);
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        body {
+            background-color: #000000;
+            overflow-x: hidden;
+        }
+        
+        /* Tiny black section */
+        .black-section {
+            background-color: #000000;
+            min-height: 10vh; /* Half the size - very small section */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 10;
+        }
+        
+        
+        /* Force phone aspect ratio */
+        #phone {
+            object-fit: contain;
+            max-width: none;
+            height: 80vh;
+            width: auto;
+        }
+        
+        /* Smooth parallax effect */
+        .parallax-smooth {
+            will-change: transform;
+            backface-visibility: hidden;
+            transform: translateZ(0);
+        }
+        
+        /* Phone gradient overlay */
+        .phone-gradient {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(ellipse at 85% 15%, 
+                    transparent 0%, 
+                    transparent 20%, 
+                    rgba(0, 0, 0, 0.1) 35%, 
+                    rgba(0, 0, 0, 0.4) 50%, 
+                    rgba(0, 0, 0, 0.8) 70%, 
+                    rgba(0, 0, 0, 0.95) 100%),
+                linear-gradient(to bottom, 
+                    transparent 50%, 
+                    rgba(0, 0, 0, 0.3) 70%, 
+                    rgba(0, 0, 0, 0.7) 85%, 
+                    rgba(0, 0, 0, 1) 100%);
+            pointer-events: none;
+            mask: url('/media/phone.png');
+            mask-size: contain;
+            mask-repeat: no-repeat;
+            mask-position: center;
+            -webkit-mask: url('/media/phone.png');
+            -webkit-mask-size: contain;
+            -webkit-mask-repeat: no-repeat;
+            -webkit-mask-position: center;
+        }
+        
+        /* Phone gleam effect */
+        .phone-gleam {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+            mask: url('/media/phone.png');
+            mask-size: contain;
+            mask-repeat: no-repeat;
+            mask-position: center;
+            -webkit-mask: url('/media/phone.png');
+            -webkit-mask-size: contain;
+            -webkit-mask-repeat: no-repeat;
+            -webkit-mask-position: center;
+        }
+        
+        .phone-gleam::before {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: -100%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(135deg, transparent, rgba(255, 255, 255, 0.08), transparent);
+            animation: gleam 4s ease-in-out infinite;
+        }
+        
+        @keyframes gleam {
+            0% {
+                transform: translate(-100%, -100%);
+            }
+            75% {
+                transform: translate(100%, 100%);
+            }
+            100% {
+                transform: translate(100%, 100%);
+            }
+        }
+        
+        /* Typing animation */
+        .typing-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .typing-text {
+            font-family: 'Courier New', monospace;
+            font-size: 0.875rem;
+            color: #ffffff;
+            min-height: 1.25rem;
+            white-space: nowrap;
+        }
+        
+        .typing-cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1rem;
+            background-color: #ffffff;
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        
+        .request-button {
+            background: white;
+            color: black;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+        
+        .request-button:hover {
+            background: #e5e7eb;
+        }
+        
+    </style>
+</head>
+
+<body class="min-h-screen">
+    <!-- Lightning background hero section -->
+    <section class="lightning-bg relative">
+            <!-- Tap logo in top left -->
+    <div class="fixed -top-2 left-6 z-20">
+        <img src="/media/Tap_inverted.png" alt="Tap Health Logo" class="h-36 w-auto">
+    </div>
+        
+        <!-- Phone image large and centered, fading into background -->
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 parallax-smooth z-20" id="phone-container" style="top: 42%; left: 48%; transition: opacity 1s ease-in-out; opacity: 0;">
+            <img src="/media/phone.png?v=2" alt="Phone" class="h-[80vh] w-auto opacity-100" id="phone">
+            <div class="phone-gradient"></div>
+            <div class="phone-gleam"></div>
+        </div>
+        
+        <!-- Main heading text with opacity shifts -->
+        <div class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30" id="text-container">
+            <h1 class="text-white font-bold text-center leading-tight text-fade" id="text-1" style="text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5); font-size: clamp(1.5rem, 6vw, 6rem); opacity: 1; transition: opacity 1s ease-in-out;">
+                Sign-In or Sign-Up Anywhere.
+            </h1>
+            <h1 class="text-white font-bold text-center leading-tight text-fade" id="text-2" style="text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5); font-size: clamp(1.5rem, 6vw, 6rem); opacity: 0; transition: opacity 1s ease-in-out; position: absolute; top: 0; left: 0; width: 100%;">
+                One Tap Is All It Takes.
+            </h1>
+        </div>
+    </section>
+    
+    <!-- Tiny black section with privacy policy and get in touch -->
+    <section class="black-section">
+        <div class="w-full flex justify-between items-center px-6">
+            <div class="typing-container">
+                <button onclick="openBusinessRequestForm()" class="request-button">Request Tap at a Business Near You</button>
+                <div class="typing-text" id="typing-text"></div>
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="privacy.html" class="text-xs text-gray-400 hover:text-white transition-colors">Privacy Policy</a>
+                <button onclick="openContactForm()"
+                    class="bg-white text-black px-4 py-2 rounded-full text-sm font-medium hover:bg-gray-200 transition-colors">
+                    Get in Touch
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form Popup -->
+    <div id="contactPopup" class="fixed inset-0 bg-black bg-opacity-80 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-xl p-4 w-80 max-w-sm shadow-2xl" style="max-width: 320px; width: 320px; padding: 16px;">
+            <div class="flex justify-between items-center mb-3" style="margin-bottom: 12px;">
+                <h3 class="text-lg font-bold text-gray-900" style="font-size: 18px; font-weight: bold;">Get in Touch</h3>
+                <button onclick="closeContactForm()" class="text-gray-400 hover:text-gray-600 transition-colors">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width: 16px; height: 16px;">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <form id="contactForm" class="space-y-2" style="gap: 8px;">
+                <div>
+                    <label for="name" class="block text-xs font-medium text-gray-700 mb-1" style="font-size: 12px; margin-bottom: 4px;">Name *</label>
+                    <input type="text" id="name" name="name" required 
+                           class="w-full px-2 py-1 border border-gray-300 rounded text-gray-900 text-xs focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-transparent" 
+                           style="padding: 4px 8px; font-size: 12px; height: 28px;">
+                </div>
+                <div>
+                    <label for="email" class="block text-xs font-medium text-gray-700 mb-1" style="font-size: 12px; margin-bottom: 4px;">Email *</label>
+                    <input type="email" id="email" name="email" required 
+                           class="w-full px-2 py-1 border border-gray-300 rounded text-gray-900 text-xs focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-transparent" 
+                           style="padding: 4px 8px; font-size: 12px; height: 28px;">
+                </div>
+                <div>
+                    <label for="phone" class="block text-xs font-medium text-gray-700 mb-1" style="font-size: 12px; margin-bottom: 4px;">Phone</label>
+                    <input type="tel" id="phone" name="phone" 
+                           class="w-full px-2 py-1 border border-gray-300 rounded text-gray-900 text-xs focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-transparent" 
+                           style="padding: 4px 8px; font-size: 12px; height: 28px;">
+                </div>
+                <div>
+                    <label for="message" class="block text-xs font-medium text-gray-700 mb-1" style="font-size: 12px; margin-bottom: 4px;">Message *</label>
+                    <textarea id="message" name="message" rows="2" required 
+                              class="w-full px-2 py-1 border border-gray-300 rounded text-gray-900 text-xs focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-transparent resize-none" 
+                              style="padding: 4px 8px; font-size: 12px; height: 48px;"></textarea>
+                </div>
+                <div class="flex gap-2 pt-2" style="gap: 8px; padding-top: 8px;">
+                    <button type="button" onclick="closeContactForm()" 
+                            class="flex-1 px-2 py-1 border border-gray-300 text-gray-700 rounded text-xs hover:bg-gray-50 transition-colors font-medium" 
+                            style="padding: 4px 8px; font-size: 12px; height: 28px;">
+                        Cancel
+                    </button>
+                    <button type="submit" 
+                            class="flex-1 px-2 py-1 bg-blue-600 text-white rounded text-xs hover:bg-blue-700 transition-colors font-medium" 
+                            style="padding: 4px 8px; font-size: 12px; height: 28px;">
+                        Send
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Business Request Form Popup -->
+    <div id="businessRequestPopup" class="fixed inset-0 bg-black bg-opacity-80 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-xl p-4 w-80 max-w-sm shadow-2xl" style="max-width: 320px; width: 320px; padding: 16px;">
+            <div class="flex justify-between items-center mb-3" style="margin-bottom: 12px;">
+                <h3 class="text-lg font-bold text-gray-900" style="font-size: 18px; font-weight: bold;">Request Tap at a Business</h3>
+                <button onclick="closeBusinessRequestForm()" class="text-gray-400 hover:text-gray-600 transition-colors">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width: 16px; height: 16px;">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <form id="businessRequestForm" class="space-y-2" style="gap: 8px;">
+                <div>
+                    <label for="businessName" class="block text-xs font-medium text-gray-700 mb-1" style="font-size: 12px; margin-bottom: 4px;">Business Name *</label>
+                    <input type="text" id="businessName" name="businessName" required 
+                           class="w-full px-2 py-1 border border-gray-300 rounded text-gray-900 text-xs focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-transparent" 
+                           style="padding: 4px 8px; font-size: 12px; height: 28px;"
+                           placeholder="John Doe Dentistry">
+                </div>
+                <div>
+                    <label for="city" class="block text-xs font-medium text-gray-700 mb-1" style="font-size: 12px; margin-bottom: 4px;">City (optional)</label>
+                    <input type="text" id="city" name="city" 
+                           class="w-full px-2 py-1 border border-gray-300 rounded text-gray-900 text-xs focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-transparent" 
+                           style="padding: 4px 8px; font-size: 12px; height: 28px;"
+                           placeholder="New York">
+                </div>
+                <div>
+                    <label for="yourName" class="block text-xs font-medium text-gray-700 mb-1" style="font-size: 12px; margin-bottom: 4px;">Your Name (optional)</label>
+                    <input type="text" id="yourName" name="yourName" 
+                           class="w-full px-2 py-1 border border-gray-300 rounded text-gray-900 text-xs focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-transparent" 
+                           style="padding: 4px 8px; font-size: 12px; height: 28px;"
+                           placeholder="John Doe">
+                </div>
+                <div>
+                    <label for="yourEmail" class="block text-xs font-medium text-gray-700 mb-1" style="font-size: 12px; margin-bottom: 4px;">Your Email (optional)</label>
+                    <input type="email" id="yourEmail" name="yourEmail" 
+                           class="w-full px-2 py-1 border border-gray-300 rounded text-gray-900 text-xs focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-transparent" 
+                           style="padding: 4px 8px; font-size: 12px; height: 28px;"
+                           placeholder="john.doe@email.com">
+                </div>
+                <div class="flex gap-2 pt-2" style="gap: 8px; padding-top: 8px;">
+                    <button type="button" onclick="closeBusinessRequestForm()" 
+                            class="flex-1 px-2 py-1 border border-gray-300 text-gray-700 rounded text-xs hover:bg-gray-50 transition-colors font-medium" 
+                            style="padding: 4px 8px; font-size: 12px; height: 28px;">
+                        Cancel
+                    </button>
+                    <button type="submit" 
+                            class="flex-1 px-2 py-1 bg-blue-600 text-white rounded text-xs hover:bg-blue-700 transition-colors font-medium" 
+                            style="padding: 4px 8px; font-size: 12px; height: 28px;">
+                        Submit Request
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Contact form functionality
+        function openContactForm() {
+            document.getElementById('contactPopup').classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+
+        function closeContactForm() {
+            document.getElementById('contactPopup').classList.add('hidden');
+            document.body.style.overflow = 'auto'; // Restore scrolling
+            document.getElementById('contactForm').reset(); // Clear form
+        }
+
+        // Handle form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const message = document.getElementById('message').value;
+
+            if (!name || !email || !message) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+
+            // Temporary: just show success message
+            alert('Thank you! Your message has been received. We\'ll get back to you soon at ' + email);
+            this.reset();
+            closeContactForm();
+        });
+
+        // Close popup when clicking outside
+        document.getElementById('contactPopup').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeContactForm();
+            }
+        });
+
+        // Business request form functionality
+        function openBusinessRequestForm() {
+            document.getElementById('businessRequestPopup').classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+
+        function closeBusinessRequestForm() {
+            document.getElementById('businessRequestPopup').classList.add('hidden');
+            document.body.style.overflow = 'auto'; // Restore scrolling
+            document.getElementById('businessRequestForm').reset(); // Clear form
+        }
+
+        // Handle business request form submission
+        document.getElementById('businessRequestForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const businessName = document.getElementById('businessName').value;
+            const city = document.getElementById('city').value;
+            const yourName = document.getElementById('yourName').value;
+            const yourEmail = document.getElementById('yourEmail').value;
+
+            if (!businessName) {
+                alert('Please enter the business name.');
+                return;
+            }
+
+            // Create a descriptive email that includes all the information
+            let emailContent = `BUSINESS REQUEST: ${businessName}`;
+            if (city) {
+                emailContent += ` (${city})`;
+            }
+            if (yourName) {
+                emailContent += ` | Requested by: ${yourName}`;
+            }
+            if (yourEmail) {
+                emailContent += ` | Contact: ${yourEmail}`;
+            }
+
+            // Prepare data for Google Apps Script
+            const formData = new FormData();
+            formData.append('email', emailContent);
+
+            // Send to the same Google Apps Script endpoint as the mailing list
+            fetch('https://script.google.com/macros/s/AKfycbxZeJ9QZ3FHdOzsA5Y4q56QFlLxhqkhYDy4txL0UU7QBKmUiK3c7xfuMqRPmzr9jN9__Q/exec', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('Thank you! Your business request has been submitted. We\'ll work on getting Tap to ' + businessName + '!');
+                    this.reset();
+                    closeBusinessRequestForm();
+                } else {
+                    throw new Error('Failed to submit request');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Sorry, there was an error submitting your request. Please try again.');
+            });
+        });
+
+        // Close business request popup when clicking outside
+        document.getElementById('businessRequestPopup').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeBusinessRequestForm();
+            }
+        });
+
+        // Smooth parallax scrolling effect
+        let ticking = false;
+        
+        function updateParallax() {
+            const scrolled = window.pageYOffset;
+            const parallaxRate = 0.3; // Gentler movement
+            
+                    // Apply parallax to phone container only (text is now fixed)
+        const phoneContainer = document.getElementById('phone-container');
+        
+        if (phoneContainer) {
+            const translateY = scrolled * parallaxRate;
+            phoneContainer.style.transform = `translate(-50%, calc(-50% + ${translateY}px))`;
+        }
+            
+            ticking = false;
+        }
+        
+        function requestParallaxUpdate() {
+            if (!ticking) {
+                requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
+        }
+        
+        window.addEventListener('scroll', requestParallaxUpdate, { passive: true });
+
+        // Typing animation
+        const sentences = [
+            "Hate filling out forms?",
+            "It's time for filling out forms to get an upgrade",
+            "<---- Who has the most annoying forms? We want to hear!"
+        ];
+        
+        let currentSentenceIndex = 0;
+        let currentCharIndex = 0;
+        let isDeleting = false;
+        let isSpecialEffect = false;
+        const typingElement = document.getElementById('typing-text');
+        
+        // Initialize with empty text
+        typingElement.textContent = '';
+        
+        function typeText() {
+            const currentSentence = sentences[currentSentenceIndex];
+            
+            if (isDeleting) {
+                // Delete characters
+                typingElement.textContent = currentSentence.substring(0, currentCharIndex - 1);
+                currentCharIndex--;
+                
+                if (currentCharIndex === 0) {
+                    isDeleting = false;
+                    currentSentenceIndex = (currentSentenceIndex + 1) % sentences.length;
+                }
+            } else {
+                // Type characters
+                typingElement.textContent = currentSentence.substring(0, currentCharIndex + 1);
+                currentCharIndex++;
+                
+                if (currentCharIndex === currentSentence.length) {
+                    // Special effect for second sentence (index 1)
+                    if (currentSentenceIndex === 1) {
+                        // Add period
+                        typingElement.textContent = currentSentence + ".";
+                        setTimeout(() => {
+                            // Delete period
+                            typingElement.textContent = currentSentence;
+                            setTimeout(() => {
+                                // Add first exclamation point
+                                typingElement.textContent = currentSentence + "!";
+                                setTimeout(() => {
+                                    // Add second exclamation point
+                                    typingElement.textContent = currentSentence + "!!";
+                                    setTimeout(() => {
+                                        // Add third exclamation point
+                                        typingElement.textContent = currentSentence + "!!!";
+                                        setTimeout(() => {
+                                            // Start deleting everything
+                                            isDeleting = true;
+                                            typeText(); // Continue the animation
+                                        }, 1000);
+                                    }, 200);
+                                }, 200);
+                            }, 200);
+                        }, 1500);
+                        return;
+                    } else {
+                        // Normal pause before deleting
+                        setTimeout(() => {
+                            isDeleting = true;
+                            typeText(); // Continue the animation
+                        }, 2000);
+                        return;
+                    }
+                }
+            }
+            
+            // Set typing speed
+            const typingSpeed = isDeleting ? 50 : 100;
+            setTimeout(typeText, typingSpeed);
+        }
+        
+        // Start typing animation when user scrolls to the bottom section
+        let typingStarted = false;
+        
+        function checkScrollPosition() {
+            const blackSection = document.querySelector('.black-section');
+            const sectionTop = blackSection.offsetTop;
+            const sectionHeight = blackSection.offsetHeight;
+            const scrollPosition = window.pageYOffset + window.innerHeight;
+            
+            // Start typing when the bottom section is visible
+            if (scrollPosition >= sectionTop && !typingStarted) {
+                typingStarted = true;
+                // Reset to first sentence and start typing
+                currentSentenceIndex = 0;
+                currentCharIndex = 0;
+                isDeleting = false;
+                typeText();
+            }
+        }
+        
+        window.addEventListener('scroll', checkScrollPosition);
+        window.addEventListener('load', checkScrollPosition);
+
+        // Opacity shift text transitions
+        let currentTextIndex = 0;
+        const textElements = [
+            { element: document.getElementById('text-1'), showAt: 0 },
+            { element: document.getElementById('text-2'), showAt: 200 }
+        ];
+
+        function updateTextOpacity() {
+            const scrolled = window.pageYOffset;
+            
+            textElements.forEach((textObj, index) => {
+                const element = textObj.element;
+                const showAt = textObj.showAt;
+                
+                if (scrolled >= showAt) {
+                    // Show this text
+                    element.style.opacity = '1';
+                    // Hide all other texts
+                    textElements.forEach((otherTextObj, otherIndex) => {
+                        if (otherIndex !== index) {
+                            otherTextObj.element.style.opacity = '0';
+                        }
+                    });
+                }
+            });
+        }
+
+        window.addEventListener('scroll', updateTextOpacity);
+        window.addEventListener('load', updateTextOpacity);
+
+        // Phone fade in on scroll
+        function updatePhoneOpacity() {
+            const scrolled = window.pageYOffset;
+            const phoneContainer = document.getElementById('phone-container');
+            
+            if (phoneContainer) {
+                // Fade in phone as user scrolls down (slower fade in)
+                // At scroll position 0: opacity 0 (invisible)
+                // At scroll position 400: opacity 1 (fully visible)
+                // At scroll position 450: opacity 0 (fade out very quickly)
+                const fadeStart = 0;
+                const fadeEnd = 400;  // Slower fade in - more scroll distance
+                const fadeOutStart = 450;  // Later start for fade out
+                const fadeOutEnd = 500;    // Very quick fade out
+                
+                if (scrolled <= fadeStart) {
+                    phoneContainer.style.opacity = '0';
+                    // Start position (bottom, horizontally centered)
+                    phoneContainer.style.top = '80%';
+                    phoneContainer.style.left = '50%';
+                } else if (scrolled >= fadeEnd && scrolled < fadeOutStart) {
+                    phoneContainer.style.opacity = '1';
+                    // End position (lower, aligned with lightning)
+                    phoneContainer.style.top = '60%';
+                    phoneContainer.style.left = '50%';
+                } else if (scrolled >= fadeOutStart) {
+                    // Quick fade out
+                    if (scrolled >= fadeOutEnd) {
+                        phoneContainer.style.opacity = '0';
+                    } else {
+                        const fadeOutProgress = (scrolled - fadeOutStart) / (fadeOutEnd - fadeOutStart);
+                        const opacity = 1 - fadeOutProgress; // Fades OUT quickly
+                        
+                        phoneContainer.style.opacity = opacity.toString();
+                        phoneContainer.style.top = '60%';
+                        phoneContainer.style.left = '50%';
+                    }
+                } else {
+                    // Calculate opacity and position between fadeStart and fadeEnd
+                    const progress = (scrolled - fadeStart) / (fadeEnd - fadeStart);
+                    const opacity = progress; // Fades IN
+                    
+                    // Interpolate position from bottom to lightning-aligned position
+                    const startTop = 80; // Start from bottom
+                    const endTop = 60;   // End at lower lightning-aligned position
+                    const leftPosition = 50; // Always horizontally centered
+                    
+                    const currentTop = startTop + (endTop - startTop) * progress;
+                    
+                    phoneContainer.style.opacity = opacity.toString();
+                    phoneContainer.style.top = currentTop + '%';
+                    phoneContainer.style.left = leftPosition + '%';
+                }
+            }
+        }
+
+        window.addEventListener('scroll', updatePhoneOpacity);
+        window.addEventListener('load', updatePhoneOpacity);
+    </script>
+</body>
+
+</html>
