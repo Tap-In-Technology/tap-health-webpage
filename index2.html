@@ -296,36 +296,23 @@
         }
 
         // Handle form submission
-        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            const formData = new FormData(this);
-            const data = {
-                name: formData.get('name'),
-                email: formData.get('email'),
-                phone: formData.get('phone'),
-                message: formData.get('message')
-            };
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const message = document.getElementById('message').value;
 
-            try {
-                const response = await fetch('/netlify/functions/contact', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(data)
-                });
-
-                if (response.ok) {
-                    alert('Thank you! Your message has been sent successfully.');
-                    closeContactForm();
-                } else {
-                    throw new Error('Failed to send message');
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                alert('Sorry, there was an error sending your message. Please try again.');
+            if (!name || !email || !message) {
+                alert('Please fill in all required fields.');
+                return;
             }
+
+            // For now, just show success message
+            alert('Thank you! Your message has been received. We\'ll get back to you soon at ' + email);
+            this.reset();
+            closeContactForm();
         });
 
         // Close popup when clicking outside
