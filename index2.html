@@ -215,14 +215,14 @@
 
 <body class="min-h-screen">
     <!-- Lightning background hero section -->
-    <section class="lightning-bg relative">
+    <section class="lightning-bg relative" style="min-height: 200vh;">
             <!-- Tap logo in top left -->
     <div class="fixed -top-2 left-6 z-20">
         <img src="/media/Tap_inverted.png" alt="Tap Health Logo" class="h-36 w-auto">
     </div>
         
         <!-- Phone image large and centered, fading into background -->
-        <div class="absolute z-20" id="phone-container" style="top: 120%; left: 50%; transform: translateX(-50%); opacity: 0; transition: none;">
+        <div class="absolute z-20" id="phone-container" style="top: 100vh; left: 50%; transform: translateX(-50%); opacity: 0; transition: none;">
             <img src="/media/phone.png?v=2" alt="Phone" class="h-[80vh] w-auto" id="phone">
         </div>
         
@@ -558,7 +558,7 @@
                         if (scrolled <= fadeStart) {
                             // Initial state - completely off screen
                             phoneContainer.style.opacity = '0';
-                            phoneContainer.style.top = '120%';
+                            phoneContainer.style.top = '100vh';
                             phoneContainer.style.left = '50%';
                             phoneContainer.style.transform = 'translateX(-50%)';
                         } else if (scrolled >= fadeEnd && scrolled < fadeOutStart) {
@@ -592,7 +592,7 @@
                             const opacity = easedProgress;
                             
                             // Smooth position transition from off-screen to final position
-                            const startTop = 120;
+                            const startTop = 100; // 100vh
                             const endTop = 61;
                             const currentTop = startTop + (endTop - startTop) * easedProgress;
                             
