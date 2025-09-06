@@ -222,7 +222,7 @@
     </div>
         
         <!-- Phone image large and centered, fading into background -->
-        <div id="phone-container" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 1; transition: none; z-index: 20;">
+        <div id="phone-container" style="position: absolute; top: 80%; left: 50%; transform: translate(-50%, -50%); opacity: 0; transition: none; z-index: 20;">
             <img src="/media/phone.png?v=2" alt="Phone" class="h-[80vh] w-auto" id="phone">
         </div>
         
@@ -568,7 +568,7 @@
                         
                         // Position: 80% at top (just off-screen), lightning-aligned position at bottom
                         const startTop = 80;  // 80% (just off-screen, visible immediately)
-                        const endTop = 65;    // Perfect position as shown in screenshot
+                        const endTop = 63;    // Lower position to match desired height
                         const currentTop = startTop + (endTop - startTop) * easedProgress;
                         
                         console.log('Setting phone - opacity:', opacity, 'top:', currentTop + '%');
