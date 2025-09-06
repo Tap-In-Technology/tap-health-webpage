@@ -814,9 +814,17 @@
                         getInTouchBtn.setAttribute('onclick', 'goBackToDefault()');
                     }
                     
-                    // Add glowing effect to contact form phone
-                    phoneImg.classList.add('contact-form-glow');
-                    console.log('Glow against background applied to phone');
+                    // Apply glow after the new phone image is loaded
+                    phoneImg.onload = function() {
+                        phoneImg.classList.add('contact-form-glow');
+                        console.log('Glow against background applied to phone after image load');
+                    };
+                    
+                    // If image is already loaded (cached), apply glow immediately
+                    if (phoneImg.complete) {
+                        phoneImg.classList.add('contact-form-glow');
+                        console.log('Glow against background applied to phone (image already loaded)');
+                    }
                     
                     // Add contact form mode class for aggressive fade effect
                     phoneContainer.classList.add('contact-form-mode');
