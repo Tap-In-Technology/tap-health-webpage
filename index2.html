@@ -222,7 +222,7 @@
     </div>
         
         <!-- Phone image large and centered, fading into background -->
-        <div id="phone-container" style="position: absolute; top: 100vh; left: 50%; transform: translate(-50%, -50%); opacity: 0; transition: none; z-index: 20;">
+        <div id="phone-container" style="position: absolute; top: 100vh; left: 50%; transform: translateX(-50%) translateY(-50%); opacity: 0; transition: none; z-index: 20;">
             <img src="/media/phone.png?v=2" alt="Phone" class="h-[80vh] w-auto" id="phone">
         </div>
         
@@ -552,7 +552,7 @@
                         });
                     }
                     
-                    if (phoneContainer && Math.abs(scrolled - lastScrollY) > 1) { // Only update if scroll changed significantly
+                    if (phoneContainer && Math.abs(scrolled - lastScrollY) > 0.1) { // Lower threshold to trigger animation
                         // Smooth phone animation with better easing
                         const fadeStart = 0;     // Start immediately
                         const fadeEnd = 200;     // Shorter scroll to see phone sooner
@@ -569,20 +569,20 @@
                             phoneContainer.style.opacity = '0';
                             phoneContainer.style.top = '100vh';
                             phoneContainer.style.left = '50%';
-                            phoneContainer.style.transform = 'translate(-50%, -50%)';
+                            phoneContainer.style.transform = 'translateX(-50%) translateY(-50%)';
                         } else if (scrolled >= fadeEnd && scrolled < fadeOutStart) {
                             // Fully visible state
                             phoneContainer.style.opacity = '1';
                             phoneContainer.style.top = '61%';
                             phoneContainer.style.left = '50%';
-                            phoneContainer.style.transform = 'translate(-50%, -50%)';
+                            phoneContainer.style.transform = 'translateX(-50%) translateY(-50%)';
                         } else if (scrolled >= fadeOutStart) {
                             // Fade out phase
                             if (scrolled >= fadeOutEnd) {
                                 phoneContainer.style.opacity = '0';
                                 phoneContainer.style.top = '61%';
                                 phoneContainer.style.left = '50%';
-                                phoneContainer.style.transform = 'translate(-50%, -50%)';
+                                phoneContainer.style.transform = 'translateX(-50%) translateY(-50%)';
                             } else {
                                 const fadeOutProgress = Math.min((scrolled - fadeOutStart) / (fadeOutEnd - fadeOutStart), 1);
                                 const opacity = 1 - fadeOutProgress;
@@ -590,7 +590,7 @@
                                 phoneContainer.style.opacity = opacity.toString();
                                 phoneContainer.style.top = '61%';
                                 phoneContainer.style.left = '50%';
-                                phoneContainer.style.transform = 'translate(-50%, -50%)';
+                                phoneContainer.style.transform = 'translateX(-50%) translateY(-50%)';
                             }
                         } else {
                             // Smooth fade in and position animation
@@ -609,7 +609,7 @@
                             phoneContainer.style.opacity = opacity.toString();
                             phoneContainer.style.top = currentTop + '%';
                             phoneContainer.style.left = '50%';
-                            phoneContainer.style.transform = 'translate(-50%, -50%)';
+                            phoneContainer.style.transform = 'translateX(-50%) translateY(-50%)';
                         }
                         
                         lastScrollY = scrolled;
