@@ -219,10 +219,14 @@
             }
         }
         
-        /* Disable gleam animation for contact form phone */
+        /* Completely disable gleam for contact form phone */
+        .phone-container.contact-form-mode .phone-gleam {
+            display: none !important;
+        }
+        
         .phone-container.contact-form-mode .phone-gleam::before {
-            animation: none;
-            display: none;
+            display: none !important;
+            animation: none !important;
         }
         
         /* Typing animation */
