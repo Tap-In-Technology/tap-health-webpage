@@ -538,6 +538,9 @@
             const scrolled = window.pageYOffset;
             const phoneContainer = document.getElementById('phone-container');
             
+            // Debug logging
+            console.log('Scroll position:', scrolled, 'Phone opacity:', phoneContainer?.style.opacity, 'Phone top:', phoneContainer?.style.top);
+            
             if (phoneContainer) {
                 // Smooth phone animation with better easing
                 const fadeStart = 0;     // Start immediately
@@ -552,19 +555,23 @@
                 
                 if (scrolled <= fadeStart) {
                     // Initial state - completely off screen
+                    console.log('Phase: Initial state (off-screen)');
                     phoneContainer.style.opacity = '0';
                     phoneContainer.style.top = '120%';
                     phoneContainer.style.left = '50%';
                     phoneContainer.style.transform = 'translateX(-50%)';
                 } else if (scrolled >= fadeEnd && scrolled < fadeOutStart) {
                     // Fully visible state
+                    console.log('Phase: Fully visible state');
                     phoneContainer.style.opacity = '1';
                     phoneContainer.style.top = '61%';
                     phoneContainer.style.left = '50%';
                     phoneContainer.style.transform = 'translateX(-50%)';
                 } else if (scrolled >= fadeOutStart) {
                     // Fade out phase
+                    console.log('Phase: Fade out phase, scrolled:', scrolled);
                     if (scrolled >= fadeOutEnd) {
+                        console.log('Phase: Fade out complete');
                         phoneContainer.style.opacity = '0';
                         phoneContainer.style.top = '61%';
                         phoneContainer.style.left = '50%';
@@ -572,6 +579,7 @@
                     } else {
                         const fadeOutProgress = Math.min((scrolled - fadeOutStart) / (fadeOutEnd - fadeOutStart), 1);
                         const opacity = 1 - fadeOutProgress;
+                        console.log('Phase: Fading out, progress:', fadeOutProgress, 'opacity:', opacity);
                         
                         phoneContainer.style.opacity = opacity.toString();
                         phoneContainer.style.top = '61%';
@@ -591,6 +599,8 @@
                     const endTop = 61;
                     const currentTop = startTop + (endTop - startTop) * easedProgress;
                     
+                    console.log('Phase: Animation, progress:', progress, 'eased:', easedProgress, 'opacity:', opacity, 'top:', currentTop + '%');
+                    
                     phoneContainer.style.opacity = opacity.toString();
                     phoneContainer.style.top = currentTop + '%';
                     phoneContainer.style.left = '50%';
@@ -606,7 +616,10 @@
                 // Use 50% of max scroll as threshold (very aggressive)
                 const threshold = maxScroll * 0.5;
                 
+                console.log('Sanity check - scrolled:', scrolled, 'maxScroll:', maxScroll, 'threshold:', threshold);
+                
                 if (scrolled >= threshold) {
+                    console.log('Sanity check triggered - forcing opacity to 1');
                     phoneContainer.style.opacity = '1';
                 }
             }
