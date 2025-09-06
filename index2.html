@@ -90,17 +90,17 @@
                     drop-shadow(0 0 60px rgba(255, 255, 255, 0.1));
         }
         
-        /* Add mask to cut off glow after Cancel button (65%) - only in contact form mode */
+        /* Add mask to fade out glow after Cancel button - only in contact form mode */
         .phone-container.contact-form-mode #phone.contact-form-glow {
             mask: linear-gradient(to bottom, 
                     black 0%, 
-                    black 65%, 
-                    transparent 65%, 
+                    black 75%, /* Start the fade here */
+                    rgba(0, 0, 0, 0) 90%, /* Fade to transparent here */
                     transparent 100%);
             -webkit-mask: linear-gradient(to bottom, 
                             black 0%, 
-                            black 65%, 
-                            transparent 65%, 
+                            black 75%, 
+                            rgba(0, 0, 0, 0) 90%,
                             transparent 100%);
         }
         
