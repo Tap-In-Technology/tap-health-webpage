@@ -563,6 +563,11 @@
                             return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
                         }
                         
+                        console.log('Checking conditions - scrolled:', scrolled, 'fadeStart:', fadeStart, 'fadeEnd:', fadeEnd, 'fadeOutStart:', fadeOutStart);
+                        console.log('scrolled <= fadeStart:', scrolled <= fadeStart);
+                        console.log('scrolled >= fadeEnd && scrolled < fadeOutStart:', scrolled >= fadeEnd && scrolled < fadeOutStart);
+                        console.log('scrolled >= fadeOutStart:', scrolled >= fadeOutStart);
+                        
                         if (scrolled <= fadeStart) {
                             // Initial state - completely off screen
                             console.log('PHASE: Initial state - setting phone off-screen, scrolled:', scrolled);
