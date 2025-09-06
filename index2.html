@@ -90,6 +90,31 @@
                     drop-shadow(0 0 60px rgba(255, 255, 255, 0.1));
         }
         
+        /* Aggressive fade-to-dark effect for contact form phone */
+        .phone-container.contact-form-mode::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, 
+                transparent 0%, 
+                transparent 70%, 
+                rgba(0, 0, 0, 0.4) 80%, 
+                rgba(0, 0, 0, 0.8) 90%, 
+                rgba(0, 0, 0, 1) 100%);
+            pointer-events: none;
+            mask: url('/media/contactFormPhone.png');
+            -webkit-mask: url('/media/contactFormPhone.png');
+            mask-size: contain;
+            -webkit-mask-size: contain;
+            mask-repeat: no-repeat;
+            -webkit-mask-repeat: no-repeat;
+            mask-position: center;
+            -webkit-mask-position: center;
+        }
+        
         /* Smooth parallax effect */
         .parallax-smooth {
             will-change: transform;
@@ -653,6 +678,9 @@
                     // Add glowing effect to contact form phone
                     phoneImg.classList.add('contact-form-glow');
                     
+                    // Add contact form mode class for aggressive fade effect
+                    phoneContainer.classList.add('contact-form-mode');
+                    
                     // Change gradient to dark bottom for contact form
                     if (phoneContainer) {
                         const gradientDiv = phoneContainer.querySelector('.phone-gradient');
@@ -674,6 +702,9 @@
                     
                     // Remove glowing effect from default phone
                     phoneImg.classList.remove('contact-form-glow');
+                    
+                    // Remove contact form mode class
+                    phoneContainer.classList.remove('contact-form-mode');
                     
                     // Restore original upper-right spotlight gradient
                     if (phoneContainer) {
