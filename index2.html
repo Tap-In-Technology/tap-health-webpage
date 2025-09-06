@@ -1,4 +1,4 @@
- to <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -89,7 +89,14 @@
         
         /* REMOVED: Old conflicting fade overlay */
         
-        /* Glow against background - back to simple drop-shadow approach */
+        /* ========================================
+           ⚠️  CRITICAL: GLOW AGAINST BACKGROUND  ⚠️
+           ========================================
+           DO NOT MODIFY - This creates the white glow effect
+           on the contact form phone against the lightning background.
+           This was restored from commit 18a63fc and is working perfectly.
+           Any changes to this will break the glow effect!
+           ======================================== */
         #phone.contact-form-glow {
             filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.3)) 
                     drop-shadow(0 0 40px rgba(255, 255, 255, 0.2))
@@ -145,7 +152,14 @@
             -webkit-mask-position: center;
         }
         
-        /* Overall website gradient overlay - from black at bottom to transparent at 50% */
+        /* ========================================
+           ⚠️  CRITICAL: OVERALL WEBSITE GRADIENT  ⚠️
+           ========================================
+           DO NOT MODIFY - This creates the black-to-transparent
+           gradient overlay from bottom to 50% up the screen.
+           Applied over everything except footer (privacy policy section).
+           Any changes to this will break the overall gradient effect!
+           ======================================== */
         #website-gradient-overlay {
             position: fixed;
             top: 0;
@@ -477,7 +491,14 @@
         </div>
     </section>
     
-    <!-- Overall website gradient overlay -->
+    <!-- ========================================
+         ⚠️  CRITICAL: OVERALL WEBSITE GRADIENT  ⚠️
+         ========================================
+         DO NOT MODIFY - This creates the black-to-transparent
+         gradient overlay from bottom to 50% up the screen.
+         Applied over everything except footer (privacy policy section).
+         Any changes to this will break the overall gradient effect!
+         ======================================== -->
     <div id="website-gradient-overlay"></div>
     
     <!-- Tiny black section with privacy policy and get in touch -->
@@ -1066,6 +1087,14 @@
                         getInTouchBtn.setAttribute('onclick', 'goBackToDefault()');
                     }
                     
+                    /* ========================================
+                       ⚠️  CRITICAL: GLOW AGAINST BACKGROUND  ⚠️
+                       ========================================
+                       DO NOT MODIFY - This applies the contact-form-glow
+                       class to create the white glow effect on the phone
+                       against the lightning background. This was restored
+                       from commit 18a63fc and is working perfectly!
+                       ======================================== */
                     // Apply glow after the new phone image is loaded
                     phoneImg.onload = function() {
                         phoneImg.classList.add('contact-form-glow');
@@ -1154,6 +1183,14 @@
                     phoneImg.onload = null;
                     console.log('Cleared phone image onload event handler');
                     
+                    /* ========================================
+                       ⚠️  CRITICAL: REMOVE GLOW AGAINST BACKGROUND  ⚠️
+                       ========================================
+                       DO NOT MODIFY - This removes the contact-form-glow
+                       class to stop the white glow effect when returning
+                       to the default phone. This is essential for proper
+                       state management!
+                       ======================================== */
                     // Remove glowing effect from default phone
                     phoneImg.classList.remove('contact-form-glow');
                     console.log('contact-form-glow class removed from phone image');
