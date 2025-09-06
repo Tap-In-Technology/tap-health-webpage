@@ -222,7 +222,7 @@
     </div>
         
         <!-- Phone image large and centered, fading into background -->
-        <div id="phone-container" style="position: absolute; top: 100vh; left: 50%; transform: translateX(-50%) translateY(-50%); opacity: 0; transition: none; z-index: 20;">
+        <div id="phone-container" style="position: absolute; top: 50%; left: 50%; transform: translateX(-50%) translateY(-50%); opacity: 1; transition: none; z-index: 20;">
             <img src="/media/phone.png?v=2" alt="Phone" class="h-[80vh] w-auto" id="phone">
         </div>
         
@@ -543,7 +543,7 @@
                     const phoneContainer = document.getElementById('phone-container');
                     
                     
-                    console.log('DEBUG - scrolled:', scrolled, 'lastScrollY:', lastScrollY, 'diff:', Math.abs(scrolled - lastScrollY), 'phoneContainer exists:', !!phoneContainer);
+                    console.log('DEBUG - scrolled:', scrolled, 'lastScrollY:', lastScrollY, 'diff:', Math.abs(scrolled - lastScrollY), 'phoneContainer exists:', !!phoneContainer, 'document height:', document.documentElement.scrollHeight, 'window height:', window.innerHeight);
                     if (phoneContainer) {
                         console.log('Phone current state:', {
                             opacity: phoneContainer.style.opacity,
@@ -566,6 +566,7 @@
                         
                         if (scrolled <= fadeStart) {
                             // Initial state - completely off screen
+                            console.log('PHASE: Initial state - setting phone off-screen');
                             phoneContainer.style.opacity = '0';
                             phoneContainer.style.top = '100vh';
                             phoneContainer.style.left = '50%';
