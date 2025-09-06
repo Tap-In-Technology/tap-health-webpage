@@ -222,7 +222,7 @@
     </div>
         
         <!-- Phone image large and centered, fading into background -->
-        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 parallax-smooth z-20" id="phone-container" style="top: 120%; left: 50%; transform: translateX(-50%); opacity: 0;">
+        <div class="absolute z-20" id="phone-container" style="top: 120%; left: 50%; transform: translateX(-50%); opacity: 0; transition: none;">
             <img src="/media/phone.png?v=2" alt="Phone" class="h-[80vh] w-auto" id="phone">
         </div>
         
@@ -534,82 +534,79 @@
         window.addEventListener('load', updateTextOpacity);
 
         // Phone fade in on scroll
+        let ticking = false;
+        let lastScrollY = 0;
+        
         function updatePhoneOpacity() {
-            const scrolled = window.pageYOffset;
-            const phoneContainer = document.getElementById('phone-container');
-            
-            // Debug logging
-            console.log('Scroll position:', scrolled, 'Phone opacity:', phoneContainer?.style.opacity, 'Phone top:', phoneContainer?.style.top);
-            
-            if (phoneContainer) {
-                // Smooth phone animation with better easing
-                const fadeStart = 0;     // Start immediately
-                const fadeEnd = 600;     // Longer scroll for smoother animation
-                const fadeOutStart = 700; // Later fade out
-                const fadeOutEnd = 750;   // Quick fade out
-                
-                // Smooth easing function
-                function easeInOutCubic(t) {
-                    return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-                }
-                
-                if (scrolled <= fadeStart) {
-                    // Initial state - completely off screen
-                    console.log('Phase: Initial state (off-screen)');
-                    phoneContainer.style.opacity = '0';
-                    phoneContainer.style.top = '120%';
-                    phoneContainer.style.left = '50%';
-                    phoneContainer.style.transform = 'translateX(-50%)';
-                } else if (scrolled >= fadeEnd && scrolled < fadeOutStart) {
-                    // Fully visible state
-                    console.log('Phase: Fully visible state');
-                    phoneContainer.style.opacity = '1';
-                    phoneContainer.style.top = '61%';
-                    phoneContainer.style.left = '50%';
-                    phoneContainer.style.transform = 'translateX(-50%)';
-                } else if (scrolled >= fadeOutStart) {
-                    // Fade out phase
-                    console.log('Phase: Fade out phase, scrolled:', scrolled);
-                    if (scrolled >= fadeOutEnd) {
-                        console.log('Phase: Fade out complete');
-                        phoneContainer.style.opacity = '0';
-                        phoneContainer.style.top = '61%';
-                        phoneContainer.style.left = '50%';
-                        phoneContainer.style.transform = 'translateX(-50%)';
-                    } else {
-                        const fadeOutProgress = Math.min((scrolled - fadeOutStart) / (fadeOutEnd - fadeOutStart), 1);
-                        const opacity = 1 - fadeOutProgress;
-                        console.log('Phase: Fading out, progress:', fadeOutProgress, 'opacity:', opacity);
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    const scrolled = window.pageYOffset;
+                    const phoneContainer = document.getElementById('phone-container');
+                    
+                    if (phoneContainer && Math.abs(scrolled - lastScrollY) > 1) { // Only update if scroll changed significantly
+                        // Smooth phone animation with better easing
+                        const fadeStart = 0;     // Start immediately
+                        const fadeEnd = 600;     // Longer scroll for smoother animation
+                        const fadeOutStart = 700; // Later fade out
+                        const fadeOutEnd = 750;   // Quick fade out
                         
-                        phoneContainer.style.opacity = opacity.toString();
-                        phoneContainer.style.top = '61%';
-                        phoneContainer.style.left = '50%';
-                        phoneContainer.style.transform = 'translateX(-50%)';
+                        // Smooth easing function
+                        function easeInOutCubic(t) {
+                            return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+                        }
+                        
+                        if (scrolled <= fadeStart) {
+                            // Initial state - completely off screen
+                            phoneContainer.style.opacity = '0';
+                            phoneContainer.style.top = '120%';
+                            phoneContainer.style.left = '50%';
+                            phoneContainer.style.transform = 'translateX(-50%)';
+                        } else if (scrolled >= fadeEnd && scrolled < fadeOutStart) {
+                            // Fully visible state
+                            phoneContainer.style.opacity = '1';
+                            phoneContainer.style.top = '61%';
+                            phoneContainer.style.left = '50%';
+                            phoneContainer.style.transform = 'translateX(-50%)';
+                        } else if (scrolled >= fadeOutStart) {
+                            // Fade out phase
+                            if (scrolled >= fadeOutEnd) {
+                                phoneContainer.style.opacity = '0';
+                                phoneContainer.style.top = '61%';
+                                phoneContainer.style.left = '50%';
+                                phoneContainer.style.transform = 'translateX(-50%)';
+                            } else {
+                                const fadeOutProgress = Math.min((scrolled - fadeOutStart) / (fadeOutEnd - fadeOutStart), 1);
+                                const opacity = 1 - fadeOutProgress;
+                                
+                                phoneContainer.style.opacity = opacity.toString();
+                                phoneContainer.style.top = '61%';
+                                phoneContainer.style.left = '50%';
+                                phoneContainer.style.transform = 'translateX(-50%)';
+                            }
+                        } else {
+                            // Smooth fade in and position animation
+                            const progress = Math.min((scrolled - fadeStart) / (fadeEnd - fadeStart), 1);
+                            const easedProgress = easeInOutCubic(progress);
+                            
+                            // Smooth opacity transition
+                            const opacity = easedProgress;
+                            
+                            // Smooth position transition from off-screen to final position
+                            const startTop = 120;
+                            const endTop = 61;
+                            const currentTop = startTop + (endTop - startTop) * easedProgress;
+                            
+                            phoneContainer.style.opacity = opacity.toString();
+                            phoneContainer.style.top = currentTop + '%';
+                            phoneContainer.style.left = '50%';
+                            phoneContainer.style.transform = 'translateX(-50%)';
+                        }
+                        
+                        lastScrollY = scrolled;
                     }
-                } else {
-                    // Smooth fade in and position animation
-                    const progress = Math.min((scrolled - fadeStart) / (fadeEnd - fadeStart), 1);
-                    const easedProgress = easeInOutCubic(progress);
-                    
-                    // Smooth opacity transition
-                    const opacity = easedProgress;
-                    
-                    // Smooth position transition from off-screen to final position
-                    const startTop = 120;
-                    const endTop = 61;
-                    const currentTop = startTop + (endTop - startTop) * easedProgress;
-                    
-                    console.log('Phase: Animation, progress:', progress, 'eased:', easedProgress, 'opacity:', opacity, 'top:', currentTop + '%');
-                    
-                    phoneContainer.style.opacity = opacity.toString();
-                    phoneContainer.style.top = currentTop + '%';
-                    phoneContainer.style.left = '50%';
-                    phoneContainer.style.transform = 'translateX(-50%)';
-                }
-                
-                
-           // Ensure phone is 100% opacity when scrolled to very bottom
-           // This is now handled by the main animation logic above
+                    ticking = false;
+                });
+                ticking = true;
             }
         }
 
