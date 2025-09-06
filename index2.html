@@ -222,8 +222,8 @@
     </div>
         
         <!-- Phone image large and centered, fading into background -->
-        <div id="phone-container" style="position: absolute; top: 100vh; left: 50%; transform: translateX(-50%); opacity: 0; transition: none; z-index: 20;">
-            <img src="/media/phone.png?v=2" alt="Phone" class="h-[80vh] w-auto" id="phone">
+        <div id="phone-container" style="position: absolute; top: 50%; left: 50%; transform: translateX(-50%); opacity: 1; transition: none; z-index: 50;">
+            <img src="/media/phone.png?v=2" alt="Phone" class="h-[80vh] w-auto" id="phone" onload="console.log('Phone image loaded successfully!')" onerror="console.log('Phone image failed to load!')">
         </div>
         
         <!-- Main heading text with opacity shifts -->
