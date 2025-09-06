@@ -222,7 +222,7 @@
     </div>
         
         <!-- Phone image large and centered, fading into background -->
-        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 parallax-smooth z-20" id="phone-container" style="top: 63%; left: 50%; transform: translateX(-50%); transition: opacity 0.3s ease-in-out; opacity: 0;">
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 parallax-smooth z-20" id="phone-container" style="top: 61%; left: 50%; transform: translateX(-50%); transition: opacity 0.3s ease-in-out; opacity: 0;">
             <img src="/media/phone.png?v=2" alt="Phone" class="h-[80vh] w-auto" id="phone">
             <div class="phone-gradient"></div>
             <div class="phone-gleam"></div>
@@ -242,11 +242,13 @@
     <!-- Tiny black section with privacy policy and get in touch -->
     <section class="black-section" style="position: relative; z-index: 40;">
         <div class="w-full flex justify-between items-center px-6">
-            <div class="typing-container">
-                <div class="typing-text" id="typing-text"></div>
-            </div>
             <div class="flex items-center gap-4">
                 <a href="privacy.html" class="text-xs text-gray-400 hover:text-white transition-colors">Privacy Policy</a>
+            </div>
+            <div class="flex items-center gap-4">
+                <div class="typing-container">
+                    <div class="typing-text" id="typing-text"></div>
+                </div>
                 <button onclick="openContactForm()"
                     class="bg-white text-black px-4 py-2 rounded-lg text-sm font-bold hover:bg-gray-200 transition-colors">
                     Get in Touch
@@ -557,7 +559,7 @@
                 } else if (scrolled >= fadeEnd && scrolled < fadeOutStart) {
                     phoneContainer.style.opacity = '1';
                     // End position (aligned with lightning)
-                    phoneContainer.style.top = '63%';
+                    phoneContainer.style.top = '61%';
                     phoneContainer.style.left = '50%';
                     phoneContainer.style.transform = 'translateX(-50%)';
                 } else if (scrolled >= fadeOutStart) {
@@ -569,7 +571,7 @@
                         const opacity = 1 - fadeOutProgress; // Fades OUT quickly
                         
                         phoneContainer.style.opacity = opacity.toString();
-                        phoneContainer.style.top = '63%';
+                        phoneContainer.style.top = '61%';
                         phoneContainer.style.left = '50%';
                         phoneContainer.style.transform = 'translateX(-50%)';
                     }
@@ -580,7 +582,7 @@
                     
                     // Interpolate position from bottom to lightning-aligned position
                     const startTop = 80; // Start from bottom
-                    const endTop = 63;   // End at lightning-aligned position
+                    const endTop = 61;   // End at lightning-aligned position
                     
                     const currentTop = startTop + (endTop - startTop) * progress;
                     
