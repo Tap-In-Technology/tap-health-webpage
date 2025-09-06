@@ -566,8 +566,8 @@
                         // Opacity: 0 at top, 1 at bottom
                         const opacity = easedProgress;
                         
-                        // Position: 100vh at top (off-screen), lightning-aligned position at bottom
-                        const startTop = 100; // 100vh (off-screen)
+                        // Position: 90vh at top (just off-screen), lightning-aligned position at bottom
+                        const startTop = 90;  // 90vh (just off-screen, visible immediately)
                         const endTop = 61;    // Lightning-aligned position (was working before)
                         const currentTop = startTop + (endTop - startTop) * easedProgress;
                         
