@@ -600,7 +600,7 @@
         }
         
         function goBackToDefault() {
-            // Switch phone back to default
+            // Switch phone back to default - this will handle button reset
             switchPhoneImage('default');
             
             // Clear form fields when going back
@@ -613,33 +613,6 @@
             if (emailField) emailField.value = '';
             if (phoneField) phoneField.value = '';
             if (messageField) messageField.value = '';
-            
-            // Explicitly reset the button to "Get in Touch" - multiple selectors to be safe
-            setTimeout(() => {
-                // Try multiple selectors to find the button
-                let goBackBtn = document.querySelector('button[onclick="goBackToDefault()"]');
-                if (!goBackBtn) {
-                    goBackBtn = document.querySelector('button[onclick*="goBackToDefault"]');
-                }
-                if (!goBackBtn) {
-                    // Fallback: find button by text content
-                    const buttons = document.querySelectorAll('button');
-                    for (let btn of buttons) {
-                        if (btn.textContent.trim() === 'Go Back') {
-                            goBackBtn = btn;
-                            break;
-                        }
-                    }
-                }
-                
-                if (goBackBtn) {
-                    goBackBtn.textContent = 'Get in Touch';
-                    goBackBtn.setAttribute('onclick', 'openContactForm()');
-                    console.log('Button reset to "Get in Touch" from goBackToDefault');
-                } else {
-                    console.warn('Could not find Go Back button to reset');
-                }
-            }, 100); // Small delay to ensure DOM is updated
         }
         
         // Contact form phone limited scroll - allow tiny scroll up
@@ -720,7 +693,7 @@
             // document.body.style.overflow = 'auto'; // Restore scrolling
             // document.getElementById('contactForm').reset(); // Clear form
             
-            // Switch phone back to default
+            // Switch phone back to default - this will handle button reset
             switchPhoneImage('default');
             
             // Clear form fields
@@ -733,41 +706,14 @@
             if (emailField) emailField.value = '';
             if (phoneField) phoneField.value = '';
             if (messageField) messageField.value = '';
-            
-            // Explicitly reset the button to "Get in Touch"
-            const goBackBtn = document.querySelector('button[onclick="goBackToDefault()"]');
-            if (goBackBtn) {
-                goBackBtn.textContent = 'Get in Touch';
-                goBackBtn.setAttribute('onclick', 'openContactForm()');
-                console.log('Button reset to "Get in Touch" from closeContactForm');
-            }
         }
 
         function closeSuccessPopup() {
             document.getElementById('successPopup').classList.add('hidden');
             document.body.style.overflow = 'auto'; // Restore scrolling
             
-            // Ensure everything is back to default state
+            // Ensure everything is back to default state - this will handle button reset
             goBackToDefault();
-            
-            // Explicitly reset the button to "Get in Touch"
-            const goBackBtn = document.querySelector('button[onclick="goBackToDefault()"]');
-            if (goBackBtn) {
-                goBackBtn.textContent = 'Get in Touch';
-                goBackBtn.setAttribute('onclick', 'openContactForm()');
-                console.log('Button reset to "Get in Touch" from closeSuccessPopup');
-            }
-            
-            // Clear any remaining form fields
-            const nameField = document.getElementById('phone-name');
-            const emailField = document.getElementById('phone-email');
-            const phoneField = document.getElementById('phone-phone');
-            const messageField = document.getElementById('phone-message');
-            
-            if (nameField) nameField.value = '';
-            if (emailField) emailField.value = '';
-            if (phoneField) phoneField.value = '';
-            if (messageField) messageField.value = '';
         }
 
         // Handle form submission from popup (commented out)
@@ -1196,10 +1142,23 @@
                     }
                     
                     // Change Go Back button back to Get in Touch button
-                    const goBackBtn = document.querySelector('button[onclick="goBackToDefault()"]');
+                    let goBackBtn = document.querySelector('button[onclick="goBackToDefault()"]');
+                    if (!goBackBtn) {
+                        // Fallback: find button by text content
+                        const buttons = document.querySelectorAll('button');
+                        for (let btn of buttons) {
+                            if (btn.textContent.trim() === 'Go Back') {
+                                goBackBtn = btn;
+                                break;
+                            }
+                        }
+                    }
                     if (goBackBtn) {
                         goBackBtn.textContent = 'Get in Touch';
                         goBackBtn.setAttribute('onclick', 'openContactForm()');
+                        console.log('Button reset to "Get in Touch" from switchPhoneImage(default)');
+                    } else {
+                        console.warn('Could not find Go Back button to reset in switchPhoneImage(default)');
                     }
                     
                     // Remove contact form mode class FIRST to ensure mask is removed
