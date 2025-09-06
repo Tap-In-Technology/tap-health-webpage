@@ -552,8 +552,8 @@
                 
                 if (scrolled <= fadeStart) {
                     phoneContainer.style.opacity = '0';
-                    // Start position (bottom, horizontally centered)
-                    phoneContainer.style.top = '80%';
+                    // Start position (completely off-screen, horizontally centered)
+                    phoneContainer.style.top = '120%';
                     phoneContainer.style.left = '50%';
                     phoneContainer.style.transform = 'translateX(-50%)';
                 } else if (scrolled >= fadeEnd && scrolled < fadeOutStart) {
@@ -580,8 +580,8 @@
                     const progress = (scrolled - fadeStart) / (fadeEnd - fadeStart);
                     const opacity = progress; // Fades IN
                     
-                    // Interpolate position from bottom to lightning-aligned position
-                    const startTop = 80; // Start from bottom
+                    // Interpolate position from off-screen to lightning-aligned position
+                    const startTop = 120; // Start completely off-screen
                     const endTop = 61;   // End at lightning-aligned position
                     
                     const currentTop = startTop + (endTop - startTop) * progress;
