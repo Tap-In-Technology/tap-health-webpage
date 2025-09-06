@@ -668,6 +668,20 @@
         function closeSuccessPopup() {
             document.getElementById('successPopup').classList.add('hidden');
             document.body.style.overflow = 'auto'; // Restore scrolling
+            
+            // Ensure everything is back to default state
+            goBackToDefault();
+            
+            // Clear any remaining form fields
+            const nameField = document.getElementById('phone-name');
+            const emailField = document.getElementById('phone-email');
+            const phoneField = document.getElementById('phone-phone');
+            const messageField = document.getElementById('phone-message');
+            
+            if (nameField) nameField.value = '';
+            if (emailField) emailField.value = '';
+            if (phoneField) phoneField.value = '';
+            if (messageField) messageField.value = '';
         }
 
         // Handle form submission from popup (commented out)
