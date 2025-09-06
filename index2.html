@@ -83,12 +83,15 @@
             width: auto;
         }
         
-        /* Glow against background - with hard cutoff after Cancel button */
+        /* Glow against background - only when contact form is active */
         #phone.contact-form-glow {
             filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.3)) 
                     drop-shadow(0 0 40px rgba(255, 255, 255, 0.2))
                     drop-shadow(0 0 60px rgba(255, 255, 255, 0.1));
-            /* Add mask to cut off glow after Cancel button (65%) */
+        }
+        
+        /* Add mask to cut off glow after Cancel button (65%) - only in contact form mode */
+        .phone-container.contact-form-mode #phone.contact-form-glow {
             mask: linear-gradient(to bottom, 
                     black 0%, 
                     black 65%, 
