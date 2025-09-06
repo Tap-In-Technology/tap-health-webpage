@@ -193,35 +193,78 @@
             box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
         }
         
-        /* Position form fields on phone */
+        /* Position form fields on phone - aligned with PNG layout */
         #phone-name {
-            top: 25%;
-            left: 15%;
-        }
-        
-        #phone-email {
-            top: 35%;
-            left: 15%;
+            top: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 140px;
         }
         
         #phone-phone {
-            top: 45%;
-            left: 15%;
+            top: 30%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 140px;
+        }
+        
+        #phone-email {
+            top: 40%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 140px;
         }
         
         #phone-message {
-            top: 55%;
-            left: 15%;
-            width: 120px;
-            height: 40px;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 140px;
+            height: 50px;
             resize: none;
+        }
+        
+        /* Mid-form buttons (Approve/Cancel) - positioned between message and bottom buttons */
+        #phone-approve {
+            top: 65%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 140px;
+            background: #f3f4f6;
+            color: #374151;
+        }
+        
+        #phone-cancel-mid {
+            top: 72%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 140px;
+            background: #6b7280;
+            color: #f3f4f6;
+        }
+        
+        /* Bottom buttons (Cancel/Send) */
+        #phone-cancel {
+            bottom: 15%;
+            left: 35%;
+            width: 60px;
+            background: #f3f4f6;
+            color: #374151;
+        }
+        
+        #phone-send {
+            bottom: 15%;
+            right: 35%;
+            width: 60px;
+            background: #1e40af;
+            color: white;
         }
         
         /* Phone form buttons */
         .phone-form-button {
             position: absolute;
-            padding: 6px 12px;
-            border-radius: 4px;
+            padding: 8px 12px;
+            border-radius: 6px;
             font-size: 11px;
             font-weight: 600;
             cursor: pointer;
@@ -229,26 +272,9 @@
             transition: all 0.2s ease;
         }
         
-        #phone-cancel {
-            bottom: 20%;
-            left: 15%;
-            background: #f3f4f6;
-            color: #374151;
-        }
-        
-        #phone-cancel:hover {
-            background: #e5e7eb;
-        }
-        
-        #phone-send {
-            bottom: 20%;
-            left: 50%;
-            background: #3b82f6;
-            color: white;
-        }
-        
-        #phone-send:hover {
-            background: #2563eb;
+        .phone-form-button:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
         }
         
         /* Smooth parallax effect */
@@ -430,9 +456,11 @@
             <!-- Interactive contact form overlay -->
             <div id="contact-form-interactive-overlay">
                 <input type="text" id="phone-name" class="phone-form-field" placeholder="Name *" required>
-                <input type="email" id="phone-email" class="phone-form-field" placeholder="Email *" required>
                 <input type="tel" id="phone-phone" class="phone-form-field" placeholder="Phone">
+                <input type="email" id="phone-email" class="phone-form-field" placeholder="Email *" required>
                 <textarea id="phone-message" class="phone-form-field" placeholder="Message *" required></textarea>
+                <button type="button" id="phone-approve" class="phone-form-button" onclick="approveForm()">Approve</button>
+                <button type="button" id="phone-cancel-mid" class="phone-form-button" onclick="goBackToDefault()">Cancel</button>
                 <button type="button" id="phone-cancel" class="phone-form-button" onclick="goBackToDefault()">Cancel</button>
                 <button type="button" id="phone-send" class="phone-form-button" onclick="submitPhoneForm()">Send</button>
             </div>
@@ -661,6 +689,30 @@
             document.getElementById('successPopup').classList.remove('hidden');
             document.body.style.overflow = 'hidden'; // Prevent background scrolling
         });
+        
+        // Handle form approval from phone overlay
+        function approveForm() {
+            const name = document.getElementById('phone-name').value;
+            const email = document.getElementById('phone-email').value;
+            const phone = document.getElementById('phone-phone').value;
+            const message = document.getElementById('phone-message').value;
+
+            if (!name || !email || !message) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+
+            // Show success popup
+            goBackToDefault(); // Switch back to default phone
+            document.getElementById('successPopup').classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            
+            // Clear the form fields
+            document.getElementById('phone-name').value = '';
+            document.getElementById('phone-email').value = '';
+            document.getElementById('phone-phone').value = '';
+            document.getElementById('phone-message').value = '';
+        }
         
         // Handle form submission from phone overlay
         function submitPhoneForm() {
