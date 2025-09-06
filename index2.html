@@ -699,6 +699,17 @@
                 }
             }
             
+            // Log header transitions for verification
+            if (activeTextIndex !== currentTextIndex) {
+                const fromText = currentTextIndex === 0 ? "Text 1 (Your data...)" : "Text 2 (One Tap...)";
+                const toText = activeTextIndex === 0 ? "Text 1 (Your data...)" : "Text 2 (One Tap...)";
+                const direction = activeTextIndex > currentTextIndex ? "DOWN" : "UP";
+                
+                console.log(`🔄 HEADER TRANSITION: ${fromText} → ${toText} at scroll position ${scrolled}px (scrolling ${direction})`);
+                
+                currentTextIndex = activeTextIndex;
+            }
+            
             // Show the active text, hide all others
             textElements.forEach((textObj, index) => {
                 if (index === activeTextIndex) {
