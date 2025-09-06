@@ -556,6 +556,8 @@
                         const fadeOutStart = 300; // Later fade out
                         const fadeOutEnd = 350;   // Quick fade out
                         
+                        console.log('Animation logic running - scrolled:', scrolled, 'fadeStart:', fadeStart, 'fadeEnd:', fadeEnd, 'fadeOutStart:', fadeOutStart);
+                        
                         // Smooth easing function
                         function easeInOutCubic(t) {
                             return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
