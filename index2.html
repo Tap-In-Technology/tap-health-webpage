@@ -114,22 +114,18 @@
             -webkit-mask-position: center;
         }
         
-        /* Mask the glow overlay to fade out after 65% */
+        /* Mask the glow overlay to fade out after 65% - simplified approach */
         .phone-container.contact-form-mode .contact-form-glow-overlay {
-            mask: url('/media/contactFormPhone.png'), 
-                  linear-gradient(to bottom, 
+            mask: linear-gradient(to bottom, 
                     black 0%, 
                     black 65%, 
                     transparent 65%, 
                     transparent 100%);
-            -webkit-mask: url('/media/contactFormPhone.png'), 
-                         linear-gradient(to bottom, 
+            -webkit-mask: linear-gradient(to bottom, 
                             black 0%, 
                             black 65%, 
                             transparent 65%, 
                             transparent 100%);
-            mask-composite: intersect;
-            -webkit-mask-composite: source-in;
         }
         
         /* Direct fade overlay for contact form phone */
@@ -142,9 +138,9 @@
             background: linear-gradient(to bottom, 
                 transparent 0%, 
                 transparent 65%, 
-                rgba(0, 0, 0, 0.8) 75%, 
-                rgba(0, 0, 0, 0.95) 85%, 
-                rgba(0, 0, 0, 1) 100%);
+                rgba(0, 0, 0, 0.5) 75%, 
+                rgba(0, 0, 0, 0.7) 85%, 
+                rgba(0, 0, 0, 0.9) 100%);
             pointer-events: none;
             z-index: 25;
             mask: url('/media/contactFormPhone.png');
