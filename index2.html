@@ -570,14 +570,6 @@
             const scrolled = document.documentElement.scrollTop || window.pageYOffset;
             const phoneContainer = document.getElementById('phone-container');
             
-            console.log('updatePhoneOpacity called - scrolled:', scrolled, 'lastScrollY:', lastScrollY, 'diff:', Math.abs(scrolled - lastScrollY), 'phoneContainer exists:', !!phoneContainer);
-            if (phoneContainer) {
-                console.log('Phone current state:', {
-                    opacity: phoneContainer.style.opacity,
-                    top: phoneContainer.style.top,
-                    transform: phoneContainer.style.transform
-                });
-            }
             
             if (phoneContainer) {
                         // Continuous phone animation based on scroll percentage
@@ -601,7 +593,6 @@
                         const endTop = 67.5;  // 67.5% final position
                         const currentTop = startTop + (endTop - startTop) * easedProgress;
                         
-                        console.log('Setting phone - opacity:', opacity, 'top:', currentTop + '%');
                         
                         phoneContainer.style.opacity = opacity.toString();
                         phoneContainer.style.top = currentTop + '%';
@@ -612,10 +603,6 @@
             }
         }
 
-        // Test scroll detection
-        window.addEventListener('scroll', function() {
-            console.log('SCROLL EVENT DETECTED! scrollTop:', document.documentElement.scrollTop, 'pageYOffset:', window.pageYOffset);
-        });
         
         window.addEventListener('scroll', updatePhoneOpacity);
         window.addEventListener('load', updatePhoneOpacity);
