@@ -90,17 +90,17 @@
                     drop-shadow(0 0 60px rgba(255, 255, 255, 0.1));
         }
         
-        /* Add mask to fade out glow after Cancel button - only in contact form mode */
+        /* Add mask to fade out glow - AGGRESSIVE TEST - only in contact form mode */
         .phone-container.contact-form-mode #phone.contact-form-glow {
             mask: linear-gradient(to bottom, 
                     black 0%, 
-                    black 75%, /* Start the fade here */
-                    rgba(0, 0, 0, 0) 90%, /* Fade to transparent here */
+                    black 30%, /* Start the fade VERY early */
+                    rgba(0, 0, 0, 0) 50%, /* Fade to transparent by 50% */
                     transparent 100%);
             -webkit-mask: linear-gradient(to bottom, 
                             black 0%, 
-                            black 75%, 
-                            rgba(0, 0, 0, 0) 90%,
+                            black 30%, 
+                            rgba(0, 0, 0, 0) 50%,
                             transparent 100%);
         }
         
