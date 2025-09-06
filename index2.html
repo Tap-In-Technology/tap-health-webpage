@@ -89,35 +89,60 @@
         
         /* REMOVED: Old conflicting fade overlay */
         
-        /* NEW: Single overlay for glow and fade - Gemini's recommended approach */
-        #glow-fade-overlay {
+        /* Glow against background - back to simple drop-shadow approach */
+        #phone.contact-form-glow {
+            filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.3)) 
+                    drop-shadow(0 0 40px rgba(255, 255, 255, 0.2))
+                    drop-shadow(0 0 60px rgba(255, 255, 255, 0.1));
+        }
+        
+        /* Gleam Animation - covers whole contact phone */
+        .contact-form-glow-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%; /* Cover whole phone */
+            background: radial-gradient(ellipse at center, 
+                rgba(255, 255, 255, 0.3) 0%, 
+                rgba(255, 255, 255, 0.2) 30%, 
+                rgba(255, 255, 255, 0.1) 60%, 
+                transparent 100%);
+            pointer-events: none;
+            z-index: 24;
+            mask: url('/media/contactFormPhone.png');
+            -webkit-mask: url('/media/contactFormPhone.png');
+            mask-size: contain;
+            -webkit-mask-size: contain;
+            mask-repeat: no-repeat;
+            -webkit-mask-repeat: no-repeat;
+            mask-position: center;
+            -webkit-mask-position: center;
+        }
+        
+        /* Direct fade overlay for contact form phone */
+        .contact-form-fade-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            
-            /* The glow is a radial gradient */
-            background: radial-gradient(ellipse at center, 
-                rgba(255, 255, 255, 0.5) 0%, 
-                rgba(255, 255, 255, 0.4) 30%, 
-                rgba(255, 255, 255, 0.2) 60%, 
-                transparent 100%);
-            
-            /* The mask creates the fade effect */
-            mask: linear-gradient(to bottom, 
-                  black 0%, 
-                  black 75%, /* Start the fade here */
-                  transparent 90%, /* Fade to transparent here */
-                  transparent 100%);
-            -webkit-mask: linear-gradient(to bottom, 
-                          black 0%, 
-                          black 75%, 
-                          transparent 90%,
-                          transparent 100%);
-            
+            background: linear-gradient(to bottom, 
+                transparent 0%, 
+                transparent 65%, 
+                rgba(0, 0, 0, 0.5) 75%, 
+                rgba(0, 0, 0, 0.7) 85%, 
+                rgba(0, 0, 0, 0.9) 100%);
             pointer-events: none;
-            z-index: 21; /* Above phone image */
+            z-index: 25;
+            mask: url('/media/contactFormPhone.png');
+            -webkit-mask: url('/media/contactFormPhone.png');
+            mask-size: contain;
+            -webkit-mask-size: contain;
+            mask-repeat: no-repeat;
+            -webkit-mask-repeat: no-repeat;
+            mask-position: center;
+            -webkit-mask-position: center;
         }
         
         /* Overall website gradient overlay - from black at bottom to transparent at 50% */
@@ -309,8 +334,10 @@
             <img src="/media/phone.png?v=2" alt="Phone" class="h-[80vh] w-auto" id="phone">
             <div class="phone-gradient"></div>
             <div class="phone-gleam"></div>
-            <!-- NEW: Single glow-fade overlay -->
-            <div id="glow-fade-overlay" style="display: none;"></div>
+            <!-- Separate glow overlay for contact form -->
+            <div id="contact-form-glow" class="contact-form-glow-overlay" style="display: none;"></div>
+            <!-- Direct fade overlay for contact form -->
+            <div id="contact-form-fade" class="contact-form-fade-overlay" style="display: none;"></div>
         </div>
         
         <!-- Main heading text with opacity shifts -->
@@ -813,22 +840,16 @@
                         getInTouchBtn.setAttribute('onclick', 'goBackToDefault()');
                     }
                     
-                    // Show glow-fade overlay after the new phone image is loaded
+                    // Apply glow after the new phone image is loaded
                     phoneImg.onload = function() {
-                        const glowFadeOverlay = document.getElementById('glow-fade-overlay');
-                        if (glowFadeOverlay) {
-                            glowFadeOverlay.style.display = 'block';
-                            console.log('Glow-fade overlay shown after image load');
-                        }
+                        phoneImg.classList.add('contact-form-glow');
+                        console.log('Glow against background applied to phone after image load');
                     };
                     
-                    // If image is already loaded (cached), show glow immediately
+                    // If image is already loaded (cached), apply glow immediately
                     if (phoneImg.complete) {
-                        const glowFadeOverlay = document.getElementById('glow-fade-overlay');
-                        if (glowFadeOverlay) {
-                            glowFadeOverlay.style.display = 'block';
-                            console.log('Glow-fade overlay shown (image already loaded)');
-                        }
+                        phoneImg.classList.add('contact-form-glow');
+                        console.log('Glow against background applied to phone (image already loaded)');
                     }
                     
                     // Add contact form mode class for aggressive fade effect
@@ -900,12 +921,9 @@
                     phoneImg.onload = null;
                     console.log('Cleared phone image onload event handler');
                     
-                    // Hide glow-fade overlay
-                    const glowFadeOverlay = document.getElementById('glow-fade-overlay');
-                    if (glowFadeOverlay) {
-                        glowFadeOverlay.style.display = 'none';
-                        console.log('Glow-fade overlay hidden');
-                    }
+                    // Remove glowing effect from default phone
+                    phoneImg.classList.remove('contact-form-glow');
+                    console.log('contact-form-glow class removed from phone image');
                     
                     // Debug: Check if classes are actually removed
                     console.log('Phone container classes after removal:', phoneContainer.className);
