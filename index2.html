@@ -721,16 +721,11 @@
         function updateTextOpacity() {
             const scrolled = window.pageYOffset;
             
-            // Determine which text should be visible based on scroll position
-            let activeTextIndex = 0; // Default to text-1
+            // Use the same threshold for both directions (272px based on your logs)
+            const transitionThreshold = 272;
             
-            // Check each text element's trigger point
-            for (let i = textElements.length - 1; i >= 0; i--) {
-                if (scrolled >= textElements[i].showAt) {
-                    activeTextIndex = i;
-                    break;
-                }
-            }
+            // Determine which text should be visible based on scroll position
+            let activeTextIndex = scrolled >= transitionThreshold ? 1 : 0;
             
             // Log header transitions for verification
             if (activeTextIndex !== currentTextIndex) {
