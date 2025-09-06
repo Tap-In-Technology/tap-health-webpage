@@ -613,6 +613,33 @@
             if (emailField) emailField.value = '';
             if (phoneField) phoneField.value = '';
             if (messageField) messageField.value = '';
+            
+            // Explicitly reset the button to "Get in Touch" - multiple selectors to be safe
+            setTimeout(() => {
+                // Try multiple selectors to find the button
+                let goBackBtn = document.querySelector('button[onclick="goBackToDefault()"]');
+                if (!goBackBtn) {
+                    goBackBtn = document.querySelector('button[onclick*="goBackToDefault"]');
+                }
+                if (!goBackBtn) {
+                    // Fallback: find button by text content
+                    const buttons = document.querySelectorAll('button');
+                    for (let btn of buttons) {
+                        if (btn.textContent.trim() === 'Go Back') {
+                            goBackBtn = btn;
+                            break;
+                        }
+                    }
+                }
+                
+                if (goBackBtn) {
+                    goBackBtn.textContent = 'Get in Touch';
+                    goBackBtn.setAttribute('onclick', 'openContactForm()');
+                    console.log('Button reset to "Get in Touch" from goBackToDefault');
+                } else {
+                    console.warn('Could not find Go Back button to reset');
+                }
+            }, 100); // Small delay to ensure DOM is updated
         }
         
         // Contact form phone limited scroll - allow tiny scroll up
