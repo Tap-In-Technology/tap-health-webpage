@@ -699,19 +699,23 @@
         function updateTextOpacity() {
             const scrolled = window.pageYOffset;
             
+            // Determine which text should be visible based on scroll position
+            let activeTextIndex = 0; // Default to text-1
+            
+            // Check each text element's trigger point
+            for (let i = textElements.length - 1; i >= 0; i--) {
+                if (scrolled >= textElements[i].showAt) {
+                    activeTextIndex = i;
+                    break;
+                }
+            }
+            
+            // Show the active text, hide all others
             textElements.forEach((textObj, index) => {
-                const element = textObj.element;
-                const showAt = textObj.showAt;
-                
-                if (scrolled >= showAt) {
-                    // Show this text
-                    element.style.opacity = '1';
-                    // Hide all other texts
-                    textElements.forEach((otherTextObj, otherIndex) => {
-                        if (otherIndex !== index) {
-                            otherTextObj.element.style.opacity = '0';
-                        }
-                    });
+                if (index === activeTextIndex) {
+                    textObj.element.style.opacity = '1';
+                } else {
+                    textObj.element.style.opacity = '0';
                 }
             });
         }
