@@ -90,9 +90,8 @@
                     drop-shadow(0 0 60px rgba(255, 255, 255, 0.1));
         }
         
-        /* Aggressive fade-to-dark effect for contact form phone */
-        .phone-container.contact-form-mode::after {
-            content: '';
+        /* Direct fade overlay for contact form phone */
+        .contact-form-fade-overlay {
             position: absolute;
             top: 0;
             left: 0;
@@ -105,6 +104,7 @@
                 rgba(0, 0, 0, 0.95) 80%, 
                 rgba(0, 0, 0, 1) 100%);
             pointer-events: none;
+            z-index: 25;
             mask: url('/media/contactFormPhone.png');
             -webkit-mask: url('/media/contactFormPhone.png');
             mask-size: contain;
@@ -303,6 +303,8 @@
             <img src="/media/phone.png?v=2" alt="Phone" class="h-[80vh] w-auto" id="phone">
             <div class="phone-gradient"></div>
             <div class="phone-gleam"></div>
+            <!-- Direct fade overlay for contact form -->
+            <div id="contact-form-fade" class="contact-form-fade-overlay" style="display: none;"></div>
         </div>
         
         <!-- Main heading text with opacity shifts -->
@@ -716,6 +718,17 @@
                     // Add contact form mode class for aggressive fade effect
                     phoneContainer.classList.add('contact-form-mode');
                     
+                    // Show the direct fade overlay
+                    const fadeOverlay = document.getElementById('contact-form-fade');
+                    if (fadeOverlay) {
+                        fadeOverlay.style.display = 'block';
+                        console.log('Contact form fade overlay shown');
+                    }
+                    
+                    // Debug: Check if classes are applied
+                    console.log('Contact form mode - phoneContainer classes:', phoneContainer.className);
+                    console.log('Contact form mode - phone classes:', phoneImg.className);
+                    
                     // Change gradient to dark bottom for contact form
                     if (phoneContainer) {
                         const gradientDiv = phoneContainer.querySelector('.phone-gradient');
@@ -753,6 +766,13 @@
                     
                     // Remove contact form mode class
                     phoneContainer.classList.remove('contact-form-mode');
+                    
+                    // Hide the direct fade overlay
+                    const fadeOverlay = document.getElementById('contact-form-fade');
+                    if (fadeOverlay) {
+                        fadeOverlay.style.display = 'none';
+                        console.log('Contact form fade overlay hidden');
+                    }
                     
                     // Restore original upper-right spotlight gradient
                     if (phoneContainer) {
