@@ -799,6 +799,13 @@
                     // Add contact form mode class for aggressive fade effect
                     phoneContainer.classList.add('contact-form-mode');
                     
+                    // Completely remove gleam element from DOM to ensure no interference
+                    const gleamElement = phoneContainer.querySelector('.phone-gleam');
+                    if (gleamElement) {
+                        console.log('Removing gleam element from DOM');
+                        gleamElement.remove();
+                    }
+                    
                     // Show the glow overlay
                     const glowOverlay = document.getElementById('contact-form-glow');
                     if (glowOverlay) {
@@ -883,6 +890,15 @@
                     
                     // Remove contact form mode class
                     phoneContainer.classList.remove('contact-form-mode');
+                    
+                    // Restore gleam element if it was removed
+                    const existingGleam = phoneContainer.querySelector('.phone-gleam');
+                    if (!existingGleam) {
+                        console.log('Restoring gleam element to DOM');
+                        const gleamDiv = document.createElement('div');
+                        gleamDiv.className = 'phone-gleam';
+                        phoneContainer.appendChild(gleamDiv);
+                    }
                     
                     // Hide the glow overlay
                     const glowOverlay = document.getElementById('contact-form-glow');
