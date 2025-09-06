@@ -83,20 +83,31 @@
             width: auto;
         }
         
-        /* Glowing effect for contact form phone only */
+        /* Glow against background - fades out after Cancel button (65%) */
         #phone.contact-form-glow {
             filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.3)) 
                     drop-shadow(0 0 40px rgba(255, 255, 255, 0.2))
                     drop-shadow(0 0 60px rgba(255, 255, 255, 0.1));
+            /* Add mask to fade out after Cancel button */
+            mask: linear-gradient(to bottom, 
+                    black 0%, 
+                    black 65%, 
+                    transparent 65%, 
+                    transparent 100%);
+            -webkit-mask: linear-gradient(to bottom, 
+                            black 0%, 
+                            black 65%, 
+                            transparent 65%, 
+                            transparent 100%);
         }
         
-        /* Glow overlay - physically limited to top 20% */
+        /* Gleam Animation - covers whole contact phone */
         .contact-form-glow-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: 20%; /* Physically limit to top 20% */
+            height: 100%; /* Cover whole phone */
             background: radial-gradient(ellipse at center, 
                 rgba(255, 255, 255, 0.3) 0%, 
                 rgba(255, 255, 255, 0.2) 30%, 
@@ -490,16 +501,16 @@
                 console.log('=== GLOW VISIBILITY DEBUG ===');
                 console.log('Phone height:', phoneHeight);
                 console.log('Glow overlay height:', glowRect.height);
-                console.log('Glow should end at 20% of phone height');
+                console.log('Gleam Animation covers whole phone (100%)');
                 console.log('Key points on phone:');
                 console.log('- Top 25%:', top25Percent, 'px from top');
                 console.log('- Top 50%:', top50Percent, 'px from top');
-                console.log('- Top 20%:', top20Percent, 'px from top (should be glow cutoff)');
+                console.log('- Top 65%:', top65Percent, 'px from top (glow against background cutoff)');
                 console.log('- Top 70%:', top70Percent, 'px from top');
                 console.log('- Top 75%:', top75Percent, 'px from top');
-                console.log('Glow overlay ends at:', glowRect.bottom, 'px from top');
-                console.log('Glow should end at:', top20Percent, 'px from top');
-                console.log('Difference:', Math.abs(glowRect.bottom - top20Percent), 'px');
+                console.log('Gleam Animation ends at:', glowRect.bottom, 'px from top');
+                console.log('Glow against background should end at:', top65Percent, 'px from top');
+                console.log('Gleam covers whole phone, glow fades at 65%');
             }
         }
 
@@ -811,12 +822,12 @@
                     const glowOverlay = document.getElementById('contact-form-glow');
                     if (glowOverlay) {
                         glowOverlay.style.display = 'block';
-                        console.log('Contact form glow overlay shown');
+                        console.log('Gleam Animation overlay shown');
                         
                         // Debug glow overlay properties
                         const glowRect = glowOverlay.getBoundingClientRect();
                         const phoneRect = phoneImg.getBoundingClientRect();
-                        console.log('Glow overlay dimensions:', {
+                        console.log('Gleam Animation dimensions:', {
                             width: glowRect.width,
                             height: glowRect.height,
                             top: glowRect.top,
@@ -828,7 +839,7 @@
                             top: phoneRect.top,
                             left: phoneRect.left
                         });
-                        console.log('Glow covers phone ratio:', {
+                        console.log('Gleam Animation covers phone ratio:', {
                             heightRatio: glowRect.height / phoneRect.height,
                             topOffset: glowRect.top - phoneRect.top,
                             bottomOffset: (glowRect.top + glowRect.height) - (phoneRect.top + phoneRect.height)
@@ -903,7 +914,7 @@
                     const glowOverlay = document.getElementById('contact-form-glow');
                     if (glowOverlay) {
                         glowOverlay.style.display = 'none';
-                        console.log('Contact form glow overlay hidden');
+                        console.log('Gleam Animation overlay hidden');
                     }
                     
                     // Hide the direct fade overlay
