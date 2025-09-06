@@ -608,20 +608,8 @@
                 }
                 
                 
-                // Sanity check: ensure phone is 100% opacity when scrolled to very bottom
-                const documentHeight = document.documentElement.scrollHeight;
-                const windowHeight = window.innerHeight;
-                const maxScroll = documentHeight - windowHeight;
-                
-                // Use 50% of max scroll as threshold (very aggressive)
-                const threshold = maxScroll * 0.5;
-                
-                console.log('Sanity check - scrolled:', scrolled, 'maxScroll:', maxScroll, 'threshold:', threshold);
-                
-                if (scrolled >= threshold) {
-                    console.log('Sanity check triggered - forcing opacity to 1');
-                    phoneContainer.style.opacity = '1';
-                }
+           // Ensure phone is 100% opacity when scrolled to very bottom
+           // This is now handled by the main animation logic above
             }
         }
 
