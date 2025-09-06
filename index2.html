@@ -537,22 +537,19 @@
         let lastScrollY = 0;
         
         function updatePhoneOpacity() {
-            if (!ticking) {
-                requestAnimationFrame(() => {
-                    const scrolled = document.documentElement.scrollTop || window.pageYOffset;
-                    const phoneContainer = document.getElementById('phone-container');
-                    
-                    
-                    console.log('DEBUG - scrolled:', scrolled, 'lastScrollY:', lastScrollY, 'diff:', Math.abs(scrolled - lastScrollY), 'phoneContainer exists:', !!phoneContainer, 'document height:', document.documentElement.scrollHeight, 'window height:', window.innerHeight);
-                    if (phoneContainer) {
-                        console.log('Phone current state:', {
-                            opacity: phoneContainer.style.opacity,
-                            top: phoneContainer.style.top,
-                            transform: phoneContainer.style.transform
-                        });
-                    }
-                    
-                    if (phoneContainer) { // Remove threshold check to force animation
+            const scrolled = document.documentElement.scrollTop || window.pageYOffset;
+            const phoneContainer = document.getElementById('phone-container');
+            
+            console.log('updatePhoneOpacity called - scrolled:', scrolled, 'lastScrollY:', lastScrollY, 'diff:', Math.abs(scrolled - lastScrollY), 'phoneContainer exists:', !!phoneContainer);
+            if (phoneContainer) {
+                console.log('Phone current state:', {
+                    opacity: phoneContainer.style.opacity,
+                    top: phoneContainer.style.top,
+                    transform: phoneContainer.style.transform
+                });
+            }
+            
+            if (phoneContainer) { // Remove threshold check to force animation
                         // Smooth phone animation with better easing
                         const fadeStart = 0;     // Start immediately
                         const fadeEnd = 200;     // Shorter scroll to see phone sooner
@@ -613,11 +610,7 @@
                             phoneContainer.style.transform = 'translateX(-50%) translateY(-50%)';
                         }
                         
-                        lastScrollY = scrolled;
-                    }
-                    ticking = false;
-                });
-                ticking = true;
+                lastScrollY = scrolled;
             }
         }
 
