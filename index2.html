@@ -903,10 +903,20 @@
                     
                     // Remove contact form mode class FIRST to ensure mask is removed
                     phoneContainer.classList.remove('contact-form-mode');
+                    console.log('contact-form-mode class removed from phone container');
                     
                     // Remove glowing effect from default phone
                     phoneImg.classList.remove('contact-form-glow');
-                    console.log('Glow against background removed from phone');
+                    console.log('contact-form-glow class removed from phone image');
+                    
+                    // Debug: Check if classes are actually removed
+                    console.log('Phone container classes after removal:', phoneContainer.className);
+                    console.log('Phone image classes after removal:', phoneImg.className);
+                    
+                    // Force remove any remaining mask properties
+                    phoneImg.style.mask = '';
+                    phoneImg.style.webkitMask = '';
+                    console.log('Force removed any remaining mask properties from phone image');
                     
                     // Restore gleam element visibility
                     const gleamElement = phoneContainer.querySelector('.phone-gleam');
