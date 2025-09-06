@@ -109,16 +109,21 @@
         
         /* Mask the glow to fade out after Cancel button (65%) */
         .phone-container.contact-form-mode .contact-form-glow-background {
-            mask: linear-gradient(to bottom, 
+            /* Combine phone shape mask with fade mask */
+            mask: url('/media/contactFormPhone.png'), 
+                  linear-gradient(to bottom, 
                     black 0%, 
                     black 65%, 
                     transparent 65%, 
                     transparent 100%);
-            -webkit-mask: linear-gradient(to bottom, 
+            -webkit-mask: url('/media/contactFormPhone.png'), 
+                          linear-gradient(to bottom, 
                             black 0%, 
                             black 65%, 
                             transparent 65%, 
                             transparent 100%);
+            mask-composite: intersect;
+            -webkit-mask-composite: source-in;
         }
         
         /* Gleam Animation - covers whole contact phone */
