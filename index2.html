@@ -222,7 +222,7 @@
     </div>
         
         <!-- Phone image large and centered, fading into background -->
-        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 parallax-smooth z-20" id="phone-container" style="top: 61%; left: 50%; transform: translateX(-50%); transition: opacity 0.3s ease-in-out; opacity: 0;">
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 parallax-smooth z-20" id="phone-container" style="top: 120%; left: 50%; transform: translateX(-50%); opacity: 0;">
             <img src="/media/phone.png?v=2" alt="Phone" class="h-[80vh] w-auto" id="phone">
             <div class="phone-gradient"></div>
             <div class="phone-gleam"></div>
@@ -541,34 +541,39 @@
             const phoneContainer = document.getElementById('phone-container');
             
             if (phoneContainer) {
-                // Fade in phone as user scrolls down (immediate start)
-                // At scroll position 0: opacity 0 (invisible)
-                // At scroll position 400: opacity 1 (fully visible)
-                // At scroll position 450: opacity 0 (fade out very quickly)
-                const fadeStart = 0;  // Starts immediately on first scroll
-                const fadeEnd = 400;  // Slower fade in - more scroll distance
-                const fadeOutStart = 450;  // Later start for fade out
-                const fadeOutEnd = 460;    // Very fast fade out (10px scroll)
+                // Smooth phone animation with better easing
+                const fadeStart = 0;     // Start immediately
+                const fadeEnd = 600;     // Longer scroll for smoother animation
+                const fadeOutStart = 700; // Later fade out
+                const fadeOutEnd = 750;   // Quick fade out
+                
+                // Smooth easing function
+                function easeInOutCubic(t) {
+                    return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+                }
                 
                 if (scrolled <= fadeStart) {
+                    // Initial state - completely off screen
                     phoneContainer.style.opacity = '0';
-                    // Start position (completely off-screen, horizontally centered)
                     phoneContainer.style.top = '120%';
                     phoneContainer.style.left = '50%';
                     phoneContainer.style.transform = 'translateX(-50%)';
                 } else if (scrolled >= fadeEnd && scrolled < fadeOutStart) {
+                    // Fully visible state
                     phoneContainer.style.opacity = '1';
-                    // End position (aligned with lightning)
                     phoneContainer.style.top = '61%';
                     phoneContainer.style.left = '50%';
                     phoneContainer.style.transform = 'translateX(-50%)';
                 } else if (scrolled >= fadeOutStart) {
-                    // Quick fade out
+                    // Fade out phase
                     if (scrolled >= fadeOutEnd) {
                         phoneContainer.style.opacity = '0';
+                        phoneContainer.style.top = '61%';
+                        phoneContainer.style.left = '50%';
+                        phoneContainer.style.transform = 'translateX(-50%)';
                     } else {
-                        const fadeOutProgress = (scrolled - fadeOutStart) / (fadeOutEnd - fadeOutStart);
-                        const opacity = 1 - fadeOutProgress; // Fades OUT quickly
+                        const fadeOutProgress = Math.min((scrolled - fadeOutStart) / (fadeOutEnd - fadeOutStart), 1);
+                        const opacity = 1 - fadeOutProgress;
                         
                         phoneContainer.style.opacity = opacity.toString();
                         phoneContainer.style.top = '61%';
@@ -576,15 +581,17 @@
                         phoneContainer.style.transform = 'translateX(-50%)';
                     }
                 } else {
-                    // Calculate opacity and position between fadeStart and fadeEnd
-                    const progress = (scrolled - fadeStart) / (fadeEnd - fadeStart);
-                    const opacity = progress; // Fades IN
+                    // Smooth fade in and position animation
+                    const progress = Math.min((scrolled - fadeStart) / (fadeEnd - fadeStart), 1);
+                    const easedProgress = easeInOutCubic(progress);
                     
-                    // Interpolate position from off-screen to lightning-aligned position
-                    const startTop = 120; // Start completely off-screen
-                    const endTop = 61;   // End at lightning-aligned position
+                    // Smooth opacity transition
+                    const opacity = easedProgress;
                     
-                    const currentTop = startTop + (endTop - startTop) * progress;
+                    // Smooth position transition from off-screen to final position
+                    const startTop = 120;
+                    const endTop = 61;
+                    const currentTop = startTop + (endTop - startTop) * easedProgress;
                     
                     phoneContainer.style.opacity = opacity.toString();
                     phoneContainer.style.top = currentTop + '%';
