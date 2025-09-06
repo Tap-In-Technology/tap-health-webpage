@@ -549,78 +549,34 @@
                 });
             }
             
-            if (phoneContainer) { // Remove threshold check to force animation
-                        // Smooth phone animation with better easing
-                        const fadeStart = 0;     // Start immediately
-                        const fadeEnd = 200;     // Shorter scroll to see phone sooner
-                        const fadeOutStart = 300; // Later fade out
-                        const fadeOutEnd = 350;   // Quick fade out
+            if (phoneContainer) {
+                        // Continuous phone animation based on scroll percentage
+                        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+                        const scrollProgress = Math.min(scrolled / maxScroll, 1); // 0 to 1
                         
-                        console.log('Animation logic running - scrolled:', scrolled, 'fadeStart:', fadeStart, 'fadeEnd:', fadeEnd, 'fadeOutStart:', fadeOutStart);
+                        console.log('Continuous animation - scrolled:', scrolled, 'maxScroll:', maxScroll, 'progress:', scrollProgress);
                         
                         // Smooth easing function
                         function easeInOutCubic(t) {
                             return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
                         }
                         
-                        console.log('Checking conditions - scrolled:', scrolled, 'fadeStart:', fadeStart, 'fadeEnd:', fadeEnd, 'fadeOutStart:', fadeOutStart);
-                        console.log('scrolled <= fadeStart:', scrolled <= fadeStart);
-                        console.log('scrolled >= fadeEnd && scrolled < fadeOutStart:', scrolled >= fadeEnd && scrolled < fadeOutStart);
-                        console.log('scrolled >= fadeOutStart:', scrolled >= fadeOutStart);
+                        const easedProgress = easeInOutCubic(scrollProgress);
                         
-                        if (scrolled <= fadeStart) {
-                            // Initial state - completely off screen
-                            console.log('PHASE: Initial state - setting phone off-screen, scrolled:', scrolled);
-                            phoneContainer.style.opacity = '0';
-                            phoneContainer.style.top = '100vh';
-                            phoneContainer.style.left = '50%';
-                            phoneContainer.style.transform = 'translate(-50%, -50%)';
-                        } else if (scrolled >= fadeEnd && scrolled < fadeOutStart) {
-                            // Fully visible state
-                            console.log('PHASE: Fully visible state, scrolled:', scrolled);
-                            phoneContainer.style.opacity = '1';
-                            phoneContainer.style.top = '61%';
-                            phoneContainer.style.left = '50%';
-                            phoneContainer.style.transform = 'translate(-50%, -50%)';
-                        } else if (scrolled >= fadeOutStart) {
-                            // Fade out phase
-                            console.log('PHASE: Fade out phase, scrolled:', scrolled, 'fadeOutEnd:', fadeOutEnd);
-                            if (scrolled >= fadeOutEnd) {
-                                console.log('Fade out complete - setting opacity to 0');
-                                phoneContainer.style.opacity = '0';
-                                phoneContainer.style.top = '61%';
-                                phoneContainer.style.left = '50%';
-                                phoneContainer.style.transform = 'translate(-50%, -50%)';
-                            } else {
-                                const fadeOutProgress = Math.min((scrolled - fadeOutStart) / (fadeOutEnd - fadeOutStart), 1);
-                                const opacity = 1 - fadeOutProgress;
-                                console.log('Fading out - progress:', fadeOutProgress, 'opacity:', opacity);
-                                
-                                phoneContainer.style.opacity = opacity.toString();
-                                phoneContainer.style.top = '61%';
-                                phoneContainer.style.left = '50%';
-                                phoneContainer.style.transform = 'translate(-50%, -50%)';
-                            }
-                        } else {
-                            // Smooth fade in and position animation
-                            const progress = Math.min((scrolled - fadeStart) / (fadeEnd - fadeStart), 1);
-                            const easedProgress = easeInOutCubic(progress);
-                            
-                            // Smooth opacity transition
-                            const opacity = easedProgress;
-                            
-                            // Smooth position transition from off-screen to final position
-                            const startTop = 100; // 100vh
-                            const endTop = 61;
-                            const currentTop = startTop + (endTop - startTop) * easedProgress;
-                            
-                            console.log('PHASE: Animation - scrolled:', scrolled, 'progress:', progress, 'opacity:', opacity, 'top:', currentTop + '%');
-                            
-                            phoneContainer.style.opacity = opacity.toString();
-                            phoneContainer.style.top = currentTop + '%';
-                            phoneContainer.style.left = '50%';
-                            phoneContainer.style.transform = 'translate(-50%, -50%)';
-                        }
+                        // Opacity: 0 at top, 1 at bottom
+                        const opacity = easedProgress;
+                        
+                        // Position: 100vh at top (off-screen), 61% at bottom (center)
+                        const startTop = 100; // 100vh (off-screen)
+                        const endTop = 61;    // 61% (center)
+                        const currentTop = startTop + (endTop - startTop) * easedProgress;
+                        
+                        console.log('Setting phone - opacity:', opacity, 'top:', currentTop + '%');
+                        
+                        phoneContainer.style.opacity = opacity.toString();
+                        phoneContainer.style.top = currentTop + '%';
+                        phoneContainer.style.left = '50%';
+                        phoneContainer.style.transform = 'translate(-50%, -50%)';
                         
                 lastScrollY = scrolled;
             }
