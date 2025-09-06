@@ -543,12 +543,21 @@
                     const phoneContainer = document.getElementById('phone-container');
                     
                     
+                    console.log('DEBUG - scrolled:', scrolled, 'phoneContainer exists:', !!phoneContainer);
+                    if (phoneContainer) {
+                        console.log('Phone current state:', {
+                            opacity: phoneContainer.style.opacity,
+                            top: phoneContainer.style.top,
+                            transform: phoneContainer.style.transform
+                        });
+                    }
+                    
                     if (phoneContainer && Math.abs(scrolled - lastScrollY) > 1) { // Only update if scroll changed significantly
                         // Smooth phone animation with better easing
                         const fadeStart = 0;     // Start immediately
-                        const fadeEnd = 600;     // Longer scroll for smoother animation
-                        const fadeOutStart = 700; // Later fade out
-                        const fadeOutEnd = 750;   // Quick fade out
+                        const fadeEnd = 200;     // Shorter scroll to see phone sooner
+                        const fadeOutStart = 300; // Later fade out
+                        const fadeOutEnd = 350;   // Quick fade out
                         
                         // Smooth easing function
                         function easeInOutCubic(t) {
