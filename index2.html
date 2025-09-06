@@ -539,7 +539,7 @@
         function updatePhoneOpacity() {
             if (!ticking) {
                 requestAnimationFrame(() => {
-                    const scrolled = window.pageYOffset;
+                    const scrolled = document.documentElement.scrollTop || window.pageYOffset;
                     const phoneContainer = document.getElementById('phone-container');
                     
                     
@@ -621,6 +621,11 @@
             }
         }
 
+        // Test scroll detection
+        window.addEventListener('scroll', function() {
+            console.log('SCROLL EVENT DETECTED! scrollTop:', document.documentElement.scrollTop, 'pageYOffset:', window.pageYOffset);
+        });
+        
         window.addEventListener('scroll', updatePhoneOpacity);
         window.addEventListener('load', updatePhoneOpacity);
     </script>
