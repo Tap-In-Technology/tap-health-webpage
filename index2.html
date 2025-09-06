@@ -90,13 +90,13 @@
                     drop-shadow(0 0 60px rgba(255, 255, 255, 0.1));
         }
         
-        /* Glow overlay - physically limited to top 65% */
+        /* Glow overlay - physically limited to top 20% */
         .contact-form-glow-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: 65%; /* Physically limit to top 65% */
+            height: 20%; /* Physically limit to top 20% */
             background: radial-gradient(ellipse at center, 
                 rgba(255, 255, 255, 0.3) 0%, 
                 rgba(255, 255, 255, 0.2) 30%, 
@@ -479,6 +479,7 @@
                 const phoneBottom = phoneRect.bottom;
                 const phoneHeight = phoneRect.height;
                 
+                const top20Percent = phoneTop + (phoneHeight * 0.20);
                 const top25Percent = phoneTop + (phoneHeight * 0.25);
                 const top50Percent = phoneTop + (phoneHeight * 0.50);
                 const top65Percent = phoneTop + (phoneHeight * 0.65);
@@ -489,16 +490,16 @@
                 console.log('=== GLOW VISIBILITY DEBUG ===');
                 console.log('Phone height:', phoneHeight);
                 console.log('Glow overlay height:', glowRect.height);
-                console.log('Glow should end at 65% of phone height');
+                console.log('Glow should end at 20% of phone height');
                 console.log('Key points on phone:');
                 console.log('- Top 25%:', top25Percent, 'px from top');
                 console.log('- Top 50%:', top50Percent, 'px from top');
-                console.log('- Top 65%:', top65Percent, 'px from top (should be glow cutoff)');
+                console.log('- Top 20%:', top20Percent, 'px from top (should be glow cutoff)');
                 console.log('- Top 70%:', top70Percent, 'px from top');
                 console.log('- Top 75%:', top75Percent, 'px from top');
                 console.log('Glow overlay ends at:', glowRect.bottom, 'px from top');
-                console.log('Glow should end at:', top65Percent, 'px from top');
-                console.log('Difference:', Math.abs(glowRect.bottom - top65Percent), 'px');
+                console.log('Glow should end at:', top20Percent, 'px from top');
+                console.log('Difference:', Math.abs(glowRect.bottom - top20Percent), 'px');
             }
         }
 
