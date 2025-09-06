@@ -101,8 +101,8 @@
             background: linear-gradient(to bottom, 
                 transparent 0%, 
                 transparent 70%, 
-                rgba(0, 0, 0, 0.4) 80%, 
-                rgba(0, 0, 0, 0.8) 90%, 
+                rgba(0, 0, 0, 0.7) 75%, 
+                rgba(0, 0, 0, 0.95) 85%, 
                 rgba(0, 0, 0, 1) 100%);
             pointer-events: none;
             mask: url('/media/contactFormPhone.png');
@@ -113,6 +113,23 @@
             -webkit-mask-repeat: no-repeat;
             mask-position: center;
             -webkit-mask-position: center;
+        }
+        
+        /* Stop glow effect after last button on contact form phone */
+        .phone-container.contact-form-mode #phone.contact-form-glow {
+            filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.3)) 
+                    drop-shadow(0 0 40px rgba(255, 255, 255, 0.2))
+                    drop-shadow(0 0 60px rgba(255, 255, 255, 0.1));
+            mask: linear-gradient(to bottom, 
+                black 0%, 
+                black 70%, 
+                transparent 70%, 
+                transparent 100%);
+            -webkit-mask: linear-gradient(to bottom, 
+                black 0%, 
+                black 70%, 
+                transparent 70%, 
+                transparent 100%);
         }
         
         /* Smooth parallax effect */
