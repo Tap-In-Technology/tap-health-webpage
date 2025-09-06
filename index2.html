@@ -542,6 +542,8 @@
                     const scrolled = window.pageYOffset;
                     const phoneContainer = document.getElementById('phone-container');
                     
+                    console.log('Phone debug - scrolled:', scrolled, 'phoneContainer:', phoneContainer, 'opacity:', phoneContainer?.style.opacity, 'top:', phoneContainer?.style.top);
+                    
                     if (phoneContainer && Math.abs(scrolled - lastScrollY) > 1) { // Only update if scroll changed significantly
                         // Smooth phone animation with better easing
                         const fadeStart = 0;     // Start immediately
@@ -610,7 +612,10 @@
         }
 
         window.addEventListener('scroll', updatePhoneOpacity);
-        window.addEventListener('load', updatePhoneOpacity);
+        window.addEventListener('load', () => {
+            console.log('Page loaded - phone container:', document.getElementById('phone-container'));
+            updatePhoneOpacity();
+        });
     </script>
 </body>
 
