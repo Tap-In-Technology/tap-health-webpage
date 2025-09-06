@@ -420,6 +420,41 @@
             // Switch phone back to default
             switchPhoneImage('default');
         }
+        
+        // Contact form phone scroll prevention with bounce effect
+        let isContactFormMode = false;
+        let phoneBounceAnimation = null;
+        
+        function preventContactFormScroll(e) {
+            if (!isContactFormMode) return;
+            
+            // Prevent default scroll behavior
+            e.preventDefault();
+            
+            // Get scroll direction
+            const deltaY = e.deltaY || e.detail || e.wheelDelta;
+            const isScrollingUp = deltaY < 0;
+            
+            if (isScrollingUp) {
+                // Clear any existing bounce animation
+                if (phoneBounceAnimation) {
+                    clearTimeout(phoneBounceAnimation);
+                }
+                
+                const phoneContainer = document.getElementById('phone-container');
+                if (phoneContainer) {
+                    // Move phone slightly up (bounce effect)
+                    phoneContainer.style.transform = 'translate(-50%, calc(-50% - 10px))';
+                    phoneContainer.style.transition = 'transform 0.1s ease-out';
+                    
+                    // Bounce back down after short delay
+                    phoneBounceAnimation = setTimeout(() => {
+                        phoneContainer.style.transform = 'translate(-50%, -50%)';
+                        phoneContainer.style.transition = 'transform 0.2s ease-out';
+                    }, 100);
+                }
+            }
+        }
 
         function closeContactForm() {
             // COMMENTED OUT: Contact form popup - keeping phone transition only
@@ -725,6 +760,10 @@
                         console.log('Contact form fade overlay shown');
                     }
                     
+                    // Enable contact form scroll prevention
+                    isContactFormMode = true;
+                    window.addEventListener('wheel', preventContactFormScroll, { passive: false });
+                    
                     // Debug: Check if classes are applied
                     console.log('Contact form mode - phoneContainer classes:', phoneContainer.className);
                     console.log('Contact form mode - phone classes:', phoneImg.className);
@@ -773,6 +812,10 @@
                         fadeOverlay.style.display = 'none';
                         console.log('Contact form fade overlay hidden');
                     }
+                    
+                    // Disable contact form scroll prevention
+                    isContactFormMode = false;
+                    window.removeEventListener('wheel', preventContactFormScroll);
                     
                     // Restore original upper-right spotlight gradient
                     if (phoneContainer) {
