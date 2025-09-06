@@ -83,11 +83,22 @@
             width: auto;
         }
         
-        /* Glow against background - simple drop-shadow filter */
+        /* Glow against background - with hard cutoff after Cancel button */
         #phone.contact-form-glow {
             filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.3)) 
                     drop-shadow(0 0 40px rgba(255, 255, 255, 0.2))
                     drop-shadow(0 0 60px rgba(255, 255, 255, 0.1));
+            /* Add mask to cut off glow after Cancel button (65%) */
+            mask: linear-gradient(to bottom, 
+                    black 0%, 
+                    black 65%, 
+                    transparent 65%, 
+                    transparent 100%);
+            -webkit-mask: linear-gradient(to bottom, 
+                            black 0%, 
+                            black 65%, 
+                            transparent 65%, 
+                            transparent 100%);
         }
         
         /* Gleam Animation - covers whole contact phone */
