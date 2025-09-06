@@ -542,6 +542,16 @@
                     const scrolled = window.pageYOffset;
                     const phoneContainer = document.getElementById('phone-container');
                     
+                    console.log('SANITY CHECK - scrolled:', scrolled, 'phoneContainer exists:', !!phoneContainer);
+                    if (phoneContainer) {
+                        console.log('Phone current style:', {
+                            opacity: phoneContainer.style.opacity,
+                            top: phoneContainer.style.top,
+                            left: phoneContainer.style.left,
+                            transform: phoneContainer.style.transform
+                        });
+                    }
+                    
                     if (phoneContainer && Math.abs(scrolled - lastScrollY) > 1) { // Only update if scroll changed significantly
                         // Smooth phone animation with better easing
                         const fadeStart = 0;     // Start immediately
@@ -556,12 +566,14 @@
                         
                         if (scrolled <= fadeStart) {
                             // Initial state - completely off screen
+                            console.log('PHASE: Initial state (off-screen)');
                             phoneContainer.style.opacity = '0';
                             phoneContainer.style.top = '100vh';
                             phoneContainer.style.left = '50%';
                             phoneContainer.style.transform = 'translateX(-50%)';
                         } else if (scrolled >= fadeEnd && scrolled < fadeOutStart) {
                             // Fully visible state
+                            console.log('PHASE: Fully visible state');
                             phoneContainer.style.opacity = '1';
                             phoneContainer.style.top = '61%';
                             phoneContainer.style.left = '50%';
@@ -594,6 +606,8 @@
                             const startTop = 100; // 100vh
                             const endTop = 61;
                             const currentTop = startTop + (endTop - startTop) * easedProgress;
+                            
+                            console.log('PHASE: Animation - progress:', progress, 'opacity:', opacity, 'top:', currentTop + '%');
                             
                             phoneContainer.style.opacity = opacity.toString();
                             phoneContainer.style.top = currentTop + '%';
