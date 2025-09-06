@@ -475,6 +475,45 @@
                 currentScrollY = Math.max(0, currentScrollY - Math.abs(deltaY));
             }
         }
+        
+        // Debug function to check glow visibility at different points
+        window.debugGlowVisibility = function() {
+            if (!isContactFormMode) return;
+            
+            const phoneImg = document.getElementById('phone');
+            const glowOverlay = document.getElementById('contact-form-glow');
+            
+            if (phoneImg && glowOverlay) {
+                const phoneRect = phoneImg.getBoundingClientRect();
+                const glowRect = glowOverlay.getBoundingClientRect();
+                
+                // Calculate key points on the phone
+                const phoneTop = phoneRect.top;
+                const phoneBottom = phoneRect.bottom;
+                const phoneHeight = phoneRect.height;
+                
+                const top25Percent = phoneTop + (phoneHeight * 0.25);
+                const top50Percent = phoneTop + (phoneHeight * 0.50);
+                const top65Percent = phoneTop + (phoneHeight * 0.65);
+                const top70Percent = phoneTop + (phoneHeight * 0.70);
+                const top75Percent = phoneTop + (phoneHeight * 0.75);
+                const bottom25Percent = phoneTop + (phoneHeight * 0.75);
+                
+                console.log('=== GLOW VISIBILITY DEBUG ===');
+                console.log('Phone height:', phoneHeight);
+                console.log('Glow overlay height:', glowRect.height);
+                console.log('Glow should end at 65% of phone height');
+                console.log('Key points on phone:');
+                console.log('- Top 25%:', top25Percent, 'px from top');
+                console.log('- Top 50%:', top50Percent, 'px from top');
+                console.log('- Top 65%:', top65Percent, 'px from top (should be glow cutoff)');
+                console.log('- Top 70%:', top70Percent, 'px from top');
+                console.log('- Top 75%:', top75Percent, 'px from top');
+                console.log('Glow overlay ends at:', glowRect.bottom, 'px from top');
+                console.log('Glow should end at:', top65Percent, 'px from top');
+                console.log('Difference:', Math.abs(glowRect.bottom - top65Percent), 'px');
+            }
+        }
 
         function closeContactForm() {
             // COMMENTED OUT: Contact form popup - keeping phone transition only
@@ -778,6 +817,30 @@
                     if (glowOverlay) {
                         glowOverlay.style.display = 'block';
                         console.log('Contact form glow overlay shown');
+                        
+                        // Debug glow overlay properties
+                        const glowRect = glowOverlay.getBoundingClientRect();
+                        const phoneRect = phoneImg.getBoundingClientRect();
+                        console.log('Glow overlay dimensions:', {
+                            width: glowRect.width,
+                            height: glowRect.height,
+                            top: glowRect.top,
+                            left: glowRect.left
+                        });
+                        console.log('Phone dimensions:', {
+                            width: phoneRect.width,
+                            height: phoneRect.height,
+                            top: phoneRect.top,
+                            left: phoneRect.left
+                        });
+                        console.log('Glow covers phone ratio:', {
+                            heightRatio: glowRect.height / phoneRect.height,
+                            topOffset: glowRect.top - phoneRect.top,
+                            bottomOffset: (glowRect.top + glowRect.height) - (phoneRect.top + phoneRect.height)
+                        });
+                        
+                        // Run detailed glow visibility debug
+                        setTimeout(() => debugGlowVisibility(), 100);
                     }
                     
                     // Show the direct fade overlay
