@@ -90,6 +90,48 @@
                     drop-shadow(0 0 60px rgba(255, 255, 255, 0.1));
         }
         
+        /* Separate glow overlay that can be properly masked */
+        .contact-form-glow-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, 
+                rgba(255, 255, 255, 0.3) 0%, 
+                rgba(255, 255, 255, 0.2) 30%, 
+                rgba(255, 255, 255, 0.1) 60%, 
+                transparent 100%);
+            pointer-events: none;
+            z-index: 24;
+            mask: url('/media/contactFormPhone.png');
+            -webkit-mask: url('/media/contactFormPhone.png');
+            mask-size: contain;
+            -webkit-mask-size: contain;
+            mask-repeat: no-repeat;
+            -webkit-mask-repeat: no-repeat;
+            mask-position: center;
+            -webkit-mask-position: center;
+        }
+        
+        /* Mask the glow overlay to fade out after 65% */
+        .phone-container.contact-form-mode .contact-form-glow-overlay {
+            mask: url('/media/contactFormPhone.png'), 
+                  linear-gradient(to bottom, 
+                    black 0%, 
+                    black 65%, 
+                    transparent 65%, 
+                    transparent 100%);
+            -webkit-mask: url('/media/contactFormPhone.png'), 
+                         linear-gradient(to bottom, 
+                            black 0%, 
+                            black 65%, 
+                            transparent 65%, 
+                            transparent 100%);
+            mask-composite: intersect;
+            -webkit-mask-composite: source-in;
+        }
+        
         /* Direct fade overlay for contact form phone */
         .contact-form-fade-overlay {
             position: absolute;
@@ -113,23 +155,6 @@
             -webkit-mask-repeat: no-repeat;
             mask-position: center;
             -webkit-mask-position: center;
-        }
-        
-        /* Stop glow effect after last button on contact form phone */
-        .phone-container.contact-form-mode #phone.contact-form-glow {
-            filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.3)) 
-                    drop-shadow(0 0 40px rgba(255, 255, 255, 0.2))
-                    drop-shadow(0 0 60px rgba(255, 255, 255, 0.1));
-            mask: linear-gradient(to bottom, 
-                black 0%, 
-                black 65%, 
-                transparent 65%, 
-                transparent 100%);
-            -webkit-mask: linear-gradient(to bottom, 
-                black 0%, 
-                black 65%, 
-                transparent 65%, 
-                transparent 100%);
         }
         
         /* Smooth parallax effect */
@@ -303,6 +328,8 @@
             <img src="/media/phone.png?v=2" alt="Phone" class="h-[80vh] w-auto" id="phone">
             <div class="phone-gradient"></div>
             <div class="phone-gleam"></div>
+            <!-- Separate glow overlay for contact form -->
+            <div id="contact-form-glow" class="contact-form-glow-overlay" style="display: none;"></div>
             <!-- Direct fade overlay for contact form -->
             <div id="contact-form-fade" class="contact-form-fade-overlay" style="display: none;"></div>
         </div>
@@ -753,6 +780,13 @@
                     // Add contact form mode class for aggressive fade effect
                     phoneContainer.classList.add('contact-form-mode');
                     
+                    // Show the glow overlay
+                    const glowOverlay = document.getElementById('contact-form-glow');
+                    if (glowOverlay) {
+                        glowOverlay.style.display = 'block';
+                        console.log('Contact form glow overlay shown');
+                    }
+                    
                     // Show the direct fade overlay
                     const fadeOverlay = document.getElementById('contact-form-fade');
                     if (fadeOverlay) {
@@ -805,6 +839,13 @@
                     
                     // Remove contact form mode class
                     phoneContainer.classList.remove('contact-form-mode');
+                    
+                    // Hide the glow overlay
+                    const glowOverlay = document.getElementById('contact-form-glow');
+                    if (glowOverlay) {
+                        glowOverlay.style.display = 'none';
+                        console.log('Contact form glow overlay hidden');
+                    }
                     
                     // Hide the direct fade overlay
                     const fadeOverlay = document.getElementById('contact-form-fade');
