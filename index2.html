@@ -905,6 +905,10 @@
                     phoneContainer.classList.remove('contact-form-mode');
                     console.log('contact-form-mode class removed from phone container');
                     
+                    // Clear the onload event handler to prevent re-applying glow
+                    phoneImg.onload = null;
+                    console.log('Cleared phone image onload event handler');
+                    
                     // Remove glowing effect from default phone
                     phoneImg.classList.remove('contact-form-glow');
                     console.log('contact-form-glow class removed from phone image');
