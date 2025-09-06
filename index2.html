@@ -83,6 +83,13 @@
             width: auto;
         }
         
+        /* Glowing effect for contact form phone only */
+        #phone.contact-form-glow {
+            filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.3)) 
+                    drop-shadow(0 0 40px rgba(255, 255, 255, 0.2))
+                    drop-shadow(0 0 60px rgba(255, 255, 255, 0.1));
+        }
+        
         /* Smooth parallax effect */
         .parallax-smooth {
             will-change: transform;
@@ -643,6 +650,9 @@
                         textContainer.style.display = 'none';
                     }
                     
+                    // Add glowing effect to contact form phone
+                    phoneImg.classList.add('contact-form-glow');
+                    
                     // Change gradient to dark bottom for contact form
                     if (phoneContainer) {
                         const gradientDiv = phoneContainer.querySelector('.phone-gradient');
@@ -661,6 +671,9 @@
                     if (textContainer) {
                         textContainer.style.display = 'block';
                     }
+                    
+                    // Remove glowing effect from default phone
+                    phoneImg.classList.remove('contact-form-glow');
                     
                     // Restore original upper-right spotlight gradient
                     if (phoneContainer) {
