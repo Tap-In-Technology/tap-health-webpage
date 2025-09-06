@@ -222,7 +222,7 @@
     </div>
         
         <!-- Phone image large and centered, fading into background -->
-        <div class="absolute z-20" id="phone-container" style="top: 100vh; left: 50%; transform: translateX(-50%); opacity: 0; transition: none;">
+        <div id="phone-container" style="position: absolute; top: 100vh; left: 50%; transform: translateX(-50%); opacity: 0; transition: none; z-index: 20;">
             <img src="/media/phone.png?v=2" alt="Phone" class="h-[80vh] w-auto" id="phone">
         </div>
         
@@ -542,8 +542,6 @@
                     const scrolled = window.pageYOffset;
                     const phoneContainer = document.getElementById('phone-container');
                     
-                    console.log('Phone debug - scrolled:', scrolled, 'phoneContainer:', phoneContainer, 'opacity:', phoneContainer?.style.opacity, 'top:', phoneContainer?.style.top);
-                    
                     if (phoneContainer && Math.abs(scrolled - lastScrollY) > 1) { // Only update if scroll changed significantly
                         // Smooth phone animation with better easing
                         const fadeStart = 0;     // Start immediately
@@ -612,10 +610,7 @@
         }
 
         window.addEventListener('scroll', updatePhoneOpacity);
-        window.addEventListener('load', () => {
-            console.log('Page loaded - phone container:', document.getElementById('phone-container'));
-            updatePhoneOpacity();
-        });
+        window.addEventListener('load', updatePhoneOpacity);
     </script>
 </body>
 
