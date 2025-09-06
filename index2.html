@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ to <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -160,6 +160,95 @@
                 rgba(0, 0, 0, 1) 100%);
             pointer-events: none;
             z-index: 35; /* Above most content but below footer */
+        }
+        
+        /* Interactive contact form overlay on phone */
+        #contact-form-interactive-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: auto;
+            z-index: 26; /* Above phone image and other overlays */
+            display: none;
+        }
+        
+        /* Form field positioning on phone */
+        .phone-form-field {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            border-radius: 4px;
+            padding: 4px 8px;
+            font-size: 12px;
+            color: #000;
+            width: 120px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .phone-form-field:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+        }
+        
+        /* Position form fields on phone */
+        #phone-name {
+            top: 25%;
+            left: 15%;
+        }
+        
+        #phone-email {
+            top: 35%;
+            left: 15%;
+        }
+        
+        #phone-phone {
+            top: 45%;
+            left: 15%;
+        }
+        
+        #phone-message {
+            top: 55%;
+            left: 15%;
+            width: 120px;
+            height: 40px;
+            resize: none;
+        }
+        
+        /* Phone form buttons */
+        .phone-form-button {
+            position: absolute;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s ease;
+        }
+        
+        #phone-cancel {
+            bottom: 20%;
+            left: 15%;
+            background: #f3f4f6;
+            color: #374151;
+        }
+        
+        #phone-cancel:hover {
+            background: #e5e7eb;
+        }
+        
+        #phone-send {
+            bottom: 20%;
+            left: 50%;
+            background: #3b82f6;
+            color: white;
+        }
+        
+        #phone-send:hover {
+            background: #2563eb;
         }
         
         /* Smooth parallax effect */
@@ -338,6 +427,15 @@
             <div id="contact-form-glow" class="contact-form-glow-overlay" style="display: none;"></div>
             <!-- Direct fade overlay for contact form -->
             <div id="contact-form-fade" class="contact-form-fade-overlay" style="display: none;"></div>
+            <!-- Interactive contact form overlay -->
+            <div id="contact-form-interactive-overlay">
+                <input type="text" id="phone-name" class="phone-form-field" placeholder="Name *" required>
+                <input type="email" id="phone-email" class="phone-form-field" placeholder="Email *" required>
+                <input type="tel" id="phone-phone" class="phone-form-field" placeholder="Phone">
+                <textarea id="phone-message" class="phone-form-field" placeholder="Message *" required></textarea>
+                <button type="button" id="phone-cancel" class="phone-form-button" onclick="goBackToDefault()">Cancel</button>
+                <button type="button" id="phone-send" class="phone-form-button" onclick="submitPhoneForm()">Send</button>
+            </div>
         </div>
         
         <!-- Main heading text with opacity shifts -->
@@ -544,7 +642,7 @@
             document.body.style.overflow = 'auto'; // Restore scrolling
         }
 
-        // Handle form submission
+        // Handle form submission from popup (commented out)
         document.getElementById('contactForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
@@ -563,6 +661,30 @@
             document.getElementById('successPopup').classList.remove('hidden');
             document.body.style.overflow = 'hidden'; // Prevent background scrolling
         });
+        
+        // Handle form submission from phone overlay
+        function submitPhoneForm() {
+            const name = document.getElementById('phone-name').value;
+            const email = document.getElementById('phone-email').value;
+            const phone = document.getElementById('phone-phone').value;
+            const message = document.getElementById('phone-message').value;
+
+            if (!name || !email || !message) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+
+            // Show success popup
+            goBackToDefault(); // Switch back to default phone
+            document.getElementById('successPopup').classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            
+            // Clear the form fields
+            document.getElementById('phone-name').value = '';
+            document.getElementById('phone-email').value = '';
+            document.getElementById('phone-phone').value = '';
+            document.getElementById('phone-message').value = '';
+        }
 
         // Close popup when clicking outside
         document.getElementById('contactPopup').addEventListener('click', function(e) {
@@ -872,6 +994,13 @@
                         console.log('Contact form fade overlay shown');
                     }
                     
+                    // Show the interactive form overlay
+                    const interactiveOverlay = document.getElementById('contact-form-interactive-overlay');
+                    if (interactiveOverlay) {
+                        interactiveOverlay.style.display = 'block';
+                        console.log('Interactive contact form overlay shown');
+                    }
+                    
                     // Enable contact form limited scroll
                     isContactFormMode = true;
                     currentScrollY = 0; // Reset scroll counter
@@ -949,6 +1078,13 @@
                     if (fadeOverlay) {
                         fadeOverlay.style.display = 'none';
                         console.log('Contact form fade overlay hidden');
+                    }
+                    
+                    // Hide the interactive form overlay
+                    const interactiveOverlay = document.getElementById('contact-form-interactive-overlay');
+                    if (interactiveOverlay) {
+                        interactiveOverlay.style.display = 'none';
+                        console.log('Interactive contact form overlay hidden');
                     }
                     
                     // Disable contact form limited scroll
