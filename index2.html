@@ -672,6 +672,14 @@
             // Ensure everything is back to default state
             goBackToDefault();
             
+            // Explicitly reset the button to "Get in Touch"
+            const goBackBtn = document.querySelector('button[onclick="goBackToDefault()"]');
+            if (goBackBtn) {
+                goBackBtn.textContent = 'Get in Touch';
+                goBackBtn.setAttribute('onclick', 'openContactForm()');
+                console.log('Button reset to "Get in Touch" from closeSuccessPopup');
+            }
+            
             // Clear any remaining form fields
             const nameField = document.getElementById('phone-name');
             const emailField = document.getElementById('phone-email');
