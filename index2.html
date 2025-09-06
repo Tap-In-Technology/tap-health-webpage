@@ -90,13 +90,13 @@
                     drop-shadow(0 0 60px rgba(255, 255, 255, 0.1));
         }
         
-        /* Separate glow overlay that can be properly masked */
+        /* Glow overlay - physically limited to top 65% */
         .contact-form-glow-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
+            height: 65%; /* Physically limit to top 65% */
             background: radial-gradient(ellipse at center, 
                 rgba(255, 255, 255, 0.3) 0%, 
                 rgba(255, 255, 255, 0.2) 30%, 
@@ -112,20 +112,6 @@
             -webkit-mask-repeat: no-repeat;
             mask-position: center;
             -webkit-mask-position: center;
-        }
-        
-        /* Mask the glow overlay to fade out after 65% - simplified approach */
-        .phone-container.contact-form-mode .contact-form-glow-overlay {
-            mask: linear-gradient(to bottom, 
-                    black 0%, 
-                    black 65%, 
-                    transparent 65%, 
-                    transparent 100%);
-            -webkit-mask: linear-gradient(to bottom, 
-                            black 0%, 
-                            black 65%, 
-                            transparent 65%, 
-                            transparent 100%);
         }
         
         /* Direct fade overlay for contact form phone */
