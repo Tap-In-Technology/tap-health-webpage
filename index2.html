@@ -584,7 +584,9 @@
                             phoneContainer.style.transform = 'translate(-50%, -50%)';
                         } else if (scrolled >= fadeOutStart) {
                             // Fade out phase
+                            console.log('PHASE: Fade out phase, scrolled:', scrolled, 'fadeOutEnd:', fadeOutEnd);
                             if (scrolled >= fadeOutEnd) {
+                                console.log('Fade out complete - setting opacity to 0');
                                 phoneContainer.style.opacity = '0';
                                 phoneContainer.style.top = '61%';
                                 phoneContainer.style.left = '50%';
@@ -592,6 +594,7 @@
                             } else {
                                 const fadeOutProgress = Math.min((scrolled - fadeOutStart) / (fadeOutEnd - fadeOutStart), 1);
                                 const opacity = 1 - fadeOutProgress;
+                                console.log('Fading out - progress:', fadeOutProgress, 'opacity:', opacity);
                                 
                                 phoneContainer.style.opacity = opacity.toString();
                                 phoneContainer.style.top = '61%';
