@@ -448,38 +448,35 @@
             switchPhoneImage('default');
         }
         
-        // Contact form phone scroll prevention with bounce effect
+        // Contact form phone limited scroll - allow tiny scroll up
         let isContactFormMode = false;
-        let phoneBounceAnimation = null;
+        let currentScrollY = 0;
+        const maxScrollUp = 20; // Maximum pixels allowed to scroll up
         
-        function preventContactFormScroll(e) {
+        function limitContactFormScroll(e) {
             if (!isContactFormMode) return;
             
-            // Prevent default scroll behavior
-            e.preventDefault();
-            
-            // Get scroll direction
+            // Get scroll direction and amount
             const deltaY = e.deltaY || e.detail || e.wheelDelta;
             const isScrollingUp = deltaY < 0;
             
             if (isScrollingUp) {
-                // Clear any existing bounce animation
-                if (phoneBounceAnimation) {
-                    clearTimeout(phoneBounceAnimation);
+                // Check if we've already scrolled up the maximum amount
+                if (currentScrollY >= maxScrollUp) {
+                    e.preventDefault();
+                    return;
                 }
                 
-                const phoneContainer = document.getElementById('phone-container');
-                if (phoneContainer) {
-                    // Move phone slightly up (bounce effect)
-                    phoneContainer.style.transform = 'translate(-50%, calc(-50% - 10px))';
-                    phoneContainer.style.transition = 'transform 0.1s ease-out';
-                    
-                    // Bounce back down after short delay
-                    phoneBounceAnimation = setTimeout(() => {
-                        phoneContainer.style.transform = 'translate(-50%, -50%)';
-                        phoneContainer.style.transition = 'transform 0.2s ease-out';
-                    }, 100);
-                }
+                // Allow tiny scroll up
+                const scrollAmount = Math.min(Math.abs(deltaY), maxScrollUp - currentScrollY);
+                currentScrollY += scrollAmount;
+                
+                // Apply the scroll
+                window.scrollBy(0, -scrollAmount);
+                e.preventDefault();
+            } else {
+                // Allow normal downward scrolling
+                currentScrollY = Math.max(0, currentScrollY - Math.abs(deltaY));
             }
         }
 
@@ -794,9 +791,10 @@
                         console.log('Contact form fade overlay shown');
                     }
                     
-                    // Enable contact form scroll prevention
+                    // Enable contact form limited scroll
                     isContactFormMode = true;
-                    window.addEventListener('wheel', preventContactFormScroll, { passive: false });
+                    currentScrollY = 0; // Reset scroll counter
+                    window.addEventListener('wheel', limitContactFormScroll, { passive: false });
                     
                     // Debug: Check if classes are applied
                     console.log('Contact form mode - phoneContainer classes:', phoneContainer.className);
@@ -854,9 +852,10 @@
                         console.log('Contact form fade overlay hidden');
                     }
                     
-                    // Disable contact form scroll prevention
+                    // Disable contact form limited scroll
                     isContactFormMode = false;
-                    window.removeEventListener('wheel', preventContactFormScroll);
+                    currentScrollY = 0; // Reset scroll counter
+                    window.removeEventListener('wheel', limitContactFormScroll);
                     
                     // Restore original upper-right spotlight gradient
                     if (phoneContainer) {
