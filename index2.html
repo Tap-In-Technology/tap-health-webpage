@@ -83,22 +83,11 @@
             width: auto;
         }
         
-        /* Glow against background - fades out after Cancel button (65%) */
+        /* Glow against background - visible on whole contact phone */
         #phone.contact-form-glow {
             filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.3)) 
                     drop-shadow(0 0 40px rgba(255, 255, 255, 0.2))
                     drop-shadow(0 0 60px rgba(255, 255, 255, 0.1));
-            /* Add mask to fade out after Cancel button */
-            mask: linear-gradient(to bottom, 
-                    black 0%, 
-                    black 65%, 
-                    transparent 65%, 
-                    transparent 100%);
-            -webkit-mask: linear-gradient(to bottom, 
-                            black 0%, 
-                            black 65%, 
-                            transparent 65%, 
-                            transparent 100%);
         }
         
         /* Gleam Animation - covers whole contact phone */
@@ -822,36 +811,8 @@
                         gleamElement.style.display = 'none';
                     }
                     
-                    // Show the glow overlay
-                    const glowOverlay = document.getElementById('contact-form-glow');
-                    if (glowOverlay) {
-                        glowOverlay.style.display = 'block';
-                        console.log('Gleam Animation overlay shown');
-                        
-                        // Debug glow overlay properties
-                        const glowRect = glowOverlay.getBoundingClientRect();
-                        const phoneRect = phoneImg.getBoundingClientRect();
-                        console.log('Gleam Animation dimensions:', {
-                            width: glowRect.width,
-                            height: glowRect.height,
-                            top: glowRect.top,
-                            left: glowRect.left
-                        });
-                        console.log('Phone dimensions:', {
-                            width: phoneRect.width,
-                            height: phoneRect.height,
-                            top: phoneRect.top,
-                            left: phoneRect.left
-                        });
-                        console.log('Gleam Animation covers phone ratio:', {
-                            heightRatio: glowRect.height / phoneRect.height,
-                            topOffset: glowRect.top - phoneRect.top,
-                            bottomOffset: (glowRect.top + glowRect.height) - (phoneRect.top + phoneRect.height)
-                        });
-                        
-                        // Run detailed glow visibility debug
-                        setTimeout(() => debugGlowVisibility(), 100);
-                    }
+                    // Gleam Animation removed - no longer showing overlay
+                    console.log('Gleam Animation disabled - only glow against background active');
                     
                     // Show the direct fade overlay
                     const fadeOverlay = document.getElementById('contact-form-fade');
@@ -914,12 +875,8 @@
                         gleamElement.style.display = '';
                     }
                     
-                    // Hide the glow overlay
-                    const glowOverlay = document.getElementById('contact-form-glow');
-                    if (glowOverlay) {
-                        glowOverlay.style.display = 'none';
-                        console.log('Gleam Animation overlay hidden');
-                    }
+                    // Gleam Animation already disabled - no need to hide
+                    console.log('Gleam Animation remains disabled');
                     
                     // Hide the direct fade overlay
                     const fadeOverlay = document.getElementById('contact-form-fade');
