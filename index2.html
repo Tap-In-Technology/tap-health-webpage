@@ -543,7 +543,7 @@
                     const phoneContainer = document.getElementById('phone-container');
                     
                     
-                    console.log('DEBUG - scrolled:', scrolled, 'phoneContainer exists:', !!phoneContainer);
+                    console.log('DEBUG - scrolled:', scrolled, 'lastScrollY:', lastScrollY, 'diff:', Math.abs(scrolled - lastScrollY), 'phoneContainer exists:', !!phoneContainer);
                     if (phoneContainer) {
                         console.log('Phone current state:', {
                             opacity: phoneContainer.style.opacity,
@@ -552,7 +552,7 @@
                         });
                     }
                     
-                    if (phoneContainer && Math.abs(scrolled - lastScrollY) > 0.1) { // Lower threshold to trigger animation
+                    if (phoneContainer) { // Remove threshold check to force animation
                         // Smooth phone animation with better easing
                         const fadeStart = 0;     // Start immediately
                         const fadeEnd = 200;     // Shorter scroll to see phone sooner
