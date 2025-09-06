@@ -8,27 +8,38 @@
     
     <!-- Mobile/Desktop redirect script -->
     <script>
-        // Redirect based on screen size
-        function isMobile() {
-            return window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-        }
+        // Check for legacy parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const isLegacy = urlParams.get('legacy') === 'true';
         
-        // Redirect immediately if on mobile
-        if (isMobile()) {
-            window.location.href = 'mobile.html';
+        // If legacy=true, don't redirect - show the old index.html content
+        if (isLegacy) {
+            console.log('Legacy mode enabled - showing original index.html');
+            // Remove the redirect script and let the page load normally
+            document.querySelector('script').remove();
         } else {
-            // Redirect to index2.html for desktop
-            window.location.href = 'index2.html';
-        }
-        
-        // Also redirect on window resize
-        window.addEventListener('resize', function() {
+            // Redirect based on screen size
+            function isMobile() {
+                return window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            }
+            
+            // Redirect immediately if on mobile
             if (isMobile()) {
                 window.location.href = 'mobile.html';
             } else {
+                // Redirect to index2.html for desktop
                 window.location.href = 'index2.html';
             }
-        });
+            
+            // Also redirect on window resize
+            window.addEventListener('resize', function() {
+                if (isMobile()) {
+                    window.location.href = 'mobile.html';
+                } else {
+                    window.location.href = 'index2.html';
+                }
+            });
+        }
     </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="icon" href="favicon.ico" />
