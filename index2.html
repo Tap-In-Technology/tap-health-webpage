@@ -396,6 +396,11 @@
             // Switch phone to show contact form
             switchPhoneImage('contactForm');
         }
+        
+        function goBackToDefault() {
+            // Switch phone back to default
+            switchPhoneImage('default');
+        }
 
         function closeContactForm() {
             // COMMENTED OUT: Contact form popup - keeping phone transition only
@@ -675,6 +680,19 @@
                         textContainer.style.display = 'none';
                     }
                     
+                    // Hide the typing animation when showing contact form
+                    const typingContainer = document.querySelector('.typing-container');
+                    if (typingContainer) {
+                        typingContainer.style.display = 'none';
+                    }
+                    
+                    // Change Get in Touch button to Go Back button
+                    const getInTouchBtn = document.querySelector('button[onclick="openContactForm()"]');
+                    if (getInTouchBtn) {
+                        getInTouchBtn.textContent = 'Go Back';
+                        getInTouchBtn.setAttribute('onclick', 'goBackToDefault()');
+                    }
+                    
                     // Add glowing effect to contact form phone
                     phoneImg.classList.add('contact-form-glow');
                     
@@ -698,6 +716,19 @@
                     // Show the white header text for default phone
                     if (textContainer) {
                         textContainer.style.display = 'block';
+                    }
+                    
+                    // Show the typing animation for default phone
+                    const typingContainer = document.querySelector('.typing-container');
+                    if (typingContainer) {
+                        typingContainer.style.display = 'block';
+                    }
+                    
+                    // Change Go Back button back to Get in Touch button
+                    const goBackBtn = document.querySelector('button[onclick="goBackToDefault()"]');
+                    if (goBackBtn) {
+                        goBackBtn.textContent = 'Get in Touch';
+                        goBackBtn.setAttribute('onclick', 'openContactForm()');
                     }
                     
                     // Remove glowing effect from default phone
