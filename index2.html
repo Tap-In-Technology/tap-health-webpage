@@ -630,8 +630,23 @@
         
         function switchPhoneImage(imageType) {
             const phoneImg = document.getElementById('phone');
+            const textContainer = document.getElementById('text-container');
+            
             if (phoneImg && PHONE_IMAGES[imageType]) {
                 phoneImg.src = PHONE_IMAGES[imageType];
+                
+                // Hide/show header text based on phone image
+                if (imageType === 'contactForm') {
+                    // Hide the white header text when showing contact form
+                    if (textContainer) {
+                        textContainer.style.display = 'none';
+                    }
+                } else {
+                    // Show the white header text for default phone
+                    if (textContainer) {
+                        textContainer.style.display = 'block';
+                    }
+                }
             }
         }
         
