@@ -581,6 +581,17 @@
         function goBackToDefault() {
             // Switch phone back to default
             switchPhoneImage('default');
+            
+            // Clear form fields when going back
+            const nameField = document.getElementById('phone-name');
+            const emailField = document.getElementById('phone-email');
+            const phoneField = document.getElementById('phone-phone');
+            const messageField = document.getElementById('phone-message');
+            
+            if (nameField) nameField.value = '';
+            if (emailField) emailField.value = '';
+            if (phoneField) phoneField.value = '';
+            if (messageField) messageField.value = '';
         }
         
         // Contact form phone limited scroll - allow tiny scroll up
@@ -663,6 +674,25 @@
             
             // Switch phone back to default
             switchPhoneImage('default');
+            
+            // Clear form fields
+            const nameField = document.getElementById('phone-name');
+            const emailField = document.getElementById('phone-email');
+            const phoneField = document.getElementById('phone-phone');
+            const messageField = document.getElementById('phone-message');
+            
+            if (nameField) nameField.value = '';
+            if (emailField) emailField.value = '';
+            if (phoneField) phoneField.value = '';
+            if (messageField) messageField.value = '';
+            
+            // Explicitly reset the button to "Get in Touch"
+            const goBackBtn = document.querySelector('button[onclick="goBackToDefault()"]');
+            if (goBackBtn) {
+                goBackBtn.textContent = 'Get in Touch';
+                goBackBtn.setAttribute('onclick', 'openContactForm()');
+                console.log('Button reset to "Get in Touch" from closeContactForm');
+            }
         }
 
         function closeSuccessPopup() {
