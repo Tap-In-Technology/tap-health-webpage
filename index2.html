@@ -359,12 +359,18 @@
         function openContactForm() {
             document.getElementById('contactPopup').classList.remove('hidden');
             document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            
+            // Switch phone to show contact form
+            switchPhoneImage('contactForm');
         }
 
         function closeContactForm() {
             document.getElementById('contactPopup').classList.add('hidden');
             document.body.style.overflow = 'auto'; // Restore scrolling
             document.getElementById('contactForm').reset(); // Clear form
+            
+            // Switch phone back to default
+            switchPhoneImage('default');
         }
 
         function closeSuccessPopup() {
@@ -606,6 +612,20 @@
         
         window.addEventListener('scroll', updatePhoneOpacity);
         window.addEventListener('load', updatePhoneOpacity);
+        
+        // Phone image transition functionality
+        // CONFIGURATION: Easy to update when phone mockup changes
+        const PHONE_IMAGES = {
+            default: '/media/phone.png?v=2',           // Original phone with lightning background
+            contactForm: '/media/contactFormPhone.png'  // Phone showing Tap app form
+        };
+        
+        function switchPhoneImage(imageType) {
+            const phoneImg = document.getElementById('phone');
+            if (phoneImg && PHONE_IMAGES[imageType]) {
+                phoneImg.src = PHONE_IMAGES[imageType];
+            }
+        }
         
         // Menu toggle functionality
         function toggleMenu() {
