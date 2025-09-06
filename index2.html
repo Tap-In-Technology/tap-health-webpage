@@ -224,8 +224,6 @@
         <!-- Phone image large and centered, fading into background -->
         <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 parallax-smooth z-20" id="phone-container" style="top: 120%; left: 50%; transform: translateX(-50%); opacity: 0;">
             <img src="/media/phone.png?v=2" alt="Phone" class="h-[80vh] w-auto" id="phone">
-            <div class="phone-gradient"></div>
-            <div class="phone-gleam"></div>
         </div>
         
         <!-- Main heading text with opacity shifts -->
@@ -599,15 +597,6 @@
                     phoneContainer.style.transform = 'translateX(-50%)';
                 }
                 
-                // Update gradient and gleam opacity to match phone container opacity
-                const gradientElement = phoneContainer.querySelector('.phone-gradient');
-                const gleamElement = phoneContainer.querySelector('.phone-gleam');
-                if (gradientElement) {
-                    gradientElement.style.opacity = phoneContainer.style.opacity;
-                }
-                if (gleamElement) {
-                    gleamElement.style.opacity = phoneContainer.style.opacity;
-                }
                 
                 // Sanity check: ensure phone is 100% opacity when scrolled to very bottom
                 const documentHeight = document.documentElement.scrollHeight;
