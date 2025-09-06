@@ -901,12 +901,12 @@
                         goBackBtn.setAttribute('onclick', 'openContactForm()');
                     }
                     
+                    // Remove contact form mode class FIRST to ensure mask is removed
+                    phoneContainer.classList.remove('contact-form-mode');
+                    
                     // Remove glowing effect from default phone
                     phoneImg.classList.remove('contact-form-glow');
                     console.log('Glow against background removed from phone');
-                    
-                    // Remove contact form mode class
-                    phoneContainer.classList.remove('contact-form-mode');
                     
                     // Restore gleam element visibility
                     const gleamElement = phoneContainer.querySelector('.phone-gleam');
