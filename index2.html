@@ -83,11 +83,42 @@
             width: auto;
         }
         
-        /* Glow against background - visible on whole contact phone */
-        #phone.contact-form-glow {
-            filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.3)) 
-                    drop-shadow(0 0 40px rgba(255, 255, 255, 0.2))
-                    drop-shadow(0 0 60px rgba(255, 255, 255, 0.1));
+        /* Glow against background - separate overlay that can be masked */
+        .contact-form-glow-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, 
+                rgba(255, 255, 255, 0.3) 0%, 
+                rgba(255, 255, 255, 0.2) 30%, 
+                rgba(255, 255, 255, 0.1) 60%, 
+                transparent 100%);
+            pointer-events: none;
+            z-index: 23;
+            mask: url('/media/contactFormPhone.png');
+            -webkit-mask: url('/media/contactFormPhone.png');
+            mask-size: contain;
+            -webkit-mask-size: contain;
+            mask-repeat: no-repeat;
+            -webkit-mask-repeat: no-repeat;
+            mask-position: center;
+            -webkit-mask-position: center;
+        }
+        
+        /* Mask the glow to fade out after Cancel button (65%) */
+        .phone-container.contact-form-mode .contact-form-glow-background {
+            mask: linear-gradient(to bottom, 
+                    black 0%, 
+                    black 65%, 
+                    transparent 65%, 
+                    transparent 100%);
+            -webkit-mask: linear-gradient(to bottom, 
+                            black 0%, 
+                            black 65%, 
+                            transparent 65%, 
+                            transparent 100%);
         }
         
         /* Gleam Animation - covers whole contact phone */
@@ -313,6 +344,8 @@
             <div class="phone-gleam"></div>
             <!-- Separate glow overlay for contact form -->
             <div id="contact-form-glow" class="contact-form-glow-overlay" style="display: none;"></div>
+            <!-- Glow against background overlay -->
+            <div id="contact-form-glow-background" class="contact-form-glow-background" style="display: none;"></div>
             <!-- Direct fade overlay for contact form -->
             <div id="contact-form-fade" class="contact-form-fade-overlay" style="display: none;"></div>
         </div>
@@ -809,8 +842,12 @@
                         getInTouchBtn.setAttribute('onclick', 'goBackToDefault()');
                     }
                     
-                    // Add glowing effect to contact form phone
-                    phoneImg.classList.add('contact-form-glow');
+                    // Show glow against background overlay
+                    const glowBackground = document.getElementById('contact-form-glow-background');
+                    if (glowBackground) {
+                        glowBackground.style.display = 'block';
+                        console.log('Glow against background overlay shown');
+                    }
                     
                     // Add contact form mode class for aggressive fade effect
                     phoneContainer.classList.add('contact-form-mode');
@@ -873,8 +910,12 @@
                         goBackBtn.setAttribute('onclick', 'openContactForm()');
                     }
                     
-                    // Remove glowing effect from default phone
-                    phoneImg.classList.remove('contact-form-glow');
+                    // Hide glow against background overlay
+                    const glowBackground = document.getElementById('contact-form-glow-background');
+                    if (glowBackground) {
+                        glowBackground.style.display = 'none';
+                        console.log('Glow against background overlay hidden');
+                    }
                     
                     // Remove contact form mode class
                     phoneContainer.classList.remove('contact-form-mode');
