@@ -357,17 +357,19 @@
     <script>
         // Contact form functionality
         function openContactForm() {
-            document.getElementById('contactPopup').classList.remove('hidden');
-            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            // COMMENTED OUT: Contact form popup - keeping phone transition only
+            // document.getElementById('contactPopup').classList.remove('hidden');
+            // document.body.style.overflow = 'hidden'; // Prevent background scrolling
             
             // Switch phone to show contact form
             switchPhoneImage('contactForm');
         }
 
         function closeContactForm() {
-            document.getElementById('contactPopup').classList.add('hidden');
-            document.body.style.overflow = 'auto'; // Restore scrolling
-            document.getElementById('contactForm').reset(); // Clear form
+            // COMMENTED OUT: Contact form popup - keeping phone transition only
+            // document.getElementById('contactPopup').classList.add('hidden');
+            // document.body.style.overflow = 'auto'; // Restore scrolling
+            // document.getElementById('contactForm').reset(); // Clear form
             
             // Switch phone back to default
             switchPhoneImage('default');
@@ -568,7 +570,13 @@
         window.addEventListener('scroll', updateTextOpacity);
         window.addEventListener('load', updateTextOpacity);
 
-        // Phone fade in on scroll
+        // ========================================
+        // PHONE SCROLL ANIMATION - DO NOT MODIFY
+        // ========================================
+        // This section handles the phone fade-in and position animation on scroll.
+        // It's working perfectly and should not be changed unless absolutely necessary.
+        // The phone starts invisible at 80% and smoothly animates to 67.5% as user scrolls.
+        
         let ticking = false;
         let lastScrollY = 0;
         
@@ -582,24 +590,24 @@
                         const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
                         const scrollProgress = Math.min(scrolled / maxScroll, 1); // 0 to 1
                         
-                        console.log('Continuous animation - scrolled:', scrolled, 'maxScroll:', maxScroll, 'progress:', scrollProgress);
-                        
-                        // Smooth easing function
+                        // Smooth easing function - DO NOT CHANGE
                         function easeInOutCubic(t) {
                             return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
                         }
                         
                         const easedProgress = easeInOutCubic(scrollProgress);
                         
-                        // Opacity: 0 at top, 1 at bottom
+                        // Opacity: 0 at top, 1 at bottom - WORKING PERFECTLY
                         const opacity = easedProgress;
                         
                         // Position: 80% at top (just off-screen), lightning-aligned position at bottom
+                        // These values are fine-tuned and working - DO NOT CHANGE
                         const startTop = 80;  // 80% (just off-screen, visible immediately)
-                        const endTop = 67.5;  // 67.5% final position
+                        const endTop = 67.5;  // 67.5% final position - PERFECTLY ALIGNED
                         const currentTop = startTop + (endTop - startTop) * easedProgress;
                         
                         
+                        // Apply the animation - DO NOT MODIFY
                         phoneContainer.style.opacity = opacity.toString();
                         phoneContainer.style.top = currentTop + '%';
                         phoneContainer.style.left = '50%';
