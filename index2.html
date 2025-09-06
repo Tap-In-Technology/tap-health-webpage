@@ -726,19 +726,29 @@
         function updateTextOpacity() {
             const scrolled = window.pageYOffset;
             
-            // Use the same threshold for both directions (272px based on your logs)
-            const transitionThreshold = 272;
+            // Use hysteresis to prevent rapid switching
+            // Different thresholds for up vs down to create a "dead zone"
+            const downThreshold = 280;  // Scroll down past this to show Text 2
+            const upThreshold = 260;    // Scroll up past this to show Text 1
             
-            // Determine which text should be visible based on scroll position
-            let activeTextIndex = scrolled >= transitionThreshold ? 1 : 0;
+            // Determine which text should be visible based on scroll position and current state
+            let activeTextIndex;
+            if (currentTextIndex === 0) {
+                // Currently showing Text 1, only switch to Text 2 if scrolling down past downThreshold
+                activeTextIndex = scrolled >= downThreshold ? 1 : 0;
+            } else {
+                // Currently showing Text 2, only switch to Text 1 if scrolling up past upThreshold
+                activeTextIndex = scrolled <= upThreshold ? 0 : 1;
+            }
             
             // Log header transitions for verification
             if (activeTextIndex !== currentTextIndex) {
                 const fromText = currentTextIndex === 0 ? "Text 1 (Your data...)" : "Text 2 (One Tap...)";
                 const toText = activeTextIndex === 0 ? "Text 1 (Your data...)" : "Text 2 (One Tap...)";
                 const direction = activeTextIndex > currentTextIndex ? "DOWN" : "UP";
+                const threshold = activeTextIndex === 1 ? downThreshold : upThreshold;
                 
-                console.log(`🔄 HEADER TRANSITION: ${fromText} → ${toText} at scroll position ${scrolled}px (scrolling ${direction})`);
+                console.log(`🔄 HEADER TRANSITION: ${fromText} → ${toText} at scroll position ${scrolled}px (scrolling ${direction}, threshold: ${threshold}px)`);
                 
                 currentTextIndex = activeTextIndex;
             }
