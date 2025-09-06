@@ -550,24 +550,20 @@
             }
             
             if (phoneContainer) {
-                        // Continuous phone animation with parallax effect
+                        // Continuous phone animation based on scroll percentage
                         const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
                         const scrollProgress = Math.min(scrolled / maxScroll, 1); // 0 to 1
                         
-                        // Parallax effect: phone moves slower than scroll
-                        const parallaxRate = 0.5; // 0.5 = half speed, 0.3 = slower, 0.7 = faster
-                        const parallaxProgress = Math.min(scrollProgress * parallaxRate, 1);
-                        
-                        console.log('Continuous animation - scrolled:', scrolled, 'maxScroll:', maxScroll, 'progress:', scrollProgress, 'parallax:', parallaxProgress);
+                        console.log('Continuous animation - scrolled:', scrolled, 'maxScroll:', maxScroll, 'progress:', scrollProgress);
                         
                         // Smooth easing function
                         function easeInOutCubic(t) {
                             return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
                         }
                         
-                        const easedProgress = easeInOutCubic(parallaxProgress);
+                        const easedProgress = easeInOutCubic(scrollProgress);
                         
-                        // Opacity: 0 at top, 1 at bottom (based on parallax progress)
+                        // Opacity: 0 at top, 1 at bottom
                         const opacity = easedProgress;
                         
                         // Position: 80% at top (just off-screen), lightning-aligned position at bottom
