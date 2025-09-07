@@ -1631,7 +1631,8 @@
                     }
                     
                     // Change Get in Touch button to Go Back button
-                    const getInTouchBtn = document.querySelector('button[onclick="openContactForm()"]');
+                    // Find the main button (not the phone form buttons) by excluding phone-form-button class
+                    const getInTouchBtn = document.querySelector('button[onclick="openContactForm()"]:not(.phone-form-button)');
                     if (getInTouchBtn) {
                         getInTouchBtn.textContent = 'Go Back';
                         getInTouchBtn.setAttribute('onclick', 'goBackToDefault()');
@@ -1659,10 +1660,24 @@
                     }
                     
                     // Change Go Back button back to Get in Touch button
-                    const goBackBtn = document.querySelector('button[onclick="goBackToDefault()"]');
+                    // Find the main button (not the phone form buttons) by excluding phone-form-button class
+                    let goBackBtn = document.querySelector('button[onclick="goBackToDefault()"]:not(.phone-form-button)');
+                    if (!goBackBtn) {
+                        // Fallback: find button by text content and exclude phone form buttons
+                        const buttons = document.querySelectorAll('button:not(.phone-form-button)');
+                        for (let btn of buttons) {
+                            if (btn.textContent.trim() === 'Go Back') {
+                                goBackBtn = btn;
+                                break;
+                            }
+                        }
+                    }
                     if (goBackBtn) {
                         goBackBtn.textContent = 'Get in Touch';
                         goBackBtn.setAttribute('onclick', 'openContactForm()');
+                        console.log('Button reset to "Get in Touch" from switchPhoneImage(default)');
+                    } else {
+                        console.warn('Could not find Go Back button to reset in switchPhoneImage(default)');
                     }
                     
                     // Remove glow
@@ -1672,12 +1687,35 @@
             }
         }
 
-        function openContactForm() {
+        function enteringContactForm() {
+            // Switch phone to show contact form
             switchPhoneImage('contactForm');
         }
 
-        function goBackToDefault() {
+        function exitingContactForm() {
+            // Switch phone back to default - this will handle button reset
             switchPhoneImage('default');
+            
+            // Clear all form fields when exiting
+            const nameField = document.getElementById('phone-name');
+            const emailField = document.getElementById('phone-email');
+            const phoneField = document.getElementById('phone-phone');
+            const messageField = document.getElementById('phone-message');
+            
+            if (nameField) nameField.value = '';
+            if (emailField) emailField.value = '';
+            if (phoneField) phoneField.value = '';
+            if (messageField) messageField.value = '';
+        }
+
+        function openContactForm() {
+            // Use the new simplified function
+            enteringContactForm();
+        }
+        
+        function goBackToDefault() {
+            // Use the new simplified function
+            exitingContactForm();
         }
 
         function approveForm() {
@@ -1697,34 +1735,23 @@
             console.log('Phone form submitted:', { name, phone, email, message });
             
             // Show success popup
+            exitingContactForm(); // Switch back to default phone
             const successPopup = document.getElementById('successPopup');
             if (successPopup) {
                 successPopup.classList.remove('hidden');
             }
-            
-            // Hide the interactive overlay
-            document.getElementById('contact-form-interactive-overlay').style.display = 'none';
         }
 
         function closeSuccessPopup() {
             const successPopup = document.getElementById('successPopup');
-            const typingContainer = document.querySelector('.typing-container');
             
             if (successPopup) {
                 successPopup.classList.add('hidden');
                 console.log('Success popup closed');
             }
             
-            if (typingContainer) {
-                typingContainer.style.display = 'block';
-            }
-            
-            // Change Go Back button back to Get in Touch button
-            const goBackBtn = document.querySelector('button[onclick="closeContactForm()"]');
-            if (goBackBtn) {
-                goBackBtn.textContent = 'Get in Touch';
-                goBackBtn.setAttribute('onclick', 'openContactForm()');
-            }
+            // Use the new simplified function
+            exitingContactForm();
         }
 
 
