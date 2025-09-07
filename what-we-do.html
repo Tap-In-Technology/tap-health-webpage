@@ -1892,6 +1892,15 @@
                 const windowHeight = window.innerHeight;
                 const scrollY = window.scrollY;
                 
+                // Calculate scroll progress (0 = top of page, 1 = bottom of page)
+                const documentHeight = document.documentElement.scrollHeight;
+                const scrollProgress = scrollY / (documentHeight - windowHeight);
+                
+                // Debug scroll progress
+                if (scrollProgress > 0.9) {
+                    console.log('Scroll progress:', (scrollProgress * 100).toFixed(1) + '%', 'ScrollY:', scrollY, 'DocHeight:', documentHeight, 'WindowHeight:', windowHeight);
+                }
+                
                 // Debug phone and lightning background positioning when fully transitioned
                 if (scrollProgress >= 0.99) { // When phone is fully transitioned
                     const phoneContainer = document.getElementById('landing-phone-container');
@@ -1932,15 +1941,6 @@
                     lightningBg.style.transform = `translateY(${yPos}px)`;
                 } else if (lightningBg) {
                     lightningBg.style.transform = 'translateY(0px)';
-                }
-                
-                // Calculate scroll progress (0 = top of page, 1 = bottom of page)
-                const documentHeight = document.documentElement.scrollHeight;
-                const scrollProgress = scrollY / (documentHeight - windowHeight);
-                
-                // Debug scroll progress
-                if (scrollProgress > 0.9) {
-                    console.log('Scroll progress:', (scrollProgress * 100).toFixed(1) + '%', 'ScrollY:', scrollY, 'DocHeight:', documentHeight, 'WindowHeight:', windowHeight);
                 }
                 
                 // Start phone transition at 96% scroll progress
