@@ -167,7 +167,7 @@
             left: -100%;
             width: 200%;
             height: 200%;
-            background: linear-gradient(135deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+            background: linear-gradient(135deg, transparent, rgba(255, 255, 255, 0.4), transparent);
             animation: gleam 4s ease-in-out infinite;
         }
         
@@ -1946,7 +1946,18 @@
                     console.log('Gleam element found:', {
                         display: window.getComputedStyle(gleamElement).display,
                         opacity: window.getComputedStyle(gleamElement).opacity,
-                        zIndex: window.getComputedStyle(gleamElement).zIndex
+                        zIndex: window.getComputedStyle(gleamElement).zIndex,
+                        position: window.getComputedStyle(gleamElement).position,
+                        width: window.getComputedStyle(gleamElement).width,
+                        height: window.getComputedStyle(gleamElement).height
+                    });
+                    
+                    // Check if the ::before pseudo-element is working
+                    const beforeElement = window.getComputedStyle(gleamElement, '::before');
+                    console.log('Gleam ::before element:', {
+                        content: beforeElement.content,
+                        display: beforeElement.display,
+                        animation: beforeElement.animation
                     });
                 } else {
                     console.log('Gleam element NOT found');
