@@ -1603,9 +1603,20 @@
         document.addEventListener('DOMContentLoaded', function() {
             setTimeout(typeText, 1000); // Start after 1 second
             
+            // Debug: Check if header element exists
+            const headerElement = document.getElementById('landing-text-container');
+            console.log('Header element found:', headerElement);
+            if (headerElement) {
+                console.log('Header element styles:', window.getComputedStyle(headerElement));
+                console.log('Header element position:', headerElement.getBoundingClientRect());
+            }
+            
             // Phone fade-in on scroll
             const phoneContainer = document.getElementById('landing-phone-container');
             const landingSection = document.querySelector('.landing-page-section');
+            
+            console.log('Phone container found:', phoneContainer);
+            console.log('Landing section found:', landingSection);
             
             function handleScroll() {
                 if (!phoneContainer || !landingSection) return;
@@ -1613,11 +1624,16 @@
                 const rect = landingSection.getBoundingClientRect();
                 const windowHeight = window.innerHeight;
                 
+                console.log('Landing section rect:', rect);
+                console.log('Window height:', windowHeight);
+                
                 // Fade in when landing section is 50% visible
                 if (rect.top < windowHeight * 0.5 && rect.bottom > 0) {
                     phoneContainer.style.opacity = '1';
+                    console.log('Phone faded in');
                 } else {
                     phoneContainer.style.opacity = '0';
+                    console.log('Phone faded out');
                 }
             }
             
