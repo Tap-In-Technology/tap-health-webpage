@@ -640,17 +640,32 @@
         /* Spotlight section */
         .spotlight-section {
             margin: 200px 0;
-            text-align: center;
             position: relative;
+            overflow: hidden;
         }
-        
+
         .spotlight-content {
-            max-width: 800px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
             position: relative;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
         }
-        
+
+        .spotlight-left {
+            position: relative;
+            z-index: 2;
+        }
+
+        .spotlight-right {
+            position: relative;
+            z-index: 2;
+            text-align: right;
+        }
+
         .spotlight-title {
             font-size: 4rem;
             font-weight: 800;
@@ -661,81 +676,51 @@
             position: relative;
             z-index: 2;
         }
-        
+
         .spotlight-title::before {
             content: '';
             position: absolute;
-            top: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 120%;
-            height: calc(100% + 40px);
-            background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+            top: -30px;
+            right: -20px;
+            width: 140%;
+            height: calc(100% + 60px);
+            background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.25) 0%, rgba(0, 255, 255, 0.15) 30%, transparent 70%);
             z-index: -1;
-            border-radius: 20px;
+            border-radius: 30px;
+            animation: spotlightPulse 3s ease-in-out infinite;
         }
 
-        /* Random spotlights throughout the section */
-        .spotlight-section::before {
-            content: '';
-            position: absolute;
-            top: 20%;
-            left: 15%;
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(circle, rgba(0, 255, 255, 0.1) 0%, transparent 70%);
-            border-radius: 50%;
-            z-index: 0;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .spotlight-section::after {
-            content: '';
-            position: absolute;
-            top: 60%;
-            right: 20%;
-            width: 150px;
-            height: 150px;
-            background: radial-gradient(circle, rgba(138, 43, 226, 0.08) 0%, transparent 70%);
-            border-radius: 50%;
-            z-index: 0;
-            animation: float 8s ease-in-out infinite reverse;
-        }
-
-        .spotlight-content::before {
-            content: '';
-            position: absolute;
-            top: 40%;
-            left: 10%;
-            width: 100px;
-            height: 100px;
-            background: radial-gradient(circle, rgba(255, 0, 255, 0.06) 0%, transparent 70%);
-            border-radius: 50%;
-            z-index: 0;
-            animation: float 7s ease-in-out infinite;
-        }
-
-        .spotlight-content::after {
-            content: '';
-            position: absolute;
-            top: 70%;
-            right: 15%;
-            width: 120px;
-            height: 120px;
-            background: radial-gradient(circle, rgba(0, 255, 0, 0.05) 0%, transparent 70%);
-            border-radius: 50%;
-            z-index: 0;
-            animation: float 9s ease-in-out infinite reverse;
-        }
-
-        @keyframes float {
+        @keyframes spotlightPulse {
             0%, 100% {
-                transform: translateY(0px) scale(1);
-                opacity: 0.6;
+                opacity: 0.8;
+                transform: scale(1);
             }
             50% {
-                transform: translateY(-20px) scale(1.1);
-                opacity: 0.8;
+                opacity: 1;
+                transform: scale(1.05);
+            }
+        }
+
+        .spotlight-description {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            font-family: 'Playfair Display', serif;
+        }
+
+        @media (max-width: 768px) {
+            .spotlight-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+            
+            .spotlight-right {
+                text-align: center;
+            }
+            
+            .spotlight-title {
+                font-size: 3rem;
             }
         }
 
@@ -774,7 +759,6 @@
         .export-formats-track {
             display: flex;
             gap: 60px;
-            animation: scrollExportFormats 30s linear infinite;
             width: calc(100% * 3);
         }
 
@@ -829,6 +813,11 @@
 
         .export-formats-track:hover {
             animation-play-state: paused;
+        }
+
+        /* Ensure animation is always running */
+        .export-formats-track {
+            animation: scrollExportFormats 30s linear infinite;
         }
         
         .spotlight-description {
@@ -1034,13 +1023,17 @@
                 <!-- 3. Spotlight Section -->
                 <section class="spotlight-section">
                     <div class="spotlight-content">
-                        <h2 class="spotlight-title">
-                            The era of one-size-fits-all<br>
-                            identity verification is over
-                        </h2>
-                        <p class="spotlight-description">
-                            Tap revolutionizes how businesses handle identity verification by providing instant, secure, and personalized solutions that adapt to your specific industry needs. No more generic forms or lengthy verification processes.
-                        </p>
+                        <div class="spotlight-left">
+                            <p class="spotlight-description">
+                                Traditional identity verification systems force businesses into rigid, one-size-fits-all solutions that don't adapt to their unique needs. These outdated approaches create friction, increase costs, and frustrate both businesses and their customers. The result? Lost opportunities, abandoned processes, and a competitive disadvantage in today's fast-paced digital world.
+                            </p>
+                        </div>
+                        <div class="spotlight-right">
+                            <h2 class="spotlight-title">
+                                The era of one-size-fits-all<br>
+                                identity verification is over
+                            </h2>
+                        </div>
                     </div>
                 </section>
 
