@@ -1839,21 +1839,6 @@
                 // Debug: Check if header element exists
                 const headerElement = document.getElementById('landing-text-container');
                 const phoneHeaderElement = document.querySelector('.phone-header');
-                console.log('Main header element found:', headerElement);
-                console.log('Phone header element found:', phoneHeaderElement);
-                
-                if (headerElement) {
-                    console.log('Main header element styles:', window.getComputedStyle(headerElement));
-                    console.log('Main header element position:', headerElement.getBoundingClientRect());
-                }
-                
-                if (phoneHeaderElement) {
-                    console.log('Phone header element styles:', window.getComputedStyle(phoneHeaderElement));
-                    console.log('Phone header element position:', phoneHeaderElement.getBoundingClientRect());
-                    console.log('Phone header parent position:', phoneHeaderElement.parentElement.getBoundingClientRect());
-                    console.log('Phone header transform:', phoneHeaderElement.style.transform);
-                    console.log('Phone header top/left:', phoneHeaderElement.style.top, phoneHeaderElement.style.left);
-                }
             
             // Phone fade-in on scroll
             const phoneContainer = document.getElementById('landing-phone-container');
@@ -1869,20 +1854,35 @@
                 const windowHeight = window.innerHeight;
                 const scrollY = window.scrollY;
                 
-                console.log('Landing section rect:', rect);
-                console.log('Window height:', windowHeight);
-                console.log('Scroll Y:', scrollY);
-                
-                // Debug phone header positioning during scroll
-                const phoneHeaderElement = document.querySelector('.phone-header');
-                if (phoneHeaderElement) {
-                    console.log('Phone header position during scroll:', phoneHeaderElement.getBoundingClientRect());
-                    console.log('Phone header computed styles during scroll:', {
-                        position: window.getComputedStyle(phoneHeaderElement).position,
-                        top: window.getComputedStyle(phoneHeaderElement).top,
-                        left: window.getComputedStyle(phoneHeaderElement).left,
-                        transform: window.getComputedStyle(phoneHeaderElement).transform
-                    });
+                // Debug phone and lightning background positioning when fully transitioned
+                if (scrollProgress >= 0.99) { // When phone is fully transitioned
+                    const phoneContainer = document.getElementById('landing-phone-container');
+                    const lightningSection = document.querySelector('.landing-page-section');
+                    const phoneHeaderElement = document.querySelector('.phone-header');
+                    
+                    if (phoneContainer && lightningSection && phoneHeaderElement) {
+                        const phoneRect = phoneContainer.getBoundingClientRect();
+                        const lightningRect = lightningSection.getBoundingClientRect();
+                        const headerRect = phoneHeaderElement.getBoundingClientRect();
+                        
+                        console.log('=== PHONE FULLY TRANSITIONED DEBUG ===');
+                        console.log('Phone container center:', {
+                            x: phoneRect.left + phoneRect.width / 2,
+                            y: phoneRect.top + phoneRect.height / 2
+                        });
+                        console.log('Lightning section center:', {
+                            x: lightningRect.left + lightningRect.width / 2,
+                            y: lightningRect.top + lightningRect.height / 2
+                        });
+                        console.log('Phone header center:', {
+                            x: headerRect.left + headerRect.width / 2,
+                            y: headerRect.top + headerRect.height / 2
+                        });
+                        console.log('Phone container rect:', phoneRect);
+                        console.log('Lightning section rect:', lightningRect);
+                        console.log('Phone header rect:', headerRect);
+                        console.log('=====================================');
+                    }
                 }
                 
                 // Parallax effect for lightning background (only when section is in view)
@@ -1916,7 +1916,10 @@
                     const currentY = startY + (endY - startY) * transitionProgress;
                     phoneContainer.style.transform = `translate(-50%, 0%) translateY(${currentY}vh)`;
                     phoneContainer.style.top = '100%'; // Always stay at bottom
-                    console.log(`Phone transition progress: ${(transitionProgress * 100).toFixed(1)}%`);
+                    // Only log when fully transitioned to avoid spam
+                    if (transitionProgress >= 0.99) {
+                        console.log(`Phone transition progress: ${(transitionProgress * 100).toFixed(1)}% - FULLY TRANSITIONED`);
+                    }
                 } else {
                     phoneContainer.style.opacity = '0';
                     phoneContainer.style.transform = 'translate(-50%, 0%) translateY(100px)';
