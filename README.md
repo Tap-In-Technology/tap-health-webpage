@@ -4,8 +4,9 @@
 The Tap Health Webpage is a React application designed to provide information about the Tap Health software, focusing on the future of personal data sharing. This project utilizes Tailwind CSS for styling, ensuring a responsive and modern user interface.
 
 ## Live URLs
-- **Main Site**: https://tap-technology.com (redirects to modern desktop/mobile versions)
-- **Modern Desktop**: https://tap-technology.com/index2.html
+- **Main Site (New Homepage)**: https://tap-technology.com (redirects to modern desktop/mobile versions)
+- **Modern Desktop**: https://tap-technology.com/index.html (new homepage - What We Do page)
+- **Legacy Desktop**: https://tap-technology.com/legacy-2.html (previous homepage)
 - **Mobile Version**: https://tap-technology.com/mobile.html
 - **Legacy Landing Page**: https://tap-technology.com/legacy-landing.html
 - **Legacy Mode (Original)**: https://tap-technology.com/index.html?legacy=true
