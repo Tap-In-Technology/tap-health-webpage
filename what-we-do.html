@@ -1996,7 +1996,7 @@
                     phoneContainer.style.opacity = transitionProgress;
                     // Start from bottom (top: 100%, translateY: 100px) and move to final position
                     const startY = 100; // Starting position from bottom
-                    const endY = 43.5; // Ending position at the correct height
+                    const endY = 25; // Ending position slightly higher than before
                     const currentY = startY + (endY - startY) * transitionProgress;
                     phoneContainer.style.transform = `translate(-50%, 0%) translateY(${currentY}vh)`;
                     phoneContainer.style.top = '100%'; // Always stay at bottom
