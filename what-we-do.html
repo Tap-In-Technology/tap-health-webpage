@@ -403,6 +403,122 @@
             font-size: 2rem;
             margin-bottom: 20px;
         }
+        
+        /* FAQ Section */
+        .faq-section {
+            margin: 80px 0;
+        }
+        
+        .faq-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+        
+        .faq-header {
+            padding-right: 40px;
+        }
+        
+        .faq-title {
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 0.9;
+            color: white;
+            margin-bottom: 30px;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        .faq-subtitle {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 10px;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        .faq-cta {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        .faq-cta:hover {
+            color: #00ffff;
+        }
+        
+        .faq-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .faq-item {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 25px 0;
+        }
+        
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+        
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        .faq-question:hover {
+            color: #00ffff;
+        }
+        
+        .faq-chevron {
+            width: 16px;
+            height: 16px;
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-item.active .faq-chevron {
+            transform: rotate(180deg);
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-top: 15px;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+        }
+        
+        @media (max-width: 768px) {
+            .faq-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .faq-title {
+                font-size: 3rem;
+            }
+            
+            .faq-header {
+                padding-right: 0;
+            }
+        }
     </style>
 </head>
 
@@ -702,6 +818,84 @@
                     </div>
                 </section>
                 
+                <!-- FAQ Section -->
+                <section class="faq-section">
+                    <div class="max-w-7xl mx-auto">
+                        <div class="faq-container">
+                            <div class="faq-header">
+                                <h2 class="faq-title">
+                                    Frequently<br>
+                                    asked questions
+                                </h2>
+                                <p class="faq-subtitle">Don't see the answer you're looking for?</p>
+                                <a href="#" class="faq-cta">Get in touch.</a>
+                            </div>
+                            
+                            <div class="faq-list">
+                                <div class="faq-item" onclick="toggleFAQ(this)">
+                                    <div class="faq-question">
+                                        <span>What is Tap?</span>
+                                        <svg class="faq-chevron" fill="currentColor" viewBox="0 0 16 16">
+                                            <path d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                                        </svg>
+                                    </div>
+                                    <div class="faq-answer">
+                                        Tap is a revolutionary identity verification platform that transforms complex sign-up and sign-in processes into a single, secure tap. We eliminate the need for multiple forms, passwords, and verification steps, making digital interactions instant and seamless.
+                                    </div>
+                                </div>
+                                
+                                <div class="faq-item" onclick="toggleFAQ(this)">
+                                    <div class="faq-question">
+                                        <span>How secure is Tap?</span>
+                                        <svg class="faq-chevron" fill="currentColor" viewBox="0 0 16 16">
+                                            <path d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                                        </svg>
+                                    </div>
+                                    <div class="faq-answer">
+                                        Tap uses enterprise-grade encryption and follows strict security protocols. We're SOC 2 compliant and work with healthcare, financial, and government organizations that require the highest security standards. Your data is protected with bank-level security.
+                                    </div>
+                                </div>
+                                
+                                <div class="faq-item" onclick="toggleFAQ(this)">
+                                    <div class="faq-question">
+                                        <span>How much faster is Tap compared to traditional forms?</span>
+                                        <svg class="faq-chevron" fill="currentColor" viewBox="0 0 16 16">
+                                            <path d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                                        </svg>
+                                    </div>
+                                    <div class="faq-answer">
+                                        Tap reduces form completion time from an average of 5-10 minutes to under 30 seconds. Our one-tap verification eliminates the need to fill out multiple fields, verify email addresses, create passwords, or wait for confirmation codes.
+                                    </div>
+                                </div>
+                                
+                                <div class="faq-item" onclick="toggleFAQ(this)">
+                                    <div class="faq-question">
+                                        <span>What industries can benefit from Tap?</span>
+                                        <svg class="faq-chevron" fill="currentColor" viewBox="0 0 16 16">
+                                            <path d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                                        </svg>
+                                    </div>
+                                    <div class="faq-answer">
+                                        Tap is designed for any industry that requires identity verification and form completion. This includes healthcare providers, financial services, e-commerce platforms, travel and hospitality, government services, and educational institutions.
+                                    </div>
+                                </div>
+                                
+                                <div class="faq-item" onclick="toggleFAQ(this)">
+                                    <div class="faq-question">
+                                        <span>How do I get started with Tap?</span>
+                                        <svg class="faq-chevron" fill="currentColor" viewBox="0 0 16 16">
+                                            <path d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                                        </svg>
+                                    </div>
+                                    <div class="faq-answer">
+                                        Getting started is simple. Contact our team to discuss your specific needs and requirements. We'll work with you to integrate Tap into your existing systems and provide comprehensive training and support throughout the implementation process.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
                 <!-- CTA Section -->
                 <section class="text-center mb-32">
                     <div class="max-w-4xl mx-auto">
@@ -780,6 +974,21 @@
                     left: scrollAmount,
                     behavior: 'smooth'
                 });
+            }
+        }
+        
+        // FAQ toggle functionality
+        function toggleFAQ(item) {
+            const isActive = item.classList.contains('active');
+            
+            // Close all FAQ items
+            document.querySelectorAll('.faq-item').forEach(faqItem => {
+                faqItem.classList.remove('active');
+            });
+            
+            // Open clicked item if it wasn't already active
+            if (!isActive) {
+                item.classList.add('active');
             }
         }
     </script>
