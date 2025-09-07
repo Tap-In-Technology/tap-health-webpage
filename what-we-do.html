@@ -30,99 +30,134 @@
             scroll-behavior: smooth;
         }
         
-        /* Professional dark background */
-        .professional-bg {
-            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 50%, #0f0f0f 100%);
+        /* High-tech SaaS background */
+        .saas-bg {
+            background: #000000;
             min-height: 100vh;
             position: relative;
         }
         
-        /* Subtle pattern overlay */
-        .professional-bg::before {
+        /* Subtle grid pattern */
+        .saas-bg::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.05) 0%, transparent 50%);
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 50px 50px;
             pointer-events: none;
             z-index: 1;
+        }
+        
+        /* Subtle gradient overlay */
+        .saas-bg::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.01) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 2;
         }
         
         /* Content overlay */
         .content-overlay {
             position: relative;
-            z-index: 2;
+            z-index: 3;
         }
         
-        /* Typing animation */
-        .typing-text {
-            font-family: 'Arial', sans-serif;
-            font-weight: 900;
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        /* High-tech typography */
+        .saas-title {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: -0.02em;
         }
         
-        /* Cursor animation */
-        .blinking-cursor {
-            animation: blink 1s step-end infinite;
+        .saas-subtitle {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-weight: 400;
+            color: #a0a0a0;
+            letter-spacing: -0.01em;
         }
         
-        @keyframes blink {
-            from, to { opacity: 1; }
-            50% { opacity: 0; }
+        /* Clean card styling */
+        .saas-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.2s ease;
         }
         
-        
-        /* Smooth transitions */
-        .smooth-transition {
-            transition: all 0.3s ease-in-out;
-        }
-        
-        /* Professional card styling */
-        .professional-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-        }
-        
-        .professional-card:hover {
-            transform: translateY(-4px);
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(255, 255, 255, 0.2);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-        }
-        
-        /* Professional section styling */
-        .section-title {
-            background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        /* Professional button styling */
-        .professional-btn {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border: none;
-            transition: all 0.3s ease;
-        }
-        
-        .professional-btn:hover {
+        .saas-card:hover {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(255, 255, 255, 0.12);
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+        
+        /* Feature highlight card */
+        .feature-highlight {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+        
+        .feature-highlight::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            background: #ffffff;
+        }
+        
+        /* Clean button styling */
+        .saas-btn {
+            background: #ffffff;
+            color: #000000;
+            border: none;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+        
+        .saas-btn:hover {
+            background: #f0f0f0;
+            transform: translateY(-1px);
+        }
+        
+        /* Section dividers */
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.1) 50%, transparent 100%);
+            margin: 4rem 0;
+        }
+        
+        /* Number badges */
+        .number-badge {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: #ffffff;
+            font-size: 0.875rem;
         }
     </style>
 </head>
 
 <body class="bg-black text-white">
-    <!-- Professional Background -->
-    <div class="professional-bg">
+    <!-- High-tech SaaS Background -->
+    <div class="saas-bg">
         <div class="content-overlay">
             <!-- Header with Hamburger Menu -->
             <header class="fixed top-0 left-0 w-full z-50 py-4 px-6 flex justify-between items-center">
@@ -154,52 +189,52 @@
             <!-- Main Content -->
             <main class="relative z-10 pt-24 pb-16 px-6">
                 <!-- Hero Section -->
-                <section class="text-center mb-20">
-                    <h1 class="text-5xl md:text-7xl font-bold mb-8 section-title">
+                <section class="text-center mb-24">
+                    <h1 class="text-6xl md:text-8xl font-bold mb-8 saas-title">
                         What We Do
                     </h1>
-                    <p class="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
+                    <p class="text-xl md:text-2xl saas-subtitle max-w-4xl mx-auto leading-relaxed">
                         Tap replaces forms with a single tap of your phone — making sign-ins and sign-ups instant, secure, and seamless.
                     </p>
                 </section>
                 
                 <!-- Our Solution Section -->
-                <section class="mb-20">
+                <section class="mb-24">
                     <div class="max-w-6xl mx-auto">
-                        <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 section-title">
+                        <h2 class="text-4xl md:text-5xl font-bold text-center mb-8 saas-title">
                             Our Solution
                         </h2>
-                        <p class="text-xl text-gray-300 text-center mb-16 max-w-4xl mx-auto">
+                        <p class="text-xl saas-subtitle text-center mb-16 max-w-4xl mx-auto">
                             Tap makes sign-ins and sign-ups instant — just tap to securely share your verified info. 
                             No more forms. No more typing. Just tap and go.
                         </p>
                         
                         <!-- Feature Cards -->
-                        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                            <div class="professional-card rounded-xl p-8">
-                                <h3 class="text-2xl font-bold mb-4 text-white">One Tap Simplicity</h3>
-                                <p class="text-gray-300 leading-relaxed">
+                        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                            <div class="saas-card rounded-lg p-6">
+                                <h3 class="text-xl font-semibold mb-3 text-white">One Tap Simplicity</h3>
+                                <p class="saas-subtitle leading-relaxed text-sm">
                                     Tap eliminates repetitive data entry and makes onboarding smoother and more accurate for both users and organizations.
                                 </p>
                             </div>
                             
-                            <div class="professional-card rounded-xl p-8">
-                                <h3 class="text-2xl font-bold mb-4 text-white">Physical + Virtual</h3>
-                                <p class="text-gray-300 leading-relaxed">
+                            <div class="saas-card rounded-lg p-6">
+                                <h3 class="text-xl font-semibold mb-3 text-white">Physical + Virtual</h3>
+                                <p class="saas-subtitle leading-relaxed text-sm">
                                     Tap works physically via NFC chips (like Apple Pay) and virtually via OAuth-style integrations — wherever identity or info needs to flow.
                                 </p>
                             </div>
                             
-                            <div class="professional-card rounded-xl p-8">
-                                <h3 class="text-2xl font-bold mb-4 text-white">Consent-First</h3>
-                                <p class="text-gray-300 leading-relaxed">
+                            <div class="saas-card rounded-lg p-6">
+                                <h3 class="text-xl font-semibold mb-3 text-white">Consent-First</h3>
+                                <p class="saas-subtitle leading-relaxed text-sm">
                                     No data is shared without explicit user consent. Tap ensures total privacy and control at every step.
                                 </p>
                             </div>
                             
-                            <div class="professional-card rounded-xl p-8">
-                                <h3 class="text-2xl font-bold mb-4 text-white">Transparent + Editable</h3>
-                                <p class="text-gray-300 leading-relaxed">
+                            <div class="saas-card rounded-lg p-6">
+                                <h3 class="text-xl font-semibold mb-3 text-white">Transparent + Editable</h3>
+                                <p class="saas-subtitle leading-relaxed text-sm">
                                     Users can view what's shared, to whom, and manage or update their Tap profile anytime for a completely transparent experience.
                                 </p>
                             </div>
@@ -207,67 +242,91 @@
                     </div>
                 </section>
                 
+                <div class="section-divider"></div>
+                
                 <!-- Core Benefits Section -->
-                <section class="mb-20">
+                <section class="mb-24">
                     <div class="max-w-6xl mx-auto">
-                        <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 section-title">
+                        <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 saas-title">
                             Core Benefits
                         </h2>
                         
-                        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                            <div class="professional-card rounded-xl p-8 text-center">
-                                <h3 class="text-2xl font-bold mb-4 text-white">Secure</h3>
-                                <p class="text-gray-300 leading-relaxed">
-                                    Only user-approved data is shared — giving people full control over what they share, and with whom.
-                                </p>
+                        <div class="space-y-8">
+                            <div class="feature-highlight rounded-lg p-8">
+                                <div class="flex items-start gap-6">
+                                    <div class="number-badge">1</div>
+                                    <div>
+                                        <h3 class="text-2xl font-semibold mb-3 text-white">Secure</h3>
+                                        <p class="saas-subtitle leading-relaxed">
+                                            Only user-approved data is shared — giving people full control over what they share, and with whom.
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
                             
-                            <div class="professional-card rounded-xl p-8 text-center">
-                                <h3 class="text-2xl font-bold mb-4 text-white">Fast</h3>
-                                <p class="text-gray-300 leading-relaxed">
-                                    Tap eliminates form-fill and waiting rooms. Onboard in seconds with a single tap.
-                                </p>
+                            <div class="feature-highlight rounded-lg p-8">
+                                <div class="flex items-start gap-6">
+                                    <div class="number-badge">2</div>
+                                    <div>
+                                        <h3 class="text-2xl font-semibold mb-3 text-white">Fast</h3>
+                                        <p class="saas-subtitle leading-relaxed">
+                                            Tap eliminates form-fill and waiting rooms. Onboard in seconds with a single tap.
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
                             
-                            <div class="professional-card rounded-xl p-8 text-center">
-                                <h3 class="text-2xl font-bold mb-4 text-white">Accurate</h3>
-                                <p class="text-gray-300 leading-relaxed">
-                                    Verified information lowers data entry errors, improves compliance, and boosts trust in every interaction.
-                                </p>
+                            <div class="feature-highlight rounded-lg p-8">
+                                <div class="flex items-start gap-6">
+                                    <div class="number-badge">3</div>
+                                    <div>
+                                        <h3 class="text-2xl font-semibold mb-3 text-white">Accurate</h3>
+                                        <p class="saas-subtitle leading-relaxed">
+                                            Verified information lowers data entry errors, improves compliance, and boosts trust in every interaction.
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
                             
-                            <div class="professional-card rounded-xl p-8 text-center">
-                                <h3 class="text-2xl font-bold mb-4 text-white">Universal</h3>
-                                <p class="text-gray-300 leading-relaxed">
-                                    Tap works across industries and integrates with existing systems.
-                                </p>
+                            <div class="feature-highlight rounded-lg p-8">
+                                <div class="flex items-start gap-6">
+                                    <div class="number-badge">4</div>
+                                    <div>
+                                        <h3 class="text-2xl font-semibold mb-3 text-white">Universal</h3>
+                                        <p class="saas-subtitle leading-relaxed">
+                                            Tap works across industries and integrates with existing systems.
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </section>
                 
+                <div class="section-divider"></div>
+                
                 <!-- Why Now Section -->
-                <section class="mb-20">
-                    <div class="max-w-6xl mx-auto text-center">
-                        <h2 class="text-4xl md:text-5xl font-bold mb-12 section-title">Why Now?</h2>
+                <section class="mb-24">
+                    <div class="max-w-6xl mx-auto">
+                        <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 saas-title">Why Now?</h2>
                         <div class="grid md:grid-cols-3 gap-8">
-                            <div class="professional-card rounded-xl p-8">
-                                <h3 class="text-2xl font-bold mb-4 text-white">Digital Transformation</h3>
-                                <p class="text-gray-300 leading-relaxed">
+                            <div class="saas-card rounded-lg p-8 text-center">
+                                <h3 class="text-xl font-semibold mb-4 text-white">Digital Transformation</h3>
+                                <p class="saas-subtitle leading-relaxed">
                                     Organizations are rapidly digitizing, but legacy form systems create friction and security risks.
                                 </p>
                             </div>
                             
-                            <div class="professional-card rounded-xl p-8">
-                                <h3 class="text-2xl font-bold mb-4 text-white">Privacy Regulations</h3>
-                                <p class="text-gray-300 leading-relaxed">
+                            <div class="saas-card rounded-lg p-8 text-center">
+                                <h3 class="text-xl font-semibold mb-4 text-white">Privacy Regulations</h3>
+                                <p class="saas-subtitle leading-relaxed">
                                     New privacy laws require better data control and consent management — exactly what Tap provides.
                                 </p>
                             </div>
                             
-                            <div class="professional-card rounded-xl p-8">
-                                <h3 class="text-2xl font-bold mb-4 text-white">User Expectations</h3>
-                                <p class="text-gray-300 leading-relaxed">
+                            <div class="saas-card rounded-lg p-8 text-center">
+                                <h3 class="text-xl font-semibold mb-4 text-white">User Expectations</h3>
+                                <p class="saas-subtitle leading-relaxed">
                                     People expect seamless, secure experiences like Apple Pay — Tap brings that to all interactions.
                                 </p>
                             </div>
@@ -275,31 +334,33 @@
                     </div>
                 </section>
                 
+                <div class="section-divider"></div>
+                
                 <!-- The Future Section -->
-                <section class="mb-20">
+                <section class="mb-24">
                     <div class="max-w-6xl mx-auto">
-                        <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 section-title">
+                        <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 saas-title">
                             The Future of Tap
                         </h2>
                         
                         <div class="grid md:grid-cols-3 gap-8">
-                            <div class="professional-card rounded-xl p-8">
-                                <h3 class="text-2xl font-bold mb-4 text-white">Focus Market: Healthcare</h3>
-                                <p class="text-gray-300 leading-relaxed">
+                            <div class="saas-card rounded-lg p-8">
+                                <h3 class="text-xl font-semibold mb-4 text-white">Focus Market: Healthcare</h3>
+                                <p class="saas-subtitle leading-relaxed">
                                     Start by eliminating clinic intake forms with one tap. No paperwork. No waiting rooms full of clipboards.
                                 </p>
                             </div>
                             
-                            <div class="professional-card rounded-xl p-8">
-                                <h3 class="text-2xl font-bold mb-4 text-white">Industry Expansion</h3>
-                                <p class="text-gray-300 leading-relaxed">
+                            <div class="saas-card rounded-lg p-8">
+                                <h3 class="text-xl font-semibold mb-4 text-white">Industry Expansion</h3>
+                                <p class="saas-subtitle leading-relaxed">
                                     Next targets: Banking, Retail & Rewards, Hotel Check-Ins, and Web Integrations.
                                 </p>
                             </div>
                             
-                            <div class="professional-card rounded-xl p-8">
-                                <h3 class="text-2xl font-bold mb-4 text-white">Global Scale</h3>
-                                <p class="text-gray-300 leading-relaxed">
+                            <div class="saas-card rounded-lg p-8">
+                                <h3 class="text-xl font-semibold mb-4 text-white">Global Scale</h3>
+                                <p class="saas-subtitle leading-relaxed">
                                     Build the universal identity layer that makes every interaction instant, secure, and user-controlled.
                                 </p>
                             </div>
@@ -307,16 +368,18 @@
                     </div>
                 </section>
                 
+                <div class="section-divider"></div>
+                
                 <!-- CTA Section -->
                 <section class="text-center">
                     <div class="max-w-4xl mx-auto">
-                        <h2 class="text-4xl md:text-5xl font-bold mb-6 section-title">
+                        <h2 class="text-4xl md:text-5xl font-bold mb-6 saas-title">
                             Ready to Transform Your Forms?
                         </h2>
-                        <p class="text-xl text-gray-300 mb-8 leading-relaxed">
+                        <p class="text-xl saas-subtitle mb-8 leading-relaxed">
                             Join our pilot program and be among the first to experience the future of instant, secure interactions.
                         </p>
-                        <a href="#" class="inline-block professional-btn text-white px-8 py-4 rounded-lg text-lg font-semibold">
+                        <a href="#" class="inline-block saas-btn px-8 py-4 rounded-lg text-lg font-semibold">
                             Join Our Pilot Program
                         </a>
                     </div>
