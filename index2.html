@@ -207,12 +207,14 @@
             box-shadow: none;
         }
         
-        /* Position form fields on phone - aligned with PNG layout */
+        /* Position form fields on phone - aligned with PNG layout - SCALE WITH PHONE */
         #phone-name {
             top: 18%;
             left: 50.4%;
             transform: translateX(-50%);
-            width: 324px;
+            width: 90vw;
+            max-width: 324px;
+            min-width: 200px;
             height: 45px;
         }
         
@@ -220,7 +222,9 @@
             top: 28%;
             left: 50.4%;
             transform: translateX(-50%);
-            width: 324px;
+            width: 90vw;
+            max-width: 324px;
+            min-width: 200px;
             height: 45px;
         }
         
@@ -228,7 +232,9 @@
             top: 38%;
             left: 50.4%;
             transform: translateX(-50%);
-            width: 324px;
+            width: 90vw;
+            max-width: 324px;
+            min-width: 200px;
             height: 45px;
         }
         
@@ -236,17 +242,21 @@
             top: 48%;
             left: 50.4%;
             transform: translateX(-50%);
-            width: 324px;
+            width: 90vw;
+            max-width: 324px;
+            min-width: 200px;
             height: 80px;
             resize: none;
         }
         
-        /* Mid-form buttons (Approve/Cancel) - positioned between message and bottom buttons */
+        /* Mid-form buttons (Approve/Cancel) - positioned between message and bottom buttons - SCALE WITH PHONE */
         #phone-approve {
             top: 60%;
             left: 50.4%;
             transform: translateX(-50%);
-            width: 324px;
+            width: 90vw;
+            max-width: 324px;
+            min-width: 200px;
             background: transparent;
             color: transparent;
         }
@@ -255,16 +265,20 @@
             top: 65%;
             left: 50.4%;
             transform: translateX(-50%);
-            width: 324px;
+            width: 90vw;
+            max-width: 324px;
+            min-width: 200px;
             background: transparent;
             color: transparent;
         }
         
-        /* Bottom buttons (Cancel/Send) */
+        /* Bottom buttons (Cancel/Send) - SCALE WITH PHONE */
         #phone-cancel {
             bottom: 18%;
             left: 28.4%;
-            width: 162px;
+            width: 45vw;
+            max-width: 162px;
+            min-width: 100px;
             background: transparent;
             color: #000;
         }
@@ -272,7 +286,9 @@
         #phone-send {
             bottom: 18%;
             right: 28.4%;
-            width: 162px;
+            width: 45vw;
+            max-width: 162px;
+            min-width: 100px;
             background: transparent;
             color: #000;
         }
