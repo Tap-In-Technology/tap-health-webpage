@@ -662,6 +662,97 @@
                 opacity: 0.8;
             }
         }
+
+        /* Export Formats Section */
+        .export-formats-section {
+            margin: 160px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .export-formats-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 20px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .export-formats-subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 60px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .export-formats-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 60px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .export-formats-track {
+            display: flex;
+            gap: 60px;
+            animation: scrollExportFormats 20s linear infinite;
+        }
+
+        .export-format-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            min-width: 120px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .export-format-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .export-format-icon {
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 8px;
+        }
+
+        .export-format-name {
+            font-size: 1rem;
+            font-weight: 600;
+            color: white;
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .export-format-desc {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.6);
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+        }
+
+        @keyframes scrollExportFormats {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .export-formats-track:hover {
+            animation-play-state: paused;
+        }
         
         .spotlight-description {
             font-size: 1.2rem;
@@ -875,8 +966,102 @@
                         </p>
                     </div>
                 </section>
+
+                <!-- 4. Export Formats Section -->
+                <section class="export-formats-section">
+                    <h2 class="export-formats-title">Export Formats</h2>
+                    <p class="export-formats-subtitle">Export your data in any format you need</p>
+                    
+                    <div class="export-formats-container">
+                        <div class="export-formats-track">
+                            <!-- First set of formats -->
+                            <div class="export-format-item">
+                                <div class="export-format-icon">📊</div>
+                                <div class="export-format-name">CSV</div>
+                                <div class="export-format-desc">Spreadsheet data</div>
+                            </div>
+                            <div class="export-format-item">
+                                <div class="export-format-icon">📋</div>
+                                <div class="export-format-name">Excel</div>
+                                <div class="export-format-desc">XLSX format</div>
+                            </div>
+                            <div class="export-format-item">
+                                <div class="export-format-icon">📄</div>
+                                <div class="export-format-name">PDF</div>
+                                <div class="export-format-desc">Document reports</div>
+                            </div>
+                            <div class="export-format-item">
+                                <div class="export-format-icon">🔗</div>
+                                <div class="export-format-name">JSON</div>
+                                <div class="export-format-desc">API data</div>
+                            </div>
+                            <div class="export-format-item">
+                                <div class="export-format-icon">📦</div>
+                                <div class="export-format-name">XML</div>
+                                <div class="export-format-desc">Structured data</div>
+                            </div>
+                            <div class="export-format-item">
+                                <div class="export-format-icon">🗃️</div>
+                                <div class="export-format-name">SQL</div>
+                                <div class="export-format-desc">Database export</div>
+                            </div>
+                            <div class="export-format-item">
+                                <div class="export-format-icon">📈</div>
+                                <div class="export-format-name">TSV</div>
+                                <div class="export-format-desc">Tab-separated</div>
+                            </div>
+                            <div class="export-format-item">
+                                <div class="export-format-icon">💾</div>
+                                <div class="export-format-name">ZIP</div>
+                                <div class="export-format-desc">Compressed files</div>
+                            </div>
+                            
+                            <!-- Duplicate set for seamless loop -->
+                            <div class="export-format-item">
+                                <div class="export-format-icon">📊</div>
+                                <div class="export-format-name">CSV</div>
+                                <div class="export-format-desc">Spreadsheet data</div>
+                            </div>
+                            <div class="export-format-item">
+                                <div class="export-format-icon">📋</div>
+                                <div class="export-format-name">Excel</div>
+                                <div class="export-format-desc">XLSX format</div>
+                            </div>
+                            <div class="export-format-item">
+                                <div class="export-format-icon">📄</div>
+                                <div class="export-format-name">PDF</div>
+                                <div class="export-format-desc">Document reports</div>
+                            </div>
+                            <div class="export-format-item">
+                                <div class="export-format-icon">🔗</div>
+                                <div class="export-format-name">JSON</div>
+                                <div class="export-format-desc">API data</div>
+                            </div>
+                            <div class="export-format-item">
+                                <div class="export-format-icon">📦</div>
+                                <div class="export-format-name">XML</div>
+                                <div class="export-format-desc">Structured data</div>
+                            </div>
+                            <div class="export-format-item">
+                                <div class="export-format-icon">🗃️</div>
+                                <div class="export-format-name">SQL</div>
+                                <div class="export-format-desc">Database export</div>
+                            </div>
+                            <div class="export-format-item">
+                                <div class="export-format-icon">📈</div>
+                                <div class="export-format-name">TSV</div>
+                                <div class="export-format-desc">Tab-separated</div>
+                            </div>
+                            <div class="export-format-item">
+                                <div class="export-format-icon">💾</div>
+                                <div class="export-format-name">ZIP</div>
+                                <div class="export-format-desc">Compressed files</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
                 
-                <!-- 4. Pricing Section -->
+                <!-- 5. Pricing Section -->
                 <section class="pricing-section">
                     <div class="max-w-7xl mx-auto">
                         <h2 class="pricing-title">
@@ -980,7 +1165,7 @@
                     </div>
                 </section>
                 
-                <!-- 5. FAQ Section -->
+                <!-- 6. FAQ Section -->
                 <section class="faq-section">
                     <div class="max-w-7xl mx-auto">
                         <div class="faq-container">
@@ -1058,7 +1243,7 @@
                     </div>
                 </section>
                 
-                <!-- 6. The Future of Tap Section -->
+                <!-- 7. The Future of Tap Section -->
                 <section class="future-section">
                     <div class="future-content">
                         <h2 class="text-5xl md:text-6xl font-bold text-center mb-16 futuristic-title">
@@ -1099,7 +1284,7 @@
                     </div>
                 </section>
                 
-                <!-- 7. CTA Section -->
+                <!-- 8. CTA Section -->
                 <section class="text-center mb-32 mt-48">
                     <div class="max-w-4xl mx-auto">
                         <h2 class="text-5xl md:text-6xl font-bold mb-8 futuristic-title">
