@@ -519,6 +519,150 @@
                 padding-right: 0;
             }
         }
+        
+        /* Pricing Section */
+        .pricing-section {
+            margin: 80px 0;
+        }
+        
+        .pricing-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: white;
+            text-align: center;
+            margin-bottom: 20px;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .pricing-divider {
+            width: 100px;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.3);
+            margin: 0 auto 60px;
+        }
+        
+        .pricing-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .pricing-plan {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .plan-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 20px;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .plan-price {
+            font-size: 4rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 5px;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .plan-period {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 20px;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .plan-description {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 30px;
+            line-height: 1.5;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .plan-button {
+            width: 100%;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .plan-button.free {
+            background: transparent;
+            border: 1px solid white;
+            color: white;
+        }
+        
+        .plan-button.free:hover {
+            background: white;
+            color: black;
+        }
+        
+        .plan-button.pro {
+            background: white;
+            border: 1px solid white;
+            color: black;
+        }
+        
+        .plan-button.pro:hover {
+            background: transparent;
+            color: white;
+        }
+        
+        .plan-features {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: left;
+        }
+        
+        .plan-feature {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .plan-feature:last-child {
+            margin-bottom: 0;
+        }
+        
+        .feature-checkmark {
+            color: white;
+            margin-right: 12px;
+            font-size: 1.1rem;
+        }
+        
+        @media (max-width: 768px) {
+            .pricing-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .pricing-title {
+                font-size: 2.5rem;
+            }
+            
+            .plan-price {
+                font-size: 3rem;
+            }
+        }
     </style>
 </head>
 
@@ -891,6 +1035,110 @@
                                         Getting started is simple. Contact our team to discuss your specific needs and requirements. We'll work with you to integrate Tap into your existing systems and provide comprehensive training and support throughout the implementation process.
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Pricing Section -->
+                <section class="pricing-section">
+                    <div class="max-w-7xl mx-auto">
+                        <h2 class="pricing-title">
+                            Transparent pricing with features tailored to your business
+                        </h2>
+                        <div class="pricing-divider"></div>
+                        
+                        <div class="pricing-container">
+                            <!-- Free Plan -->
+                            <div class="pricing-plan">
+                                <h3 class="plan-title">Free</h3>
+                                <div class="plan-price">$0</div>
+                                <div class="plan-period">/month</div>
+                                <p class="plan-description">
+                                    Full-featured identity verification essentials with no strings attached.
+                                </p>
+                                <button class="plan-button free">Start for free</button>
+                                
+                                <ul class="plan-features">
+                                    <li class="plan-feature">
+                                        <span class="feature-checkmark">✓</span>
+                                        Up to 100 verifications per month
+                                    </li>
+                                    <li class="plan-feature">
+                                        <span class="feature-checkmark">✓</span>
+                                        Basic identity verification
+                                    </li>
+                                    <li class="plan-feature">
+                                        <span class="feature-checkmark">✓</span>
+                                        Standard security protocols
+                                    </li>
+                                    <li class="plan-feature">
+                                        <span class="feature-checkmark">✓</span>
+                                        Email support
+                                    </li>
+                                    <li class="plan-feature">
+                                        <span class="feature-checkmark">✓</span>
+                                        Basic analytics dashboard
+                                    </li>
+                                    <li class="plan-feature">
+                                        <span class="feature-checkmark">✓</span>
+                                        API access
+                                    </li>
+                                    <li class="plan-feature">
+                                        <span class="feature-checkmark">✓</span>
+                                        Standard compliance features
+                                    </li>
+                                    <li class="plan-feature">
+                                        <span class="feature-checkmark">✓</span>
+                                        Documentation & guides
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <!-- Pro Plan -->
+                            <div class="pricing-plan">
+                                <h3 class="plan-title">Pro</h3>
+                                <div class="plan-price">$99</div>
+                                <div class="plan-period">/month</div>
+                                <p class="plan-description">
+                                    Scale your business with advanced industry-specific capabilities.
+                                </p>
+                                <button class="plan-button pro">Get started</button>
+                                
+                                <ul class="plan-features">
+                                    <li class="plan-feature">
+                                        <span class="feature-checkmark">✓</span>
+                                        Unlimited verifications
+                                    </li>
+                                    <li class="plan-feature">
+                                        <span class="feature-checkmark">✓</span>
+                                        Advanced identity verification
+                                    </li>
+                                    <li class="plan-feature">
+                                        <span class="feature-checkmark">✓</span>
+                                        Enterprise-grade security
+                                    </li>
+                                    <li class="plan-feature">
+                                        <span class="feature-checkmark">✓</span>
+                                        Priority support
+                                    </li>
+                                    <li class="plan-feature">
+                                        <span class="feature-checkmark">✓</span>
+                                        Advanced analytics & reporting
+                                    </li>
+                                    <li class="plan-feature">
+                                        <span class="feature-checkmark">✓</span>
+                                        Custom API integrations
+                                    </li>
+                                    <li class="plan-feature">
+                                        <span class="feature-checkmark">✓</span>
+                                        Full compliance suite
+                                    </li>
+                                    <li class="plan-feature">
+                                        <span class="feature-checkmark">✓</span>
+                                        Dedicated account manager
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
