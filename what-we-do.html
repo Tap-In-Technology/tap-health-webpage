@@ -1927,42 +1927,7 @@
             const phoneContainer = document.getElementById('landing-phone-container');
             const landingSection = document.querySelector('.landing-page-section');
             
-            console.log('Phone container found:', phoneContainer);
-            console.log('Landing section found:', landingSection);
             
-            // Debug initial phone state
-            if (phoneContainer) {
-                console.log('Initial phone container styles:', {
-                    opacity: phoneContainer.style.opacity,
-                    transform: phoneContainer.style.transform,
-                    top: phoneContainer.style.top,
-                    display: window.getComputedStyle(phoneContainer).display,
-                    visibility: window.getComputedStyle(phoneContainer).visibility
-                });
-                
-                // Debug gleam element
-                const gleamElement = phoneContainer.querySelector('.phone-gleam');
-                if (gleamElement) {
-                    console.log('Gleam element found:', {
-                        display: window.getComputedStyle(gleamElement).display,
-                        opacity: window.getComputedStyle(gleamElement).opacity,
-                        zIndex: window.getComputedStyle(gleamElement).zIndex,
-                        position: window.getComputedStyle(gleamElement).position,
-                        width: window.getComputedStyle(gleamElement).width,
-                        height: window.getComputedStyle(gleamElement).height
-                    });
-                    
-                    // Check if the ::before pseudo-element is working
-                    const beforeElement = window.getComputedStyle(gleamElement, '::before');
-                    console.log('Gleam ::before element:', {
-                        content: beforeElement.content,
-                        display: beforeElement.display,
-                        animation: beforeElement.animation
-                    });
-                } else {
-                    console.log('Gleam element NOT found');
-                }
-            }
             
             function handleScroll() {
                 if (!phoneContainer || !landingSection) return;
@@ -1975,10 +1940,6 @@
                 const documentHeight = document.documentElement.scrollHeight;
                 const scrollProgress = scrollY / (documentHeight - windowHeight);
                 
-                // Debug scroll progress
-                if (scrollProgress > 0.9) {
-                    console.log('Scroll progress:', (scrollProgress * 100).toFixed(1) + '%', 'ScrollY:', scrollY, 'DocHeight:', documentHeight, 'WindowHeight:', windowHeight);
-                }
                 
                 // Debug phone and lightning background positioning when fully transitioned
                 if (scrollProgress >= 0.99) { // When phone is fully transitioned
@@ -2030,10 +1991,6 @@
                     // Calculate transition progress (0 to 1)
                     const transitionProgress = Math.min((scrollProgress - transitionStart) / (transitionEnd - transitionStart), 1);
                     
-                    // Debug phone transition
-                    if (transitionProgress > 0.1) {
-                        console.log('Phone transitioning - progress:', (transitionProgress * 100).toFixed(1) + '%', 'opacity:', transitionProgress);
-                    }
                     
                     // Fade in and slide up based on scroll progress
                     phoneContainer.style.opacity = transitionProgress;
@@ -2043,15 +2000,10 @@
                     const currentY = startY + (endY - startY) * transitionProgress;
                     phoneContainer.style.transform = `translate(-50%, 0%) translateY(${currentY}vh)`;
                     phoneContainer.style.top = '100%'; // Always stay at bottom
-                    // Only log when fully transitioned to avoid spam
-                    if (transitionProgress >= 0.99) {
-                        console.log(`Phone transition progress: ${(transitionProgress * 100).toFixed(1)}% - FULLY TRANSITIONED`);
-                    }
                 } else {
                     phoneContainer.style.opacity = '0';
                     phoneContainer.style.transform = 'translate(-50%, 0%) translateY(100px)';
                     phoneContainer.style.top = '100%';
-                    console.log('Phone not yet started - scroll progress:', (scrollProgress * 100).toFixed(1) + '%');
                 }
             }
             
