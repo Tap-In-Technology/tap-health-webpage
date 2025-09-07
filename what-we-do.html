@@ -1654,9 +1654,9 @@
                     
                     // Fade in and slide up based on scroll progress
                     phoneContainer.style.opacity = transitionProgress;
-                    // Start from bottom (top: 100%, translateY: 100px) and move to bottom-aligned (top: 100%, translateY: -60vh)
+                    // Start from bottom (top: 100%, translateY: 100px) and move to final position
                     const startY = 100; // Starting position from bottom
-                    const endY = -60; // Ending position with bottom of phone at bottom of screen (60vh is phone height)
+                    const endY = 30; // Ending position based on user feedback (47.3% progress was perfect)
                     const currentY = startY + (endY - startY) * transitionProgress;
                     phoneContainer.style.transform = `translate(-50%, 0%) translateY(${currentY}vh)`;
                     phoneContainer.style.top = '100%'; // Always stay at bottom
