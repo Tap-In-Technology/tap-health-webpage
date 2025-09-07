@@ -1459,7 +1459,7 @@
         <!-- Main content -->
         <div class="relative z-10" style="position: relative; z-index: 10;">
             <!-- Phone image large and centered -->
-            <div id="landing-phone-container" style="position: absolute; top: 100%; left: 50%; transform: translate(-50%, 0%) translateY(100px); z-index: 20; opacity: 0; transition: all 1.5s ease-in-out;">
+            <div id="landing-phone-container" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) translateY(300px); z-index: 20; opacity: 0;">
                 <img src="/media/phone.png" alt="Phone" class="h-[60vh] w-auto" id="landing-phone">
             </div>
             
@@ -1640,15 +1640,26 @@
                     lightningBg.style.transform = 'translateY(0px)';
                 }
                 
-                // Fade in and slide up when landing section is in view
-                if (rect.top < windowHeight && rect.bottom > 0) {
-                    phoneContainer.style.opacity = '1';
-                    phoneContainer.style.transform = 'translate(-50%, -50%) translateY(0px)';
-                    console.log('Phone faded in and slid up');
+                // Calculate scroll progress (0 = top of page, 1 = bottom of page)
+                const documentHeight = document.documentElement.scrollHeight;
+                const scrollProgress = scrollY / (documentHeight - windowHeight);
+                
+                // Start phone transition at 96% scroll progress
+                const transitionStart = 0.96;
+                const transitionEnd = 1.0;
+                
+                if (scrollProgress >= transitionStart) {
+                    // Calculate transition progress (0 to 1)
+                    const transitionProgress = Math.min((scrollProgress - transitionStart) / (transitionEnd - transitionStart), 1);
+                    
+                    // Fade in and slide up based on scroll progress
+                    phoneContainer.style.opacity = transitionProgress;
+                    phoneContainer.style.transform = `translate(-50%, -50%) translateY(${300 * (1 - transitionProgress)}px)`;
+                    console.log(`Phone transition progress: ${(transitionProgress * 100).toFixed(1)}%`);
                 } else {
                     phoneContainer.style.opacity = '0';
                     phoneContainer.style.transform = 'translate(-50%, -50%) translateY(300px)';
-                    console.log('Phone faded out and slid down');
+                    console.log('Phone not yet started - scroll progress:', (scrollProgress * 100).toFixed(1) + '%');
                 }
             }
             
