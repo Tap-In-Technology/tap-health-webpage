@@ -1157,7 +1157,7 @@
                             In your hands.
                         </h2>
                         <p class="hero-description">
-                            Tap gives you one platform to manage identity verification and form completion, bringing instant simplicity to complex interactions.
+                            Tap populates forms with your saved information, preventing you from filling out the same fields again and again and giving you total control over who has your data.
                         </p>
                         <div class="hero-buttons">
                             <button class="hero-cta-button primary">Get started</button>
@@ -1930,6 +1930,20 @@
             const phoneContainer = document.getElementById('landing-phone-container');
             const landingSection = document.querySelector('.landing-page-section');
             
+            // Debug: Check if elements exist
+            console.log('=== ELEMENT INITIALIZATION ===');
+            console.log('Phone Container:', phoneContainer);
+            console.log('Landing Section:', landingSection);
+            
+            if (!phoneContainer) {
+                console.error('ERROR: Phone container not found!');
+                return;
+            }
+            if (!landingSection) {
+                console.error('ERROR: Landing section not found!');
+                return;
+            }
+            
             // Check if header element exists
             const phoneHeader = document.querySelector('.phone-header');
             if (phoneHeader) {
@@ -1939,36 +1953,58 @@
                 console.log('Phone header element NOT found!');
             }
             
+            // Initialize phone container state
+            phoneContainer.style.opacity = '0';
+            phoneContainer.style.transform = 'translate(-50%, 0%) translateY(100px)';
+            phoneContainer.style.top = '100%';
+            console.log('Phone container initialized to hidden state');
             
             
+            
+            // Debounce scroll handler to prevent excessive calls
+            let scrollTimeout;
             function handleScroll() {
                 if (!phoneContainer || !landingSection) return;
                 
-                const rect = landingSection.getBoundingClientRect();
-                const windowHeight = window.innerHeight;
-                const scrollY = window.scrollY;
-                
-                // Calculate scroll progress (0 = top of page, 1 = bottom of page)
-                const documentHeight = document.documentElement.scrollHeight;
-                const maxScroll = documentHeight - windowHeight;
-                
-                // Debug logging
-                console.log('=== PHONE TRANSITION DEBUG ===');
-                console.log('Scroll Y:', scrollY);
-                console.log('Document Height:', documentHeight);
-                console.log('Window Height:', windowHeight);
-                console.log('Max Scroll:', maxScroll);
-                console.log('Landing Section Rect:', rect);
-                
-                // Prevent scrolling past the bottom of the page
-                if (scrollY >= maxScroll) {
-                    console.log('SCROLL BOUNDARY: Preventing scroll past bottom');
-                    window.scrollTo(0, maxScroll);
-                    return;
+                // Clear existing timeout
+                if (scrollTimeout) {
+                    clearTimeout(scrollTimeout);
                 }
                 
-                const scrollProgress = scrollY / maxScroll;
-                console.log('Scroll Progress:', scrollProgress);
+                // Debounce scroll handling
+                scrollTimeout = setTimeout(() => {
+                    const rect = landingSection.getBoundingClientRect();
+                    const windowHeight = window.innerHeight;
+                    const scrollY = window.scrollY;
+                    
+                    // Calculate scroll progress (0 = top of page, 1 = bottom of page)
+                    const documentHeight = document.documentElement.scrollHeight;
+                    const maxScroll = documentHeight - windowHeight;
+                    
+                    // Debug logging (less frequent)
+                    if (scrollY % 100 < 10) { // Only log every ~100px of scroll
+                        console.log('=== PHONE TRANSITION DEBUG ===');
+                        console.log('Scroll Y:', scrollY);
+                        console.log('Document Height:', documentHeight);
+                        console.log('Window Height:', windowHeight);
+                        console.log('Max Scroll:', maxScroll);
+                        console.log('Landing Section Rect:', rect);
+                    }
+                    
+                    // More robust scroll boundary check
+                    if (scrollY >= maxScroll - 5) { // 5px buffer
+                        console.log('SCROLL BOUNDARY: Preventing scroll past bottom (with buffer)');
+                        window.scrollTo({
+                            top: maxScroll,
+                            behavior: 'auto' // Instant scroll, not smooth
+                        });
+                        return;
+                    }
+                    
+                    const scrollProgress = scrollY / maxScroll;
+                    if (scrollY % 100 < 10) { // Only log every ~100px of scroll
+                        console.log('Scroll Progress:', scrollProgress);
+                    }
                 
                 
                 
@@ -2061,9 +2097,14 @@
                         console.log('Ready Header: SHOWING (not transitioning)');
                     }
                 }
+                }, 16); // ~60fps debounce
             }
             
             window.addEventListener('scroll', handleScroll);
+            window.addEventListener('resize', () => {
+                console.log('Window resized - recalculating boundaries');
+                handleScroll(); // Recalculate on resize
+            });
             handleScroll(); // Check initial state
         });
         
