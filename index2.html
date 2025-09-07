@@ -1041,7 +1041,8 @@
                     }
                     
                     // Change Get in Touch button to Go Back button
-                    const getInTouchBtn = document.querySelector('button[onclick="openContactForm()"]');
+                    // Find the main button (not the phone form buttons) by excluding phone-form-button class
+                    const getInTouchBtn = document.querySelector('button[onclick="openContactForm()"]:not(.phone-form-button)');
                     if (getInTouchBtn) {
                         getInTouchBtn.textContent = 'Go Back';
                         getInTouchBtn.setAttribute('onclick', 'goBackToDefault()');
@@ -1117,10 +1118,11 @@
                     }
                     
                     // Change Go Back button back to Get in Touch button
-                    let goBackBtn = document.querySelector('button[onclick="goBackToDefault()"]');
+                    // Find the main button (not the phone form buttons) by excluding phone-form-button class
+                    let goBackBtn = document.querySelector('button[onclick="goBackToDefault()"]:not(.phone-form-button)');
                     if (!goBackBtn) {
-                        // Fallback: find button by text content
-                        const buttons = document.querySelectorAll('button');
+                        // Fallback: find button by text content and exclude phone form buttons
+                        const buttons = document.querySelectorAll('button:not(.phone-form-button)');
                         for (let btn of buttons) {
                             if (btn.textContent.trim() === 'Go Back') {
                                 goBackBtn = btn;
