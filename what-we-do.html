@@ -74,12 +74,139 @@
             padding: 120px 0;
             text-align: center;
             position: relative;
+            overflow: hidden;
+        }
+
+        /* NFC Stickers Background */
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(0, 0, 0, 0.8) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(0, 0, 0, 0.6) 0%, transparent 50%),
+                radial-gradient(circle at 50% 10%, rgba(0, 0, 0, 0.4) 0%, transparent 40%);
+            z-index: 0;
+        }
+
+        .nfc-sticker-bg {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background-image: url('/media/NFCTapSticker.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            z-index: 1;
+            opacity: 0.1;
+            animation: floatSticker 8s ease-in-out infinite;
+        }
+
+        .nfc-sticker-bg:nth-child(1) {
+            top: 15%;
+            left: 10%;
+            transform: rotate(15deg);
+            animation-delay: 0s;
+        }
+
+        .nfc-sticker-bg:nth-child(2) {
+            top: 25%;
+            right: 15%;
+            transform: rotate(-25deg);
+            animation-delay: 2s;
+            opacity: 0.08;
+        }
+
+        .nfc-sticker-bg:nth-child(3) {
+            top: 60%;
+            left: 5%;
+            transform: rotate(35deg);
+            animation-delay: 4s;
+            opacity: 0.06;
+        }
+
+        .nfc-sticker-bg:nth-child(4) {
+            top: 70%;
+            right: 8%;
+            transform: rotate(-15deg);
+            animation-delay: 6s;
+            opacity: 0.05;
+        }
+
+        .nfc-sticker-bg:nth-child(5) {
+            top: 40%;
+            left: 20%;
+            transform: rotate(45deg);
+            animation-delay: 1s;
+            opacity: 0.07;
+        }
+
+        .nfc-sticker-bg:nth-child(6) {
+            top: 50%;
+            right: 25%;
+            transform: rotate(-35deg);
+            animation-delay: 3s;
+            opacity: 0.04;
+        }
+
+        .nfc-sticker-bg:nth-child(7) {
+            top: 80%;
+            left: 30%;
+            transform: rotate(20deg);
+            animation-delay: 5s;
+            opacity: 0.03;
+        }
+
+        .nfc-sticker-bg:nth-child(8) {
+            top: 10%;
+            left: 50%;
+            transform: rotate(-40deg);
+            animation-delay: 7s;
+            opacity: 0.09;
+        }
+
+        @keyframes floatSticker {
+            0%, 100% {
+                transform: translateY(0px) rotate(var(--rotation, 0deg));
+                opacity: var(--base-opacity, 0.1);
+            }
+            50% {
+                transform: translateY(-15px) rotate(calc(var(--rotation, 0deg) + 5deg));
+                opacity: calc(var(--base-opacity, 0.1) * 1.5);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nfc-sticker-bg {
+                width: 60px;
+                height: 60px;
+                opacity: 0.05;
+            }
+            
+            .nfc-sticker-bg:nth-child(1),
+            .nfc-sticker-bg:nth-child(2),
+            .nfc-sticker-bg:nth-child(3),
+            .nfc-sticker-bg:nth-child(4) {
+                opacity: 0.03;
+            }
+            
+            .nfc-sticker-bg:nth-child(5),
+            .nfc-sticker-bg:nth-child(6),
+            .nfc-sticker-bg:nth-child(7),
+            .nfc-sticker-bg:nth-child(8) {
+                opacity: 0.02;
+            }
         }
         
         .hero-content {
             max-width: 900px;
             margin: 0 auto;
             padding: 0 20px;
+            position: relative;
+            z-index: 10;
         }
         
         .hero-title {
@@ -927,6 +1054,16 @@
             <main class="relative z-10 pt-24 pb-16 px-6">
                 <!-- 1. Our Solution Section -->
                 <section class="hero-section">
+                    <!-- NFC Stickers Background -->
+                    <div class="nfc-sticker-bg"></div>
+                    <div class="nfc-sticker-bg"></div>
+                    <div class="nfc-sticker-bg"></div>
+                    <div class="nfc-sticker-bg"></div>
+                    <div class="nfc-sticker-bg"></div>
+                    <div class="nfc-sticker-bg"></div>
+                    <div class="nfc-sticker-bg"></div>
+                    <div class="nfc-sticker-bg"></div>
+                    
                     <div class="hero-content">
                         <h2 class="hero-title">
                             Unified identity<br>
