@@ -731,7 +731,7 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 20rem;
+            font-size: 12rem;
             font-weight: 900;
             font-family: 'Playfair Display', serif;
             color: transparent;
@@ -739,8 +739,12 @@
             text-stroke: 2px rgba(255, 255, 255, 0.1);
             white-space: nowrap;
             z-index: 0;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.05em;
             pointer-events: none;
+            width: 100vw;
+            max-width: 100vw;
+            overflow: hidden;
+            text-align: center;
         }
 
         .export-formats-title {
