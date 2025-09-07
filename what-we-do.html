@@ -1446,7 +1446,7 @@
         <!-- Main content -->
         <div class="relative z-10" style="position: relative; z-index: 10;">
             <!-- Phone image large and centered -->
-            <div id="landing-phone-container" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 20;">
+            <div id="landing-phone-container" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 20; opacity: 0; transition: opacity 1s ease-in-out;">
                 <img src="/media/phone.png" alt="Phone" class="h-[60vh] w-auto" id="landing-phone">
             </div>
             
@@ -1589,6 +1589,27 @@
         // Start typing effect when page loads
         document.addEventListener('DOMContentLoaded', function() {
             setTimeout(typeText, 1000); // Start after 1 second
+            
+            // Phone fade-in on scroll
+            const phoneContainer = document.getElementById('landing-phone-container');
+            const landingSection = document.querySelector('.landing-page-section');
+            
+            function handleScroll() {
+                if (!phoneContainer || !landingSection) return;
+                
+                const rect = landingSection.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                
+                // Fade in when landing section is 50% visible
+                if (rect.top < windowHeight * 0.5 && rect.bottom > 0) {
+                    phoneContainer.style.opacity = '1';
+                } else {
+                    phoneContainer.style.opacity = '0';
+                }
+            }
+            
+            window.addEventListener('scroll', handleScroll);
+            handleScroll(); // Check initial state
         });
         
         // Scroll to top function
