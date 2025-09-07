@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What We Do - Tap Health</title>
+    
+    <!-- Mobile redirect script -->
+    <script>
+        // Redirect to mobile version when screen becomes small
+        function isMobile() {
+            return window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        }
+        
+        // Redirect on window resize to mobile
+        window.addEventListener('resize', function() {
+            if (isMobile()) {
+                window.location.href = 'index.html';
+            }
+        });
+    </script>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <script src="https://cdn.tailwindcss.com?v=4"></script>
+    <link rel="icon" href="favicon.ico" />
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Background image styling */
+        .lightning-bg {
+            background-image: url('/media/lightning_bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            min-height: 120vh;
+            position: relative;
+        }
+        
+        /* Vignette overlay */
+        .lightning-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        /* Content overlay */
+        .content-overlay {
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Typing animation */
+        .typing-text {
+            font-family: 'Arial', sans-serif;
+            font-weight: 900;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        /* Cursor animation */
+        .blinking-cursor {
+            animation: blink 1s step-end infinite;
+        }
+        
+        @keyframes blink {
+            from, to { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        
+        /* Mobile menu */
+        .mobile-menu {
+            display: none;
+            z-index: 9999;
+        }
+        
+        .mobile-menu.open {
+            display: block;
+        }
+        
+        /* Smooth transitions */
+        .smooth-transition {
+            transition: all 0.3s ease-in-out;
+        }
+        
+        /* Card hover effects */
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+
+<body class="bg-black text-white">
+    <!-- Lightning Background -->
+    <div class="lightning-bg">
+        <div class="content-overlay">
+            <!-- Header -->
+            <header class="relative z-10 p-6">
+                <nav class="flex justify-between items-center">
+                    <!-- Logo -->
+                    <div class="flex items-center">
+                        <a href="index2.html" class="flex items-center">
+                            <img src="/media/tap_health_logo.png" alt="Tap Health Logo" class="h-8 w-auto">
+                        </a>
+                    </div>
+                    
+                    <!-- Desktop Navigation -->
+                    <div class="hidden md:flex items-center space-x-8">
+                        <a href="index2.html" class="text-white hover:text-gray-300 transition-colors">Home</a>
+                        <a href="what-we-do.html" class="text-white font-semibold">What We Do</a>
+                        <a href="#" class="text-white hover:text-gray-300 transition-colors">Security & Compliance</a>
+                        <a href="#" class="text-white hover:text-gray-300 transition-colors">Join Our Pilot Program</a>
+                    </div>
+                    
+                    <!-- Mobile Menu Button -->
+                    <button id="mobile-menu-btn" class="md:hidden text-white">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </nav>
+                
+                <!-- Mobile Menu -->
+                <div id="mobile-menu" class="mobile-menu fixed top-16 right-6 bg-black bg-opacity-90 backdrop-blur-sm rounded-lg shadow-2xl z-40 min-w-48">
+                    <nav class="px-6 py-4 text-white">
+                        <a href="index2.html" class="block py-3 text-lg font-bold hover:text-gray-300 transition-colors border-b border-gray-600">Home</a>
+                        <a href="what-we-do.html" class="block py-3 text-lg font-bold hover:text-gray-300 transition-colors border-b border-gray-600">What We Do</a>
+                        <a href="#" class="block py-3 text-lg font-bold hover:text-gray-300 transition-colors border-b border-gray-600">Security & Compliance</a>
+                        <a href="#" class="block py-3 text-lg font-bold hover:text-gray-300 transition-colors">Join Our Pilot Program</a>
+                    </nav>
+                </div>
+            </header>
+            
+            <!-- Main Content -->
+            <main class="relative z-10 px-6 py-12">
+                <!-- Hero Section -->
+                <section class="text-center mb-16">
+                    <h1 class="text-4xl md:text-6xl font-black mb-6 text-white">
+                        What We Do
+                    </h1>
+                    <p class="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto">
+                        Tap replaces forms with a single tap of your phone — making sign-ins and sign-ups instant, secure, and seamless.
+                    </p>
+                </section>
+                
+                <!-- Our Solution Section -->
+                <section class="mb-20">
+                    <div class="max-w-6xl mx-auto">
+                        <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-white">
+                            Our Solution
+                        </h2>
+                        <p class="text-xl text-gray-300 text-center mb-16 max-w-4xl mx-auto">
+                            Tap makes sign-ins and sign-ups instant — just tap to securely share your verified info. 
+                            No more forms. No more typing. Just tap and go.
+                        </p>
+                        
+                        <!-- Feature Cards -->
+                        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 card-hover">
+                                <h3 class="text-2xl font-bold mb-4 text-white">One Tap Simplicity</h3>
+                                <p class="text-gray-300">
+                                    Tap eliminates repetitive data entry and makes onboarding smoother and more accurate for both users and organizations.
+                                </p>
+                            </div>
+                            
+                            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 card-hover">
+                                <h3 class="text-2xl font-bold mb-4 text-white">Physical + Virtual</h3>
+                                <p class="text-gray-300">
+                                    Tap works physically via NFC chips (like Apple Pay) and virtually via OAuth-style integrations — wherever identity or info needs to flow.
+                                </p>
+                            </div>
+                            
+                            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 card-hover">
+                                <h3 class="text-2xl font-bold mb-4 text-white">Consent-First</h3>
+                                <p class="text-gray-300">
+                                    No data is shared without explicit user consent. Tap ensures total privacy and control at every step.
+                                </p>
+                            </div>
+                            
+                            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 card-hover">
+                                <h3 class="text-2xl font-bold mb-4 text-white">Transparent + Editable</h3>
+                                <p class="text-gray-300">
+                                    Users can view what's shared, to whom, and manage or update their Tap profile anytime for a completely transparent experience.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Core Benefits Section -->
+                <section class="mb-20">
+                    <div class="max-w-6xl mx-auto">
+                        <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-white">
+                            Core Benefits
+                        </h2>
+                        
+                        <div class="space-y-12">
+                            <div class="flex flex-col md:flex-row items-center gap-8">
+                                <div class="flex-shrink-0">
+                                    <img src="/media/tap_icon.png" alt="Tap Icon" class="w-16 h-16">
+                                </div>
+                                <div class="text-center md:text-left">
+                                    <h3 class="text-2xl font-semibold mb-2 text-white">Secure</h3>
+                                    <p class="text-gray-300 text-lg">
+                                        Only user-approved data is shared — giving people full control over what they share, and with whom.
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex flex-col md:flex-row items-center gap-8">
+                                <div class="flex-shrink-0">
+                                    <img src="/media/tap_icon.png" alt="Tap Icon" class="w-16 h-16">
+                                </div>
+                                <div class="text-center md:text-left">
+                                    <h3 class="text-2xl font-semibold mb-2 text-white">Fast</h3>
+                                    <p class="text-gray-300 text-lg">
+                                        Tap eliminates form-fill and waiting rooms. Onboard in seconds with a single tap.
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex flex-col md:flex-row items-center gap-8">
+                                <div class="flex-shrink-0">
+                                    <img src="/media/tap_icon.png" alt="Tap Icon" class="w-16 h-16">
+                                </div>
+                                <div class="text-center md:text-left">
+                                    <h3 class="text-2xl font-semibold mb-2 text-white">Accurate</h3>
+                                    <p class="text-gray-300 text-lg">
+                                        Verified information lowers data entry errors, improves compliance, and boosts trust in every interaction.
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex flex-col md:flex-row items-center gap-8">
+                                <div class="flex-shrink-0">
+                                    <img src="/media/tap_icon.png" alt="Tap Icon" class="w-16 h-16">
+                                </div>
+                                <div class="text-center md:text-left">
+                                    <h3 class="text-2xl font-semibold mb-2 text-white">Universal</h3>
+                                    <p class="text-gray-300 text-lg">
+                                        Tap works across industries and integrates with existing systems.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Why Now Section -->
+                <section class="mb-20">
+                    <div class="max-w-6xl mx-auto text-center">
+                        <h2 class="text-3xl md:text-4xl font-bold mb-12 text-white">Why Now?</h2>
+                        <div class="grid md:grid-cols-3 gap-8">
+                            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 card-hover">
+                                <h3 class="text-xl font-semibold mb-4 text-white">Digital Transformation</h3>
+                                <p class="text-gray-300">
+                                    Organizations are rapidly digitizing, but legacy form systems create friction and security risks.
+                                </p>
+                            </div>
+                            
+                            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 card-hover">
+                                <h3 class="text-xl font-semibold mb-4 text-white">Privacy Regulations</h3>
+                                <p class="text-gray-300">
+                                    New privacy laws require better data control and consent management — exactly what Tap provides.
+                                </p>
+                            </div>
+                            
+                            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 card-hover">
+                                <h3 class="text-xl font-semibold mb-4 text-white">User Expectations</h3>
+                                <p class="text-gray-300">
+                                    People expect seamless, secure experiences like Apple Pay — Tap brings that to all interactions.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- The Future Section -->
+                <section class="mb-20">
+                    <div class="max-w-6xl mx-auto">
+                        <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-white">
+                            The Future of Tap
+                        </h2>
+                        
+                        <div class="grid md:grid-cols-3 gap-8">
+                            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 card-hover">
+                                <h3 class="text-xl font-semibold mb-4 text-white">Focus Market: Healthcare</h3>
+                                <p class="text-gray-300">
+                                    Start by eliminating clinic intake forms with one tap. No paperwork. No waiting rooms full of clipboards.
+                                </p>
+                            </div>
+                            
+                            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 card-hover">
+                                <h3 class="text-xl font-semibold mb-4 text-white">Industry Expansion</h3>
+                                <p class="text-gray-300">
+                                    Next targets: Banking, Retail & Rewards, Hotel Check-Ins, and Web Integrations.
+                                </p>
+                            </div>
+                            
+                            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 card-hover">
+                                <h3 class="text-xl font-semibold mb-4 text-white">Global Scale</h3>
+                                <p class="text-gray-300">
+                                    Build the universal identity layer that makes every interaction instant, secure, and user-controlled.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- CTA Section -->
+                <section class="text-center">
+                    <div class="max-w-4xl mx-auto">
+                        <h2 class="text-3xl md:text-4xl font-bold mb-6 text-white">
+                            Ready to Transform Your Forms?
+                        </h2>
+                        <p class="text-xl text-gray-300 mb-8">
+                            Join our pilot program and be among the first to experience the future of instant, secure interactions.
+                        </p>
+                        <a href="#" class="inline-block bg-white text-black px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-200 transition-colors">
+                            Join Our Pilot Program
+                        </a>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="bg-black text-white py-8 px-6 relative z-10">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-4">
+                <a href="privacy.html" class="text-xs text-gray-400 hover:text-white transition-colors" style="font-size: 10px;">Privacy Policy</a>
+            </div>
+            <div class="text-gray-400 text-sm">
+                © 2024 Tap Health. All rights reserved.
+            </div>
+        </div>
+    </footer>
+    
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+        });
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!mobileMenuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
+                mobileMenu.classList.remove('open');
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
