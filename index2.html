@@ -937,15 +937,8 @@
                 activeTextIndex = scrolled <= upThreshold ? 0 : 1;
             }
             
-            // Log header transitions for verification
+            // Update header text based on scroll position
             if (activeTextIndex !== currentTextIndex) {
-                const fromText = currentTextIndex === 0 ? "Text 1 (Your data...)" : "Text 2 (One Tap...)";
-                const toText = activeTextIndex === 0 ? "Text 1 (Your data...)" : "Text 2 (One Tap...)";
-                const direction = activeTextIndex > currentTextIndex ? "DOWN" : "UP";
-                const threshold = activeTextIndex === 1 ? downThreshold : upThreshold;
-                
-                console.log(`🔄 HEADER TRANSITION: ${fromText} → ${toText} at scroll position ${scrolled}px (scrolling ${direction}, threshold: ${threshold}px)`);
-                
                 currentTextIndex = activeTextIndex;
             }
             
