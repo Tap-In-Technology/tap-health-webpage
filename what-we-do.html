@@ -1627,8 +1627,8 @@
                 console.log('Landing section rect:', rect);
                 console.log('Window height:', windowHeight);
                 
-                // Fade in and slide up when landing section is 50% visible
-                if (rect.top < windowHeight * 0.5 && rect.bottom > 0) {
+                // Fade in and slide up when landing section is in view
+                if (rect.top < windowHeight && rect.bottom > 0) {
                     phoneContainer.style.opacity = '1';
                     phoneContainer.style.transform = 'translate(-50%, -50%) translateY(0px)';
                     console.log('Phone faded in and slid up');
