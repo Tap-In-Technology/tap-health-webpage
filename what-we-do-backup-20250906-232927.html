@@ -1,0 +1,1462 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What We Do - Tap Health</title>
+    
+    <!-- Mobile redirect script -->
+    <script>
+        // Redirect to mobile version when screen becomes small
+        function isMobile() {
+            return window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        }
+        
+        // Redirect on window resize to mobile
+        window.addEventListener('resize', function() {
+            if (isMobile()) {
+                window.location.href = 'index.html';
+            }
+        });
+    </script>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <script src="https://cdn.tailwindcss.com?v=4"></script>
+    <link rel="icon" href="favicon.ico" />
+    <!-- Playfair Display font from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Pure black background */
+        .futuristic-bg {
+            background: #000000;
+            min-height: 100vh;
+            position: relative;
+        }
+        
+        /* Content overlay */
+        .content-overlay {
+            position: relative;
+            z-index: 3;
+        }
+        
+        /* Futuristic typography with Playfair Display font */
+        .futuristic-title {
+            font-family: 'Playfair Display', serif;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: -0.03em;
+            text-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+        }
+        
+        .futuristic-subtitle {
+            font-family: 'Playfair Display', serif;
+            font-weight: 400;
+            color: #b0b0b0;
+            letter-spacing: -0.01em;
+        }
+        
+        /* Apply Playfair Display font to all text elements */
+        body {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        /* Hero section styling - slash.com inspired */
+        .hero-section {
+            background: transparent;
+            padding: 120px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* NFC Stickers Background */
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(0, 0, 0, 0.8) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(0, 0, 0, 0.6) 0%, transparent 50%),
+                radial-gradient(circle at 50% 10%, rgba(0, 0, 0, 0.4) 0%, transparent 40%);
+            z-index: 0;
+        }
+
+        .nfc-sticker-bg {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background-image: url('/media/NFCTapSticker.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            z-index: 1;
+            opacity: 0.1;
+            animation: floatSticker 8s ease-in-out infinite;
+        }
+
+        .nfc-sticker-bg:nth-child(1) {
+            top: 15%;
+            left: 10%;
+            transform: rotate(15deg);
+            animation-delay: 0s;
+        }
+
+        .nfc-sticker-bg:nth-child(2) {
+            top: 25%;
+            right: 15%;
+            transform: rotate(-25deg);
+            animation-delay: 2s;
+            opacity: 0.08;
+        }
+
+        .nfc-sticker-bg:nth-child(3) {
+            top: 60%;
+            left: 5%;
+            transform: rotate(35deg);
+            animation-delay: 4s;
+            opacity: 0.06;
+        }
+
+        .nfc-sticker-bg:nth-child(4) {
+            top: 70%;
+            right: 8%;
+            transform: rotate(-15deg);
+            animation-delay: 6s;
+            opacity: 0.05;
+        }
+
+        .nfc-sticker-bg:nth-child(5) {
+            top: 40%;
+            left: 20%;
+            transform: rotate(45deg);
+            animation-delay: 1s;
+            opacity: 0.07;
+        }
+
+        .nfc-sticker-bg:nth-child(6) {
+            top: 50%;
+            right: 25%;
+            transform: rotate(-35deg);
+            animation-delay: 3s;
+            opacity: 0.04;
+        }
+
+        .nfc-sticker-bg:nth-child(7) {
+            top: 80%;
+            left: 30%;
+            transform: rotate(20deg);
+            animation-delay: 5s;
+            opacity: 0.03;
+        }
+
+        .nfc-sticker-bg:nth-child(8) {
+            top: 10%;
+            left: 50%;
+            transform: rotate(-40deg);
+            animation-delay: 7s;
+            opacity: 0.09;
+        }
+
+        @keyframes floatSticker {
+            0%, 100% {
+                transform: translateY(0px) rotate(var(--rotation, 0deg));
+                opacity: var(--base-opacity, 0.1);
+            }
+            50% {
+                transform: translateY(-15px) rotate(calc(var(--rotation, 0deg) + 5deg));
+                opacity: calc(var(--base-opacity, 0.1) * 1.5);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nfc-sticker-bg {
+                width: 60px;
+                height: 60px;
+                opacity: 0.05;
+            }
+            
+            .nfc-sticker-bg:nth-child(1),
+            .nfc-sticker-bg:nth-child(2),
+            .nfc-sticker-bg:nth-child(3),
+            .nfc-sticker-bg:nth-child(4) {
+                opacity: 0.03;
+            }
+            
+            .nfc-sticker-bg:nth-child(5),
+            .nfc-sticker-bg:nth-child(6),
+            .nfc-sticker-bg:nth-child(7),
+            .nfc-sticker-bg:nth-child(8) {
+                opacity: 0.02;
+            }
+        }
+        
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .hero-title {
+            font-size: 5rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 40px;
+            line-height: 0.9;
+            font-family: 'Playfair Display', serif;
+            position: relative;
+            background: linear-gradient(45deg, #ffffff, #00ffff, #8a2be2, #ffffff);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: spotlight 3s ease-in-out infinite;
+        }
+        
+        @keyframes spotlight {
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+        
+        .hero-description {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 50px;
+            line-height: 1.6;
+            font-family: 'Playfair Display', serif;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .hero-cta-button {
+            padding: 18px 40px;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Playfair Display', serif;
+            border: none;
+        }
+        
+        .hero-cta-button.primary {
+            background: white;
+            color: black;
+            box-shadow: 0 2px 10px rgba(255, 255, 255, 0.2);
+        }
+        
+        .hero-cta-button.primary:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(255, 255, 255, 0.3);
+        }
+        
+        .hero-cta-button.secondary {
+            background: transparent;
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .hero-cta-button.secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+        
+        /* Who We're Built For section */
+        .who-built-for-section {
+            margin: 200px 0;
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+        
+        .carousel-controls {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .carousel-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .carousel-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+        
+        .carousel-container {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 20px 0;
+        }
+        
+        .carousel-container::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .carousel-container {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        .business-card {
+            min-width: 300px;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .business-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 255, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.1);
+        }
+        
+        .business-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #00ffff, #8a2be2);
+        }
+        
+        .business-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 20px;
+        }
+        
+        .business-content {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .business-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.2), rgba(138, 43, 226, 0.2));
+            border: 2px solid rgba(0, 255, 255, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        
+        /* Pricing Section */
+        .pricing-section {
+            margin: 200px 0;
+        }
+        
+        .pricing-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: white;
+            text-align: center;
+            margin-bottom: 20px;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .pricing-divider {
+            width: 100px;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.3);
+            margin: 0 auto 60px;
+        }
+        
+        .pricing-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .pricing-plan {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .plan-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 20px;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .plan-price {
+            font-size: 4rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 5px;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .plan-period {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 20px;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .plan-description {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 30px;
+            line-height: 1.5;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .plan-button {
+            width: 100%;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .plan-button.free {
+            background: transparent;
+            border: 1px solid white;
+            color: white;
+        }
+        
+        .plan-button.free:hover {
+            background: white;
+            color: black;
+        }
+        
+        .plan-button.pro {
+            background: white;
+            border: 1px solid white;
+            color: black;
+        }
+        
+        .plan-button.pro:hover {
+            background: transparent;
+            color: white;
+        }
+        
+        .plan-features {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: left;
+        }
+        
+        .plan-feature {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .plan-feature:last-child {
+            margin-bottom: 0;
+        }
+        
+        .feature-checkmark {
+            color: white;
+            margin-right: 12px;
+            font-size: 1.1rem;
+        }
+        
+        /* FAQ Section */
+        .faq-section {
+            margin: 200px 0;
+        }
+        
+        .faq-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+        
+        .faq-header {
+            padding-right: 40px;
+        }
+        
+        .faq-title {
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 0.9;
+            color: white;
+            margin-bottom: 30px;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .faq-subtitle {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 10px;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .faq-cta {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .faq-cta:hover {
+            color: #00ffff;
+        }
+        
+        .faq-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .faq-item {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 25px 0;
+        }
+        
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+        
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .faq-question:hover {
+            color: #00ffff;
+        }
+        
+        .faq-chevron {
+            width: 16px;
+            height: 16px;
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-item.active .faq-chevron {
+            transform: rotate(180deg);
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-top: 15px;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+        }
+        
+        
+        /* Spotlight section */
+        .spotlight-section {
+            margin: 200px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .spotlight-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .spotlight-left {
+            position: relative;
+            z-index: 2;
+        }
+
+        .spotlight-right {
+            position: relative;
+            z-index: 2;
+            text-align: right;
+        }
+
+        .spotlight-title {
+            font-size: 4rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 30px;
+            line-height: 1.1;
+            font-family: 'Playfair Display', serif;
+            position: relative;
+            z-index: 2;
+        }
+
+        .spotlight-title::before {
+            content: '';
+            position: absolute;
+            top: -30px;
+            right: -20px;
+            width: 140%;
+            height: calc(100% + 60px);
+            background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.25) 0%, rgba(0, 255, 255, 0.15) 30%, transparent 70%);
+            z-index: -1;
+            border-radius: 30px;
+            animation: spotlightPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes spotlightPulse {
+            0%, 100% {
+                opacity: 0.8;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+        }
+
+        .spotlight-description {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            font-family: 'Playfair Display', serif;
+        }
+
+        @media (max-width: 768px) {
+            .spotlight-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+            
+            .spotlight-right {
+                text-align: center;
+            }
+            
+            .spotlight-title {
+                font-size: 3rem;
+            }
+        }
+
+        /* Export Formats Section */
+        .export-formats-section {
+            margin: 200px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            padding: 60px 0;
+        }
+
+        .export-formats-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 20px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .export-formats-subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 60px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .export-formats-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 60px;
+            overflow: hidden;
+            position: relative;
+            transform: rotate(-2deg);
+            margin: 40px 0;
+        }
+
+        .export-formats-track {
+            display: flex;
+            gap: 0;
+            width: calc(100% * 4);
+        }
+
+        .export-format-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 120px;
+            height: 60px;
+            background: white;
+            color: black;
+            border: 2px solid black;
+            border-radius: 0;
+            transition: all 0.3s ease;
+            position: relative;
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .export-format-item:hover {
+            background: black;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .export-format-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            right: -2px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 20px;
+            background: black;
+            z-index: 1;
+        }
+
+        .export-format-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: inherit;
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        @keyframes scrollExportFormats {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-25%);
+            }
+        }
+
+        .export-formats-track:hover {
+            animation-play-state: paused;
+        }
+
+        /* CTA Section with vertical gradient */
+        .cta-gradient-section {
+            background: linear-gradient(180deg, 
+                rgba(0, 0, 0, 1) 0%, 
+                rgba(20, 20, 20, 0.9) 20%, 
+                rgba(40, 40, 40, 0.8) 40%, 
+                rgba(0, 100, 200, 0.6) 60%, 
+                rgba(0, 150, 255, 0.8) 80%, 
+                rgba(0, 200, 255, 1) 100%);
+            padding: 100px 0;
+            margin: 0;
+            width: 100vw;
+            margin-left: calc(-50vw + 50%);
+            position: relative;
+        }
+
+        /* Ensure animation is always running */
+        .export-formats-track {
+            animation: scrollExportFormats 30s linear infinite;
+        }
+        
+        .spotlight-description {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 3.5rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .hero-cta-button {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            /* Hide page title on mobile to save space */
+            header .futuristic-title {
+                display: none;
+            }
+            
+            .faq-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .faq-title {
+                font-size: 3rem;
+            }
+            
+            .faq-header {
+                padding-right: 0;
+            }
+            
+            .pricing-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .pricing-title {
+                font-size: 2.5rem;
+            }
+            
+            .plan-price {
+                font-size: 3rem;
+            }
+            
+            .future-content {
+                padding: 0 20px;
+            }
+            
+            .spotlight-title {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-black text-white">
+    <!-- Futuristic Background -->
+    <div class="futuristic-bg">
+        <div class="content-overlay">
+            <!-- Header -->
+            <header class="fixed top-0 left-0 w-full z-50 py-4 px-6 flex justify-between items-center">
+                <div class="flex items-center">
+                    <a href="index2.html">
+                        <img src="/media/Tap_inverted.png" alt="Tap Health Logo" class="h-16 md:h-20 lg:h-24 mr-4">
+                    </a>
+                </div>
+                <div class="flex items-center gap-6">
+                    <h1 class="text-2xl md:text-3xl font-bold futuristic-title">
+                        What We Do
+                    </h1>
+                    <div class="relative">
+                        <button id="menu-toggle" class="text-white hover:text-gray-300 transition-colors" onclick="toggleMenu()">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                            </svg>
+                        </button>
+                        <div id="menu-overlay" class="fixed top-16 right-6 bg-black bg-opacity-90 backdrop-blur-sm rounded-lg shadow-2xl z-40 hidden min-w-48">
+                            <nav class="px-6 py-4 text-white">
+                                <a href="index2.html" class="block py-3 text-lg font-bold hover:text-gray-300 transition-colors border-b border-gray-600">Home</a>
+                                <a href="security-compliance.html" class="block py-3 text-lg font-bold hover:text-gray-300 transition-colors border-b border-gray-600">Security & Compliance</a>
+                                <a href="#" class="block py-3 text-lg font-bold hover:text-gray-300 transition-colors">Join Our Pilot Program</a>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- Main Content -->
+            <main class="relative z-10 pt-24 pb-16 px-6">
+                <!-- 1. Our Solution Section -->
+                <section class="hero-section">
+                    <!-- NFC Stickers Background -->
+                    <div class="nfc-sticker-bg"></div>
+                    <div class="nfc-sticker-bg"></div>
+                    <div class="nfc-sticker-bg"></div>
+                    <div class="nfc-sticker-bg"></div>
+                    <div class="nfc-sticker-bg"></div>
+                    <div class="nfc-sticker-bg"></div>
+                    <div class="nfc-sticker-bg"></div>
+                    <div class="nfc-sticker-bg"></div>
+                    
+                    <div class="hero-content">
+                        <h2 class="hero-title">
+                            Unified identity<br>
+                            for modern businesses
+                        </h2>
+                        <p class="hero-description">
+                            Tap gives you one platform to manage identity verification and form completion, bringing instant simplicity to complex interactions.
+                        </p>
+                        <div class="hero-buttons">
+                            <button class="hero-cta-button primary">Get started</button>
+                            <button class="hero-cta-button secondary">Schedule demo</button>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- 2. Who We're Built For Section -->
+                <section class="who-built-for-section">
+                    <div class="max-w-7xl mx-auto">
+                        <div class="section-header">
+                            <h2 class="text-5xl md:text-6xl font-bold futuristic-title">
+                                Who We're Built For
+                            </h2>
+                            <div class="carousel-controls">
+                                <button class="carousel-btn" onclick="scrollCarousel('left')">
+                                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                        <path d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                                    </svg>
+                                </button>
+                                <button class="carousel-btn" onclick="scrollCarousel('right')">
+                                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                        <path d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="carousel-container" id="carousel">
+                            <div class="business-card">
+                                <div class="business-title">Healthcare Providers</div>
+                                <div class="business-content">
+                                    <div class="business-icon">🏥</div>
+                                    <p class="futuristic-subtitle">
+                                        Clinics, hospitals, and medical practices looking to streamline patient intake and reduce administrative burden.
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div class="business-card">
+                                <div class="business-title">Financial Services</div>
+                                <div class="business-content">
+                                    <div class="business-icon">🏦</div>
+                                    <p class="futuristic-subtitle">
+                                        Banks, credit unions, and fintech companies needing secure, compliant identity verification for account opening.
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div class="business-card">
+                                <div class="business-title">E-commerce Platforms</div>
+                                <div class="business-content">
+                                    <div class="business-icon">🛒</div>
+                                    <p class="futuristic-subtitle">
+                                        Online retailers and marketplaces seeking to reduce cart abandonment and improve checkout conversion.
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div class="business-card">
+                                <div class="business-title">Travel & Hospitality</div>
+                                <div class="business-content">
+                                    <div class="business-icon">✈️</div>
+                                    <p class="futuristic-subtitle">
+                                        Airlines, hotels, and travel agencies wanting to simplify booking and check-in processes.
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div class="business-card">
+                                <div class="business-title">Government Services</div>
+                                <div class="business-content">
+                                    <div class="business-icon">🏛️</div>
+                                    <p class="futuristic-subtitle">
+                                        Municipal, state, and federal agencies looking to modernize citizen services and reduce paperwork.
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div class="business-card">
+                                <div class="business-title">Education</div>
+                                <div class="business-content">
+                                    <div class="business-icon">🎓</div>
+                                    <p class="futuristic-subtitle">
+                                        Schools, universities, and educational platforms needing streamlined student enrollment and verification.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- 3. Spotlight Section -->
+                <section class="spotlight-section">
+                    <div class="spotlight-content">
+                        <div class="spotlight-left">
+                            <p class="spotlight-description">
+                                Traditional identity verification systems force businesses into rigid, one-size-fits-all solutions that don't adapt to their unique needs. These outdated approaches create friction, increase costs, and frustrate both businesses and their customers. The result? Lost opportunities, abandoned processes, and a competitive disadvantage in today's fast-paced digital world.
+                            </p>
+                        </div>
+                        <div class="spotlight-right">
+                            <h2 class="spotlight-title">
+                                The era of one-size-fits-all<br>
+                                identity verification is over
+                            </h2>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 4. Export Formats Section -->
+                <section class="export-formats-section">
+                    <h2 class="export-formats-title">Export Formats</h2>
+                    <p class="export-formats-subtitle">Export your data in any format you need</p>
+                    
+                    <div class="export-formats-container">
+                        <div class="export-formats-track">
+                            <!-- First set of formats -->
+                            <div class="export-format-item">
+                                <div class="export-format-name">CSV</div>
+                            </div>
+                            <div class="export-format-item">
+                                <div class="export-format-name">EXCEL</div>
+                            </div>
+                            <div class="export-format-item">
+                                <div class="export-format-name">PDF</div>
+                            </div>
+                            <div class="export-format-item">
+                                <div class="export-format-name">JSON</div>
+                            </div>
+                            <div class="export-format-item">
+                                <div class="export-format-name">XML</div>
+                            </div>
+                            <div class="export-format-item">
+                                <div class="export-format-name">SQL</div>
+                            </div>
+                            <div class="export-format-item">
+                                <div class="export-format-name">TSV</div>
+                            </div>
+                            <div class="export-format-item">
+                                <div class="export-format-name">ZIP</div>
+                            </div>
+                            
+                            <!-- Second set for seamless loop -->
+                            <div class="export-format-item">
+                                <div class="export-format-name">CSV</div>
+                            </div>
+                            <div class="export-format-item">
+                                <div class="export-format-name">EXCEL</div>
+                            </div>
+                            <div class="export-format-item">
+                                <div class="export-format-name">PDF</div>
+                            </div>
+                            <div class="export-format-item">
+                                <div class="export-format-name">JSON</div>
+                            </div>
+                            <div class="export-format-item">
+                                <div class="export-format-name">XML</div>
+                            </div>
+                            <div class="export-format-item">
+                                <div class="export-format-name">SQL</div>
+                            </div>
+                            <div class="export-format-item">
+                                <div class="export-format-name">TSV</div>
+                            </div>
+                            <div class="export-format-item">
+                                <div class="export-format-name">ZIP</div>
+                            </div>
+                            
+                            <!-- Third set for complete circle -->
+                            <div class="export-format-item">
+                                <div class="export-format-name">CSV</div>
+                            </div>
+                            <div class="export-format-item">
+                                <div class="export-format-name">EXCEL</div>
+                            </div>
+                            <div class="export-format-item">
+                                <div class="export-format-name">PDF</div>
+                            </div>
+                            <div class="export-format-item">
+                                <div class="export-format-name">JSON</div>
+                            </div>
+                            <div class="export-format-item">
+                                <div class="export-format-name">XML</div>
+                            </div>
+                            <div class="export-format-item">
+                                <div class="export-format-name">SQL</div>
+                            </div>
+                            <div class="export-format-item">
+                                <div class="export-format-name">TSV</div>
+                            </div>
+                            <div class="export-format-item">
+                                <div class="export-format-name">ZIP</div>
+                            </div>
+                            
+                            <!-- Fourth set for perfect seamless loop -->
+                            <div class="export-format-item">
+                                <div class="export-format-name">CSV</div>
+                            </div>
+                            <div class="export-format-item">
+                                <div class="export-format-name">EXCEL</div>
+                            </div>
+                            <div class="export-format-item">
+                                <div class="export-format-name">PDF</div>
+                            </div>
+                            <div class="export-format-item">
+                                <div class="export-format-name">JSON</div>
+                            </div>
+                            <div class="export-format-item">
+                                <div class="export-format-name">XML</div>
+                            </div>
+                            <div class="export-format-item">
+                                <div class="export-format-name">SQL</div>
+                            </div>
+                            <div class="export-format-item">
+                                <div class="export-format-name">TSV</div>
+                            </div>
+                            <div class="export-format-item">
+                                <div class="export-format-name">ZIP</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- 5. Pricing Section -->
+                <section class="pricing-section">
+                    <div class="max-w-7xl mx-auto">
+                        <h2 class="pricing-title">
+                            Transparent pricing with features tailored to your business
+                        </h2>
+                        <div class="pricing-divider"></div>
+                        
+                        <div class="pricing-container">
+                            <!-- Free Plan -->
+                            <div class="pricing-plan">
+                                <h3 class="plan-title">Free</h3>
+                                <div class="plan-price">$0</div>
+                                <div class="plan-period">/month</div>
+                                <p class="plan-description">
+                                    Full-featured identity verification essentials with no strings attached.
+                                </p>
+                                <button class="plan-button free">Start for free</button>
+                                
+                                <ul class="plan-features">
+                                    <li class="plan-feature">
+                                        <span class="feature-checkmark">✓</span>
+                                        Up to 100 verifications per month
+                                    </li>
+                                    <li class="plan-feature">
+                                        <span class="feature-checkmark">✓</span>
+                                        Basic identity verification
+                                    </li>
+                                    <li class="plan-feature">
+                                        <span class="feature-checkmark">✓</span>
+                                        Standard security protocols
+                                    </li>
+                                    <li class="plan-feature">
+                                        <span class="feature-checkmark">✓</span>
+                                        Email support
+                                    </li>
+                                    <li class="plan-feature">
+                                        <span class="feature-checkmark">✓</span>
+                                        Basic analytics dashboard
+                                    </li>
+                                    <li class="plan-feature">
+                                        <span class="feature-checkmark">✓</span>
+                                        API access
+                                    </li>
+                                    <li class="plan-feature">
+                                        <span class="feature-checkmark">✓</span>
+                                        Standard compliance features
+                                    </li>
+                                    <li class="plan-feature">
+                                        <span class="feature-checkmark">✓</span>
+                                        Documentation & guides
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <!-- Pro Plan -->
+                            <div class="pricing-plan">
+                                <h3 class="plan-title">Pro</h3>
+                                <div class="plan-price">$99</div>
+                                <div class="plan-period">/month</div>
+                                <p class="plan-description">
+                                    Scale your business with advanced industry-specific capabilities.
+                                </p>
+                                <button class="plan-button pro">Get started</button>
+                                
+                                <ul class="plan-features">
+                                    <li class="plan-feature">
+                                        <span class="feature-checkmark">✓</span>
+                                        Unlimited verifications
+                                    </li>
+                                    <li class="plan-feature">
+                                        <span class="feature-checkmark">✓</span>
+                                        Advanced identity verification
+                                    </li>
+                                    <li class="plan-feature">
+                                        <span class="feature-checkmark">✓</span>
+                                        Enterprise-grade security
+                                    </li>
+                                    <li class="plan-feature">
+                                        <span class="feature-checkmark">✓</span>
+                                        Priority support
+                                    </li>
+                                    <li class="plan-feature">
+                                        <span class="feature-checkmark">✓</span>
+                                        Advanced analytics & reporting
+                                    </li>
+                                    <li class="plan-feature">
+                                        <span class="feature-checkmark">✓</span>
+                                        Custom API integrations
+                                    </li>
+                                    <li class="plan-feature">
+                                        <span class="feature-checkmark">✓</span>
+                                        Full compliance suite
+                                    </li>
+                                    <li class="plan-feature">
+                                        <span class="feature-checkmark">✓</span>
+                                        Dedicated account manager
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- 6. FAQ Section -->
+                <section class="faq-section">
+                    <div class="max-w-7xl mx-auto">
+                        <div class="faq-container">
+                            <div class="faq-header">
+                                <h2 class="faq-title">
+                                    Frequently<br>
+                                    asked questions
+                                </h2>
+                                <p class="faq-subtitle">Don't see the answer you're looking for?</p>
+                                <a href="#" class="faq-cta">Get in touch.</a>
+                            </div>
+                            
+                            <div class="faq-list">
+                                <div class="faq-item" onclick="toggleFAQ(this)">
+                                    <div class="faq-question">
+                                        <span>What is Tap?</span>
+                                        <svg class="faq-chevron" fill="currentColor" viewBox="0 0 16 16">
+                                            <path d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 0-.708z"/>
+                                        </svg>
+                                    </div>
+                                    <div class="faq-answer">
+                                        Tap is a revolutionary identity verification platform that transforms complex sign-up and sign-in processes into a single, secure tap. We eliminate the need for multiple forms, passwords, and verification steps, making digital interactions instant and seamless.
+                                    </div>
+                                </div>
+                                
+                                <div class="faq-item" onclick="toggleFAQ(this)">
+                                    <div class="faq-question">
+                                        <span>How secure is Tap?</span>
+                                        <svg class="faq-chevron" fill="currentColor" viewBox="0 0 16 16">
+                                            <path d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 0-.708z"/>
+                                        </svg>
+                                    </div>
+                                    <div class="faq-answer">
+                                        Tap uses enterprise-grade encryption and follows strict security protocols. We're SOC 2 compliant and work with healthcare, financial, and government organizations that require the highest security standards. Your data is protected with bank-level security.
+                                    </div>
+                                </div>
+                                
+                                <div class="faq-item" onclick="toggleFAQ(this)">
+                                    <div class="faq-question">
+                                        <span>How much faster is Tap compared to traditional forms?</span>
+                                        <svg class="faq-chevron" fill="currentColor" viewBox="0 0 16 16">
+                                            <path d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 0-.708z"/>
+                                        </svg>
+                                    </div>
+                                    <div class="faq-answer">
+                                        Tap reduces form completion time from an average of 5-10 minutes to under 30 seconds. Our one-tap verification eliminates the need to fill out multiple fields, verify email addresses, create passwords, or wait for confirmation codes.
+                                    </div>
+                                </div>
+                                
+                                <div class="faq-item" onclick="toggleFAQ(this)">
+                                    <div class="faq-question">
+                                        <span>What industries can benefit from Tap?</span>
+                                        <svg class="faq-chevron" fill="currentColor" viewBox="0 0 16 16">
+                                            <path d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 0-.708z"/>
+                                        </svg>
+                                    </div>
+                                    <div class="faq-answer">
+                                        Tap is designed for any industry that requires identity verification and form completion. This includes healthcare providers, financial services, e-commerce platforms, travel and hospitality, government services, and educational institutions.
+                                    </div>
+                                </div>
+                                
+                                <div class="faq-item" onclick="toggleFAQ(this)">
+                                    <div class="faq-question">
+                                        <span>How do I get started with Tap?</span>
+                                        <svg class="faq-chevron" fill="currentColor" viewBox="0 0 16 16">
+                                            <path d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 0-.708z"/>
+                                        </svg>
+                                    </div>
+                                    <div class="faq-answer">
+                                        Getting started is simple. Contact our team to discuss your specific needs and requirements. We'll work with you to integrate Tap into your existing systems and provide comprehensive training and support throughout the implementation process.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                
+                <!-- 7. CTA Section -->
+                <section class="text-center mb-32 mt-64 cta-gradient-section">
+                    <div class="max-w-4xl mx-auto">
+                        <h2 class="text-5xl md:text-6xl font-bold mb-8 futuristic-title">
+                            Ready to Transform Your Forms?
+                        </h2>
+                        <p class="text-xl md:text-2xl futuristic-subtitle leading-relaxed mb-12">
+                            Join the future of identity verification. Experience the power of one-tap simplicity.
+                        </p>
+                        <button class="cta-button">
+                            Start Your Free Trial
+                        </button>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="bg-black text-white py-8 px-6 relative z-10">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-4">
+                <a href="privacy.html" class="text-xs text-gray-400 hover:text-white transition-colors" style="font-size: 10px;">Privacy Policy</a>
+            </div>
+            <div class="text-gray-400 text-sm">
+                © 2024 Tap Health. All rights reserved.
+            </div>
+        </div>
+    </footer>
+    
+    <!-- JavaScript -->
+    <script>
+        // Menu toggle functionality
+        function toggleMenu() {
+            const menuOverlay = document.getElementById('menu-overlay');
+            if (menuOverlay.classList.contains('hidden')) {
+                menuOverlay.classList.remove('hidden');
+            } else {
+                menuOverlay.classList.add('hidden');
+            }
+        }
+        
+        // Close menu when clicking outside
+        document.getElementById('menu-overlay').addEventListener('click', function(e) {
+            if (e.target === this) {
+                toggleMenu();
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Carousel functionality
+        function scrollCarousel(direction) {
+            const carousel = document.getElementById('carousel');
+            const scrollAmount = 320; // Width of one card + gap
+            
+            if (direction === 'left') {
+                carousel.scrollBy({
+                    left: -scrollAmount,
+                    behavior: 'smooth'
+                });
+            } else {
+                carousel.scrollBy({
+                    left: scrollAmount,
+                    behavior: 'smooth'
+                });
+            }
+        }
+        
+        // FAQ toggle functionality
+        function toggleFAQ(item) {
+            const isActive = item.classList.contains('active');
+            
+            // Close all FAQ items
+            document.querySelectorAll('.faq-item').forEach(faqItem => {
+                faqItem.classList.remove('active');
+            });
+            
+            // Open clicked item if it wasn't already active
+            if (!isActive) {
+                item.classList.add('active');
+            }
+        }
+    </script>
+</body>
+
+</html>
