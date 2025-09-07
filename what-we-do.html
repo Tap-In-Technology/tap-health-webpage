@@ -1463,7 +1463,7 @@
         <div class="relative z-10" style="position: relative; z-index: 10;">
             <!-- Phone image large and centered -->
             <div id="landing-phone-container" style="position: absolute; top: 100%; left: 50%; transform: translate(-50%, 0%) translateY(100px); z-index: 20; opacity: 0;">
-                <img src="/media/phone.png" alt="Phone" class="h-[60vh] w-auto" id="landing-phone" style="filter: drop-shadow(0 0 20px rgba(0, 255, 255, 0.3)) drop-shadow(0 0 40px rgba(0, 255, 255, 0.2)) drop-shadow(0 0 60px rgba(0, 255, 255, 0.1)); mask: radial-gradient(ellipse at 80% 20%, rgba(255,255,255,1) 0%, rgba(255,255,255,0.8) 30%, rgba(255,255,255,0.3) 60%, rgba(255,255,255,0) 100%); -webkit-mask: radial-gradient(ellipse at 80% 20%, rgba(255,255,255,1) 0%, rgba(255,255,255,0.8) 30%, rgba(255,255,255,0.3) 60%, rgba(255,255,255,0) 100%);">
+                <img src="/media/phone.png" alt="Phone" class="h-[60vh] w-auto" id="landing-phone" style="filter: drop-shadow(0 0 20px rgba(0, 255, 255, 0.3)) drop-shadow(0 0 40px rgba(0, 255, 255, 0.2)) drop-shadow(0 0 60px rgba(0, 255, 255, 0.1));">
             </div>
             
             <!-- Header over phone - centered in lightning background -->
@@ -1496,15 +1496,187 @@
                 <div class="typing-container">
                     <div class="typing-text" id="landing-typing-text"></div>
                 </div>
-                <button onclick="scrollToTop()" class="bg-white text-black px-4 py-2 rounded-lg text-sm font-bold hover:bg-gray-200 active:bg-gray-300 active:scale-95 transform transition-all duration-150 ease-in-out shadow-md hover:shadow-lg active:shadow-sm">
+                <button onclick="openContactForm()" class="bg-white text-black px-4 py-2 rounded-lg text-sm font-bold hover:bg-gray-200 active:bg-gray-300 active:scale-95 transform transition-all duration-150 ease-in-out shadow-md hover:shadow-lg active:shadow-sm">
                     Get in Touch
                 </button>
             </div>
         </div>
     </footer>
     
+    <!-- Success Confirmation Popup -->
+    <div id="successPopup" class="fixed inset-0 bg-black bg-opacity-80 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-xl p-6 w-80 max-w-sm shadow-2xl text-center">
+            <div class="mb-4">
+                <svg class="w-16 h-16 text-green-500 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Message Sent!</h3>
+            <p class="text-gray-600 mb-4">Thank you for reaching out. We'll get back to you soon.</p>
+            <button onclick="closeSuccessPopup()" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                Close
+            </button>
+        </div>
+    </div>
+
+    <!-- Contact Form Popup -->
+    <div id="contactPopup" class="fixed inset-0 bg-black bg-opacity-80 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-xl p-4 w-80 max-w-sm shadow-2xl" style="max-width: 320px; width: 320px; padding: 16px;">
+            <div class="flex justify-between items-center mb-3" style="margin-bottom: 12px;">
+                <h3 class="text-lg font-bold text-gray-900" style="font-size: 18px; font-weight: bold;">Get in Touch</h3>
+                <button onclick="closeContactForm()" class="text-gray-400 hover:text-gray-600 transition-colors">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width: 16px; height: 16px;">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <form id="contactForm" class="space-y-2" style="gap: 8px;">
+                <div>
+                    <label for="name" class="block text-xs font-medium text-gray-700 mb-1" style="font-size: 12px; margin-bottom: 4px;">Name *</label>
+                    <input type="text" id="name" name="name" required 
+                           class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" 
+                           style="padding: 8px 12px; font-size: 14px;">
+                </div>
+                <div>
+                    <label for="email" class="block text-xs font-medium text-gray-700 mb-1" style="font-size: 12px; margin-bottom: 4px;">Email *</label>
+                    <input type="email" id="email" name="email" required 
+                           class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" 
+                           style="padding: 8px 12px; font-size: 14px;">
+                </div>
+                <div>
+                    <label for="phone" class="block text-xs font-medium text-gray-700 mb-1" style="font-size: 12px; margin-bottom: 4px;">Phone</label>
+                    <input type="tel" id="phone" name="phone" 
+                           class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" 
+                           style="padding: 8px 12px; font-size: 14px;">
+                </div>
+                <div>
+                    <label for="message" class="block text-xs font-medium text-gray-700 mb-1" style="font-size: 12px; margin-bottom: 4px;">Message *</label>
+                    <textarea id="message" name="message" rows="3" required 
+                              class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none" 
+                              style="padding: 8px 12px; font-size: 14px;"></textarea>
+                </div>
+                <div class="flex gap-2 pt-2" style="gap: 8px; padding-top: 8px;">
+                    <button type="button" onclick="closeContactForm()" 
+                            class="flex-1 bg-gray-200 text-gray-800 px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-300 transition-colors" 
+                            style="padding: 8px 12px; font-size: 14px;">
+                        Cancel
+                    </button>
+                    <button type="submit" 
+                            class="flex-1 bg-blue-600 text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-colors" 
+                            style="padding: 8px 12px; font-size: 14px;">
+                        Send
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
     <!-- JavaScript -->
     <script>
+        // Contact form functionality
+        function openContactForm() {
+            const contactPopup = document.getElementById('contactPopup');
+            const typingContainer = document.querySelector('.typing-container');
+            
+            if (contactPopup) {
+                contactPopup.classList.remove('hidden');
+                console.log('Contact form opened');
+            }
+            
+            if (typingContainer) {
+                typingContainer.style.display = 'none';
+            }
+            
+            // Change Get in Touch button to Go Back button
+            const getInTouchBtn = document.querySelector('button[onclick="openContactForm()"]');
+            if (getInTouchBtn) {
+                getInTouchBtn.textContent = 'Go Back';
+                getInTouchBtn.setAttribute('onclick', 'closeContactForm()');
+            }
+        }
+
+        function closeContactForm() {
+            const contactPopup = document.getElementById('contactPopup');
+            const typingContainer = document.querySelector('.typing-container');
+            
+            if (contactPopup) {
+                contactPopup.classList.add('hidden');
+                console.log('Contact form closed');
+            }
+            
+            if (typingContainer) {
+                typingContainer.style.display = 'block';
+            }
+            
+            // Change Go Back button back to Get in Touch button
+            const goBackBtn = document.querySelector('button[onclick="closeContactForm()"]');
+            if (goBackBtn) {
+                goBackBtn.textContent = 'Get in Touch';
+                goBackBtn.setAttribute('onclick', 'openContactForm()');
+            }
+            
+            // Reset form
+            const form = document.getElementById('contactForm');
+            if (form) {
+                form.reset();
+            }
+        }
+
+        function closeSuccessPopup() {
+            const successPopup = document.getElementById('successPopup');
+            const typingContainer = document.querySelector('.typing-container');
+            
+            if (successPopup) {
+                successPopup.classList.add('hidden');
+                console.log('Success popup closed');
+            }
+            
+            if (typingContainer) {
+                typingContainer.style.display = 'block';
+            }
+            
+            // Change Go Back button back to Get in Touch button
+            const goBackBtn = document.querySelector('button[onclick="closeContactForm()"]');
+            if (goBackBtn) {
+                goBackBtn.textContent = 'Get in Touch';
+                goBackBtn.setAttribute('onclick', 'openContactForm()');
+            }
+        }
+
+        // Handle form submission
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('contactForm');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Get form data
+                    const formData = new FormData(form);
+                    const name = formData.get('name');
+                    const email = formData.get('email');
+                    const phone = formData.get('phone');
+                    const message = formData.get('message');
+                    
+                    // Basic validation
+                    if (!name || !email || !message) {
+                        alert('Please fill in all required fields.');
+                        return;
+                    }
+                    
+                    // Simulate form submission
+                    console.log('Form submitted:', { name, email, phone, message });
+                    
+                    // Close contact form and show success popup
+                    closeContactForm();
+                    
+                    const successPopup = document.getElementById('successPopup');
+                    if (successPopup) {
+                        successPopup.classList.remove('hidden');
+                    }
+                });
+            }
+        });
+
         // Menu toggle functionality
         function toggleMenu() {
             const menuOverlay = document.getElementById('menu-overlay');
