@@ -149,7 +149,7 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 2;
+            z-index: 3;
             mask: url('/media/phone.png');
             -webkit-mask: url('/media/phone.png');
             mask-size: contain;
@@ -167,7 +167,7 @@
             left: -100%;
             width: 200%;
             height: 200%;
-            background: linear-gradient(135deg, transparent, rgba(255, 255, 255, 0.08), transparent);
+            background: linear-gradient(135deg, transparent, rgba(255, 255, 255, 0.15), transparent);
             animation: gleam 4s ease-in-out infinite;
         }
         
@@ -1939,6 +1939,18 @@
                     display: window.getComputedStyle(phoneContainer).display,
                     visibility: window.getComputedStyle(phoneContainer).visibility
                 });
+                
+                // Debug gleam element
+                const gleamElement = phoneContainer.querySelector('.phone-gleam');
+                if (gleamElement) {
+                    console.log('Gleam element found:', {
+                        display: window.getComputedStyle(gleamElement).display,
+                        opacity: window.getComputedStyle(gleamElement).opacity,
+                        zIndex: window.getComputedStyle(gleamElement).zIndex
+                    });
+                } else {
+                    console.log('Gleam element NOT found');
+                }
             }
             
             function handleScroll() {
