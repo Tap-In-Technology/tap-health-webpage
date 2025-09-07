@@ -34,43 +34,11 @@
             scroll-behavior: smooth;
         }
         
-        /* Futuristic dark background */
+        /* Pure black background */
         .futuristic-bg {
-            background: #0a0a0a;
+            background: #000000;
             min-height: 100vh;
             position: relative;
-        }
-        
-        /* Network grid pattern */
-        .futuristic-bg::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: 
-                linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
-            background-size: 100px 100px;
-            pointer-events: none;
-            z-index: 1;
-        }
-        
-        /* Glowing nodes overlay */
-        .futuristic-bg::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 30%, rgba(0, 255, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(138, 43, 226, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 50% 50%, rgba(0, 255, 255, 0.05) 0%, transparent 70%);
-            pointer-events: none;
-            z-index: 2;
         }
         
         /* Content overlay */
@@ -325,6 +293,116 @@
             transform: translateY(-3px);
             box-shadow: 0 10px 40px rgba(0, 255, 255, 0.6);
         }
+        
+        /* Who We're Built For section */
+        .who-built-for-section {
+            margin: 80px 0;
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+        
+        .carousel-controls {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .carousel-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .carousel-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+        
+        .carousel-container {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 20px 0;
+        }
+        
+        .carousel-container::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .carousel-container {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        .business-card {
+            min-width: 300px;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .business-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 255, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.1);
+        }
+        
+        .business-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #00ffff, #8a2be2);
+        }
+        
+        .business-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 20px;
+        }
+        
+        .business-content {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .business-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.2), rgba(138, 43, 226, 0.2));
+            border: 2px solid rgba(0, 255, 255, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 
@@ -539,6 +617,91 @@
                     </div>
                 </section>
                 
+                <!-- Who We're Built For Section -->
+                <section class="who-built-for-section">
+                    <div class="max-w-7xl mx-auto">
+                        <div class="section-header">
+                            <h2 class="text-5xl md:text-6xl font-bold futuristic-title">
+                                Who We're Built For
+                            </h2>
+                            <div class="carousel-controls">
+                                <button class="carousel-btn" onclick="scrollCarousel('left')">
+                                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                        <path d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                                    </svg>
+                                </button>
+                                <button class="carousel-btn" onclick="scrollCarousel('right')">
+                                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                        <path d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="carousel-container" id="carousel">
+                            <div class="business-card">
+                                <div class="business-title">Healthcare Providers</div>
+                                <div class="business-content">
+                                    <div class="business-icon">🏥</div>
+                                    <p class="futuristic-subtitle">
+                                        Clinics, hospitals, and medical practices looking to streamline patient intake and reduce administrative burden.
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div class="business-card">
+                                <div class="business-title">Financial Services</div>
+                                <div class="business-content">
+                                    <div class="business-icon">🏦</div>
+                                    <p class="futuristic-subtitle">
+                                        Banks, credit unions, and fintech companies needing secure, compliant identity verification for account opening.
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div class="business-card">
+                                <div class="business-title">E-commerce Platforms</div>
+                                <div class="business-content">
+                                    <div class="business-icon">🛒</div>
+                                    <p class="futuristic-subtitle">
+                                        Online retailers and marketplaces seeking to reduce cart abandonment and improve checkout conversion.
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div class="business-card">
+                                <div class="business-title">Travel & Hospitality</div>
+                                <div class="business-content">
+                                    <div class="business-icon">✈️</div>
+                                    <p class="futuristic-subtitle">
+                                        Airlines, hotels, and travel agencies wanting to simplify booking and check-in processes.
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div class="business-card">
+                                <div class="business-title">Government Services</div>
+                                <div class="business-content">
+                                    <div class="business-icon">🏛️</div>
+                                    <p class="futuristic-subtitle">
+                                        Municipal, state, and federal agencies looking to modernize citizen services and reduce paperwork.
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div class="business-card">
+                                <div class="business-title">Education</div>
+                                <div class="business-content">
+                                    <div class="business-icon">🎓</div>
+                                    <p class="futuristic-subtitle">
+                                        Schools, universities, and educational platforms needing streamlined student enrollment and verification.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
                 <!-- CTA Section -->
                 <section class="text-center mb-32">
                     <div class="max-w-4xl mx-auto">
@@ -601,6 +764,24 @@
                 }
             });
         });
+        
+        // Carousel functionality
+        function scrollCarousel(direction) {
+            const carousel = document.getElementById('carousel');
+            const scrollAmount = 320; // Width of one card + gap
+            
+            if (direction === 'left') {
+                carousel.scrollBy({
+                    left: -scrollAmount,
+                    behavior: 'smooth'
+                });
+            } else {
+                carousel.scrollBy({
+                    left: scrollAmount,
+                    behavior: 'smooth'
+                });
+            }
+        }
     </script>
 </body>
 
