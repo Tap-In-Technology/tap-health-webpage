@@ -47,7 +47,7 @@
             z-index: 3;
         }
         
-        /* Futuristic typography with Playfair Display font */
+        /* Futuristic typography with Inter font */
         .futuristic-title {
             font-family: 'Playfair Display', serif;
             font-weight: 800;
@@ -63,7 +63,7 @@
             letter-spacing: -0.01em;
         }
         
-        /* Apply Playfair Display font to all text elements */
+        /* Apply Inter font to all text elements */
         body {
             font-family: 'Playfair Display', serif;
         }
@@ -118,6 +118,213 @@
             border-color: rgba(255, 255, 255, 0.5);
             box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
             transform: translateY(-2px);
+        }
+        
+        /* Phone mockup styling */
+        .phone-mockup {
+            background: linear-gradient(145deg, #1a1a1a, #2a2a2a);
+            border: 2px solid rgba(0, 255, 255, 0.3);
+            border-radius: 30px;
+            padding: 20px;
+            box-shadow: 
+                0 0 30px rgba(0, 255, 255, 0.2),
+                inset 0 0 20px rgba(0, 255, 255, 0.1);
+            position: relative;
+        }
+        
+        .phone-mockup::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: #333;
+            border-radius: 2px;
+        }
+        
+        .phone-screen {
+            background: #000;
+            border-radius: 20px;
+            padding: 40px 20px;
+            text-align: center;
+            border: 1px solid rgba(0, 255, 255, 0.2);
+        }
+        
+        .tap-button {
+            background: linear-gradient(135deg, #00ffff, #8a2be2);
+            border: none;
+            border-radius: 50px;
+            padding: 15px 40px;
+            color: #000;
+            font-weight: 700;
+            font-size: 18px;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+            margin-top: 20px;
+        }
+        
+        /* Before/After comparison */
+        .comparison-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .before-card, .after-card {
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+        }
+        
+        .before-card {
+            background: rgba(255, 0, 0, 0.1);
+            border: 2px solid rgba(255, 0, 0, 0.3);
+        }
+        
+        .after-card {
+            background: rgba(0, 255, 255, 0.1);
+            border: 2px solid rgba(0, 255, 255, 0.3);
+        }
+        
+        /* Benefit cards with custom icons */
+        .benefit-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 255, 255, 0.5);
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.2);
+        }
+        
+        .benefit-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #00ffff, #8a2be2);
+        }
+        
+        .benefit-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.2), rgba(138, 43, 226, 0.2));
+            border: 2px solid rgba(0, 255, 255, 0.3);
+        }
+        
+        /* Why Now panels */
+        .why-now-panel {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(138, 43, 226, 0.2);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .why-now-panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #8a2be2, #00ffff);
+        }
+        
+        .panel-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.2), rgba(0, 255, 255, 0.2));
+            border: 2px solid rgba(138, 43, 226, 0.3);
+        }
+        
+        /* Future section - immersive design */
+        .future-section {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(20, 20, 20, 0.9));
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            border-radius: 20px;
+            padding: 60px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .future-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(0, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(138, 43, 226, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
+        .future-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 10px;
+            border-left: 4px solid #00ffff;
+        }
+        
+        .future-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            background: linear-gradient(135deg, #00ffff, #8a2be2);
+            color: #000;
+            font-weight: bold;
+        }
+        
+        /* CTA button */
+        .cta-button {
+            background: linear-gradient(135deg, #00ffff, #8a2be2);
+            border: none;
+            border-radius: 50px;
+            padding: 20px 50px;
+            color: #000;
+            font-weight: 700;
+            font-size: 20px;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.4);
+            transition: all 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 40px rgba(0, 255, 255, 0.6);
         }
         
         /* Who We're Built For section */
@@ -228,6 +435,122 @@
             justify-content: center;
             font-size: 2rem;
             margin-bottom: 20px;
+        }
+        
+        /* FAQ Section */
+        .faq-section {
+            margin: 80px 0;
+        }
+        
+        .faq-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+        
+        .faq-header {
+            padding-right: 40px;
+        }
+        
+        .faq-title {
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 0.9;
+            color: white;
+            margin-bottom: 30px;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .faq-subtitle {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 10px;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .faq-cta {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .faq-cta:hover {
+            color: #00ffff;
+        }
+        
+        .faq-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .faq-item {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 25px 0;
+        }
+        
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+        
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .faq-question:hover {
+            color: #00ffff;
+        }
+        
+        .faq-chevron {
+            width: 16px;
+            height: 16px;
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-item.active .faq-chevron {
+            transform: rotate(180deg);
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-top: 15px;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+        }
+        
+        @media (max-width: 768px) {
+            .faq-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .faq-title {
+                font-size: 3rem;
+            }
+            
+            .faq-header {
+                padding-right: 0;
+            }
         }
         
         /* Pricing Section */
@@ -359,121 +682,7 @@
             font-size: 1.1rem;
         }
         
-        /* FAQ Section */
-        .faq-section {
-            margin: 80px 0;
-        }
-        
-        .faq-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: start;
-        }
-        
-        .faq-header {
-            padding-right: 40px;
-        }
-        
-        .faq-title {
-            font-size: 4rem;
-            font-weight: 800;
-            line-height: 0.9;
-            color: white;
-            margin-bottom: 30px;
-            font-family: 'Playfair Display', serif;
-        }
-        
-        .faq-subtitle {
-            font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 10px;
-            font-family: 'Playfair Display', serif;
-        }
-        
-        .faq-cta {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1.1rem;
-            transition: color 0.3s ease;
-            font-family: 'Playfair Display', serif;
-        }
-        
-        .faq-cta:hover {
-            color: #00ffff;
-        }
-        
-        .faq-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        
-        .faq-item {
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 25px 0;
-        }
-        
-        .faq-item:last-child {
-            border-bottom: none;
-        }
-        
-        .faq-question {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            color: white;
-            font-size: 1.1rem;
-            font-weight: 500;
-            transition: color 0.3s ease;
-            font-family: 'Playfair Display', serif;
-        }
-        
-        .faq-question:hover {
-            color: #00ffff;
-        }
-        
-        .faq-chevron {
-            width: 16px;
-            height: 16px;
-            transition: transform 0.3s ease;
-        }
-        
-        .faq-item.active .faq-chevron {
-            transform: rotate(180deg);
-        }
-        
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 1rem;
-            line-height: 1.6;
-            margin-top: 15px;
-            font-family: 'Playfair Display', serif;
-        }
-        
-        .faq-item.active .faq-answer {
-            max-height: 200px;
-        }
-        
         @media (max-width: 768px) {
-            .faq-container {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-            
-            .faq-title {
-                font-size: 3rem;
-            }
-            
-            .faq-header {
-                padding-right: 0;
-            }
-            
             .pricing-container {
                 grid-template-columns: 1fr;
                 gap: 30px;
@@ -494,19 +703,22 @@
     <!-- Futuristic Background -->
     <div class="futuristic-bg">
         <div class="content-overlay">
-            <!-- Header -->
+            <!-- Header with Hamburger Menu -->
             <header class="fixed top-0 left-0 w-full z-50 py-4 px-6 flex justify-between items-center">
                 <div class="flex items-center">
                     <a href="index2.html">
                         <img src="/media/Tap_inverted.png" alt="Tap Health Logo" class="h-16 md:h-20 lg:h-24 mr-4">
                     </a>
                 </div>
+                
+                <!-- Hamburger menu in top right -->
                 <div class="fixed top-6 right-6 z-30">
                     <button id="menu-toggle" class="text-white hover:text-gray-300 transition-colors" onclick="toggleMenu()">
                         <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                         </svg>
                     </button>
+                    <!-- Hidden menu popup -->
                     <div id="menu-overlay" class="fixed top-16 right-6 bg-black bg-opacity-0 backdrop-blur-sm rounded-lg shadow-2xl z-40 hidden min-w-48">
                         <nav class="px-6 py-4 text-white">
                             <a href="index2.html" class="block py-3 text-lg font-bold hover:text-gray-300 transition-colors border-b border-gray-600">Home</a>
@@ -519,14 +731,15 @@
             
             <!-- Main Content -->
             <main class="relative z-10 pt-24 pb-16 px-6">
-                <!-- Page Title -->
-                <section class="text-center mb-16">
-                    <h1 class="text-6xl md:text-7xl font-bold futuristic-title">
+                <!-- Hero Section -->
+                <section class="text-center mb-32">
+                    <h1 class="text-7xl md:text-9xl font-bold mb-12 futuristic-title">
                         What We Do
                     </h1>
                 </section>
                 
-                <!-- 1. Our Solution Section -->
+                <!-- Section 1: Our Solution -->
+                <!-- Our Solution Section -->
                 <section class="hero-section">
                     <div class="hero-content">
                         <h2 class="hero-title">
@@ -539,7 +752,149 @@
                     </div>
                 </section>
                 
-                <!-- 2. Who We're Built For Section -->
+                <!-- Section 2: One Tap Simplicity -->
+                <section class="mb-32">
+                    <div class="max-w-7xl mx-auto">
+                        <h2 class="text-5xl md:text-6xl font-bold text-center mb-16 futuristic-title">
+                            One Tap Simplicity
+                        </h2>
+                        <div class="comparison-container">
+                            <div class="before-card">
+                                <div class="text-6xl mb-6">📋</div>
+                                <h3 class="text-2xl font-bold mb-4 text-red-400">Before: Complex Forms</h3>
+                                <p class="futuristic-subtitle">
+                                    Messy paperwork, repetitive data entry, long wait times, and frustrating user experiences.
+                                </p>
+                            </div>
+                            <div class="after-card">
+                                <div class="text-6xl mb-6">⚡</div>
+                                <h3 class="text-2xl font-bold mb-4 text-cyan-400">After: One Tap</h3>
+                                <p class="futuristic-subtitle">
+                                    Instant access, verified data, seamless experience, and complete user control.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Section 3: Core Benefits -->
+                <section class="mb-32">
+                    <div class="max-w-7xl mx-auto">
+                        <h2 class="text-5xl md:text-6xl font-bold text-center mb-16 futuristic-title">
+                            Core Benefits
+                        </h2>
+                        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                            <div class="benefit-card">
+                                <div class="benefit-icon">🔒</div>
+                                <h3 class="text-2xl font-bold mb-4 text-white">Secure</h3>
+                                <p class="futuristic-subtitle leading-relaxed">
+                                    Only user-approved data is shared — giving people full control over what they share, and with whom.
+                                </p>
+                            </div>
+                            
+                            <div class="benefit-card">
+                                <div class="benefit-icon">⚡</div>
+                                <h3 class="text-2xl font-bold mb-4 text-white">Fast</h3>
+                                <p class="futuristic-subtitle leading-relaxed">
+                                    Tap eliminates form-fill and waiting rooms. Onboard in seconds with a single tap.
+                                </p>
+                            </div>
+                            
+                            <div class="benefit-card">
+                                <div class="benefit-icon">✓</div>
+                                <h3 class="text-2xl font-bold mb-4 text-white">Accurate</h3>
+                                <p class="futuristic-subtitle leading-relaxed">
+                                    Verified information lowers data entry errors, improves compliance, and boosts trust in every interaction.
+                                </p>
+                            </div>
+                            
+                            <div class="benefit-card">
+                                <div class="benefit-icon">🌐</div>
+                                <h3 class="text-2xl font-bold mb-4 text-white">Universal</h3>
+                                <p class="futuristic-subtitle leading-relaxed">
+                                    Tap works across industries and integrates with existing systems.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Section 4: Why Now? -->
+                <section class="mb-32">
+                    <div class="max-w-7xl mx-auto">
+                        <h2 class="text-5xl md:text-6xl font-bold text-center mb-16 futuristic-title">Why Now?</h2>
+                        <div class="grid md:grid-cols-3 gap-8">
+                            <div class="why-now-panel">
+                                <div class="panel-icon">💻</div>
+                                <h3 class="text-2xl font-bold mb-4 text-white">Digital Transformation</h3>
+                                <p class="futuristic-subtitle leading-relaxed">
+                                    Organizations are rapidly digitizing, but legacy form systems create friction and security risks.
+                                </p>
+                            </div>
+                            
+                            <div class="why-now-panel">
+                                <div class="panel-icon">🛡️</div>
+                                <h3 class="text-2xl font-bold mb-4 text-white">Privacy Regulations</h3>
+                                <p class="futuristic-subtitle leading-relaxed">
+                                    New privacy laws require better data control and consent management — exactly what Tap provides.
+                                </p>
+                            </div>
+                            
+                            <div class="why-now-panel">
+                                <div class="panel-icon">📱</div>
+                                <h3 class="text-2xl font-bold mb-4 text-white">User Expectations</h3>
+                                <p class="futuristic-subtitle leading-relaxed">
+                                    People expect seamless, secure experiences like Apple Pay — Tap brings that to all interactions.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Section 5: The Future of Tap -->
+                <section class="mb-32">
+                    <div class="max-w-7xl mx-auto">
+                        <div class="future-section">
+                            <h2 class="text-5xl md:text-6xl font-bold text-center mb-16 futuristic-title">
+                                The Future of Tap
+                            </h2>
+                            
+                            <div class="max-w-4xl mx-auto">
+                                <div class="future-item">
+                                    <div class="future-icon">🏥</div>
+                                    <div>
+                                        <h3 class="text-2xl font-bold mb-2 text-white">Focus Market: Healthcare</h3>
+                                        <p class="futuristic-subtitle">
+                                            Start by eliminating clinic intake forms with one tap. No paperwork. No waiting rooms full of clipboards.
+                                        </p>
+                                    </div>
+                                </div>
+                                
+                                <div class="future-item">
+                                    <div class="future-icon">🏦</div>
+                                    <div>
+                                        <h3 class="text-2xl font-bold mb-2 text-white">Industry Expansion</h3>
+                                        <p class="futuristic-subtitle">
+                                            Next targets: Banking, Retail & Rewards, Hotel Check-Ins, and Web Integrations.
+                                        </p>
+                                    </div>
+                                </div>
+                                
+                                <div class="future-item">
+                                    <div class="future-icon">🌍</div>
+                                    <div>
+                                        <h3 class="text-2xl font-bold mb-2 text-white">Global Scale</h3>
+                                        <p class="futuristic-subtitle">
+                                            Build the universal identity layer that makes every interaction instant, secure, and user-controlled.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Who We're Built For Section -->
                 <section class="who-built-for-section">
                     <div class="max-w-7xl mx-auto">
                         <div class="section-header">
@@ -624,7 +979,85 @@
                     </div>
                 </section>
                 
-                <!-- 3. Pricing Section -->
+                <!-- FAQ Section -->
+                <section class="faq-section">
+                    <div class="max-w-7xl mx-auto">
+                        <div class="faq-container">
+                            <div class="faq-header">
+                                <h2 class="faq-title">
+                                    Frequently<br>
+                                    asked questions
+                                </h2>
+                                <p class="faq-subtitle">Don't see the answer you're looking for?</p>
+                                <a href="#" class="faq-cta">Get in touch.</a>
+                            </div>
+                            
+                            <div class="faq-list">
+                                <div class="faq-item" onclick="toggleFAQ(this)">
+                                    <div class="faq-question">
+                                        <span>What is Tap?</span>
+                                        <svg class="faq-chevron" fill="currentColor" viewBox="0 0 16 16">
+                                            <path d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                                        </svg>
+                                    </div>
+                                    <div class="faq-answer">
+                                        Tap is a revolutionary identity verification platform that transforms complex sign-up and sign-in processes into a single, secure tap. We eliminate the need for multiple forms, passwords, and verification steps, making digital interactions instant and seamless.
+                                    </div>
+                                </div>
+                                
+                                <div class="faq-item" onclick="toggleFAQ(this)">
+                                    <div class="faq-question">
+                                        <span>How secure is Tap?</span>
+                                        <svg class="faq-chevron" fill="currentColor" viewBox="0 0 16 16">
+                                            <path d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                                        </svg>
+                                    </div>
+                                    <div class="faq-answer">
+                                        Tap uses enterprise-grade encryption and follows strict security protocols. We're SOC 2 compliant and work with healthcare, financial, and government organizations that require the highest security standards. Your data is protected with bank-level security.
+                                    </div>
+                                </div>
+                                
+                                <div class="faq-item" onclick="toggleFAQ(this)">
+                                    <div class="faq-question">
+                                        <span>How much faster is Tap compared to traditional forms?</span>
+                                        <svg class="faq-chevron" fill="currentColor" viewBox="0 0 16 16">
+                                            <path d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                                        </svg>
+                                    </div>
+                                    <div class="faq-answer">
+                                        Tap reduces form completion time from an average of 5-10 minutes to under 30 seconds. Our one-tap verification eliminates the need to fill out multiple fields, verify email addresses, create passwords, or wait for confirmation codes.
+                                    </div>
+                                </div>
+                                
+                                <div class="faq-item" onclick="toggleFAQ(this)">
+                                    <div class="faq-question">
+                                        <span>What industries can benefit from Tap?</span>
+                                        <svg class="faq-chevron" fill="currentColor" viewBox="0 0 16 16">
+                                            <path d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                                        </svg>
+                                    </div>
+                                    <div class="faq-answer">
+                                        Tap is designed for any industry that requires identity verification and form completion. This includes healthcare providers, financial services, e-commerce platforms, travel and hospitality, government services, and educational institutions.
+                                    </div>
+                                </div>
+                                
+                                <div class="faq-item" onclick="toggleFAQ(this)">
+                                    <div class="faq-question">
+                                        <span>How do I get started with Tap?</span>
+                                        <svg class="faq-chevron" fill="currentColor" viewBox="0 0 16 16">
+                                            <path d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                                        </svg>
+                                    </div>
+                                    <div class="faq-answer">
+                                        Getting started is simple. Contact our team to discuss your specific needs and requirements. We'll work with you to integrate Tap into your existing systems and provide comprehensive training and support throughout the implementation process.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Pricing Section -->
                 <section class="pricing-section">
                     <div class="max-w-7xl mx-auto">
                         <h2 class="pricing-title">
@@ -728,95 +1161,17 @@
                     </div>
                 </section>
                 
-                <!-- 4. FAQ Section -->
-                <section class="faq-section">
-                    <div class="max-w-7xl mx-auto">
-                        <div class="faq-container">
-                            <div class="faq-header">
-                                <h2 class="faq-title">
-                                    Frequently<br>
-                                    asked questions
-                                </h2>
-                                <p class="faq-subtitle">Don't see the answer you're looking for?</p>
-                                <a href="#" class="faq-cta">Get in touch.</a>
-                            </div>
-                            
-                            <div class="faq-list">
-                                <div class="faq-item" onclick="toggleFAQ(this)">
-                                    <div class="faq-question">
-                                        <span>What is Tap?</span>
-                                        <svg class="faq-chevron" fill="currentColor" viewBox="0 0 16 16">
-                                            <path d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 0-.708z"/>
-                                        </svg>
-                                    </div>
-                                    <div class="faq-answer">
-                                        Tap is a revolutionary identity verification platform that transforms complex sign-up and sign-in processes into a single, secure tap. We eliminate the need for multiple forms, passwords, and verification steps, making digital interactions instant and seamless.
-                                    </div>
-                                </div>
-                                
-                                <div class="faq-item" onclick="toggleFAQ(this)">
-                                    <div class="faq-question">
-                                        <span>How secure is Tap?</span>
-                                        <svg class="faq-chevron" fill="currentColor" viewBox="0 0 16 16">
-                                            <path d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 0-.708z"/>
-                                        </svg>
-                                    </div>
-                                    <div class="faq-answer">
-                                        Tap uses enterprise-grade encryption and follows strict security protocols. We're SOC 2 compliant and work with healthcare, financial, and government organizations that require the highest security standards. Your data is protected with bank-level security.
-                                    </div>
-                                </div>
-                                
-                                <div class="faq-item" onclick="toggleFAQ(this)">
-                                    <div class="faq-question">
-                                        <span>How much faster is Tap compared to traditional forms?</span>
-                                        <svg class="faq-chevron" fill="currentColor" viewBox="0 0 16 16">
-                                            <path d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 0-.708z"/>
-                                        </svg>
-                                    </div>
-                                    <div class="faq-answer">
-                                        Tap reduces form completion time from an average of 5-10 minutes to under 30 seconds. Our one-tap verification eliminates the need to fill out multiple fields, verify email addresses, create passwords, or wait for confirmation codes.
-                                    </div>
-                                </div>
-                                
-                                <div class="faq-item" onclick="toggleFAQ(this)">
-                                    <div class="faq-question">
-                                        <span>What industries can benefit from Tap?</span>
-                                        <svg class="faq-chevron" fill="currentColor" viewBox="0 0 16 16">
-                                            <path d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 0-.708z"/>
-                                        </svg>
-                                    </div>
-                                    <div class="faq-answer">
-                                        Tap is designed for any industry that requires identity verification and form completion. This includes healthcare providers, financial services, e-commerce platforms, travel and hospitality, government services, and educational institutions.
-                                    </div>
-                                </div>
-                                
-                                <div class="faq-item" onclick="toggleFAQ(this)">
-                                    <div class="faq-question">
-                                        <span>How do I get started with Tap?</span>
-                                        <svg class="faq-chevron" fill="currentColor" viewBox="0 0 16 16">
-                                            <path d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 0-.708z"/>
-                                        </svg>
-                                    </div>
-                                    <div class="faq-answer">
-                                        Getting started is simple. Contact our team to discuss your specific needs and requirements. We'll work with you to integrate Tap into your existing systems and provide comprehensive training and support throughout the implementation process.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                
-                <!-- 5. CTA Section -->
+                <!-- CTA Section -->
                 <section class="text-center mb-32">
                     <div class="max-w-4xl mx-auto">
                         <h2 class="text-5xl md:text-6xl font-bold mb-8 futuristic-title">
                             Ready to Transform Your Forms?
                         </h2>
-                        <p class="text-xl md:text-2xl futuristic-subtitle leading-relaxed mb-12">
-                            Join the future of identity verification. Experience the power of one-tap simplicity.
+                        <p class="text-xl md:text-2xl futuristic-subtitle mb-12 leading-relaxed">
+                            Join our pilot program and be among the first to experience the future of instant, secure interactions.
                         </p>
                         <button class="cta-button">
-                            Start Your Free Trial
+                            Join Our Pilot Program
                         </button>
                     </div>
                 </section>
