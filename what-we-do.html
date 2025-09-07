@@ -758,48 +758,55 @@
 
         .export-formats-track {
             display: flex;
-            gap: 60px;
+            gap: 0;
             width: calc(100% * 3);
         }
 
         .export-format-item {
             display: flex;
-            flex-direction: column;
             align-items: center;
-            gap: 12px;
+            justify-content: center;
             min-width: 120px;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
+            height: 60px;
+            background: white;
+            color: black;
+            border: 2px solid black;
+            border-radius: 0;
             transition: all 0.3s ease;
+            position: relative;
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .export-format-item:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.2);
-            transform: translateY(-5px);
+            background: black;
+            color: white;
+            transform: translateY(-2px);
         }
 
-        .export-format-icon {
-            font-size: 2.5rem;
-            color: white;
-            margin-bottom: 8px;
+        .export-format-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            right: -2px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 20px;
+            background: black;
+            z-index: 1;
         }
 
         .export-format-name {
-            font-size: 1rem;
+            font-size: 1.1rem;
             font-weight: 600;
-            color: white;
+            color: inherit;
             text-align: center;
             font-family: 'Playfair Display', serif;
-        }
-
-        .export-format-desc {
-            font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.6);
-            text-align: center;
-            font-family: 'Playfair Display', serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         @keyframes scrollExportFormats {
@@ -1046,128 +1053,80 @@
                         <div class="export-formats-track">
                             <!-- First set of formats -->
                             <div class="export-format-item">
-                                <div class="export-format-icon">📊</div>
                                 <div class="export-format-name">CSV</div>
-                                <div class="export-format-desc">Spreadsheet data</div>
                             </div>
                             <div class="export-format-item">
-                                <div class="export-format-icon">📋</div>
-                                <div class="export-format-name">Excel</div>
-                                <div class="export-format-desc">XLSX format</div>
+                                <div class="export-format-name">EXCEL</div>
                             </div>
                             <div class="export-format-item">
-                                <div class="export-format-icon">📄</div>
                                 <div class="export-format-name">PDF</div>
-                                <div class="export-format-desc">Document reports</div>
                             </div>
                             <div class="export-format-item">
-                                <div class="export-format-icon">🔗</div>
                                 <div class="export-format-name">JSON</div>
-                                <div class="export-format-desc">API data</div>
                             </div>
                             <div class="export-format-item">
-                                <div class="export-format-icon">📦</div>
                                 <div class="export-format-name">XML</div>
-                                <div class="export-format-desc">Structured data</div>
                             </div>
                             <div class="export-format-item">
-                                <div class="export-format-icon">🗃️</div>
                                 <div class="export-format-name">SQL</div>
-                                <div class="export-format-desc">Database export</div>
                             </div>
                             <div class="export-format-item">
-                                <div class="export-format-icon">📈</div>
                                 <div class="export-format-name">TSV</div>
-                                <div class="export-format-desc">Tab-separated</div>
                             </div>
                             <div class="export-format-item">
-                                <div class="export-format-icon">💾</div>
                                 <div class="export-format-name">ZIP</div>
-                                <div class="export-format-desc">Compressed files</div>
                             </div>
                             
                             <!-- Second set for seamless loop -->
                             <div class="export-format-item">
-                                <div class="export-format-icon">📊</div>
                                 <div class="export-format-name">CSV</div>
-                                <div class="export-format-desc">Spreadsheet data</div>
                             </div>
                             <div class="export-format-item">
-                                <div class="export-format-icon">📋</div>
-                                <div class="export-format-name">Excel</div>
-                                <div class="export-format-desc">XLSX format</div>
+                                <div class="export-format-name">EXCEL</div>
                             </div>
                             <div class="export-format-item">
-                                <div class="export-format-icon">📄</div>
                                 <div class="export-format-name">PDF</div>
-                                <div class="export-format-desc">Document reports</div>
                             </div>
                             <div class="export-format-item">
-                                <div class="export-format-icon">🔗</div>
                                 <div class="export-format-name">JSON</div>
-                                <div class="export-format-desc">API data</div>
                             </div>
                             <div class="export-format-item">
-                                <div class="export-format-icon">📦</div>
                                 <div class="export-format-name">XML</div>
-                                <div class="export-format-desc">Structured data</div>
                             </div>
                             <div class="export-format-item">
-                                <div class="export-format-icon">🗃️</div>
                                 <div class="export-format-name">SQL</div>
-                                <div class="export-format-desc">Database export</div>
                             </div>
                             <div class="export-format-item">
-                                <div class="export-format-icon">📈</div>
                                 <div class="export-format-name">TSV</div>
-                                <div class="export-format-desc">Tab-separated</div>
                             </div>
                             <div class="export-format-item">
-                                <div class="export-format-icon">💾</div>
                                 <div class="export-format-name">ZIP</div>
-                                <div class="export-format-desc">Compressed files</div>
                             </div>
                             
                             <!-- Third set for complete circle -->
                             <div class="export-format-item">
-                                <div class="export-format-icon">📊</div>
                                 <div class="export-format-name">CSV</div>
-                                <div class="export-format-desc">Spreadsheet data</div>
                             </div>
                             <div class="export-format-item">
-                                <div class="export-format-icon">📋</div>
-                                <div class="export-format-name">Excel</div>
-                                <div class="export-format-desc">XLSX format</div>
+                                <div class="export-format-name">EXCEL</div>
                             </div>
                             <div class="export-format-item">
-                                <div class="export-format-icon">📄</div>
                                 <div class="export-format-name">PDF</div>
-                                <div class="export-format-desc">Document reports</div>
                             </div>
                             <div class="export-format-item">
-                                <div class="export-format-icon">🔗</div>
                                 <div class="export-format-name">JSON</div>
-                                <div class="export-format-desc">API data</div>
                             </div>
                             <div class="export-format-item">
-                                <div class="export-format-icon">📦</div>
                                 <div class="export-format-name">XML</div>
-                                <div class="export-format-desc">Structured data</div>
                             </div>
                             <div class="export-format-item">
-                                <div class="export-format-icon">🗃️</div>
                                 <div class="export-format-name">SQL</div>
-                                <div class="export-format-desc">Database export</div>
                             </div>
                             <div class="export-format-item">
-                                <div class="export-format-icon">📈</div>
                                 <div class="export-format-name">TSV</div>
-                                <div class="export-format-desc">Tab-separated</div>
                             </div>
                             <div class="export-format-item">
-                                <div class="export-format-icon">💾</div>
                                 <div class="export-format-name">ZIP</div>
-                                <div class="export-format-desc">Compressed files</div>
                             </div>
                         </div>
                     </div>
