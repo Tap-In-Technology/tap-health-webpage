@@ -1927,6 +1927,15 @@
             const phoneContainer = document.getElementById('landing-phone-container');
             const landingSection = document.querySelector('.landing-page-section');
             
+            // Check if header element exists
+            const phoneHeader = document.querySelector('.phone-header');
+            if (phoneHeader) {
+                console.log('Phone header element found:', phoneHeader);
+                console.log('Header initial opacity:', window.getComputedStyle(phoneHeader).opacity);
+            } else {
+                console.log('Phone header element NOT found!');
+            }
+            
             
             
             function handleScroll() {
@@ -1941,36 +1950,6 @@
                 const scrollProgress = scrollY / (documentHeight - windowHeight);
                 
                 
-                // Debug phone and lightning background positioning when fully transitioned
-                if (scrollProgress >= 0.99) { // When phone is fully transitioned
-                    const phoneContainer = document.getElementById('landing-phone-container');
-                    const lightningSection = document.querySelector('.landing-page-section');
-                    const phoneHeaderElement = document.querySelector('.phone-header');
-                    
-                    if (phoneContainer && lightningSection && phoneHeaderElement) {
-                        const phoneRect = phoneContainer.getBoundingClientRect();
-                        const lightningRect = lightningSection.getBoundingClientRect();
-                        const headerRect = phoneHeaderElement.getBoundingClientRect();
-                        
-                        console.log('=== PHONE FULLY TRANSITIONED DEBUG ===');
-                        console.log('Phone container center:', {
-                            x: phoneRect.left + phoneRect.width / 2,
-                            y: phoneRect.top + phoneRect.height / 2
-                        });
-                        console.log('Lightning section center:', {
-                            x: lightningRect.left + lightningRect.width / 2,
-                            y: lightningRect.top + lightningRect.height / 2
-                        });
-                        console.log('Phone header center:', {
-                            x: headerRect.left + headerRect.width / 2,
-                            y: headerRect.top + headerRect.height / 2
-                        });
-                        console.log('Phone container rect:', phoneRect);
-                        console.log('Lightning section rect:', lightningRect);
-                        console.log('Phone header rect:', headerRect);
-                        console.log('=====================================');
-                    }
-                }
                 
                 // Parallax effect for lightning background (only when section is in view)
                 const lightningBg = document.querySelector('.lightning-bg-overlay');
@@ -2006,6 +1985,9 @@
                         const phoneHeader = document.querySelector('.phone-header');
                         if (phoneHeader) {
                             phoneHeader.style.opacity = '1';
+                            console.log('Header should now be visible - opacity set to 1');
+                        } else {
+                            console.log('Header element not found!');
                         }
                     } else {
                         const phoneHeader = document.querySelector('.phone-header');
