@@ -816,6 +816,22 @@
             animation-play-state: paused;
         }
 
+        /* CTA Section with vertical gradient */
+        .cta-gradient-section {
+            background: linear-gradient(180deg, 
+                rgba(0, 0, 0, 1) 0%, 
+                rgba(20, 20, 20, 0.9) 20%, 
+                rgba(40, 40, 40, 0.8) 40%, 
+                rgba(0, 100, 200, 0.6) 60%, 
+                rgba(0, 150, 255, 0.8) 80%, 
+                rgba(0, 200, 255, 1) 100%);
+            padding: 100px 0;
+            margin: 0;
+            width: 100vw;
+            margin-left: calc(-50vw + 50%);
+            position: relative;
+        }
+
         /* Ensure animation is always running */
         .export-formats-track {
             animation: scrollExportFormats 30s linear infinite;
@@ -1346,7 +1362,7 @@
                 
                 
                 <!-- 7. CTA Section -->
-                <section class="text-center mb-32 mt-64">
+                <section class="text-center mb-32 mt-64 cta-gradient-section">
                     <div class="max-w-4xl mx-auto">
                         <h2 class="text-5xl md:text-6xl font-bold mb-8 futuristic-title">
                             Ready to Transform Your Forms?
