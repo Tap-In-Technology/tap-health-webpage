@@ -1574,6 +1574,13 @@
         <!-- Gradient overlay for blending -->
         <div class="lightning-gradient-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 20%, rgba(0,0,0,0) 80%, rgba(0,0,0,0.8) 100%); z-index: 2; pointer-events: none;"></div>
         
+        <!-- Header that transitions out as phone transitions in -->
+        <div class="ready-header" style="position: absolute; top: 20%; left: 50%; transform: translateX(-50%); z-index: 25; text-align: center; pointer-events: none; opacity: 1; transition: opacity 0.5s ease; width: 100%;">
+            <h2 class="text-white font-bold text-center leading-tight" style="text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5); font-size: clamp(1.5rem, 5vw, 5rem); font-family: 'Playfair Display', serif; margin: 0;">
+                Ready to transform your forms?
+            </h2>
+        </div>
+        
         <!-- Header over phone - positioned in lightning background -->
         <div class="phone-header" style="position: absolute; bottom: 45%; left: 50%; transform: translateX(-50%); z-index: 25; text-align: center; pointer-events: none; opacity: 0; transition: opacity 0.5s ease; width: 100%;">
             <h2 class="text-white font-bold text-center leading-tight" style="text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5); font-size: clamp(1.8rem, 6vw, 6rem); font-family: 'Playfair Display', serif; margin: 0;">
@@ -1603,7 +1610,7 @@
             
             <!-- Main heading text -->
             <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-30" id="landing-text-container">
-                <h1 class="text-white font-bold text-center leading-tight" style="text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5); font-size: clamp(1.5rem, 6vw, 6rem); font-family: 'Playfair Display', serif;">
+                <h1 class="text-white font-bold text-center" style="text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5); font-size: clamp(1.5rem, 6vw, 6rem); font-family: 'Playfair Display', serif; line-height: 1.2;">
                     Your data.<br>Where you want it.
                 </h1>
             </div>
@@ -1980,7 +1987,13 @@
                     phoneContainer.style.transform = `translate(-50%, 0%) translateY(${currentY}vh)`;
                     phoneContainer.style.top = '100%'; // Always stay at bottom
                     
-                    // Show header when fully transitioned
+                    // Transition ready header out as phone transitions in
+                    const readyHeader = document.querySelector('.ready-header');
+                    if (readyHeader) {
+                        readyHeader.style.opacity = (1 - transitionProgress).toString();
+                    }
+                    
+                    // Show phone header when fully transitioned
                     if (transitionProgress >= 0.99) {
                         const phoneHeader = document.querySelector('.phone-header');
                         if (phoneHeader) {
@@ -2000,10 +2013,15 @@
                     phoneContainer.style.transform = 'translate(-50%, 0%) translateY(100px)';
                     phoneContainer.style.top = '100%';
                     
-                    // Hide header when phone is not transitioning
+                    // Hide phone header and show ready header when phone is not transitioning
                     const phoneHeader = document.querySelector('.phone-header');
                     if (phoneHeader) {
                         phoneHeader.style.opacity = '0';
+                    }
+                    
+                    const readyHeader = document.querySelector('.ready-header');
+                    if (readyHeader) {
+                        readyHeader.style.opacity = '1';
                     }
                 }
             }
