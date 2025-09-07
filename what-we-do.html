@@ -1456,6 +1456,9 @@
         <!-- Lightning background effect with parallax -->
         <div class="lightning-bg-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('/media/lightning_bg.jpg'); background-size: cover; background-position: center; opacity: 0.3; z-index: 1;"></div>
         
+        <!-- Gradient overlay for blending -->
+        <div class="lightning-gradient-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 20%, rgba(0,0,0,0) 80%, rgba(0,0,0,0.8) 100%); z-index: 2; pointer-events: none;"></div>
+        
         <!-- Main content -->
         <div class="relative z-10" style="position: relative; z-index: 10;">
             <!-- Phone image large and centered -->
@@ -1656,7 +1659,7 @@
                     phoneContainer.style.opacity = transitionProgress;
                     // Start from bottom (top: 100%, translateY: 100px) and move to final position
                     const startY = 100; // Starting position from bottom
-                    const endY = 30; // Ending position based on user feedback (47.3% progress was perfect)
+                    const endY = 25; // Ending position slightly higher than before
                     const currentY = startY + (endY - startY) * transitionProgress;
                     phoneContainer.style.transform = `translate(-50%, 0%) translateY(${currentY}vh)`;
                     phoneContainer.style.top = '100%'; // Always stay at bottom
