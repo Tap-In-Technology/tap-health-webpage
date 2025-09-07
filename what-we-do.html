@@ -883,6 +883,34 @@
         .export-formats-track {
             animation: scrollExportFormats 30s linear infinite;
         }
+
+        /* Landing Page Section Styles */
+        .landing-page-section {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .typing-container {
+            display: inline-block;
+            font-family: 'Courier New', monospace;
+            font-size: 1rem;
+            color: #ffffff;
+            min-height: 1.25rem;
+            white-space: nowrap;
+        }
+
+        .typing-cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1rem;
+            background-color: #ffffff;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
         
         .spotlight-description {
             font-size: 1.2rem;
@@ -1425,6 +1453,37 @@
         </div>
     </div>
     
+    <!-- Landing Page Section -->
+    <section class="landing-page-section" style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); min-height: 100vh; position: relative; overflow: hidden;">
+        <!-- Lightning background effect -->
+        <div class="lightning-bg-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('/media/lightning_bg.jpg'); background-size: cover; background-position: center; opacity: 0.3; z-index: 1;"></div>
+        
+        <!-- Main content -->
+        <div class="relative z-10" style="position: relative; z-index: 10;">
+            <!-- Phone image large and centered -->
+            <div id="landing-phone-container" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 20;">
+                <img src="/media/phone.png" alt="Phone" class="h-[60vh] w-auto" id="landing-phone">
+            </div>
+            
+            <!-- Main heading text -->
+            <div class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30" id="landing-text-container">
+                <h1 class="text-white font-bold text-center leading-tight" style="text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5); font-size: clamp(1.5rem, 6vw, 6rem); font-family: 'Playfair Display', serif;">
+                    Your data.<br>Where you want it.
+                </h1>
+            </div>
+            
+            <!-- Bottom section with typing text and button -->
+            <div class="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-30 flex items-center gap-4">
+                <div class="typing-container">
+                    <div class="typing-text" id="landing-typing-text"></div>
+                </div>
+                <button onclick="scrollToTop()" class="bg-white text-black px-4 py-2 rounded-lg text-sm font-bold hover:bg-gray-200 active:bg-gray-300 active:scale-95 transform transition-all duration-150 ease-in-out shadow-md hover:shadow-lg active:shadow-sm">
+                    Get in Touch
+                </button>
+            </div>
+        </div>
+    </section>
+    
     <!-- Footer -->
     <footer class="bg-black text-white py-2 px-6 relative z-10">
         <div class="max-w-6xl mx-auto flex justify-between items-center">
@@ -1501,6 +1560,59 @@
             if (!isActive) {
                 item.classList.add('active');
             }
+        }
+
+        // Landing page typing effect
+        const typingTexts = [
+            "Request a demo",
+            "Join our pilot program",
+            "Get early access",
+            "See it in action"
+        ];
+        
+        let currentTextIndex = 0;
+        let currentCharIndex = 0;
+        let isDeleting = false;
+        
+        function typeText() {
+            const typingElement = document.getElementById('landing-typing-text');
+            if (!typingElement) return;
+            
+            const currentText = typingTexts[currentTextIndex];
+            
+            if (isDeleting) {
+                typingElement.textContent = currentText.substring(0, currentCharIndex - 1);
+                currentCharIndex--;
+            } else {
+                typingElement.textContent = currentText.substring(0, currentCharIndex + 1);
+                currentCharIndex++;
+            }
+            
+            let typeSpeed = isDeleting ? 50 : 100;
+            
+            if (!isDeleting && currentCharIndex === currentText.length) {
+                typeSpeed = 2000; // Pause at end
+                isDeleting = true;
+            } else if (isDeleting && currentCharIndex === 0) {
+                isDeleting = false;
+                currentTextIndex = (currentTextIndex + 1) % typingTexts.length;
+                typeSpeed = 500; // Pause before next text
+            }
+            
+            setTimeout(typeText, typeSpeed);
+        }
+        
+        // Start typing effect when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(typeText, 1000); // Start after 1 second
+        });
+        
+        // Scroll to top function
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         }
     </script>
 </body>
