@@ -500,65 +500,141 @@
             max-height: 200px;
         }
         
-        /* Future of Tap section - screen-wide gradient design */
-        .future-section {
-            background: linear-gradient(180deg, 
-                rgba(0, 0, 0, 1) 0%, 
-                rgba(20, 20, 20, 0.9) 20%, 
-                rgba(30, 30, 30, 0.8) 50%, 
-                rgba(20, 20, 20, 0.9) 80%, 
-                rgba(0, 0, 0, 1) 100%);
-            padding: 80px 0;
+        /* NFC Stickers Showcase section */
+        .nfc-showcase-section {
+            margin: 200px 0;
+            text-align: center;
             position: relative;
             overflow: hidden;
-            margin: 200px 0;
-            width: 100vw;
-            margin-left: calc(-50vw + 50%);
         }
-        
-        .future-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(ellipse at center top, rgba(0, 255, 255, 0.05) 0%, transparent 60%),
-                radial-gradient(ellipse at center bottom, rgba(138, 43, 226, 0.05) 0%, transparent 60%);
-            pointer-events: none;
-        }
-        
-        .future-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 40px;
+
+        .nfc-showcase-title {
+            font-size: 4rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 30px;
+            line-height: 1.1;
+            font-family: 'Playfair Display', serif;
             position: relative;
             z-index: 2;
         }
-        
-        .future-item {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            margin-bottom: 30px;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.02);
-            border-radius: 10px;
-            border-left: 4px solid #00ffff;
+
+        .nfc-showcase-subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 60px;
+            line-height: 1.6;
+            font-family: 'Playfair Display', serif;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
-        
-        .future-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
+
+        .nfc-stickers-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .nfc-sticker-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nfc-sticker-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-10px);
+        }
+
+        .nfc-sticker-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 255, 255, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 0;
+        }
+
+        .nfc-sticker-card:hover::before {
+            opacity: 1;
+        }
+
+        .nfc-sticker-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .nfc-sticker-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 15px;
+            font-family: 'Playfair Display', serif;
+            position: relative;
+            z-index: 2;
+        }
+
+        .nfc-sticker-description {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+            font-family: 'Playfair Display', serif;
+            position: relative;
+            z-index: 2;
+        }
+
+        .nfc-features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 20px;
+        }
+
+        .nfc-feature-item {
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            background: linear-gradient(135deg, #00ffff, #8a2be2);
-            color: #000;
-            font-weight: bold;
+            gap: 15px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .nfc-feature-item:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .nfc-feature-icon {
+            font-size: 1.5rem;
+            color: #00ffff;
+        }
+
+        .nfc-feature-text {
+            font-size: 1rem;
+            color: white;
+            font-family: 'Playfair Display', serif;
         }
         
         /* Spotlight section */
@@ -698,7 +774,8 @@
         .export-formats-track {
             display: flex;
             gap: 60px;
-            animation: scrollExportFormats 20s linear infinite;
+            animation: scrollExportFormats 30s linear infinite;
+            width: calc(100% * 3);
         }
 
         .export-format-item {
@@ -746,7 +823,7 @@
                 transform: translateX(0);
             }
             100% {
-                transform: translateX(-50%);
+                transform: translateX(-33.333%);
             }
         }
 
@@ -1016,7 +1093,49 @@
                                 <div class="export-format-desc">Compressed files</div>
                             </div>
                             
-                            <!-- Duplicate set for seamless loop -->
+                            <!-- Second set for seamless loop -->
+                            <div class="export-format-item">
+                                <div class="export-format-icon">📊</div>
+                                <div class="export-format-name">CSV</div>
+                                <div class="export-format-desc">Spreadsheet data</div>
+                            </div>
+                            <div class="export-format-item">
+                                <div class="export-format-icon">📋</div>
+                                <div class="export-format-name">Excel</div>
+                                <div class="export-format-desc">XLSX format</div>
+                            </div>
+                            <div class="export-format-item">
+                                <div class="export-format-icon">📄</div>
+                                <div class="export-format-name">PDF</div>
+                                <div class="export-format-desc">Document reports</div>
+                            </div>
+                            <div class="export-format-item">
+                                <div class="export-format-icon">🔗</div>
+                                <div class="export-format-name">JSON</div>
+                                <div class="export-format-desc">API data</div>
+                            </div>
+                            <div class="export-format-item">
+                                <div class="export-format-icon">📦</div>
+                                <div class="export-format-name">XML</div>
+                                <div class="export-format-desc">Structured data</div>
+                            </div>
+                            <div class="export-format-item">
+                                <div class="export-format-icon">🗃️</div>
+                                <div class="export-format-name">SQL</div>
+                                <div class="export-format-desc">Database export</div>
+                            </div>
+                            <div class="export-format-item">
+                                <div class="export-format-icon">📈</div>
+                                <div class="export-format-name">TSV</div>
+                                <div class="export-format-desc">Tab-separated</div>
+                            </div>
+                            <div class="export-format-item">
+                                <div class="export-format-icon">💾</div>
+                                <div class="export-format-name">ZIP</div>
+                                <div class="export-format-desc">Compressed files</div>
+                            </div>
+                            
+                            <!-- Third set for complete circle -->
                             <div class="export-format-item">
                                 <div class="export-format-icon">📊</div>
                                 <div class="export-format-name">CSV</div>
@@ -1243,43 +1362,63 @@
                     </div>
                 </section>
                 
-                <!-- 7. The Future of Tap Section -->
-                <section class="future-section">
-                    <div class="future-content">
-                        <h2 class="text-5xl md:text-6xl font-bold text-center mb-16 futuristic-title">
-                            The Future of Tap
-                        </h2>
+                <!-- 7. NFC Stickers Showcase Section -->
+                <section class="nfc-showcase-section">
+                    <h2 class="nfc-showcase-title">NFC Stickers</h2>
+                    <p class="nfc-showcase-subtitle">
+                        Physical NFC stickers that bring the power of Tap to any surface. Simply tap your phone to instantly access forms, verify identity, and complete transactions.
+                    </p>
+                    
+                    <div class="nfc-stickers-container">
+                        <div class="nfc-sticker-card">
+                            <div class="nfc-sticker-icon">🏥</div>
+                            <h3 class="nfc-sticker-title">Healthcare Stickers</h3>
+                            <p class="nfc-sticker-description">
+                                Place on patient check-in desks, exam room doors, or medical equipment for instant patient verification and form completion.
+                            </p>
+                        </div>
                         
-                        <div class="max-w-4xl mx-auto">
-                            <div class="future-item">
-                                <div class="future-icon">🏥</div>
-                                <div>
-                                    <h3 class="text-2xl font-bold mb-2 text-white">Focus Market: Healthcare</h3>
-                                    <p class="futuristic-subtitle">
-                                        Start by eliminating clinic intake forms with one tap. No paperwork. No waiting rooms full of clipboards.
-                                    </p>
-                                </div>
-                            </div>
-                            
-                            <div class="future-item">
-                                <div class="future-icon">🏦</div>
-                                <div>
-                                    <h3 class="text-2xl font-bold mb-2 text-white">Industry Expansion</h3>
-                                    <p class="futuristic-subtitle">
-                                        Next targets: Banking, Retail & Rewards, Hotel Check-Ins, and Web Integrations.
-                                    </p>
-                                </div>
-                            </div>
-                            
-                            <div class="future-item">
-                                <div class="future-icon">🌍</div>
-                                <div>
-                                    <h3 class="text-2xl font-bold mb-2 text-white">Global Scale</h3>
-                                    <p class="futuristic-subtitle">
-                                        Build the universal identity layer that makes every interaction instant, secure, and user-controlled.
-                                    </p>
-                                </div>
-                            </div>
+                        <div class="nfc-sticker-card">
+                            <div class="nfc-sticker-icon">🏦</div>
+                            <h3 class="nfc-sticker-title">Banking Stickers</h3>
+                            <p class="nfc-sticker-description">
+                                Deploy at teller stations, ATM locations, or loan desks to streamline customer onboarding and identity verification.
+                            </p>
+                        </div>
+                        
+                        <div class="nfc-sticker-card">
+                            <div class="nfc-sticker-icon">🏨</div>
+                            <h3 class="nfc-sticker-title">Hospitality Stickers</h3>
+                            <p class="nfc-sticker-description">
+                                Install at front desks, room doors, or service areas for seamless guest check-ins and service requests.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="nfc-features-grid">
+                        <div class="nfc-feature-item">
+                            <div class="nfc-feature-icon">⚡</div>
+                            <div class="nfc-feature-text">Instant activation with single tap</div>
+                        </div>
+                        <div class="nfc-feature-item">
+                            <div class="nfc-feature-icon">🔒</div>
+                            <div class="nfc-feature-text">Bank-level security encryption</div>
+                        </div>
+                        <div class="nfc-feature-item">
+                            <div class="nfc-feature-icon">🌐</div>
+                            <div class="nfc-feature-text">Works with any smartphone</div>
+                        </div>
+                        <div class="nfc-feature-item">
+                            <div class="nfc-feature-icon">📱</div>
+                            <div class="nfc-feature-text">No app download required</div>
+                        </div>
+                        <div class="nfc-feature-item">
+                            <div class="nfc-feature-icon">🎨</div>
+                            <div class="nfc-feature-text">Custom branding available</div>
+                        </div>
+                        <div class="nfc-feature-item">
+                            <div class="nfc-feature-icon">💧</div>
+                            <div class="nfc-feature-text">Waterproof and durable</div>
                         </div>
                     </div>
                 </section>
