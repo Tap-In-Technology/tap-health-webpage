@@ -561,6 +561,51 @@
             font-weight: bold;
         }
         
+        /* Spotlight section */
+        .spotlight-section {
+            margin: 80px 0;
+            text-align: center;
+            position: relative;
+        }
+        
+        .spotlight-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+        }
+        
+        .spotlight-title {
+            font-size: 4rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 30px;
+            line-height: 1.1;
+            font-family: 'Playfair Display', serif;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .spotlight-title::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120%;
+            height: calc(100% + 40px);
+            background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+            z-index: -1;
+            border-radius: 20px;
+        }
+        
+        .spotlight-description {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            font-family: 'Playfair Display', serif;
+        }
+        
         @media (max-width: 768px) {
             .hero-title {
                 font-size: 3.5rem;
@@ -609,6 +654,10 @@
             
             .future-content {
                 padding: 0 20px;
+            }
+            
+            .spotlight-title {
+                font-size: 3rem;
             }
         }
     </style>
@@ -750,7 +799,20 @@
                     </div>
                 </section>
                 
-                <!-- 3. Pricing Section -->
+                <!-- 3. Spotlight Section -->
+                <section class="spotlight-section">
+                    <div class="spotlight-content">
+                        <h2 class="spotlight-title">
+                            The era of one-size-fits-all<br>
+                            identity verification is over
+                        </h2>
+                        <p class="spotlight-description">
+                            Tap revolutionizes how businesses handle identity verification by providing instant, secure, and personalized solutions that adapt to your specific industry needs. No more generic forms or lengthy verification processes.
+                        </p>
+                    </div>
+                </section>
+                
+                <!-- 4. Pricing Section -->
                 <section class="pricing-section">
                     <div class="max-w-7xl mx-auto">
                         <h2 class="pricing-title">
@@ -854,7 +916,7 @@
                     </div>
                 </section>
                 
-                <!-- 4. FAQ Section -->
+                <!-- 5. FAQ Section -->
                 <section class="faq-section">
                     <div class="max-w-7xl mx-auto">
                         <div class="faq-container">
@@ -932,7 +994,7 @@
                     </div>
                 </section>
                 
-                <!-- 5. The Future of Tap Section -->
+                <!-- 6. The Future of Tap Section -->
                 <section class="future-section">
                     <div class="future-content">
                         <h2 class="text-5xl md:text-6xl font-bold text-center mb-16 futuristic-title">
@@ -973,7 +1035,7 @@
                     </div>
                 </section>
                 
-                <!-- 6. CTA Section -->
+                <!-- 7. CTA Section -->
                 <section class="text-center mb-32">
                     <div class="max-w-4xl mx-auto">
                         <h2 class="text-5xl md:text-6xl font-bold mb-8 futuristic-title">
