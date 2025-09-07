@@ -590,20 +590,16 @@
 
     <script>
         // Contact form functionality
-        function openContactForm() {
-            // COMMENTED OUT: Contact form popup - keeping phone transition only
-            // document.getElementById('contactPopup').classList.remove('hidden');
-            // document.body.style.overflow = 'hidden'; // Prevent background scrolling
-            
+        function enteringContactForm() {
             // Switch phone to show contact form
             switchPhoneImage('contactForm');
         }
-        
-        function goBackToDefault() {
+
+        function exitingContactForm() {
             // Switch phone back to default - this will handle button reset
             switchPhoneImage('default');
             
-            // Clear form fields when going back
+            // Clear all form fields when exiting
             const nameField = document.getElementById('phone-name');
             const emailField = document.getElementById('phone-email');
             const phoneField = document.getElementById('phone-phone');
@@ -613,6 +609,20 @@
             if (emailField) emailField.value = '';
             if (phoneField) phoneField.value = '';
             if (messageField) messageField.value = '';
+        }
+
+        function openContactForm() {
+            // COMMENTED OUT: Contact form popup - keeping phone transition only
+            // document.getElementById('contactPopup').classList.remove('hidden');
+            // document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            
+            // Use the new simplified function
+            enteringContactForm();
+        }
+        
+        function goBackToDefault() {
+            // Use the new simplified function
+            exitingContactForm();
         }
         
         // Contact form phone limited scroll - allow tiny scroll up
@@ -693,27 +703,16 @@
             // document.body.style.overflow = 'auto'; // Restore scrolling
             // document.getElementById('contactForm').reset(); // Clear form
             
-            // Switch phone back to default - this will handle button reset
-            switchPhoneImage('default');
-            
-            // Clear form fields
-            const nameField = document.getElementById('phone-name');
-            const emailField = document.getElementById('phone-email');
-            const phoneField = document.getElementById('phone-phone');
-            const messageField = document.getElementById('phone-message');
-            
-            if (nameField) nameField.value = '';
-            if (emailField) emailField.value = '';
-            if (phoneField) phoneField.value = '';
-            if (messageField) messageField.value = '';
+            // Use the new simplified function
+            exitingContactForm();
         }
 
         function closeSuccessPopup() {
             document.getElementById('successPopup').classList.add('hidden');
             document.body.style.overflow = 'auto'; // Restore scrolling
             
-            // Ensure everything is back to default state - this will handle button reset
-            goBackToDefault();
+            // Use the new simplified function
+            exitingContactForm();
         }
 
         // Handle form submission from popup (commented out)
@@ -749,15 +748,9 @@
             }
 
             // Show success popup
-            goBackToDefault(); // Switch back to default phone
+            exitingContactForm(); // Switch back to default phone
             document.getElementById('successPopup').classList.remove('hidden');
             document.body.style.overflow = 'hidden'; // Prevent background scrolling
-            
-            // Clear the form fields
-            document.getElementById('phone-name').value = '';
-            document.getElementById('phone-email').value = '';
-            document.getElementById('phone-phone').value = '';
-            document.getElementById('phone-message').value = '';
         }
         
         // Handle form submission from phone overlay
@@ -773,15 +766,9 @@
             }
 
             // Show success popup
-            goBackToDefault(); // Switch back to default phone
+            exitingContactForm(); // Switch back to default phone
             document.getElementById('successPopup').classList.remove('hidden');
             document.body.style.overflow = 'hidden'; // Prevent background scrolling
-            
-            // Clear the form fields
-            document.getElementById('phone-name').value = '';
-            document.getElementById('phone-email').value = '';
-            document.getElementById('phone-phone').value = '';
-            document.getElementById('phone-message').value = '';
         }
 
         // Close popup when clicking outside
