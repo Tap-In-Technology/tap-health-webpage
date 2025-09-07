@@ -1995,9 +1995,9 @@
                     lightningBg.style.transform = 'translateY(0px)';
                 }
                 
-                // Start phone transition at 96% scroll progress
-                const transitionStart = 0.96;
-                const transitionEnd = 1.0;
+                // Start phone transition at 85% scroll progress (before scroll boundary)
+                const transitionStart = 0.85;
+                const transitionEnd = 0.95;
                 
                 console.log('Transition Start:', transitionStart);
                 console.log('Transition End:', transitionEnd);
@@ -2034,11 +2034,11 @@
                     }
                     
                     // Show phone header when fully transitioned
-                    if (transitionProgress >= 0.99) {
+                    if (transitionProgress >= 0.8) {
                         const phoneHeader = document.querySelector('.phone-header');
                         if (phoneHeader) {
                             phoneHeader.style.opacity = '1';
-                            console.log('Phone Header: SHOWING (opacity: 1) - transitionProgress >= 0.99');
+                            console.log('Phone Header: SHOWING (opacity: 1) - transitionProgress >= 0.8');
                         } else {
                             console.log('Phone Header element not found!');
                         }
@@ -2046,7 +2046,7 @@
                         const phoneHeader = document.querySelector('.phone-header');
                         if (phoneHeader) {
                             phoneHeader.style.opacity = '0';
-                            console.log('Phone Header: HIDDEN (opacity: 0) - transitionProgress < 0.99');
+                            console.log('Phone Header: HIDDEN (opacity: 0) - transitionProgress < 0.8');
                         }
                     }
                 } else {
