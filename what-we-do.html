@@ -30,26 +30,25 @@
             scroll-behavior: smooth;
         }
         
-        /* Background image styling */
-        .lightning-bg {
-            background-image: url('/media/lightning_bg.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            min-height: 120vh;
+        /* Professional dark background */
+        .professional-bg {
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 50%, #0f0f0f 100%);
+            min-height: 100vh;
             position: relative;
         }
         
-        /* Vignette overlay */
-        .lightning-bg::before {
+        /* Subtle pattern overlay */
+        .professional-bg::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.05) 0%, transparent 50%);
             pointer-events: none;
             z-index: 1;
         }
@@ -84,21 +83,46 @@
             transition: all 0.3s ease-in-out;
         }
         
-        /* Card hover effects */
-        .card-hover {
+        /* Professional card styling */
+        .professional-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.3s ease;
         }
         
-        .card-hover:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        .professional-card:hover {
+            transform: translateY(-4px);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Professional section styling */
+        .section-title {
+            background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Professional button styling */
+        .professional-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            transition: all 0.3s ease;
+        }
+        
+        .professional-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
         }
     </style>
 </head>
 
 <body class="bg-black text-white">
-    <!-- Lightning Background -->
-    <div class="lightning-bg">
+    <!-- Professional Background -->
+    <div class="professional-bg">
         <div class="content-overlay">
             <!-- Header with Hamburger Menu -->
             <header class="fixed top-0 left-0 w-full z-50 py-4 px-6 flex justify-between items-center">
@@ -130,11 +154,11 @@
             <!-- Main Content -->
             <main class="relative z-10 pt-24 pb-16 px-6">
                 <!-- Hero Section -->
-                <section class="text-center mb-16">
-                    <h1 class="text-4xl md:text-6xl font-black mb-6 text-white">
+                <section class="text-center mb-20">
+                    <h1 class="text-5xl md:text-7xl font-bold mb-8 section-title">
                         What We Do
                     </h1>
-                    <p class="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto">
+                    <p class="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
                         Tap replaces forms with a single tap of your phone — making sign-ins and sign-ups instant, secure, and seamless.
                     </p>
                 </section>
@@ -142,7 +166,7 @@
                 <!-- Our Solution Section -->
                 <section class="mb-20">
                     <div class="max-w-6xl mx-auto">
-                        <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-white">
+                        <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 section-title">
                             Our Solution
                         </h2>
                         <p class="text-xl text-gray-300 text-center mb-16 max-w-4xl mx-auto">
@@ -152,30 +176,30 @@
                         
                         <!-- Feature Cards -->
                         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 card-hover">
+                            <div class="professional-card rounded-xl p-8">
                                 <h3 class="text-2xl font-bold mb-4 text-white">One Tap Simplicity</h3>
-                                <p class="text-gray-300">
+                                <p class="text-gray-300 leading-relaxed">
                                     Tap eliminates repetitive data entry and makes onboarding smoother and more accurate for both users and organizations.
                                 </p>
                             </div>
                             
-                            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 card-hover">
+                            <div class="professional-card rounded-xl p-8">
                                 <h3 class="text-2xl font-bold mb-4 text-white">Physical + Virtual</h3>
-                                <p class="text-gray-300">
+                                <p class="text-gray-300 leading-relaxed">
                                     Tap works physically via NFC chips (like Apple Pay) and virtually via OAuth-style integrations — wherever identity or info needs to flow.
                                 </p>
                             </div>
                             
-                            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 card-hover">
+                            <div class="professional-card rounded-xl p-8">
                                 <h3 class="text-2xl font-bold mb-4 text-white">Consent-First</h3>
-                                <p class="text-gray-300">
+                                <p class="text-gray-300 leading-relaxed">
                                     No data is shared without explicit user consent. Tap ensures total privacy and control at every step.
                                 </p>
                             </div>
                             
-                            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 card-hover">
+                            <div class="professional-card rounded-xl p-8">
                                 <h3 class="text-2xl font-bold mb-4 text-white">Transparent + Editable</h3>
-                                <p class="text-gray-300">
+                                <p class="text-gray-300 leading-relaxed">
                                     Users can view what's shared, to whom, and manage or update their Tap profile anytime for a completely transparent experience.
                                 </p>
                             </div>
@@ -186,57 +210,37 @@
                 <!-- Core Benefits Section -->
                 <section class="mb-20">
                     <div class="max-w-6xl mx-auto">
-                        <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-white">
+                        <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 section-title">
                             Core Benefits
                         </h2>
                         
-                        <div class="space-y-12">
-                            <div class="flex flex-col md:flex-row items-center gap-8">
-                                <div class="flex-shrink-0">
-                                    <img src="/media/tap_icon.png" alt="Tap Icon" class="w-16 h-16">
-                                </div>
-                                <div class="text-center md:text-left">
-                                    <h3 class="text-2xl font-semibold mb-2 text-white">Secure</h3>
-                                    <p class="text-gray-300 text-lg">
-                                        Only user-approved data is shared — giving people full control over what they share, and with whom.
-                                    </p>
-                                </div>
+                        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                            <div class="professional-card rounded-xl p-8 text-center">
+                                <h3 class="text-2xl font-bold mb-4 text-white">Secure</h3>
+                                <p class="text-gray-300 leading-relaxed">
+                                    Only user-approved data is shared — giving people full control over what they share, and with whom.
+                                </p>
                             </div>
                             
-                            <div class="flex flex-col md:flex-row items-center gap-8">
-                                <div class="flex-shrink-0">
-                                    <img src="/media/tap_icon.png" alt="Tap Icon" class="w-16 h-16">
-                                </div>
-                                <div class="text-center md:text-left">
-                                    <h3 class="text-2xl font-semibold mb-2 text-white">Fast</h3>
-                                    <p class="text-gray-300 text-lg">
-                                        Tap eliminates form-fill and waiting rooms. Onboard in seconds with a single tap.
-                                    </p>
-                                </div>
+                            <div class="professional-card rounded-xl p-8 text-center">
+                                <h3 class="text-2xl font-bold mb-4 text-white">Fast</h3>
+                                <p class="text-gray-300 leading-relaxed">
+                                    Tap eliminates form-fill and waiting rooms. Onboard in seconds with a single tap.
+                                </p>
                             </div>
                             
-                            <div class="flex flex-col md:flex-row items-center gap-8">
-                                <div class="flex-shrink-0">
-                                    <img src="/media/tap_icon.png" alt="Tap Icon" class="w-16 h-16">
-                                </div>
-                                <div class="text-center md:text-left">
-                                    <h3 class="text-2xl font-semibold mb-2 text-white">Accurate</h3>
-                                    <p class="text-gray-300 text-lg">
-                                        Verified information lowers data entry errors, improves compliance, and boosts trust in every interaction.
-                                    </p>
-                                </div>
+                            <div class="professional-card rounded-xl p-8 text-center">
+                                <h3 class="text-2xl font-bold mb-4 text-white">Accurate</h3>
+                                <p class="text-gray-300 leading-relaxed">
+                                    Verified information lowers data entry errors, improves compliance, and boosts trust in every interaction.
+                                </p>
                             </div>
                             
-                            <div class="flex flex-col md:flex-row items-center gap-8">
-                                <div class="flex-shrink-0">
-                                    <img src="/media/tap_icon.png" alt="Tap Icon" class="w-16 h-16">
-                                </div>
-                                <div class="text-center md:text-left">
-                                    <h3 class="text-2xl font-semibold mb-2 text-white">Universal</h3>
-                                    <p class="text-gray-300 text-lg">
-                                        Tap works across industries and integrates with existing systems.
-                                    </p>
-                                </div>
+                            <div class="professional-card rounded-xl p-8 text-center">
+                                <h3 class="text-2xl font-bold mb-4 text-white">Universal</h3>
+                                <p class="text-gray-300 leading-relaxed">
+                                    Tap works across industries and integrates with existing systems.
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -245,25 +249,25 @@
                 <!-- Why Now Section -->
                 <section class="mb-20">
                     <div class="max-w-6xl mx-auto text-center">
-                        <h2 class="text-3xl md:text-4xl font-bold mb-12 text-white">Why Now?</h2>
+                        <h2 class="text-4xl md:text-5xl font-bold mb-12 section-title">Why Now?</h2>
                         <div class="grid md:grid-cols-3 gap-8">
-                            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 card-hover">
-                                <h3 class="text-xl font-semibold mb-4 text-white">Digital Transformation</h3>
-                                <p class="text-gray-300">
+                            <div class="professional-card rounded-xl p-8">
+                                <h3 class="text-2xl font-bold mb-4 text-white">Digital Transformation</h3>
+                                <p class="text-gray-300 leading-relaxed">
                                     Organizations are rapidly digitizing, but legacy form systems create friction and security risks.
                                 </p>
                             </div>
                             
-                            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 card-hover">
-                                <h3 class="text-xl font-semibold mb-4 text-white">Privacy Regulations</h3>
-                                <p class="text-gray-300">
+                            <div class="professional-card rounded-xl p-8">
+                                <h3 class="text-2xl font-bold mb-4 text-white">Privacy Regulations</h3>
+                                <p class="text-gray-300 leading-relaxed">
                                     New privacy laws require better data control and consent management — exactly what Tap provides.
                                 </p>
                             </div>
                             
-                            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 card-hover">
-                                <h3 class="text-xl font-semibold mb-4 text-white">User Expectations</h3>
-                                <p class="text-gray-300">
+                            <div class="professional-card rounded-xl p-8">
+                                <h3 class="text-2xl font-bold mb-4 text-white">User Expectations</h3>
+                                <p class="text-gray-300 leading-relaxed">
                                     People expect seamless, secure experiences like Apple Pay — Tap brings that to all interactions.
                                 </p>
                             </div>
@@ -274,28 +278,28 @@
                 <!-- The Future Section -->
                 <section class="mb-20">
                     <div class="max-w-6xl mx-auto">
-                        <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-white">
+                        <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 section-title">
                             The Future of Tap
                         </h2>
                         
                         <div class="grid md:grid-cols-3 gap-8">
-                            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 card-hover">
-                                <h3 class="text-xl font-semibold mb-4 text-white">Focus Market: Healthcare</h3>
-                                <p class="text-gray-300">
+                            <div class="professional-card rounded-xl p-8">
+                                <h3 class="text-2xl font-bold mb-4 text-white">Focus Market: Healthcare</h3>
+                                <p class="text-gray-300 leading-relaxed">
                                     Start by eliminating clinic intake forms with one tap. No paperwork. No waiting rooms full of clipboards.
                                 </p>
                             </div>
                             
-                            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 card-hover">
-                                <h3 class="text-xl font-semibold mb-4 text-white">Industry Expansion</h3>
-                                <p class="text-gray-300">
+                            <div class="professional-card rounded-xl p-8">
+                                <h3 class="text-2xl font-bold mb-4 text-white">Industry Expansion</h3>
+                                <p class="text-gray-300 leading-relaxed">
                                     Next targets: Banking, Retail & Rewards, Hotel Check-Ins, and Web Integrations.
                                 </p>
                             </div>
                             
-                            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 card-hover">
-                                <h3 class="text-xl font-semibold mb-4 text-white">Global Scale</h3>
-                                <p class="text-gray-300">
+                            <div class="professional-card rounded-xl p-8">
+                                <h3 class="text-2xl font-bold mb-4 text-white">Global Scale</h3>
+                                <p class="text-gray-300 leading-relaxed">
                                     Build the universal identity layer that makes every interaction instant, secure, and user-controlled.
                                 </p>
                             </div>
@@ -306,13 +310,13 @@
                 <!-- CTA Section -->
                 <section class="text-center">
                     <div class="max-w-4xl mx-auto">
-                        <h2 class="text-3xl md:text-4xl font-bold mb-6 text-white">
+                        <h2 class="text-4xl md:text-5xl font-bold mb-6 section-title">
                             Ready to Transform Your Forms?
                         </h2>
-                        <p class="text-xl text-gray-300 mb-8">
+                        <p class="text-xl text-gray-300 mb-8 leading-relaxed">
                             Join our pilot program and be among the first to experience the future of instant, secure interactions.
                         </p>
-                        <a href="#" class="inline-block bg-white text-black px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-200 transition-colors">
+                        <a href="#" class="inline-block professional-btn text-white px-8 py-4 rounded-lg text-lg font-semibold">
                             Join Our Pilot Program
                         </a>
                     </div>
