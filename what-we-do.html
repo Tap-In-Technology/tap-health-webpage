@@ -1454,7 +1454,7 @@
     <!-- Landing Page Section -->
     <section class="landing-page-section" style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); min-height: 100vh; position: relative; overflow: hidden;">
         <!-- Lightning background effect with parallax -->
-        <div class="lightning-bg-overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url('/media/lightning_bg.jpg'); background-size: cover; background-position: center; background-attachment: fixed; opacity: 0.3; z-index: 1;"></div>
+        <div class="lightning-bg-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('/media/lightning_bg.jpg'); background-size: cover; background-position: center; opacity: 0.3; z-index: 1;"></div>
         
         <!-- Main content -->
         <div class="relative z-10" style="position: relative; z-index: 10;">
@@ -1629,12 +1629,15 @@
                 console.log('Window height:', windowHeight);
                 console.log('Scroll Y:', scrollY);
                 
-                // Parallax effect for lightning background
+                // Parallax effect for lightning background (only when section is in view)
                 const lightningBg = document.querySelector('.lightning-bg-overlay');
-                if (lightningBg) {
-                    const parallaxSpeed = 0.5; // Slower movement for parallax effect
-                    const yPos = -(scrollY * parallaxSpeed);
+                if (lightningBg && rect.top < windowHeight && rect.bottom > 0) {
+                    const parallaxSpeed = 0.3; // Slower movement for parallax effect
+                    const sectionOffset = rect.top;
+                    const yPos = -(sectionOffset * parallaxSpeed);
                     lightningBg.style.transform = `translateY(${yPos}px)`;
+                } else if (lightningBg) {
+                    lightningBg.style.transform = 'translateY(0px)';
                 }
                 
                 // Fade in and slide up when landing section is in view
