@@ -1459,7 +1459,7 @@
         <!-- Main content -->
         <div class="relative z-10" style="position: relative; z-index: 10;">
             <!-- Phone image large and centered -->
-            <div id="landing-phone-container" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) translateY(300px); z-index: 20; opacity: 0;">
+            <div id="landing-phone-container" style="position: absolute; top: 100%; left: 50%; transform: translate(-50%, 0%) translateY(100px); z-index: 20; opacity: 0;">
                 <img src="/media/phone.png" alt="Phone" class="h-[60vh] w-auto" id="landing-phone">
             </div>
             
@@ -1654,11 +1654,17 @@
                     
                     // Fade in and slide up based on scroll progress
                     phoneContainer.style.opacity = transitionProgress;
-                    phoneContainer.style.transform = `translate(-50%, -50%) translateY(${300 * (1 - transitionProgress)}px)`;
+                    // Start from bottom (top: 100%, translateY: 100px) and move to center (top: 50%, translateY: -50%)
+                    const startY = 100; // Starting position from bottom
+                    const endY = -50; // Ending position at center
+                    const currentY = startY + (endY - startY) * transitionProgress;
+                    phoneContainer.style.transform = `translate(-50%, 0%) translateY(${currentY}px)`;
+                    phoneContainer.style.top = `${50 + (100 - 50) * (1 - transitionProgress)}%`;
                     console.log(`Phone transition progress: ${(transitionProgress * 100).toFixed(1)}%`);
                 } else {
                     phoneContainer.style.opacity = '0';
-                    phoneContainer.style.transform = 'translate(-50%, -50%) translateY(300px)';
+                    phoneContainer.style.transform = 'translate(-50%, 0%) translateY(100px)';
+                    phoneContainer.style.top = '100%';
                     console.log('Phone not yet started - scroll progress:', (scrollProgress * 100).toFixed(1) + '%');
                 }
             }
