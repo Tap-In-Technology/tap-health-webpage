@@ -724,12 +724,56 @@
             padding: 60px 0;
         }
 
+        /* Huge outlined text behind ticker */
+        .export-formats-section::before {
+            content: 'ANY FORMAT';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 12vw;
+            font-weight: 900;
+            font-family: 'Playfair Display', serif;
+            color: transparent;
+            -webkit-text-stroke: 2px rgba(255, 255, 255, 0.1);
+            text-stroke: 2px rgba(255, 255, 255, 0.1);
+            white-space: nowrap;
+            z-index: 0;
+            letter-spacing: 0.05em;
+            pointer-events: none;
+            width: 100vw;
+            max-width: 100vw;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        /* Responsive font size adjustments */
+        @media (max-width: 1200px) {
+            .export-formats-section::before {
+                font-size: 10vw;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .export-formats-section::before {
+                font-size: 8vw;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .export-formats-section::before {
+                font-size: 6vw;
+            }
+        }
+
         .export-formats-title {
             font-size: 3rem;
             font-weight: 700;
             color: white;
             margin-bottom: 20px;
             font-family: 'Playfair Display', serif;
+            position: relative;
+            z-index: 10;
         }
 
         .export-formats-subtitle {
@@ -737,6 +781,8 @@
             color: rgba(255, 255, 255, 0.7);
             margin-bottom: 60px;
             font-family: 'Playfair Display', serif;
+            position: relative;
+            z-index: 10;
         }
 
         .export-formats-container {
@@ -746,8 +792,9 @@
             gap: 60px;
             overflow: hidden;
             position: relative;
-            transform: rotate(-2deg);
+            transform: rotate(-5deg);
             margin: 40px 0;
+            z-index: 10;
         }
 
         .export-formats-track {
@@ -819,13 +866,13 @@
         /* CTA Section with vertical gradient */
         .cta-gradient-section {
             background: linear-gradient(180deg, 
-                rgba(0, 0, 0, 1) 0%, 
-                rgba(20, 20, 20, 0.9) 20%, 
-                rgba(40, 40, 40, 0.8) 40%, 
-                rgba(0, 100, 200, 0.6) 60%, 
-                rgba(0, 150, 255, 0.8) 80%, 
-                rgba(0, 200, 255, 1) 100%);
-            padding: 100px 0;
+                rgba(0, 0, 0, 0.95) 0%, 
+                rgba(0, 0, 0, 0.98) 20%, 
+                rgba(0, 0, 0, 1) 40%, 
+                rgba(0, 0, 0, 1) 60%, 
+                rgba(0, 0, 0, 1) 80%, 
+                rgba(0, 20, 60, 0.8) 100%);
+            padding: 600px 0 150px 0;
             margin: 0;
             width: 100vw;
             margin-left: calc(-50vw + 50%);
@@ -1065,9 +1112,8 @@
                 </section>
 
                 <!-- 4. Export Formats Section -->
-                <section class="export-formats-section">
-                    <h2 class="export-formats-title">Export Formats</h2>
-                    <p class="export-formats-subtitle">Export your data in any format you need</p>
+            <section class="export-formats-section">
+                <h2 class="export-formats-title">We integrate with your data system</h2>
                     
                     <div class="export-formats-container">
                         <div class="export-formats-track">
@@ -1380,12 +1426,12 @@
     </div>
     
     <!-- Footer -->
-    <footer class="bg-black text-white py-8 px-6 relative z-10">
+    <footer class="bg-black text-white py-2 px-6 relative z-10">
         <div class="max-w-6xl mx-auto flex justify-between items-center">
             <div class="flex items-center gap-4">
-                <a href="privacy.html" class="text-xs text-gray-400 hover:text-white transition-colors" style="font-size: 10px;">Privacy Policy</a>
+                <a href="privacy.html" class="text-xs text-gray-400 hover:text-white transition-colors" style="font-size: 8px;">Privacy Policy</a>
             </div>
-            <div class="text-gray-400 text-sm">
+            <div class="text-gray-400 text-xs">
                 © 2024 Tap Health. All rights reserved.
             </div>
         </div>
