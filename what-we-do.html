@@ -68,6 +68,11 @@
             font-family: 'Playfair Display', serif;
         }
         
+        /* Contact form glow effect */
+        .contact-form-glow {
+            filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.8)) drop-shadow(0 0 40px rgba(255, 255, 255, 0.6)) drop-shadow(0 0 60px rgba(255, 255, 255, 0.4)) !important;
+        }
+        
         /* Hero section styling - slash.com inspired */
         .hero-section {
             background: transparent;
@@ -1466,6 +1471,16 @@
                 <img src="/media/phone.png" alt="Phone" class="h-[60vh] w-auto" id="landing-phone" style="filter: drop-shadow(0 0 20px rgba(0, 255, 255, 0.3)) drop-shadow(0 0 40px rgba(0, 255, 255, 0.2)) drop-shadow(0 0 60px rgba(0, 255, 255, 0.1));">
                 <!-- Upper-right spotlight gradient overlay -->
                 <div class="phone-gradient" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; background: radial-gradient(ellipse at 85% 15%, transparent 0%, transparent 20%, rgba(0, 0, 0, 0.1) 35%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.8) 70%, rgba(0, 0, 0, 0.95) 100%), linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.3) 70%, rgba(0, 0, 0, 0.7) 85%, rgba(0, 0, 0, 1) 100%);"></div>
+                <!-- Interactive contact form overlay -->
+                <div id="contact-form-interactive-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: auto; z-index: 26; display: none;">
+                    <!-- Form fields positioned relative to phone screen area (accounting for rounded corners) -->
+                    <input type="text" id="phone-name" class="phone-form-field" required style="position: absolute; background: transparent; border: none; border-radius: 0; padding: 4px 8px; font-size: 12px; color: #000; width: 120px; box-shadow: none; top: 32%; left: 20%;">
+                    <input type="tel" id="phone-phone" class="phone-form-field" style="position: absolute; background: transparent; border: none; border-radius: 0; padding: 4px 8px; font-size: 12px; color: #000; width: 120px; box-shadow: none; top: 42%; left: 20%;">
+                    <input type="email" id="phone-email" class="phone-form-field" required style="position: absolute; background: transparent; border: none; border-radius: 0; padding: 4px 8px; font-size: 12px; color: #000; width: 120px; box-shadow: none; top: 52%; left: 20%;">
+                    <textarea id="phone-message" class="phone-form-field" required style="position: absolute; background: transparent; border: none; border-radius: 0; padding: 4px 8px; font-size: 12px; color: #000; width: 120px; height: 40px; box-shadow: none; top: 62%; left: 20%; resize: none;"></textarea>
+                    <button type="button" id="phone-approve" class="phone-form-button" onclick="approveForm()" style="position: absolute; background: transparent; border: none; color: #000; font-size: 12px; padding: 4px 8px; top: 75%; left: 20%;">Approve</button>
+                    <button type="button" id="phone-cancel" class="phone-form-button" onclick="goBackToDefault()" style="position: absolute; background: transparent; border: none; color: #000; font-size: 12px; padding: 4px 8px; top: 85%; left: 20%;">Cancel</button>
+                </div>
             </div>
             
             <!-- Header over phone - centered in lightning background -->
@@ -1521,107 +1536,107 @@
         </div>
     </div>
 
-    <!-- Contact Form Popup -->
-    <div id="contactPopup" class="fixed inset-0 bg-black bg-opacity-80 z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-white rounded-xl p-4 w-80 max-w-sm shadow-2xl" style="max-width: 320px; width: 320px; padding: 16px;">
-            <div class="flex justify-between items-center mb-3" style="margin-bottom: 12px;">
-                <h3 class="text-lg font-bold text-gray-900" style="font-size: 18px; font-weight: bold;">Get in Touch</h3>
-                <button onclick="closeContactForm()" class="text-gray-400 hover:text-gray-600 transition-colors">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width: 16px; height: 16px;">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                    </svg>
-                </button>
-            </div>
-            <form id="contactForm" class="space-y-2" style="gap: 8px;">
-                <div>
-                    <label for="name" class="block text-xs font-medium text-gray-700 mb-1" style="font-size: 12px; margin-bottom: 4px;">Name *</label>
-                    <input type="text" id="name" name="name" required 
-                           class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" 
-                           style="padding: 8px 12px; font-size: 14px;">
-                </div>
-                <div>
-                    <label for="email" class="block text-xs font-medium text-gray-700 mb-1" style="font-size: 12px; margin-bottom: 4px;">Email *</label>
-                    <input type="email" id="email" name="email" required 
-                           class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" 
-                           style="padding: 8px 12px; font-size: 14px;">
-                </div>
-                <div>
-                    <label for="phone" class="block text-xs font-medium text-gray-700 mb-1" style="font-size: 12px; margin-bottom: 4px;">Phone</label>
-                    <input type="tel" id="phone" name="phone" 
-                           class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" 
-                           style="padding: 8px 12px; font-size: 14px;">
-                </div>
-                <div>
-                    <label for="message" class="block text-xs font-medium text-gray-700 mb-1" style="font-size: 12px; margin-bottom: 4px;">Message *</label>
-                    <textarea id="message" name="message" rows="3" required 
-                              class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none" 
-                              style="padding: 8px 12px; font-size: 14px;"></textarea>
-                </div>
-                <div class="flex gap-2 pt-2" style="gap: 8px; padding-top: 8px;">
-                    <button type="button" onclick="closeContactForm()" 
-                            class="flex-1 bg-gray-200 text-gray-800 px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-300 transition-colors" 
-                            style="padding: 8px 12px; font-size: 14px;">
-                        Cancel
-                    </button>
-                    <button type="submit" 
-                            class="flex-1 bg-blue-600 text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-colors" 
-                            style="padding: 8px 12px; font-size: 14px;">
-                        Send
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
     
     <!-- JavaScript -->
     <script>
-        // Contact form functionality
-        function openContactForm() {
-            const contactPopup = document.getElementById('contactPopup');
-            const typingContainer = document.querySelector('.typing-container');
+        // Phone image transition functionality
+        const PHONE_IMAGES = {
+            default: '/media/phone.png?v=2',
+            contactForm: '/media/contactFormPhone.png?v=2'
+        };
+
+        function switchPhoneImage(imageType) {
+            const phoneImg = document.getElementById('landing-phone');
+            const phoneContainer = document.getElementById('landing-phone-container');
             
-            if (contactPopup) {
-                contactPopup.classList.remove('hidden');
-                console.log('Contact form opened');
-            }
-            
-            if (typingContainer) {
-                typingContainer.style.display = 'none';
-            }
-            
-            // Change Get in Touch button to Go Back button
-            const getInTouchBtn = document.querySelector('button[onclick="openContactForm()"]');
-            if (getInTouchBtn) {
-                getInTouchBtn.textContent = 'Go Back';
-                getInTouchBtn.setAttribute('onclick', 'closeContactForm()');
+            if (phoneImg && PHONE_IMAGES[imageType]) {
+                phoneImg.src = PHONE_IMAGES[imageType];
+                
+                if (imageType === 'contactForm') {
+                    // Entering contact form mode
+                    phoneContainer.classList.add('contact-form-mode');
+                    document.getElementById('contact-form-interactive-overlay').style.display = 'block';
+                    
+                    // Hide typing text
+                    const typingContainer = document.querySelector('.typing-container');
+                    if (typingContainer) {
+                        typingContainer.style.display = 'none';
+                    }
+                    
+                    // Change Get in Touch button to Go Back button
+                    const getInTouchBtn = document.querySelector('button[onclick="openContactForm()"]');
+                    if (getInTouchBtn) {
+                        getInTouchBtn.textContent = 'Go Back';
+                        getInTouchBtn.setAttribute('onclick', 'goBackToDefault()');
+                    }
+                    
+                    // Apply glow after the new phone image is loaded
+                    phoneImg.onload = function() {
+                        phoneImg.classList.add('contact-form-glow');
+                    };
+                    
+                    // If image is already loaded (cached), apply glow immediately
+                    if (phoneImg.complete) {
+                        phoneImg.classList.add('contact-form-glow');
+                    }
+                    
+                } else {
+                    // Exiting contact form mode
+                    phoneContainer.classList.remove('contact-form-mode');
+                    document.getElementById('contact-form-interactive-overlay').style.display = 'none';
+                    
+                    // Show typing text
+                    const typingContainer = document.querySelector('.typing-container');
+                    if (typingContainer) {
+                        typingContainer.style.display = 'block';
+                    }
+                    
+                    // Change Go Back button back to Get in Touch button
+                    const goBackBtn = document.querySelector('button[onclick="goBackToDefault()"]');
+                    if (goBackBtn) {
+                        goBackBtn.textContent = 'Get in Touch';
+                        goBackBtn.setAttribute('onclick', 'openContactForm()');
+                    }
+                    
+                    // Remove glow
+                    phoneImg.classList.remove('contact-form-glow');
+                    phoneImg.onload = null;
+                }
             }
         }
 
-        function closeContactForm() {
-            const contactPopup = document.getElementById('contactPopup');
-            const typingContainer = document.querySelector('.typing-container');
+        function openContactForm() {
+            switchPhoneImage('contactForm');
+        }
+
+        function goBackToDefault() {
+            switchPhoneImage('default');
+        }
+
+        function approveForm() {
+            // Get form data from phone form fields
+            const name = document.getElementById('phone-name').value;
+            const phone = document.getElementById('phone-phone').value;
+            const email = document.getElementById('phone-email').value;
+            const message = document.getElementById('phone-message').value;
             
-            if (contactPopup) {
-                contactPopup.classList.add('hidden');
-                console.log('Contact form closed');
+            // Basic validation
+            if (!name || !email || !message) {
+                alert('Please fill in all required fields.');
+                return;
             }
             
-            if (typingContainer) {
-                typingContainer.style.display = 'block';
+            // Simulate form submission
+            console.log('Phone form submitted:', { name, phone, email, message });
+            
+            // Show success popup
+            const successPopup = document.getElementById('successPopup');
+            if (successPopup) {
+                successPopup.classList.remove('hidden');
             }
             
-            // Change Go Back button back to Get in Touch button
-            const goBackBtn = document.querySelector('button[onclick="closeContactForm()"]');
-            if (goBackBtn) {
-                goBackBtn.textContent = 'Get in Touch';
-                goBackBtn.setAttribute('onclick', 'openContactForm()');
-            }
-            
-            // Reset form
-            const form = document.getElementById('contactForm');
-            if (form) {
-                form.reset();
-            }
+            // Hide the interactive overlay
+            document.getElementById('contact-form-interactive-overlay').style.display = 'none';
         }
 
         function closeSuccessPopup() {
@@ -1645,39 +1660,6 @@
             }
         }
 
-        // Handle form submission
-        document.addEventListener('DOMContentLoaded', function() {
-            const form = document.getElementById('contactForm');
-            if (form) {
-                form.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    
-                    // Get form data
-                    const formData = new FormData(form);
-                    const name = formData.get('name');
-                    const email = formData.get('email');
-                    const phone = formData.get('phone');
-                    const message = formData.get('message');
-                    
-                    // Basic validation
-                    if (!name || !email || !message) {
-                        alert('Please fill in all required fields.');
-                        return;
-                    }
-                    
-                    // Simulate form submission
-                    console.log('Form submitted:', { name, email, phone, message });
-                    
-                    // Close contact form and show success popup
-                    closeContactForm();
-                    
-                    const successPopup = document.getElementById('successPopup');
-                    if (successPopup) {
-                        successPopup.classList.remove('hidden');
-                    }
-                });
-            }
-        });
 
         // Menu toggle functionality
         function toggleMenu() {
