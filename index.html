@@ -70,7 +70,7 @@
         
         /* Lightning background as true page background */
         .lightning-page-bg {
-            background-image: url('/media/lightning_bg.jpg');
+            background-image: url('./media/lightning_bg.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -85,7 +85,7 @@
 
         /* Gradient overlay as separate sticky element */
         .gradient-overlay {
-            background-image: url('/media/gradient.jpg');
+            background-image: url('./media/gradient.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -108,7 +108,7 @@
         
         /* Lightning background styling from legacy-2 */
         .lightning-bg {
-            background-image: url('/media/lightning_bg.jpg');
+            background-image: url('./media/lightning_bg.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -1652,7 +1652,7 @@
             <h2 style="color: white; font-size: clamp(2rem, 5vw, 4rem); font-weight: 700; font-family: 'Playfair Display', serif; text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5); margin: 0;">
                 Ready to transform your forms?
             </h2>
-        </div>
+                            </div>
     </section>
 
     <!-- Lightning 2 section -->
@@ -1660,9 +1660,9 @@
         <!-- Content placeholder for Lightning 2 -->
         <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10; text-align: center;">
             <!-- Lightning 2 content will go here -->
-        </div>
+                            </div>
     </section>
-
+    
     <!-- Footer -->
     <footer class="bg-black text-white py-4 px-6 relative z-10">
         <div class="w-full flex justify-between items-center">
@@ -1773,11 +1773,11 @@
 
         // Simple scroll tracking for debugging (optional)
         function trackScroll() {
-            const scrolled = document.documentElement.scrollTop || window.pageYOffset;
-            const windowHeight = window.innerHeight;
-            const documentHeight = document.documentElement.scrollHeight;
-            const maxScroll = documentHeight - windowHeight;
-            
+                const scrolled = document.documentElement.scrollTop || window.pageYOffset;
+                const windowHeight = window.innerHeight;
+                const documentHeight = document.documentElement.scrollHeight;
+                const maxScroll = documentHeight - windowHeight;
+                
             // Check if user has scrolled to the bottom
             if (scrolled >= maxScroll - 10) {
                 console.log("scrolled to bottom");
