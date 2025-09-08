@@ -1634,6 +1634,44 @@
         </div>
     </div>
     
+    <!-- ========================================
+         LEGACY-2 CONTENT - PERFECT PHONE TRANSITION
+         ======================================== -->
+    
+    <!-- Lightning background hero section from legacy-2 -->
+    <section class="lightning-bg relative" style="min-height: 200vh; position: relative; z-index: 5;">
+        <!-- Phone image large and centered, fading into background -->
+        <div id="phone-container" style="position: absolute; top: 80%; left: 50%; transform: translate(-50%, -50%); opacity: 0; transition: none; z-index: 20;">
+            <img src="/media/phone.png?v=2" alt="Phone" class="h-[80vh] w-auto" id="phone">
+            <div class="phone-gradient"></div>
+            <div class="phone-gleam"></div>
+            <!-- Separate glow overlay for contact form -->
+            <div id="contact-form-glow" class="contact-form-glow-overlay" style="display: none;"></div>
+            <!-- Direct fade overlay for contact form -->
+            <div id="contact-form-fade" class="contact-form-fade-overlay" style="display: none;"></div>
+            <!-- Interactive contact form overlay -->
+            <div id="contact-form-interactive-overlay">
+                <input type="text" id="phone-name" class="phone-form-field" required>
+                <input type="tel" id="phone-phone" class="phone-form-field">
+                <input type="email" id="phone-email" class="phone-form-field" required>
+                <textarea id="phone-message" class="phone-form-field" required></textarea>
+                <button type="button" id="phone-approve" class="phone-form-button" onclick="approveForm()">Approve</button>
+                <button type="button" id="phone-cancel-mid" class="phone-form-button" onclick="goBackToDefault()">Cancel</button>
+                <button type="button" id="phone-cancel" class="phone-form-button" onclick="goBackToDefault()">Cancel</button>
+                <button type="button" id="phone-send" class="phone-form-button" onclick="submitPhoneForm()">Send</button>
+            </div>
+        </div>
+        
+        <!-- Main heading text with opacity shifts -->
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30" id="text-container">
+            <h1 class="text-white font-bold text-center leading-tight text-fade" id="text-1" style="text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5); font-size: clamp(1.5rem, 6vw, 6rem); opacity: 1; transition: opacity 1s ease-in-out;">
+                Your data.<br>Where you want it.
+            </h1>
+            <h1 class="text-white font-bold text-center leading-tight text-fade" id="text-2" style="text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5); font-size: clamp(1.5rem, 6vw, 6rem); opacity: 0; transition: opacity 1s ease-in-out; position: absolute; top: 0; left: 0; width: 100%;">
+                One Tap is all it takes.
+            </h1>
+        </div>
+    </section>
     
     <!-- Footer -->
     <footer class="bg-black text-white py-4 px-6 relative z-10">
@@ -2128,45 +2166,6 @@
             });
         }
             </script>
-    
-    <!-- ========================================
-         LEGACY-2 CONTENT - PERFECT PHONE TRANSITION
-         ======================================== -->
-    
-    <!-- Lightning background hero section from legacy-2 -->
-    <section class="lightning-bg relative" style="min-height: 200vh; position: relative; z-index: 5;">
-        <!-- Phone image large and centered, fading into background -->
-        <div id="phone-container" style="position: absolute; top: 80%; left: 50%; transform: translate(-50%, -50%); opacity: 0; transition: none; z-index: 20;">
-            <img src="/media/phone.png?v=2" alt="Phone" class="h-[80vh] w-auto" id="phone">
-            <div class="phone-gradient"></div>
-            <div class="phone-gleam"></div>
-            <!-- Separate glow overlay for contact form -->
-            <div id="contact-form-glow" class="contact-form-glow-overlay" style="display: none;"></div>
-            <!-- Direct fade overlay for contact form -->
-            <div id="contact-form-fade" class="contact-form-fade-overlay" style="display: none;"></div>
-            <!-- Interactive contact form overlay -->
-            <div id="contact-form-interactive-overlay">
-                <input type="text" id="phone-name" class="phone-form-field" required>
-                <input type="tel" id="phone-phone" class="phone-form-field">
-                <input type="email" id="phone-email" class="phone-form-field" required>
-                <textarea id="phone-message" class="phone-form-field" required></textarea>
-                <button type="button" id="phone-approve" class="phone-form-button" onclick="approveForm()">Approve</button>
-                <button type="button" id="phone-cancel-mid" class="phone-form-button" onclick="goBackToDefault()">Cancel</button>
-                <button type="button" id="phone-cancel" class="phone-form-button" onclick="goBackToDefault()">Cancel</button>
-                <button type="button" id="phone-send" class="phone-form-button" onclick="submitPhoneForm()">Send</button>
-            </div>
-        </div>
-        
-        <!-- Main heading text with opacity shifts -->
-        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30" id="text-container">
-            <h1 class="text-white font-bold text-center leading-tight text-fade" id="text-1" style="text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5); font-size: clamp(1.5rem, 6vw, 6rem); opacity: 1; transition: opacity 1s ease-in-out;">
-                Your data.<br>Where you want it.
-            </h1>
-            <h1 class="text-white font-bold text-center leading-tight text-fade" id="text-2" style="text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5); font-size: clamp(1.5rem, 6vw, 6rem); opacity: 0; transition: opacity 1s ease-in-out; position: absolute; top: 0; left: 0; width: 100%;">
-                One Tap is all it takes.
-            </h1>
-        </div>
-    </section>
     
     <!-- Tiny black section with privacy policy and get in touch -->
     <section class="black-section" style="position: relative; z-index: 50; background-color: #000000; min-height: 10vh; display: flex; align-items: center; justify-content: center;">
