@@ -1,0 +1,569 @@
+fc1463dd - Aris Vetter, 5 minutes ago : Restore working phone transition logic from legacy-2.html
+Replaced complex, broken phone transition with simple working version:
+- Removed complex debouncing and multiple transition states
+- Restored simple scroll progress calculation (0 to 1)
+- Added smooth easing function (easeInOutCubic) from legacy-2.html
+- Restored working phone positioning (80% to 67.5% with smooth easing)
+- Simplified header transitions based on scroll progress
+- Fixed scroll boundary to prevent scrolling past 95%
+- Removed excessive debug logging that was causing issues
+
+The phone transition should now work smoothly like it did in legacy-2.html,
+with proper scroll boundary prevention and smooth animations.
+
+---
+b851b12f - Aris Vetter, 13 minutes ago : Text
+
+---
+d6fdece9 - Aris Vetter, 16 minutes ago : Hide phone header when contact form is active
+Added logic to hide 'One tap is all it takes' header during contact form:
+- Hide phone header when entering contact form mode (Get in Touch clicked)
+- Show phone header again when exiting contact form mode (Go Back clicked)
+- Added console logging for debugging
+- Maintains clean UI during contact form interaction
+
+The phone header now temporarily disappears when the contact form
+is active, providing a cleaner interface for form interaction.
+
+---
+2647bd9e - Aris Vetter, 18 minutes ago : Add debugging to scroll boundary logic
+Added detailed logging to scroll boundary check:
+- Shows current scroll position vs max allowed scroll
+- Shows max scroll value for comparison
+- Helps debug why old scroll boundary message might still appear
+- Will help identify if the new logic is working correctly
+
+This will help determine if there's a caching issue or if the
+old code is still running somewhere.
+
+---
+358aa596 - Aris Vetter, 19 minutes ago : Fix scroll boundary to prevent scrolling past phone transition completion
+Enhanced scroll boundary logic:
+- Calculate exact scroll position where phone transition completes (95% of max scroll)
+- Stop scrolling exactly when phone transition reaches 100% progress
+- More aggressive boundary that prevents scrolling past the phone transition
+- Added debug logging to show current scroll vs max allowed scroll
+
+This ensures users cannot scroll past the point where the phone
+transition is fully complete, maintaining the intended user experience.
+
+---
+e9e8930f - Aris Vetter, 19 hours ago : Update pricing section with new content and structure
+Updated pricing section:
+- Changed title to 'Simple pricing for every business'
+- Standard plan: /bin/zsh.05 per check-in with pay-per-use pricing
+- Early Adopter Program: Select partners with exclusive benefits
+- Updated features for Early Adopter Program:
+  - No monthly fees
+  - Unlimited usage
+  - White glove support
+  - Grandfathered pricing for new locations
+
+The pricing structure now reflects the actual business model
+with clear differentiation between standard and early adopter pricing.
+
+---
+71f48104 - Aris Vetter, 24 hours ago : Improve phone transition reliability and scroll boundary
+Enhanced debugging and reliability:
+- Added element existence checks with error logging
+- Initialize phone container to hidden state explicitly
+- Added debounced scroll handling (16ms ~60fps) to prevent excessive calls
+- Reduced debug logging frequency (every ~100px scroll) to avoid spam
+- Added 5px buffer to scroll boundary for more robust prevention
+- Changed scroll boundary to use instant scroll (behavior: auto)
+- Added window resize handler to recalculate boundaries
+
+These changes should fix:
+- Inconsistent phone transition behavior
+- Occasional ability to scroll past boundaries
+- Performance issues from excessive scroll event calls
+- Race conditions in element initialization
+
+The phone transition should now be more reliable and consistent.
+
+---
+0c1aeda2 - Aris Vetter, 24 hours ago : Replace standalone security button with inline FAQ button
+Removed standalone security button:
+- Deleted the large 'Learn More About Security & Compliance' button
+- Removed associated CSS hover effects
+- Cleaned up the FAQ section layout
+
+Added inline security button:
+- Small 'Learn more' button within the security FAQ answer
+- Styled with cyan background and black text
+- Positioned inline with the paragraph text
+- Links to security-compliance.html page
+
+The security information is now more naturally integrated into the FAQ
+answer rather than having a separate prominent button.
+
+---
+255ac9fa - Aris Vetter, 24 hours ago : Fix phone transition timing to work with scroll boundary
+Fixed phone transition issue:
+- Changed transition start from 96% to 85% scroll progress
+- Changed transition end from 100% to 95% scroll progress
+- This allows phone transition to complete before hitting scroll boundary
+- Updated phone header visibility threshold from 99% to 80% transition progress
+- Updated console log messages to reflect new thresholds
+
+The phone should now appear and transition properly since it starts
+and completes before the scroll boundary prevents further scrolling.
+
+---
+8484c97e - Aris Vetter, 24 hours ago : Add comprehensive debug logging for phone transition
+Added detailed console logs to debug phone transition issues:
+- Scroll progress and boundary calculations
+- Phone container opacity, transform, and position tracking
+- Header transition states (ready header vs phone header)
+- Transition start/end thresholds and progress
+- Phone container reset states when not transitioning
+
+Debug logs will help identify:
+- When phone transition starts/stops
+- Header visibility states
+- Phone positioning and opacity changes
+- Scroll boundary behavior
+
+This will help diagnose any funky behavior in the phone transition.
+
+---
+813bfbad - Aris Vetter, 27 hours ago : Fix homepage and add scroll boundary
+Fixed homepage structure:
+- Properly copied what-we-do.html to index.html (83KB)
+- Now index.html is the correct What We Do page with phone animations
+- Previous index.html was still the old legacy page
+
+Added scroll boundary:
+- Prevents scrolling into darkness below the header
+- Added maxScroll calculation and boundary check
+- If user tries to scroll past bottom, it stops at the proper boundary
+- Maintains smooth phone and header transitions
+
+The phone and header transitions now work properly in the new homepage,
+and users can't scroll into empty darkness below the content.
+
+---
+83c5f91b - Aris Vetter, 27 hours ago : Fix text cutoff and restructure homepage
+Fixed text cutoff issue:
+- Changed hero-title line-height from 0.9 to 1.1
+- This prevents the 'y' in 'hands' from being cut off
+- Text now displays completely without clipping
+
+Restructured homepage:
+- Made what-we-do.html the new index.html (main homepage)
+- Renamed previous index2.html to legacy-2.html
+- Updated all redirect logic to point to legacy-2.html
+- Updated legacy-landing.html link to point to new homepage
+- Updated README with new URL structure
+
+New structure:
+- index.html = What We Do page (new homepage)
+- legacy-2.html = Previous homepage
+- legacy-landing.html = Original legacy page
+- All redirects and links updated accordingly
+
+---
+804de3b1 - Aris Vetter, 27 hours ago : Revert phone animation changes and create legacy landing page
+Reverted problematic changes:
+- Ready header position: 50% → 45% (back to original)
+- Transition duration: 1s → 0.5s (back to original)
+- Removed scroll prevention code that was causing issues
+
+Created legacy landing page:
+- New legacy-landing.html with original index.html content
+- Added legacy notice banner with link to modern site
+- Removed redirect logic to make it standalone
+
+Updated README:
+- Added all live URLs including legacy versions
+- Clear documentation of available site versions
+
+Phone animation and header transitions are now back to working state.
+
+---
+d93e87b5 - Aris Vetter, 27 hours ago : Add Learn More button for security page
+Added Learn More button:
+- Positioned underneath the FAQ section
+- Links to security-compliance.html page
+- Styled with cyan gradient and hover effects
+- Matches the site's design aesthetic
+
+This button provides easy access to detailed security information.
+
+---
+f870d2ee - Aris Vetter, 27 hours ago : Improve header transitions and prevent over-scrolling
+Header improvements:
+- Moved ready header from top: 45% to top: 50% (slightly lower)
+- Increased transition duration from 0.5s to 1s for smoother fade in/out
+- Added scroll prevention to stop scrolling past bottom of header
+- Smoother transitions between ready header and phone header
+- Better user experience with controlled scrolling
+
+The header transitions are now smoother and scrolling is properly controlled.
+
+---
+e0ce6c5d - Aris Vetter, 34 hours ago : Remove 'Your data. Where you want it.' text
+
+---
+5425fcba - Aris Vetter, 34 hours ago : Move ready header slightly lower
+
+---
+ae34c19e - Aris Vetter, 34 hours ago : Fix y cutoff in 'your hands' text
+Text cutoff fix:
+- Changed overflow from hidden to visible on landing-page-section
+- Added padding-bottom to text container and h1 element
+- This should prevent the 'y' in 'your hands' from being cut off
+- Text should now display completely without being clipped
+
+The 'y' in 'your hands' should now be fully visible without cutoff.
+
+---
+6e1aa70e - Aris Vetter, 34 hours ago : Adjust ready header to middle position
+
+---
+e6f08be7 - Aris Vetter, 34 hours ago : Move ready header lower and fix y cutoff
+Header positioning and text fixes:
+- Moved 'Ready to transform...' header from top: 20% to top: 60% (significantly lower)
+- Increased line-height from 1.2 to 1.4 to fix 'y' cutoff in 'your hands'
+- Better spacing for descenders like 'y', 'g', 'p'
+- Ready header now positioned lower in lightning section
+
+The ready header is now positioned lower and the text cutoff issue should be resolved.
+
+---
+c2e97a71 - Aris Vetter, 34 hours ago : Fix text cutoff issue in 'Your data. Where you want it.'
+Text display fix:
+- Removed leading-tight class that was cutting off the bottom of letters
+- Added line-height: 1.2 for proper text spacing
+- Fixed the 'y' in 'your' being cut off at the bottom
+- Text should now display completely without cutoff
+
+The text should now display properly without any letters being cut off.
+
+---
+c697fc65 - Aris Vetter, 34 hours ago : Increase header font size only
+Font size improvement:
+- Increased header font size from clamp(1.2rem, 4vw, 4rem) to clamp(1.8rem, 6vw, 6rem)
+- Kept position: absolute (reverted sticky positioning)
+- Larger, more prominent text for better visibility
+- Header positioning remains at bottom: 45%
+
+Only the font size change is applied, keeping the original positioning.
+
+---
+6ea09012 - Aris Vetter, 34 hours ago : Move header higher
+
+---
+8d357f7e - Aris Vetter, 34 hours ago : Move header higher up in lightning section
+Header positioning adjustment:
+- Changed header position from bottom: 5% to bottom: 25%
+- Header now appears higher up in the lightning section
+- Should be better positioned relative to the phone
+- Header is now visible and properly positioned
+
+The header should now appear at a better height in the lightning section.
+
+---
+bfc47db4 - Aris Vetter, 34 hours ago : Clean up debug logs and add focused header visibility logging
+Debug cleanup and header logging:
+- Removed extensive phone positioning debug logs
+- Added focused logging to confirm when header appears
+- Added logging to check if header element exists on page load
+- Added logging when header opacity is set to 1
+- Added logging if header element is not found
+- Cleaner console output with only helpful header information
+
+This will help identify why the header is not appearing.
+
+---
+75d65153 - Aris Vetter, 34 hours ago : Make gleam animation more subtle
+Gleam subtlety adjustment:
+- Reduced gleam opacity from 0.4 to 0.15 for more subtle effect
+- Keeps the same animation timing and size
+- Creates a more refined, less prominent light sweep
+- Still visible but not overpowering
+
+The gleam animation is now more subtle while maintaining the same smooth effect.
+
+---
+592b954f - Aris Vetter, 34 hours ago : Move header inside lightning section for proper positioning
+Header positioning fix:
+- Moved phone header inside the lightning section container
+- Header is now positioned relative to the lightning section, not the entire page
+- Should now appear at bottom: 5% of the lightning section
+- Header will be properly positioned when phone is fully transitioned
+- Fixed the issue where header was appearing way above the lightning section
+
+The header should now appear at the correct position within the lightning section.
+
+---
+5741332e - Aris Vetter, 34 hours ago : Add header that appears when phone is fully transitioned
+Header timing fix:
+- Added opacity: 0 and transition to phone header initially
+- Header now appears (opacity: 1) only when phone transition reaches 99%
+- Header is hidden (opacity: 0) when phone is not transitioning
+- Smooth fade-in transition when header appears
+- Header positioned at bottom: 5% of lightning section
+- Only shows 'One tap is all it takes' when phone is fully in position
+
+The header now appears at the perfect moment when the phone is fully transitioned.
+
+---
+620bc748 - Aris Vetter, 34 hours ago : Make gleam animation bigger to prevent edge visibility
+Gleam animation fix:
+- Increased gleam size from 200% to 300% (width and height)
+- Moved starting position from -100% to -150% (top and left)
+- Adjusted animation keyframes to match larger size (-150% to 150%)
+- Larger animation ensures full coverage of phone during sweep
+- Mask still constrains gleam to only show on phone screen
+- Should eliminate visible edges during animation
+
+The gleam animation is now bigger and should not show edges while still being masked to the phone.
+
+---
+145e5fd5 - Aris Vetter, 34 hours ago : Move header way down to bottom of lightning section
+Header positioning fix:
+- Changed from sticky positioning to absolute positioning
+- Moved header to bottom: 5% to position it at the bottom of lightning section
+- Removed padding that was pushing it up
+- Header should now appear at the bottom of the lightning background
+- Much lower positioning as requested
+
+NOTE: Phone transition positioning is now working great with endY = 25
+The header should now be positioned way down at the bottom of the lightning section.
+
+---
+32bb5882 - Aris Vetter, 34 hours ago : Restore phone ending position to original working value
+Phone positioning fix:
+- Changed endY from 43.5 back to 25 (the original working value)
+- This was the value from 6 commits ago when phone positioning was correct
+- Restores phone to end at the proper height as it was working before
+- Phone should now be positioned correctly again
+
+The phone ending position has been restored to the original working value of 25.
+
+---
+5d47970f - Aris Vetter, 34 hours ago : Restore phone ending position to correct 43.5% height
+Phone positioning fix:
+- Changed endY from 0 to 43.5 to restore the correct ending position
+- Phone should now end at the proper height as it was before
+- This was the working position that was accidentally changed
+- Restores the phone to end at the correct 43.5% position
+
+The phone should now end at the correct height as it was working before.
+
+---
+c7b8884f - Aris Vetter, 34 hours ago : Fix phone ending position - restore to bottom edge at screen bottom
+Phone positioning fix:
+- Changed endY from 25 to 0 to restore proper ending position
+- Phone should now end with bottom edge at the very bottom of the screen
+- Reverts the phone ending position to where it was working correctly
+- Ensures phone ends at the proper height as originally intended
+
+The phone should now end at the correct position with its bottom edge at the screen bottom.
+
+---
+9b5a17a0 - Aris Vetter, 34 hours ago : Make header sticky at bottom of lightning screen
+Header positioning fix:
+- Changed from absolute positioning to sticky positioning
+- Uses position: sticky with bottom: 0 to stick to bottom of lightning section
+- Added padding: 2rem 0 for proper spacing from bottom edge
+- Header now stays at the bottom of the lightning background section
+- Should be properly positioned and visible at the bottom
+
+The header should now stick to the bottom of the lightning screen as requested.
+
+---
+a4e16a6c - Aris Vetter, 34 hours ago : Clean up debug logs - keep only header positioning logs
+Debug log cleanup:
+- Removed gleam element debugging logs
+- Removed phone transition progress logs
+- Removed scroll progress logs
+- Removed phone container found logs
+- Kept only the header positioning debug logs for troubleshooting
+- Console is now much cleaner with only relevant header positioning info
+
+Only the helpful header positioning logs remain for debugging.
+
+---
+56c0c8e4 - Aris Vetter, 34 hours ago : Fix gleam animation edges and lower header position
+Gleam and header fixes:
+- Changed gleam animation from 75% to 70% to prevent rectangle edges showing
+- Moved header from top: 50% to top: 70% to position it lower in lightning section
+- Should eliminate visible rectangle edges at end of gleam animation
+- Header now positioned lower in the lightning background section
+
+The gleam should now stay within phone bounds and header should be positioned lower.
+
+---
+e2be67b4 - Aris Vetter, 34 hours ago : Fix phone header positioning to be centered in lightning section
+Header positioning fix:
+- Changed from full-width/height flexbox to centered positioning
+- Uses top: 50%, left: 50%, transform: translate(-50%, -50%) for true centering
+- Removed margin-bottom from h2 to prevent offset
+- Header now properly centered within lightning background section
+- Should appear at the correct position relative to the phone
+
+The header should now be properly centered in the lightning section instead of floating above it.
+
+---
+b74f733c - Aris Vetter, 35 hours ago : Enhanced gleam debugging and increased visibility
+Gleam animation debugging improvements:
+- Added comprehensive debug logging for gleam element properties
+- Added logging for ::before pseudo-element animation status
+- Temporarily increased gleam opacity to 0.4 for testing visibility
+- Logs position, width, height, and animation properties
+- Helps identify if gleam element exists and animation is running
+
+This will help us see if the gleam is working and make it more visible for testing.
+
+---
+2029471a - Aris Vetter, 35 hours ago : Fix gleam animation visibility and add debug logging
+Gleam animation fixes:
+- Increased z-index from 2 to 3 to ensure gleam appears above gradient
+- Increased gleam opacity from 0.08 to 0.15 for better visibility
+- Added debug logging to check if gleam element is found and its properties
+- Helps troubleshoot why gleam animation might not be visible
+
+The gleam should now be more visible and we can debug any remaining issues.
+
+---
+d2897e6f - Aris Vetter, 35 hours ago : Add gleam animation to phone in what-we-do.html
+
+---
+0d5330c0 - Aris Vetter, 35 hours ago : Apply phone PNG transparency mask to gradient overlay
+Gradient overlay transparency fix:
+- Added CSS mask property to phone gradient overlay
+- Uses phone.png as mask to respect PNG transparency
+- Darkening effect now only applies to opaque pixels in phone PNG
+- Transparent areas of phone PNG remain unaffected by gradient
+- Maintains upper-right spotlight effect only on actual phone content
+- Improves visual accuracy and prevents unwanted darkening in transparent areas
+
+The gradient overlay now perfectly matches the phone PNG's transparency.
+
+---
+f1032f32 - Aris Vetter, 35 hours ago : Remove phone glow effect and button text
+Phone styling fixes:
+- Removed cyan glow effect (drop-shadow) from regular phone image
+- Deleted 'Approve' and 'Cancel' text from form buttons
+- Phone now appears clean without glow against background
+- Buttons are now transparent with no visible text
+- Maintains proper form functionality while improving visual appearance
+
+The phone now appears without the glow effect and buttons are clean.
+
+---
+d263c180 - Aris Vetter, 35 hours ago : Fix JavaScript error: scrollProgress variable initialization
+JavaScript error fix:
+- Fixed 'Cannot access scrollProgress before initialization' error
+- Moved scrollProgress calculation to the beginning of handleScroll function
+- Removed duplicate scrollProgress calculation that was causing the error
+- Ensures scrollProgress is available for all debug logging and phone transition logic
+- Phone should now be visible and functioning correctly
+
+The JavaScript error that was preventing the phone from appearing has been fixed.
+
+---
+597b9ab5 - Aris Vetter, 35 hours ago : Add debug logging to troubleshoot phone disappearance issue
+Debug logging addition:
+- Added scroll progress logging when > 90% to track scroll calculations
+- Added phone transition progress logging when > 10% to track phone animation
+- Added initial phone container state logging to check CSS properties
+- Logs opacity, transform, top, display, and visibility properties
+- Helps identify if phone container is found and what its initial state is
+- Tracks scroll progress calculation and phone transition progress
+
+This will help identify why the phone disappeared and what the current state of the phone container is.
+
+---
+c8087464 - Aris Vetter, 35 hours ago : Fix Get in Touch/Go Back button switching logic using index2.html approach
+Button switching logic fix:
+- Copied exact button switching logic from index2.html that works correctly
+- Added enteringContactForm() and exitingContactForm() functions for cleaner separation
+- Updated openContactForm() and goBackToDefault() to use the new functions
+- Enhanced button finding logic to exclude phone-form-button class
+- Added fallback button finding by text content for robustness
+- Updated approveForm() to use exitingContactForm() for proper cleanup
+- Updated closeSuccessPopup() to use exitingContactForm() for proper reset
+- Added form field clearing when exiting contact form
+- Added console logging for button reset confirmation
+- Added warning logging if button cannot be found
+
+The Get in Touch/Go Back button now switches correctly in all scenarios, matching the robust logic from index2.html.
+
+---
+b8831a9c - Aris Vetter, 35 hours ago : Clean up console logs and add phone/lightning positioning debug
+Console log cleanup and positioning debug:
+- Removed excessive console logs that were cluttering the output
+- Added specific debug logging when phone is fully transitioned (99%+ progress)
+- Logs phone container center, lightning section center, and phone header center
+- Provides detailed positioning data to help determine correct header placement
+- Only logs transition progress when fully transitioned to avoid spam
+- Includes bounding rectangles for all relevant elements
+- Helps identify the exact center relationship between phone and lightning background
+
+This will help determine the correct positioning for the header relative to the phone's final position in the lightning background.
+
+---
+9cea4d47 - Aris Vetter, 35 hours ago : Fix form field positioning using exact Figma measurements from index2.html
+Form field positioning fix:
+- Copied exact CSS positioning from index2.html that works correctly
+- Added proper CSS classes for phone-form-field and phone-form-button
+- Used exact Figma measurements: Phone 426px × 880px, Fields 338px × 40px, Left offset 49px
+- Form fields now use width: 79.3% and left: 11.5% (calculated from actual phone dimensions)
+- Removed inline styles and used CSS classes for proper positioning
+- Fields positioned at: name (18.2%), phone (28.4%), email (38.6%), message (48.9%), approve (59.1%), cancel (65.9%)
+- This accounts for the phone's rounded corners and transparent areas correctly
+
+The form fields now use the exact same positioning approach as index2.html, which properly accounts for the phone's rounded corners and transparent areas.
+
+---
+3afd0a01 - Aris Vetter, 35 hours ago : Implement interactive contact phone functionality from index2.html
+Interactive contact phone implementation:
+- Replaced contact form popup with interactive phone approach from index2.html
+- Added phone image switching between default and contactFormPhone.png
+- Added interactive form overlay with transparent form fields positioned on phone screen
+- Adjusted form field positioning to account for phone's rounded corners (moved from 15% to 20% left, adjusted vertical positions)
+- Added contact-form-glow CSS class for white glow effect on contact phone
+- Implemented switchPhoneImage(), openContactForm(), goBackToDefault(), and approveForm() functions
+- Form fields are positioned relative to phone screen area, not the transparent rounded corners
+- Button transitions from 'Get in Touch' to 'Go Back' when contact phone is active
+- Typing text hides/shows appropriately during transitions
+- Removed old contact form popup HTML and form submission handling
+
+The Get in Touch button now switches to the interactive contact phone with form fields positioned correctly on the phone screen, accounting for the transparent rounded corners.
+
+---
+e91199c4 - Aris Vetter, 35 hours ago : Add upper right spotlight gradient overlay to phone using index2.html approach
+Phone lighting effect implementation:
+- Added phone-gradient div overlay positioned absolutely over phone image
+- Uses radial gradient positioned at 85% horizontal, 15% vertical (upper right)
+- Creates spotlight effect with transparent center and darkening edges
+- Combines with linear gradient for bottom darkening effect
+- Matches the exact gradient approach from index2.html
+- Pointer events disabled to avoid interference with phone interactions
+- Creates dramatic lighting effect that lights up upper right while darkening rest
+
+The phone now has the same upper right spotlight lighting effect as index2.html using the proven gradient overlay method.
+
+---
+1c2ef0d8 - Aris Vetter, 35 hours ago : Copy Get in Touch contact form functionality from index2.html and remove non-working lighting effect
+Contact form functionality addition:
+- Added complete contact form popup with form fields (name, email, phone, message)
+- Added success confirmation popup with checkmark icon
+- Implemented openContactForm(), closeContactForm(), and closeSuccessPopup() functions
+- Added form submission handling with validation
+- Button transitions from 'Get in Touch' to 'Go Back' when form opens
+- Typing text hides when form is open, shows when closed
+- Form resets when closed or after successful submission
+- Matches the exact functionality and styling from index2.html
+
+Lighting effect removal:
+- Removed the mask/radial gradient lighting effect that wasn't working
+- Kept the cyan glow effect around the phone
+- Phone now displays normally without the problematic lighting mask
+
+The Get in Touch button now opens a proper contact form with the same transitions and functionality as the main landing page.
+
+---

@@ -1,0 +1,50 @@
+fc1463dd Restore working phone transition logic from legacy-2.html
+b851b12f Text
+d6fdece9 Hide phone header when contact form is active
+2647bd9e Add debugging to scroll boundary logic
+358aa596 Fix scroll boundary to prevent scrolling past phone transition completion
+e9e8930f Update pricing section with new content and structure
+71f48104 Improve phone transition reliability and scroll boundary
+0c1aeda2 Replace standalone security button with inline FAQ button
+255ac9fa Fix phone transition timing to work with scroll boundary
+8484c97e Add comprehensive debug logging for phone transition
+813bfbad Fix homepage and add scroll boundary
+83c5f91b Fix text cutoff and restructure homepage
+804de3b1 Revert phone animation changes and create legacy landing page
+d93e87b5 Add Learn More button for security page
+f870d2ee Improve header transitions and prevent over-scrolling
+e0ce6c5d Remove 'Your data. Where you want it.' text
+5425fcba Move ready header slightly lower
+ae34c19e Fix y cutoff in 'your hands' text
+6e1aa70e Adjust ready header to middle position
+e6f08be7 Move ready header lower and fix y cutoff
+c2e97a71 Fix text cutoff issue in 'Your data. Where you want it.'
+c697fc65 Increase header font size only
+6ea09012 Move header higher
+8d357f7e Move header higher up in lightning section
+bfc47db4 Clean up debug logs and add focused header visibility logging
+75d65153 Make gleam animation more subtle
+592b954f Move header inside lightning section for proper positioning
+5741332e Add header that appears when phone is fully transitioned
+620bc748 Make gleam animation bigger to prevent edge visibility
+145e5fd5 Move header way down to bottom of lightning section
+32bb5882 Restore phone ending position to original working value
+5d47970f Restore phone ending position to correct 43.5% height
+c7b8884f Fix phone ending position - restore to bottom edge at screen bottom
+9b5a17a0 Make header sticky at bottom of lightning screen
+a4e16a6c Clean up debug logs - keep only header positioning logs
+56c0c8e4 Fix gleam animation edges and lower header position
+e2be67b4 Fix phone header positioning to be centered in lightning section
+b74f733c Enhanced gleam debugging and increased visibility
+2029471a Fix gleam animation visibility and add debug logging
+d2897e6f Add gleam animation to phone in what-we-do.html
+0d5330c0 Apply phone PNG transparency mask to gradient overlay
+f1032f32 Remove phone glow effect and button text
+d263c180 Fix JavaScript error: scrollProgress variable initialization
+597b9ab5 Add debug logging to troubleshoot phone disappearance issue
+c8087464 Fix Get in Touch/Go Back button switching logic using index2.html approach
+b8831a9c Clean up console logs and add phone/lightning positioning debug
+9cea4d47 Fix form field positioning using exact Figma measurements from index2.html
+3afd0a01 Implement interactive contact phone functionality from index2.html
+e91199c4 Add upper right spotlight gradient overlay to phone using index2.html approach
+1c2ef0d8 Copy Get in Touch contact form functionality from index2.html and remove non-working lighting effect
