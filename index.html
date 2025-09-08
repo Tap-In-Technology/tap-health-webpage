@@ -2039,13 +2039,16 @@
                     }
                 }
                 
-                // Prevent scrolling past the intended end point - immediate correction
+                // Debug scroll position information
                 const maxScroll = documentHeight - windowHeight;
-                if (scrollY >= maxScroll * 0.98) {
-                    window.scrollTo({
-                        top: maxScroll * 0.98,
-                        behavior: 'auto'
-                    });
+                if (scrollY % 100 < 10) { // Only log every ~100px of scroll
+                    console.log('=== SCROLL DEBUG ===');
+                    console.log('Current scrollY:', scrollY);
+                    console.log('Document height:', documentHeight);
+                    console.log('Window height:', windowHeight);
+                    console.log('Max scroll:', maxScroll);
+                    console.log('Scroll progress:', scrollProgress);
+                    console.log('Scroll percentage:', (scrollY / maxScroll * 100).toFixed(1) + '%');
                 }
             }
             
