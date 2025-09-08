@@ -1437,7 +1437,7 @@
                                 </div>
                             
                             <!-- Early Adopter Program -->
-                            <div class="pricing-plan">
+                            <div class="pricing-plan">y disappear
                                 <h3 class="plan-title">Pilot Adopters</h3>
                                 <div class="plan-price">$0.00</div>
                                 <div class="plan-period">/check-in</div>
@@ -1655,6 +1655,13 @@
                     phoneContainer.classList.add('contact-form-mode');
                     document.getElementById('contact-form-interactive-overlay').style.display = 'block';
                     
+                    // Hide phone header when contact form is active
+                    const phoneHeader = document.querySelector('.phone-header');
+                    if (phoneHeader) {
+                        phoneHeader.style.display = 'none';
+                        console.log('Phone header hidden for contact form');
+                    }
+                    
                     // Hide gleam element using CSS (more reliable than DOM removal)
                     const gleamElement = phoneContainer.querySelector('.phone-gleam');
                     if (gleamElement) {
@@ -1689,6 +1696,13 @@
                     // Exiting contact form mode
                     phoneContainer.classList.remove('contact-form-mode');
                     document.getElementById('contact-form-interactive-overlay').style.display = 'none';
+                    
+                    // Show phone header again when exiting contact form
+                    const phoneHeader = document.querySelector('.phone-header');
+                    if (phoneHeader) {
+                        phoneHeader.style.display = 'block';
+                        console.log('Phone header shown again after contact form');
+                    }
                     
                     // Show typing text
                     const typingContainer = document.querySelector('.typing-container');
