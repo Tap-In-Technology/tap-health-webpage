@@ -101,22 +101,6 @@
             position: relative;
         }
         
-        /* Vignette overlay */
-        .lightning-bg::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(ellipse at center, 
-                rgba(0, 0, 0, 0.2) 0%, 
-                rgba(0, 0, 0, 0.4) 40%, 
-                rgba(0, 0, 0, 0.7) 70%, 
-                rgba(0, 0, 0, 0.9) 100%);
-            pointer-events: none;
-            z-index: 1;
-        }
         
         /* Force phone aspect ratio */
         #phone {
