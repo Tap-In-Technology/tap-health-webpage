@@ -1654,7 +1654,17 @@
             </h2>
                             </div>
     </section>
-    
+
+    <!-- Test section below lightning section -->
+    <section style="min-height: 100vh; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem; font-weight: bold;">
+        <div style="text-align: center;">
+            <h2>New Section Below Lightning</h2>
+            <p>This section appears below the lightning section</p>
+            <p>When you scroll to bottom, the gradient becomes sticky</p>
+            <p>When you scroll up 5%, the gradient unstickies</p>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="bg-black text-white py-4 px-6 relative z-10">
         <div class="w-full flex justify-between items-center">
@@ -1734,19 +1744,26 @@
         function trackScroll() {
             const scrolled = document.documentElement.scrollTop || window.pageYOffset;
             const windowHeight = window.innerHeight;
-            const documentHeight = document.documentElement.scrollHeight;
-            const maxScroll = documentHeight - windowHeight;
             
-            // Check if user has scrolled to the bottom
-            if (scrolled >= maxScroll - 10) { // 10px buffer for bottom detection
+            // Get the lightning section's bottom position (before the new section)
+            const lightningSection = document.querySelector('.lightning-bg');
+            if (!lightningSection) return;
+            
+            const lightningRect = lightningSection.getBoundingClientRect();
+            const lightningBottom = scrolled + lightningRect.bottom;
+            
+            // Check if user has scrolled to the lightning section's bottom
+            if (scrolled >= lightningBottom - 10) { // 10px buffer for bottom detection
                 if (!hasReachedBottom) {
-                    console.log("scrolled to bottom");
+                    console.log("scrolled to lightning section bottom");
                     hasReachedBottom = true;
                     bottomScrollPosition = scrolled; // Store the bottom position
+                    // Make gradient sticky when at lightning section bottom
+                    makeGradientSticky(true);
                 }
             }
             
-            // If user has reached bottom and now scrolls up
+            // If user has reached lightning section bottom and now scrolls up
             if (hasReachedBottom && scrolled < lastScrollY) {
                 const scrollUpDistance = bottomScrollPosition - scrolled;
                 const scrollUpPercentage = (scrollUpDistance / windowHeight) * 100;
@@ -1756,10 +1773,36 @@
                 if (scrollUpPercentage >= 5) {
                     console.log("up 5%");
                     hasReachedBottom = false; // Reset so it can detect bottom again
+                    // Remove sticky gradient when scrolling up from lightning section bottom
+                    makeGradientSticky(false);
                 }
             }
             
             lastScrollY = scrolled;
+        }
+
+        // Function to make gradient sticky or not
+        function makeGradientSticky(isSticky) {
+            const gradientOverlay = document.querySelector('.lightning-bg div[style*="linear-gradient"]');
+            if (gradientOverlay) {
+                if (isSticky) {
+                    gradientOverlay.style.position = 'fixed';
+                    gradientOverlay.style.top = '0';
+                    gradientOverlay.style.left = '0';
+                    gradientOverlay.style.width = '100%';
+                    gradientOverlay.style.height = '100vh';
+                    gradientOverlay.style.zIndex = '999';
+                    console.log("Gradient made sticky");
+                } else {
+                    gradientOverlay.style.position = 'absolute';
+                    gradientOverlay.style.top = '0';
+                    gradientOverlay.style.left = '0';
+                    gradientOverlay.style.width = '100%';
+                    gradientOverlay.style.height = '100%';
+                    gradientOverlay.style.zIndex = '2';
+                    console.log("Gradient unstickied");
+                }
+            }
         }
 
         // Add scroll event listener
