@@ -1638,39 +1638,10 @@
          LEGACY-2 CONTENT - PERFECT PHONE TRANSITION
          ======================================== -->
     
-    <!-- Lightning background hero section from legacy-2 -->
-    <section class="lightning-bg relative" style="min-height: 200vh; position: relative; z-index: 5;">
-        <!-- Phone image large and centered, fading into background -->
-        <div id="phone-container" style="position: absolute; top: 80%; left: 50%; transform: translate(-50%, -50%); opacity: 0; transition: none; z-index: 20;">
-            <img src="/media/phone.png?v=2" alt="Phone" class="h-[80vh] w-auto" id="phone">
-            <div class="phone-gradient"></div>
-            <div class="phone-gleam"></div>
-            <!-- Separate glow overlay for contact form -->
-            <div id="contact-form-glow" class="contact-form-glow-overlay" style="display: none;"></div>
-            <!-- Direct fade overlay for contact form -->
-            <div id="contact-form-fade" class="contact-form-fade-overlay" style="display: none;"></div>
-            <!-- Interactive contact form overlay -->
-            <div id="contact-form-interactive-overlay">
-                <input type="text" id="phone-name" class="phone-form-field" required>
-                <input type="tel" id="phone-phone" class="phone-form-field">
-                <input type="email" id="phone-email" class="phone-form-field" required>
-                <textarea id="phone-message" class="phone-form-field" required></textarea>
-                <button type="button" id="phone-approve" class="phone-form-button" onclick="approveForm()">Approve</button>
-                <button type="button" id="phone-cancel-mid" class="phone-form-button" onclick="goBackToDefault()">Cancel</button>
-                <button type="button" id="phone-cancel" class="phone-form-button" onclick="goBackToDefault()">Cancel</button>
-                <button type="button" id="phone-send" class="phone-form-button" onclick="submitPhoneForm()">Send</button>
-            </div>
-        </div>
-        
-        <!-- Main heading text with opacity shifts -->
-        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30" id="text-container">
-            <h1 class="text-white font-bold text-center leading-tight text-fade" id="text-1" style="text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5); font-size: clamp(1.5rem, 6vw, 6rem); opacity: 1; transition: opacity 1s ease-in-out;">
-                Your data.<br>Where you want it.
-            </h1>
-            <h1 class="text-white font-bold text-center leading-tight text-fade" id="text-2" style="text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5); font-size: clamp(1.5rem, 6vw, 6rem); opacity: 0; transition: opacity 1s ease-in-out; position: absolute; top: 0; left: 0; width: 100%;">
-                One Tap is all it takes.
-            </h1>
-        </div>
+    <!-- Lightning background section with gradient overlay -->
+    <section class="lightning-bg relative" style="min-height: 100vh; position: relative; z-index: 5;">
+        <!-- Black to transparent to black vertical gradient overlay -->
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 20%, rgba(0,0,0,0) 80%, rgba(0,0,0,0.8) 100%); z-index: 2; pointer-events: none;"></div>
     </section>
     
     <!-- Footer -->
@@ -1712,6 +1683,14 @@
     
     <!-- JavaScript -->
     <script>
+        // Simple scroll to top function
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+    </script>
         // Phone image transition functionality
         const PHONE_IMAGES = {
             default: '/media/phone.png?v=2',
@@ -2013,157 +1992,6 @@
             
             
             
-            // ========================================
-            // PERFECT PHONE TRANSITION - ADJUSTED FOR LIGHTNING SECTION
-            // ========================================
-            function updatePhoneOpacity() {
-                const scrolled = document.documentElement.scrollTop || window.pageYOffset;
-                const phoneContainer = document.getElementById('phone-container');
-                
-                if (phoneContainer) {
-                    // Find the lightning section to calculate relative scroll progress
-                    const lightningSection = document.querySelector('.lightning-bg');
-                    if (!lightningSection) return;
-                    
-                    const lightningRect = lightningSection.getBoundingClientRect();
-                    const lightningTop = lightningRect.top + scrolled;
-                    const lightningHeight = lightningRect.height;
-                    const windowHeight = window.innerHeight;
-                    
-                    // Calculate scroll progress within the lightning section (0 to 1)
-                    const lightningScrollProgress = Math.max(0, Math.min(1, (scrolled - lightningTop + windowHeight) / lightningHeight));
-                    
-                    // Smooth easing function - DO NOT CHANGE
-                    function easeInOutCubic(t) {
-                        return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-                    }
-                    
-                    const easedProgress = easeInOutCubic(lightningScrollProgress);
-                    
-                    // Opacity: 0 at top of lightning section, 1 at bottom - WORKING PERFECTLY
-                    const opacity = easedProgress;
-                    
-                    // Position: 80% at top (just off-screen), lightning-aligned position at bottom
-                    // These values are fine-tuned and working - DO NOT CHANGE
-                    const startTop = 80;  // 80% (just off-screen, visible immediately)
-                    const endTop = 85;  // 85% final position - lowered by ~50% of phone height
-                    
-                    // Stop phone movement at specific scroll position (5289)
-                    const stopScrollPosition = 5289;
-                    let cappedProgress;
-                    
-                    if (scrolled >= stopScrollPosition) {
-                        // Phone stops moving at scroll position 5289
-                        cappedProgress = 1.0;
-                    } else {
-                        // Continue normal transition until stop position
-                        cappedProgress = Math.min(easedProgress, 1.0);
-                    }
-                    
-                    const currentTop = startTop + (endTop - startTop) * cappedProgress;
-                    
-                    // DEBUG: Phone transition tracking
-                    if (lightningScrollProgress > 0 && lightningScrollProgress < 0.01) {
-                        console.log('📱 PHONE TRANSITION STARTED - Scroll Y:', scrolled, 'Lightning Progress:', lightningScrollProgress.toFixed(3));
-                    }
-                    if (opacity > 0.99) {
-                        console.log('📱 PHONE FULLY OPAQUE - Scroll Y:', scrolled, 'Opacity:', opacity.toFixed(3));
-                    }
-                    
-                    // Apply the animation
-                    phoneContainer.style.opacity = opacity.toString();
-                    phoneContainer.style.top = currentTop + '%';
-                    phoneContainer.style.left = '50%';
-                    phoneContainer.style.transform = 'translate(-50%, -50%)';
-                }
-            }
-            
-            // Text opacity transitions - adjusted for lightning section position
-            function updateTextOpacity() {
-                const scrolled = document.documentElement.scrollTop || window.pageYOffset;
-                const windowHeight = window.innerHeight;
-                const documentHeight = document.documentElement.scrollHeight;
-                const maxScroll = documentHeight - windowHeight;
-                
-                // Find the lightning section to calculate relative scroll progress
-                const lightningSection = document.querySelector('.lightning-bg');
-                if (!lightningSection) return;
-                
-                const lightningRect = lightningSection.getBoundingClientRect();
-                const lightningTop = lightningRect.top + scrolled;
-                const lightningHeight = lightningRect.height;
-                
-                // Calculate scroll progress within the lightning section (0 to 1)
-                const lightningScrollProgress = Math.max(0, Math.min(1, (scrolled - lightningTop + windowHeight) / lightningHeight));
-                
-                // Text transition thresholds within lightning section
-                const text1End = 0.3;  // Text 1 fades out at 30% of lightning section
-                const text2Start = 1.0; // Text 2 fades in at 100% of lightning section (when phone is fully opaque)
-                
-                const text1 = document.getElementById('text-1');
-                const text2 = document.getElementById('text-2');
-                
-                if (text1 && text2) {
-                    // DEBUG: Text transition tracking
-                    const text1Opacity = parseFloat(text1.style.opacity || '1');
-                    const text2Opacity = parseFloat(text2.style.opacity || '0');
-                    
-                    if (lightningScrollProgress <= text1End) {
-                        // Show text 1, hide text 2
-                        text1.style.opacity = '1';
-                        text2.style.opacity = '0';
-                        
-                        // Debug when text 1 is fully opaque
-                        if (text1Opacity < 0.99 && parseFloat(text1.style.opacity) > 0.99) {
-                            console.log('📝 TEXT 1 FULLY OPAQUE - Scroll Y:', scrolled, 'Lightning Progress:', lightningScrollProgress.toFixed(3));
-                        }
-                    } else if (lightningScrollProgress >= text2Start) {
-                        // Show text 2, hide text 1
-                        text1.style.opacity = '0';
-                        text2.style.opacity = '1';
-                        
-                        // Debug when text 2 is fully opaque
-                        if (text2Opacity < 0.99 && parseFloat(text2.style.opacity) > 0.99) {
-                            console.log('📝 TEXT 2 FULLY OPAQUE - Scroll Y:', scrolled, 'Lightning Progress:', lightningScrollProgress.toFixed(3));
-                        }
-                    } else {
-                        // Transition zone - fade between texts
-                        const transitionProgress = (lightningScrollProgress - text1End) / (text2Start - text1End);
-                        text1.style.opacity = (1 - transitionProgress).toString();
-                        text2.style.opacity = transitionProgress.toString();
-                    }
-                }
-                
-                // DEBUG: Check if we're at the bottom of the page
-                if (scrolled >= maxScroll - 10) { // Within 10px of bottom
-                    console.log('⬇️ AT BOTTOM OF PAGE - Scroll Y:', scrolled, 'Max Scroll:', maxScroll);
-                }
-            }
-            
-            window.addEventListener('scroll', updatePhoneOpacity);
-            window.addEventListener('scroll', updateTextOpacity);
-            window.addEventListener('load', updatePhoneOpacity);
-            window.addEventListener('load', updateTextOpacity);
-        });
-        
-        // Phone transition scroll boundary - prevent scrolling past specific position
-        function enforcePhoneTransitionBoundary() {
-            const scrolled = document.documentElement.scrollTop || window.pageYOffset;
-            const stopScrollPosition = 5289;
-            
-            // Prevent scrolling past the phone stop position
-            if (scrolled > stopScrollPosition) {
-                console.log('🚫 SCROLL BOUNDARY: Preventing scroll past phone stop position (5289)');
-                window.scrollTo({
-                    top: stopScrollPosition,
-                    behavior: 'auto'
-                });
-            }
-        }
-        
-        // Add scroll boundary enforcement
-        window.addEventListener('scroll', enforcePhoneTransitionBoundary);
-        window.addEventListener('resize', enforcePhoneTransitionBoundary);
         
         // Scroll to top function
         function scrollToTop() {
