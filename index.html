@@ -1702,16 +1702,40 @@
             });
         }
 
+        // Menu toggle functionality
+        function toggleMenu() {
+            const menuOverlay = document.getElementById('menu-overlay');
+            if (menuOverlay) {
+            if (menuOverlay.classList.contains('hidden')) {
+                menuOverlay.classList.remove('hidden');
+            } else {
+                menuOverlay.classList.add('hidden');
+                }
+            }
+        }
+        
+        // Close menu when clicking outside
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuOverlay = document.getElementById('menu-overlay');
+            if (menuOverlay) {
+                menuOverlay.addEventListener('click', function(e) {
+            if (e.target === this) {
+                toggleMenu();
+            }
+                });
+            }
+        });
+
         // Scroll tracking functionality
         let hasReachedBottom = false;
         let lastScrollY = 0;
 
         function trackScroll() {
-            const scrolled = document.documentElement.scrollTop || window.pageYOffset;
-            const windowHeight = window.innerHeight;
-            const documentHeight = document.documentElement.scrollHeight;
-            const maxScroll = documentHeight - windowHeight;
-            
+                const scrolled = document.documentElement.scrollTop || window.pageYOffset;
+                const windowHeight = window.innerHeight;
+                const documentHeight = document.documentElement.scrollHeight;
+                const maxScroll = documentHeight - windowHeight;
+                
             // Check if user has scrolled to the bottom
             if (scrolled >= maxScroll - 10) { // 10px buffer for bottom detection
                 if (!hasReachedBottom) {
@@ -1735,7 +1759,7 @@
 
         // Add scroll event listener
         window.addEventListener('scroll', trackScroll);
-    </script>
+            </script>
 
 </body>
 
