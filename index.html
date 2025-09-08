@@ -1438,9 +1438,9 @@
                             
                             <!-- Early Adopter Program -->
                             <div class="pricing-plan">
-                                <h3 class="plan-title">Early Adopter Program</h3>
-                                <div class="plan-price">Select</div>
-                                <div class="plan-period">partners</div>
+                                <h3 class="plan-title">Pilot Adopters</h3>
+                                <div class="plan-price">$0.00</div>
+                                <div class="plan-period">/check-in</div>
                                 <p class="plan-description">
                                     Exclusive program for select partners with premium benefits and grandfathered pricing.
                                 </p>
@@ -1462,7 +1462,7 @@
                                     <li class="plan-feature">
                                         <span class="feature-checkmark">✓</span>
                                         Grandfathered pricing for new locations
-                                    </li>
+                            </li>
                         </ul>
                             </div>
                     </div>
@@ -1975,11 +1975,15 @@
                         console.log('Landing Section Rect:', rect);
                     }
                     
-                    // More robust scroll boundary check
-                    if (scrollY >= maxScroll - 5) { // 5px buffer
-                        console.log('SCROLL BOUNDARY: Preventing scroll past bottom (with buffer)');
+                    // Calculate the exact scroll position where phone transition completes
+                    const phoneTransitionEndScroll = maxScroll * 0.95; // 95% of max scroll
+                    
+                    // More aggressive scroll boundary - stop when phone transition completes
+                    if (scrollY >= phoneTransitionEndScroll) {
+                        console.log('SCROLL BOUNDARY: Preventing scroll past phone transition completion');
+                        console.log('Current scroll:', scrollY, 'Max allowed:', phoneTransitionEndScroll);
                         window.scrollTo({
-                            top: maxScroll,
+                            top: phoneTransitionEndScroll,
                             behavior: 'auto' // Instant scroll, not smooth
                         });
                         return;
