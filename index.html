@@ -2048,9 +2048,18 @@
                     const startTop = 80;  // 80% (just off-screen, visible immediately)
                     const endTop = 85;  // 85% final position - lowered by ~50% of phone height
                     
-                    // Once phone reaches full opacity, stop moving and stay at final position
-                    // Cap the eased progress to prevent phone from going beyond final position
-                    const cappedProgress = Math.min(easedProgress, 1.0);
+                    // Stop phone movement at specific scroll position (5289)
+                    const stopScrollPosition = 5289;
+                    let cappedProgress;
+                    
+                    if (scrolled >= stopScrollPosition) {
+                        // Phone stops moving at scroll position 5289
+                        cappedProgress = 1.0;
+                    } else {
+                        // Continue normal transition until stop position
+                        cappedProgress = Math.min(easedProgress, 1.0);
+                    }
+                    
                     const currentTop = startTop + (endTop - startTop) * cappedProgress;
                     
                     // DEBUG: Phone transition tracking
@@ -2137,31 +2146,18 @@
             window.addEventListener('load', updateTextOpacity);
         });
         
-        // Phone transition scroll boundary - prevent scrolling past phone completion
+        // Phone transition scroll boundary - prevent scrolling past specific position
         function enforcePhoneTransitionBoundary() {
-            const lightningSection = document.querySelector('.lightning-bg');
-            if (!lightningSection) return;
-            
             const scrolled = document.documentElement.scrollTop || window.pageYOffset;
-            const windowHeight = window.innerHeight;
-            const lightningRect = lightningSection.getBoundingClientRect();
-            const lightningTop = lightningRect.top + scrolled;
-            const lightningHeight = lightningRect.height;
+            const stopScrollPosition = 5289;
             
-            // Calculate scroll progress within the lightning section (0 to 1)
-            const lightningScrollProgress = Math.max(0, Math.min(1, (scrolled - lightningTop + windowHeight) / lightningHeight));
-            
-            // Phone transition completes at 100% progress (when phone is fully opaque)
-            // Prevent scrolling past this point
-            if (lightningScrollProgress >= 1.0) {
-                const maxAllowedScroll = lightningTop + lightningHeight - windowHeight;
-                if (scrolled > maxAllowedScroll) {
-                    console.log('🚫 SCROLL BOUNDARY: Preventing scroll past phone transition completion');
-                    window.scrollTo({
-                        top: maxAllowedScroll,
-                        behavior: 'auto'
-                    });
-                }
+            // Prevent scrolling past the phone stop position
+            if (scrolled > stopScrollPosition) {
+                console.log('🚫 SCROLL BOUNDARY: Preventing scroll past phone stop position (5289)');
+                window.scrollTo({
+                    top: stopScrollPosition,
+                    behavior: 'auto'
+                });
             }
         }
         
