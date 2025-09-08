@@ -1959,58 +1959,38 @@
             
             
             
-            // Debounce scroll handler to prevent excessive calls
-            let scrollTimeout;
             function handleScroll() {
                 if (!phoneContainer || !landingSection) return;
                 
-                // Clear existing timeout
-                if (scrollTimeout) {
-                    clearTimeout(scrollTimeout);
+                const scrolled = window.scrollY;
+                const rect = landingSection.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                
+                // Continuous phone animation based on scroll percentage
+                const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+                const scrollProgress = Math.min(scrolled / maxScroll, 1); // 0 to 1
+                
+                // Smooth easing function - DO NOT CHANGE
+                function easeInOutCubic(t) {
+                    return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
                 }
                 
-                // Debounce scroll handling
-                scrollTimeout = setTimeout(() => {
-                    const rect = landingSection.getBoundingClientRect();
-                    const windowHeight = window.innerHeight;
-                    const scrollY = window.scrollY;
-                    
-                    // Calculate scroll progress (0 = top of page, 1 = bottom of page)
-                    const documentHeight = document.documentElement.scrollHeight;
-                    const maxScroll = documentHeight - windowHeight;
-                    
-                    // Debug logging (less frequent)
-                    if (scrollY % 100 < 10) { // Only log every ~100px of scroll
-                        console.log('=== PHONE TRANSITION DEBUG ===');
-                        console.log('Scroll Y:', scrollY);
-                        console.log('Document Height:', documentHeight);
-                        console.log('Window Height:', windowHeight);
-                        console.log('Max Scroll:', maxScroll);
-                        console.log('Landing Section Rect:', rect);
-                    }
-                    
-                    // Calculate the exact scroll position where phone transition completes
-                    const phoneTransitionEndScroll = maxScroll * 0.95; // 95% of max scroll
-                    
-                    console.log('Scroll boundary check - Current:', scrollY, 'Max allowed:', phoneTransitionEndScroll, 'Max scroll:', maxScroll);
-                    
-                    // More aggressive scroll boundary - stop when phone transition completes
-                    if (scrollY >= phoneTransitionEndScroll) {
-                        console.log('SCROLL BOUNDARY: Preventing scroll past phone transition completion');
-                        console.log('Current scroll:', scrollY, 'Max allowed:', phoneTransitionEndScroll);
-                        window.scrollTo({
-                            top: phoneTransitionEndScroll,
-                            behavior: 'auto' // Instant scroll, not smooth
-                        });
-                        return;
-                    }
-                    
-                    const scrollProgress = scrollY / maxScroll;
-                    if (scrollY % 100 < 10) { // Only log every ~100px of scroll
-                        console.log('Scroll Progress:', scrollProgress);
-                    }
+                const easedProgress = easeInOutCubic(scrollProgress);
                 
+                // Opacity: 0 at top, 1 at bottom - WORKING PERFECTLY
+                const opacity = easedProgress;
                 
+                // Position: 80% at top (just off-screen), lightning-aligned position at bottom
+                // These values are fine-tuned and working - DO NOT CHANGE
+                const startTop = 80;  // 80% (just off-screen, visible immediately)
+                const endTop = 67.5;  // 67.5% final position - PERFECTLY ALIGNED
+                const currentTop = startTop + (endTop - startTop) * easedProgress;
+                
+                // Apply the animation - DO NOT MODIFY
+                phoneContainer.style.opacity = opacity.toString();
+                phoneContainer.style.top = currentTop + '%';
+                phoneContainer.style.left = '50%';
+                phoneContainer.style.transform = 'translate(-50%, -50%)';
                 
                 // Parallax effect for lightning background (only when section is in view)
                 const lightningBg = document.querySelector('.lightning-bg-overlay');
@@ -2023,85 +2003,27 @@
                     lightningBg.style.transform = 'translateY(0px)';
                 }
                 
-                // Start phone transition at 85% scroll progress (before scroll boundary)
-                const transitionStart = 0.85;
-                const transitionEnd = 0.95;
+                // Header transitions based on scroll progress
+                const readyHeader = document.querySelector('.ready-header');
+                const phoneHeader = document.querySelector('.phone-header');
                 
-                console.log('Transition Start:', transitionStart);
-                console.log('Transition End:', transitionEnd);
-                console.log('Scroll Progress >= Transition Start:', scrollProgress >= transitionStart);
-                
-                if (scrollProgress >= transitionStart) {
-                    // Calculate transition progress (0 to 1)
-                    const transitionProgress = Math.min((scrollProgress - transitionStart) / (transitionEnd - transitionStart), 1);
-                    
-                    console.log('PHONE TRANSITION ACTIVE');
-                    console.log('Transition Progress:', transitionProgress);
-                    
-                    // Fade in and slide up based on scroll progress
-                    phoneContainer.style.opacity = transitionProgress;
-                    // Start from bottom (top: 100%, translateY: 100px) and move to final position
-                    const startY = 100; // Starting position from bottom
-                    const endY = 25; // Ending position slightly higher than before
-                    const currentY = startY + (endY - startY) * transitionProgress;
-                    phoneContainer.style.transform = `translate(-50%, 0%) translateY(${currentY}vh)`;
-                    phoneContainer.style.top = '100%'; // Always stay at bottom
-                    
-                    console.log('Phone Container Styles:');
-                    console.log('- Opacity:', phoneContainer.style.opacity);
-                    console.log('- Transform:', phoneContainer.style.transform);
-                    console.log('- Top:', phoneContainer.style.top);
-                    console.log('- Current Y:', currentY);
-                    
-                    // Transition ready header out as phone transitions in
-                    const readyHeader = document.querySelector('.ready-header');
-                    if (readyHeader) {
-                        const readyOpacity = (1 - transitionProgress).toString();
-                        readyHeader.style.opacity = readyOpacity;
-                        console.log('Ready Header Opacity:', readyOpacity);
-                    }
-                    
-                    // Show phone header when fully transitioned
-                    if (transitionProgress >= 0.8) {
-                        const phoneHeader = document.querySelector('.phone-header');
-                        if (phoneHeader) {
-                            phoneHeader.style.opacity = '1';
-                            console.log('Phone Header: SHOWING (opacity: 1) - transitionProgress >= 0.8');
-                        } else {
-                            console.log('Phone Header element not found!');
-                        }
-                    } else {
-                        const phoneHeader = document.querySelector('.phone-header');
-                        if (phoneHeader) {
-                            phoneHeader.style.opacity = '0';
-                            console.log('Phone Header: HIDDEN (opacity: 0) - transitionProgress < 0.8');
-                        }
-                    }
+                if (scrollProgress >= 0.8) {
+                    // Show phone header when phone is mostly visible
+                    if (readyHeader) readyHeader.style.opacity = '0';
+                    if (phoneHeader) phoneHeader.style.opacity = '1';
                 } else {
-                    console.log('PHONE NOT TRANSITIONING - scrollProgress < transitionStart');
-                    phoneContainer.style.opacity = '0';
-                    phoneContainer.style.transform = 'translate(-50%, 0%) translateY(100px)';
-                    phoneContainer.style.top = '100%';
-                    
-                    console.log('Phone Container Reset Styles:');
-                    console.log('- Opacity:', phoneContainer.style.opacity);
-                    console.log('- Transform:', phoneContainer.style.transform);
-                    console.log('- Top:', phoneContainer.style.top);
-                    
-                    // Hide phone header and show ready header when phone is not transitioning
-                    const phoneHeader = document.querySelector('.phone-header');
-                    if (phoneHeader) {
-                        phoneHeader.style.opacity = '0';
-                        console.log('Phone Header: HIDDEN (not transitioning)');
-                    }
-                    
-                    const readyHeader = document.querySelector('.ready-header');
-                    if (readyHeader) {
-                        readyHeader.style.opacity = '1';
-                        console.log('Ready Header: SHOWING (not transitioning)');
-                    }
+                    // Show ready header when phone is not visible
+                    if (readyHeader) readyHeader.style.opacity = '1';
+                    if (phoneHeader) phoneHeader.style.opacity = '0';
                 }
-                }, 16); // ~60fps debounce
+                
+                // Scroll boundary - prevent scrolling past 95%
+                if (scrollProgress >= 0.95) {
+                    window.scrollTo({
+                        top: maxScroll * 0.95,
+                        behavior: 'auto'
+                    });
+                }
             }
             
             window.addEventListener('scroll', handleScroll);
