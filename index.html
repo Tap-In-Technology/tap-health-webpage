@@ -2133,30 +2133,37 @@
             window.addEventListener('load', updateTextOpacity);
         });
         
-        // Footer scroll boundary - prevent scrolling past footer
-        function enforceFooterBoundary() {
-            const footer = document.querySelector('footer');
-            if (!footer) return;
+        // Phone transition scroll boundary - prevent scrolling past phone completion
+        function enforcePhoneTransitionBoundary() {
+            const lightningSection = document.querySelector('.lightning-bg');
+            if (!lightningSection) return;
             
-            const footerRect = footer.getBoundingClientRect();
+            const scrolled = document.documentElement.scrollTop || window.pageYOffset;
             const windowHeight = window.innerHeight;
-            const scrollY = window.scrollY;
+            const lightningRect = lightningSection.getBoundingClientRect();
+            const lightningTop = lightningRect.top + scrolled;
+            const lightningHeight = lightningRect.height;
             
-            // Calculate the maximum scroll position (footer should be at bottom of viewport)
-            const maxScroll = scrollY + footerRect.top + footerRect.height - windowHeight;
+            // Calculate scroll progress within the lightning section (0 to 1)
+            const lightningScrollProgress = Math.max(0, Math.min(1, (scrolled - lightningTop + windowHeight) / lightningHeight));
             
-            // If user tries to scroll past the footer, stop them
-            if (scrollY > maxScroll) {
-                window.scrollTo({
-                    top: maxScroll,
-                    behavior: 'auto'
-                });
+            // Phone transition completes at 100% progress (when phone is fully opaque)
+            // Prevent scrolling past this point
+            if (lightningScrollProgress >= 1.0) {
+                const maxAllowedScroll = lightningTop + lightningHeight - windowHeight;
+                if (scrolled > maxAllowedScroll) {
+                    console.log('🚫 SCROLL BOUNDARY: Preventing scroll past phone transition completion');
+                    window.scrollTo({
+                        top: maxAllowedScroll,
+                        behavior: 'auto'
+                    });
+                }
             }
         }
         
         // Add scroll boundary enforcement
-        window.addEventListener('scroll', enforceFooterBoundary);
-        window.addEventListener('resize', enforceFooterBoundary);
+        window.addEventListener('scroll', enforcePhoneTransitionBoundary);
+        window.addEventListener('resize', enforcePhoneTransitionBoundary);
         
         // Scroll to top function
         function scrollToTop() {
