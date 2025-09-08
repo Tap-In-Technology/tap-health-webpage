@@ -68,6 +68,86 @@
             font-family: 'Playfair Display', serif;
         }
         
+        /* Lightning background as true page background */
+        .lightning-page-bg {
+            background-image: url('/media/lightning_bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+        }
+        
+        /* Black overlay for all sections except lightning section */
+        .black-section-overlay {
+            background-color: #000000;
+            position: relative;
+            z-index: 10;
+        }
+        
+        /* Lightning background styling from legacy-2 */
+        .lightning-bg {
+            background-image: url('/media/lightning_bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            min-height: 120vh;
+            position: relative;
+        }
+        
+        /* Vignette overlay */
+        .lightning-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at center, 
+                rgba(0, 0, 0, 0.2) 0%, 
+                rgba(0, 0, 0, 0.4) 40%, 
+                rgba(0, 0, 0, 0.7) 70%, 
+                rgba(0, 0, 0, 0.9) 100%);
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        /* Force phone aspect ratio */
+        #phone {
+            object-fit: contain;
+            max-width: none;
+            height: 80vh;
+            width: auto;
+        }
+        
+        /* Typing animation styles */
+        .typing-text {
+            font-family: 'Courier New', monospace;
+            font-size: 1rem;
+            color: #ffffff;
+            min-height: 1.25rem;
+            white-space: nowrap;
+        }
+        
+        .typing-cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1rem;
+            background-color: #ffffff;
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        
         /* Contact form glow effect */
         .contact-form-glow {
             filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.8)) drop-shadow(0 0 40px rgba(255, 255, 255, 0.6)) drop-shadow(0 0 60px rgba(255, 255, 255, 0.4)) !important;
@@ -1106,8 +1186,11 @@
 </head>
 
 <body class="bg-black text-white">
+    <!-- Lightning background as true page background -->
+    <div class="lightning-page-bg"></div>
+    
     <!-- Futuristic Background -->
-    <div class="futuristic-bg">
+    <div class="futuristic-bg black-section-overlay">
         <div class="content-overlay">
             <!-- Header -->
             <header class="fixed top-0 left-0 w-full z-50 py-4 px-6 flex justify-between items-center">
@@ -1167,7 +1250,7 @@
                 </section>
                 
                 <!-- 2. Who We're Built For Section -->
-                <section class="who-built-for-section">
+                <section class="who-built-for-section black-section-overlay">
                     <div class="max-w-7xl mx-auto">
                         <div class="section-header">
                             <h2 class="text-5xl md:text-6xl font-bold futuristic-title">
@@ -1252,7 +1335,7 @@
                 </section>
                 
                 <!-- 3. Spotlight Section -->
-                <section class="spotlight-section">
+                <section class="spotlight-section black-section-overlay">
                     <div class="spotlight-content">
                         <div class="spotlight-left">
                             <p class="spotlight-description">
@@ -1269,7 +1352,7 @@
                 </section>
 
                 <!-- 4. Export Formats Section -->
-            <section class="export-formats-section">
+            <section class="export-formats-section black-section-overlay">
                 <h2 class="export-formats-title">We integrate with your data system</h2>
                     
                     <div class="export-formats-container">
@@ -1382,7 +1465,7 @@
             </section>
 
                 <!-- 5. Pricing Section -->
-                <section class="pricing-section">
+                <section class="pricing-section black-section-overlay">
                     <div class="max-w-7xl mx-auto">
                         <h2 class="pricing-title">
                             Simple pricing for every business
@@ -1470,7 +1553,7 @@
             </section>
 
                 <!-- 6. FAQ Section -->
-                <section class="faq-section">
+                <section class="faq-section black-section-overlay">
                     <div class="max-w-7xl mx-auto">
                         <div class="faq-container">
                             <div class="faq-header">
@@ -1963,101 +2046,79 @@
             
             
             
-            function handleScroll() {
-                if (!phoneContainer || !landingSection) return;
+            // ========================================
+            // PERFECT PHONE TRANSITION FROM LEGACY-2
+            // ========================================
+            function updatePhoneOpacity() {
+                const scrolled = document.documentElement.scrollTop || window.pageYOffset;
+                const phoneContainer = document.getElementById('phone-container');
                 
-                const rect = landingSection.getBoundingClientRect();
-                const windowHeight = window.innerHeight;
-                const scrollY = window.scrollY;
-                
-                // Calculate scroll progress (0 = top of page, 1 = bottom of page)
-                const documentHeight = document.documentElement.scrollHeight;
-                const scrollProgress = scrollY / (documentHeight - windowHeight);
-                
-                
-                
-                // Parallax effect DISABLED - was causing document height changes
-                // const lightningBg = document.querySelector('.lightning-bg-overlay');
-                // if (lightningBg && rect.top < windowHeight && rect.bottom > 0) {
-                //     const parallaxSpeed = 0.3; // Slower movement for parallax effect
-                //     const sectionOffset = rect.top;
-                //     const yPos = -(sectionOffset * parallaxSpeed);
-                //     lightningBg.style.transform = `translateY(${yPos}px)`;
-                // } else if (lightningBg) {
-                //     lightningBg.style.transform = 'translateY(0px)';
-                // }
-                
-                // Start phone transition at 96% scroll progress
-                const transitionStart = 0.96;
-                const transitionEnd = 1.0;
-                
-                if (scrollProgress >= transitionStart) {
-                    // Calculate transition progress (0 to 1)
-                    const transitionProgress = Math.min((scrollProgress - transitionStart) / (transitionEnd - transitionStart), 1);
+                if (phoneContainer) {
+                    // Continuous phone animation based on scroll percentage
+                    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+                    const scrollProgress = Math.min(scrolled / maxScroll, 1); // 0 to 1
                     
-                    
-                    // Fade in and slide up based on scroll progress
-                    phoneContainer.style.opacity = transitionProgress;
-                    // Start from bottom (top: 100%, translateY: 100px) and move to final position
-                    const startY = 100; // Starting position from bottom
-                    const endY = 25; // Ending position slightly higher than before
-                    const currentY = startY + (endY - startY) * transitionProgress;
-                    phoneContainer.style.transform = `translate(-50%, 0%) translateY(${currentY}vh)`;
-                    phoneContainer.style.top = '100%'; // Always stay at bottom
-                    
-                    // Transition ready header out as phone transitions in
-                    const readyHeader = document.querySelector('.ready-header');
-                    const nfcSticker = document.querySelector('.nfc-sticker-above-header');
-                    if (readyHeader) {
-                        readyHeader.style.opacity = (1 - transitionProgress).toString();
-                    }
-                    if (nfcSticker) {
-                        nfcSticker.style.opacity = (1 - transitionProgress).toString();
+                    // Smooth easing function - DO NOT CHANGE
+                    function easeInOutCubic(t) {
+                        return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
                     }
                     
-                    // Show phone header when fully transitioned
-                    if (transitionProgress >= 0.99) {
-                        const phoneHeader = document.querySelector('.phone-header');
-                        if (phoneHeader) {
-                            phoneHeader.style.opacity = '1';
-                            phoneHeader.style.display = 'block'; // Ensure it's visible
-                            console.log('Header should now be visible - opacity set to 1');
-                        } else {
-                            console.log('Header element not found!');
-                        }
-                    } else {
-                        const phoneHeader = document.querySelector('.phone-header');
-                        if (phoneHeader) {
-                            phoneHeader.style.opacity = '0';
-                            phoneHeader.style.display = 'none'; // Hide during transition to prevent interference
-                        }
-                    }
-                } else {
-                    phoneContainer.style.opacity = '0';
-                    phoneContainer.style.transform = 'translate(-50%, 0%) translateY(100px)';
-                    phoneContainer.style.top = '100%';
+                    const easedProgress = easeInOutCubic(scrollProgress);
                     
-                    // Hide phone header and show ready header when phone is not transitioning
-                    const phoneHeader = document.querySelector('.phone-header');
-                    if (phoneHeader) {
-                        phoneHeader.style.opacity = '0';
-                    }
+                    // Opacity: 0 at top, 1 at bottom - WORKING PERFECTLY
+                    const opacity = easedProgress;
                     
-                    const readyHeader = document.querySelector('.ready-header');
-                    const nfcSticker = document.querySelector('.nfc-sticker-above-header');
-                    if (readyHeader) {
-                        readyHeader.style.opacity = '1';
-                    }
-                    if (nfcSticker) {
-                        nfcSticker.style.opacity = '1';
-                    }
+                    // Position: 80% at top (just off-screen), lightning-aligned position at bottom
+                    // These values are fine-tuned and working - DO NOT CHANGE
+                    const startTop = 80;  // 80% (just off-screen, visible immediately)
+                    const endTop = 67.5;  // 67.5% final position - PERFECTLY ALIGNED
+                    const currentTop = startTop + (endTop - startTop) * easedProgress;
+                    
+                    // Apply the animation - DO NOT MODIFY
+                    phoneContainer.style.opacity = opacity.toString();
+                    phoneContainer.style.top = currentTop + '%';
+                    phoneContainer.style.left = '50%';
+                    phoneContainer.style.transform = 'translate(-50%, -50%)';
                 }
-                
-                // Scroll behavior now working correctly - debug messages removed
             }
             
-            window.addEventListener('scroll', handleScroll);
-            handleScroll(); // Check initial state
+            // Text opacity transitions from legacy-2
+            function updateTextOpacity() {
+                const scrolled = document.documentElement.scrollTop || window.pageYOffset;
+                const windowHeight = window.innerHeight;
+                const documentHeight = document.documentElement.scrollHeight;
+                const maxScroll = documentHeight - windowHeight;
+                const scrollProgress = scrolled / maxScroll;
+                
+                // Text transition thresholds
+                const text1End = 0.3;  // Text 1 fades out at 30% scroll
+                const text2Start = 0.7; // Text 2 fades in at 70% scroll
+                
+                const text1 = document.getElementById('text-1');
+                const text2 = document.getElementById('text-2');
+                
+                if (text1 && text2) {
+                    if (scrollProgress <= text1End) {
+                        // Show text 1, hide text 2
+                        text1.style.opacity = '1';
+                        text2.style.opacity = '0';
+                    } else if (scrollProgress >= text2Start) {
+                        // Show text 2, hide text 1
+                        text1.style.opacity = '0';
+                        text2.style.opacity = '1';
+                    } else {
+                        // Transition zone - fade between texts
+                        const transitionProgress = (scrollProgress - text1End) / (text2Start - text1End);
+                        text1.style.opacity = (1 - transitionProgress).toString();
+                        text2.style.opacity = transitionProgress.toString();
+                    }
+                }
+            }
+            
+            window.addEventListener('scroll', updatePhoneOpacity);
+            window.addEventListener('scroll', updateTextOpacity);
+            window.addEventListener('load', updatePhoneOpacity);
+            window.addEventListener('load', updateTextOpacity);
         });
         
         // Scroll to top function
@@ -2068,6 +2129,64 @@
             });
         }
             </script>
+    
+    <!-- ========================================
+         LEGACY-2 CONTENT - PERFECT PHONE TRANSITION
+         ======================================== -->
+    
+    <!-- Lightning background hero section from legacy-2 -->
+    <section class="lightning-bg relative" style="min-height: 200vh; position: relative; z-index: 5;">
+        <!-- Phone image large and centered, fading into background -->
+        <div id="phone-container" style="position: absolute; top: 80%; left: 50%; transform: translate(-50%, -50%); opacity: 0; transition: none; z-index: 20;">
+            <img src="/media/phone.png?v=2" alt="Phone" class="h-[80vh] w-auto" id="phone">
+            <div class="phone-gradient"></div>
+            <div class="phone-gleam"></div>
+            <!-- Separate glow overlay for contact form -->
+            <div id="contact-form-glow" class="contact-form-glow-overlay" style="display: none;"></div>
+            <!-- Direct fade overlay for contact form -->
+            <div id="contact-form-fade" class="contact-form-fade-overlay" style="display: none;"></div>
+            <!-- Interactive contact form overlay -->
+            <div id="contact-form-interactive-overlay">
+                <input type="text" id="phone-name" class="phone-form-field" required>
+                <input type="tel" id="phone-phone" class="phone-form-field">
+                <input type="email" id="phone-email" class="phone-form-field" required>
+                <textarea id="phone-message" class="phone-form-field" required></textarea>
+                <button type="button" id="phone-approve" class="phone-form-button" onclick="approveForm()">Approve</button>
+                <button type="button" id="phone-cancel-mid" class="phone-form-button" onclick="goBackToDefault()">Cancel</button>
+                <button type="button" id="phone-cancel" class="phone-form-button" onclick="goBackToDefault()">Cancel</button>
+                <button type="button" id="phone-send" class="phone-form-button" onclick="submitPhoneForm()">Send</button>
+            </div>
+        </div>
+        
+        <!-- Main heading text with opacity shifts -->
+        <div class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30" id="text-container">
+            <h1 class="text-white font-bold text-center leading-tight text-fade" id="text-1" style="text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5); font-size: clamp(1.5rem, 6vw, 6rem); opacity: 1; transition: opacity 1s ease-in-out;">
+                Your data.<br>Where you want it.
+            </h1>
+            <h1 class="text-white font-bold text-center leading-tight text-fade" id="text-2" style="text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5); font-size: clamp(1.5rem, 6vw, 6rem); opacity: 0; transition: opacity 1s ease-in-out; position: absolute; top: 0; left: 0; width: 100%;">
+                One Tap is all it takes.
+            </h1>
+        </div>
+    </section>
+    
+    <!-- Tiny black section with privacy policy and get in touch -->
+    <section class="black-section" style="position: relative; z-index: 50; background-color: #000000; min-height: 10vh; display: flex; align-items: center; justify-content: center;">
+        <div class="w-full flex justify-between items-center px-6">
+            <div class="flex items-center gap-4">
+                <a href="privacy.html" class="text-xs text-gray-400 hover:text-white transition-colors" style="font-size: 10px;">Privacy Policy</a>
+            </div>
+            <div class="flex items-center gap-4">
+                <div class="typing-container">
+                    <div class="typing-text" id="typing-text"></div>
+                </div>
+                <button onclick="openContactForm()"
+                    class="bg-white text-black px-4 py-2 rounded-lg text-sm font-bold hover:bg-gray-200 active:bg-gray-300 active:scale-95 transform transition-all duration-150 ease-in-out shadow-md hover:shadow-lg active:shadow-sm">
+                    Get in Touch
+                </button>
+            </div>
+        </div>
+    </section>
+
 </body>
 
 </html>
