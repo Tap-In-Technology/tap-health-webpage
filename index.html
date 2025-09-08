@@ -1586,8 +1586,7 @@
                                         </svg>
                                     </div>
                                     <div class="faq-answer">
-                                        Tap uses enterprise-grade encryption and follows strict security protocols. We're SOC 2 compliant and work with healthcare, financial, and government organizations that require the highest security standards. Your data is protected with bank-level security. 
-                                        <a href="security-compliance.html" style="display: inline-block; background: #00ffff; color: black; padding: 4px 8px; border-radius: 4px; text-decoration: none; font-weight: 500; font-size: 0.9rem; margin-left: 8px; transition: all 0.3s ease;">Learn more</a>
+                                        Tap uses enterprise-grade encryption and follows strict security protocols. We're SOC 2 compliant and work with healthcare, financial, and government organizations that require the highest security standards. Your data is protected with bank-level security.
                                     </div>
                     </div>
 
@@ -1674,8 +1673,8 @@
                 <a href="privacy.html" class="text-gray-400 hover:text-white transition-colors" style="font-size: 12px;">Privacy Policy</a>
                 <div class="text-gray-400 text-xs">
                     © 2024 Tap Health. All rights reserved.
+                            </div>
                         </div>
-            </div>
             <div class="flex items-center gap-4">
                 <div class="typing-container">
                     <div class="typing-text" id="landing-typing-text"></div>
@@ -2043,6 +2042,14 @@
                     const endTop = 67.5;  // 67.5% final position - PERFECTLY ALIGNED
                     const currentTop = startTop + (endTop - startTop) * easedProgress;
                     
+                    // DEBUG: Phone transition tracking
+                    if (lightningScrollProgress > 0 && lightningScrollProgress < 0.01) {
+                        console.log('📱 PHONE TRANSITION STARTED - Scroll Y:', scrolled, 'Lightning Progress:', lightningScrollProgress.toFixed(3));
+                    }
+                    if (opacity > 0.99) {
+                        console.log('📱 PHONE FULLY OPAQUE - Scroll Y:', scrolled, 'Opacity:', opacity.toFixed(3));
+                    }
+                    
                     // Apply the animation - DO NOT MODIFY
                     phoneContainer.style.opacity = opacity.toString();
                     phoneContainer.style.top = currentTop + '%';
@@ -2077,20 +2084,39 @@
                 const text2 = document.getElementById('text-2');
                 
                 if (text1 && text2) {
+                    // DEBUG: Text transition tracking
+                    const text1Opacity = parseFloat(text1.style.opacity || '1');
+                    const text2Opacity = parseFloat(text2.style.opacity || '0');
+                    
                     if (lightningScrollProgress <= text1End) {
                         // Show text 1, hide text 2
                         text1.style.opacity = '1';
                         text2.style.opacity = '0';
+                        
+                        // Debug when text 1 is fully opaque
+                        if (text1Opacity < 0.99 && parseFloat(text1.style.opacity) > 0.99) {
+                            console.log('📝 TEXT 1 FULLY OPAQUE - Scroll Y:', scrolled, 'Lightning Progress:', lightningScrollProgress.toFixed(3));
+                        }
                     } else if (lightningScrollProgress >= text2Start) {
                         // Show text 2, hide text 1
                         text1.style.opacity = '0';
                         text2.style.opacity = '1';
+                        
+                        // Debug when text 2 is fully opaque
+                        if (text2Opacity < 0.99 && parseFloat(text2.style.opacity) > 0.99) {
+                            console.log('📝 TEXT 2 FULLY OPAQUE - Scroll Y:', scrolled, 'Lightning Progress:', lightningScrollProgress.toFixed(3));
+                        }
                     } else {
                         // Transition zone - fade between texts
                         const transitionProgress = (lightningScrollProgress - text1End) / (text2Start - text1End);
                         text1.style.opacity = (1 - transitionProgress).toString();
                         text2.style.opacity = transitionProgress.toString();
                     }
+                }
+                
+                // DEBUG: Check if we're at the bottom of the page
+                if (scrolled >= maxScroll - 10) { // Within 10px of bottom
+                    console.log('⬇️ AT BOTTOM OF PAGE - Scroll Y:', scrolled, 'Max Scroll:', maxScroll);
                 }
             }
             
