@@ -2049,14 +2049,9 @@
                     const endTop = 67.5;  // 67.5% final position - PERFECTLY ALIGNED
                     
                     // Once phone reaches full opacity, stop moving and stay at final position
-                    let currentTop;
-                    if (lightningScrollProgress >= 1.0) {
-                        // Phone transition complete - lock at final position
-                        currentTop = endTop;
-                    } else {
-                        // Phone still transitioning - continue movement
-                        currentTop = startTop + (endTop - startTop) * easedProgress;
-                    }
+                    // Cap the eased progress to prevent phone from going beyond final position
+                    const cappedProgress = Math.min(easedProgress, 1.0);
+                    const currentTop = startTop + (endTop - startTop) * cappedProgress;
                     
                     // DEBUG: Phone transition tracking
                     if (lightningScrollProgress > 0 && lightningScrollProgress < 0.01) {
