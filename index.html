@@ -1729,24 +1729,29 @@
         // Scroll tracking functionality
         let hasReachedBottom = false;
         let lastScrollY = 0;
+        let bottomScrollPosition = 0;
 
         function trackScroll() {
-                const scrolled = document.documentElement.scrollTop || window.pageYOffset;
-                const windowHeight = window.innerHeight;
-                const documentHeight = document.documentElement.scrollHeight;
-                const maxScroll = documentHeight - windowHeight;
-                
+            const scrolled = document.documentElement.scrollTop || window.pageYOffset;
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight;
+            const maxScroll = documentHeight - windowHeight;
+            
             // Check if user has scrolled to the bottom
             if (scrolled >= maxScroll - 10) { // 10px buffer for bottom detection
                 if (!hasReachedBottom) {
                     console.log("scrolled to bottom");
                     hasReachedBottom = true;
+                    bottomScrollPosition = scrolled; // Store the bottom position
                 }
             }
             
             // If user has reached bottom and now scrolls up
             if (hasReachedBottom && scrolled < lastScrollY) {
-                const scrollUpPercentage = ((lastScrollY - scrolled) / maxScroll) * 100;
+                const scrollUpDistance = bottomScrollPosition - scrolled;
+                const scrollUpPercentage = (scrollUpDistance / windowHeight) * 100;
+                
+                console.log(`Scrolled up ${scrollUpDistance}px (${scrollUpPercentage.toFixed(1)}% of viewport)`);
                 
                 if (scrollUpPercentage >= 5) {
                     console.log("up 5%");
