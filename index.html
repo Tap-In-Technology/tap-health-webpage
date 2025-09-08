@@ -70,19 +70,33 @@
         
         /* Lightning background as true page background */
         .lightning-page-bg {
-            background-image: 
-                url('/media/gradient.jpg'),
-                url('/media/lightning_bg.jpg');
-            background-size: cover, cover;
-            background-position: center, center;
-            background-repeat: no-repeat, no-repeat;
-            background-attachment: fixed, fixed;
+            background-image: url('/media/lightning_bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: -2;
+        }
+
+        /* Gradient overlay as separate sticky element */
+        .gradient-overlay {
+            background-image: url('/media/gradient.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
         }
         
         /* Black overlay for all sections except lightning section */
@@ -94,13 +108,11 @@
         
         /* Lightning background styling from legacy-2 */
         .lightning-bg {
-            background-image: 
-                url('/media/gradient.jpg'),
-                url('/media/lightning_bg.jpg');
-            background-size: cover, cover;
-            background-position: center, center;
-            background-repeat: no-repeat, no-repeat;
-            background-attachment: fixed, fixed;
+            background-image: url('/media/lightning_bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
             min-height: 120vh;
             position: relative;
         }
@@ -1176,6 +1188,9 @@
 <body class="bg-black text-white">
     <!-- Lightning background as true page background -->
     <div class="lightning-page-bg"></div>
+    
+    <!-- Gradient overlay -->
+    <div class="gradient-overlay"></div>
     
     <!-- Futuristic Background -->
     <div class="futuristic-bg black-section-overlay">
