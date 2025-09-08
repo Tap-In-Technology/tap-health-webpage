@@ -1,0 +1,91 @@
+            phoneContainer.style.top = '100%';
+            console.log('Phone container initialized to hidden state');
+            
+            
+            
+            function handleScroll() {
+                if (!phoneContainer || !landingSection) return;
+                
+                const scrolled = window.scrollY;
+                const rect = landingSection.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                
+                // Continuous phone animation based on scroll percentage
+                const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+                const scrollProgress = Math.min(scrolled / maxScroll, 1); // 0 to 1
+                
+                // Smooth easing function - DO NOT CHANGE
+                function easeInOutCubic(t) {
+                    return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+                }
+                
+                const easedProgress = easeInOutCubic(scrollProgress);
+                
+                // Opacity: 0 at top, 1 at bottom - WORKING PERFECTLY
+                const opacity = easedProgress;
+                
+                // Position: 80% at top (just off-screen), lightning-aligned position at bottom
+                // These values are fine-tuned and working - DO NOT CHANGE
+                const startTop = 80;  // 80% (just off-screen, visible immediately)
+                const endTop = 67.5;  // 67.5% final position - PERFECTLY ALIGNED
+                const currentTop = startTop + (endTop - startTop) * easedProgress;
+                
+                // Apply the animation - DO NOT MODIFY
+                phoneContainer.style.opacity = opacity.toString();
+                phoneContainer.style.top = currentTop + '%';
+                phoneContainer.style.left = '50%';
+                phoneContainer.style.transform = 'translate(-50%, -50%)';
+                
+                // Parallax effect for lightning background (only when section is in view)
+                const lightningBg = document.querySelector('.lightning-bg-overlay');
+                if (lightningBg && rect.top < windowHeight && rect.bottom > 0) {
+                    const parallaxSpeed = 0.3; // Slower movement for parallax effect
+                    const sectionOffset = rect.top;
+                    const yPos = -(sectionOffset * parallaxSpeed);
+                    lightningBg.style.transform = `translateY(${yPos}px)`;
+                } else if (lightningBg) {
+                    lightningBg.style.transform = 'translateY(0px)';
+                }
+                
+                // Header transitions based on scroll progress
+                const readyHeader = document.querySelector('.ready-header');
+                const phoneHeader = document.querySelector('.phone-header');
+                
+                if (scrollProgress >= 0.8) {
+                    // Show phone header when phone is mostly visible
+                    if (readyHeader) readyHeader.style.opacity = '0';
+                    if (phoneHeader) phoneHeader.style.opacity = '1';
+                } else {
+                    // Show ready header when phone is not visible
+                    if (readyHeader) readyHeader.style.opacity = '1';
+                    if (phoneHeader) phoneHeader.style.opacity = '0';
+                }
+                
+                // Scroll boundary - prevent scrolling past 95% while keeping visual margins
+                if (scrollProgress >= 0.95) {
+                    window.scrollTo({
+                        top: maxScroll * 0.95,
+                        behavior: 'auto'
+                    });
+                }
+            }
+            
+            window.addEventListener('scroll', handleScroll);
+            window.addEventListener('resize', () => {
+                console.log('Window resized - recalculating boundaries');
+                handleScroll(); // Recalculate on resize
+            });
+            handleScroll(); // Check initial state
+        });
+        
+        // Scroll to top function
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+            </script>
+</body>
+
+</html>
