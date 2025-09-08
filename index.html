@@ -1774,19 +1774,12 @@
                 }
             }
             
-            // If user has reached lightning section bottom and now scrolls up
-            if (hasReachedBottom && scrolled < lastScrollY) {
-                const scrollUpDistance = bottomScrollPosition - scrolled;
-                const scrollUpPercentage = (scrollUpDistance / windowHeight) * 100;
-                
-                console.log(`Scrolled up ${scrollUpDistance}px (${scrollUpPercentage.toFixed(1)}% of viewport)`);
-                
-                if (scrollUpPercentage >= 5) {
-                    console.log("up 5%");
-                    hasReachedBottom = false; // Reset so it can detect bottom again
-                    // Remove sticky gradient when scrolling up from lightning section bottom
-                    makeGradientSticky(false);
-                }
+            // If user has reached lightning section bottom and now scrolls up beyond it
+            if (hasReachedBottom && scrolled < lightningBottom - 10) {
+                console.log("scrolled back up beyond lightning section bottom");
+                hasReachedBottom = false; // Reset so it can detect bottom again
+                // Remove sticky gradient when scrolling up beyond lightning section bottom
+                makeGradientSticky(false);
             }
             
             lastScrollY = scrolled;
@@ -1794,7 +1787,10 @@
 
         // Function to make gradient sticky or not
         function makeGradientSticky(isSticky) {
-            const gradientOverlay = document.querySelector('.lightning-bg div[style*="linear-gradient"]');
+            // Target only the first lightning section's gradient (Lightning 1)
+            const firstLightningSection = document.querySelector('.lightning-bg');
+            const gradientOverlay = firstLightningSection ? firstLightningSection.querySelector('div[style*="linear-gradient"]') : null;
+            
             if (gradientOverlay) {
                 if (isSticky) {
                     gradientOverlay.style.position = 'fixed';
@@ -1803,7 +1799,7 @@
                     gradientOverlay.style.width = '100%';
                     gradientOverlay.style.height = '100vh';
                     gradientOverlay.style.zIndex = '999';
-                    console.log("Gradient made sticky");
+                    console.log("Lightning 1 gradient made sticky");
                 } else {
                     gradientOverlay.style.position = 'absolute';
                     gradientOverlay.style.top = '0';
@@ -1811,7 +1807,7 @@
                     gradientOverlay.style.width = '100%';
                     gradientOverlay.style.height = '100%';
                     gradientOverlay.style.zIndex = '2';
-                    console.log("Gradient unstickied");
+                    console.log("Lightning 1 gradient unstickied");
                 }
             }
         }
