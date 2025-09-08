@@ -1643,24 +1643,6 @@
         <!-- Gradient overlay for blending -->
         <div class="lightning-gradient-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 20%, rgba(0,0,0,0) 80%, rgba(0,0,0,0.8) 100%); z-index: 2; pointer-events: none;"></div>
         
-        <!-- NFC Sticker above ready header -->
-        <div class="nfc-sticker-above-header" style="position: absolute; top: 35%; left: 50%; transform: translateX(-50%); z-index: 25; text-align: center; pointer-events: none; opacity: 1; transition: opacity 0.5s ease;">
-            <img src="/media/NFCTapSticker.png" alt="NFC Tap Sticker" style="width: 80px; height: 80px; opacity: 0.8;">
-                            </div>
-        
-        <!-- Header that transitions out as phone transitions in -->
-        <div class="ready-header" style="position: absolute; top: 45%; left: 50%; transform: translateX(-50%); z-index: 25; text-align: center; pointer-events: none; opacity: 1; transition: opacity 0.5s ease; width: 100%;">
-            <h2 class="text-white font-bold text-center leading-tight" style="text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5); font-size: clamp(1.5rem, 5vw, 5rem); font-family: 'Playfair Display', serif; margin: 0;">
-                Ready to transform your forms?
-            </h2>
-                        </div>
-
-        <!-- Header over phone - positioned in lightning background -->
-        <div class="phone-header" style="position: absolute; bottom: 45%; left: 50%; transform: translateX(-50%); z-index: 25; text-align: center; pointer-events: none; opacity: 0; transition: opacity 0.5s ease; width: 100%; will-change: opacity;">
-            <h2 class="text-white font-bold text-center leading-tight" style="text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5); font-size: clamp(1.8rem, 6vw, 6rem); font-family: 'Playfair Display', serif; margin: 0;">
-                One tap is all it takes
-            </h2>
-                        </div>
 
         <!-- Main content -->
         <div class="relative z-10" style="position: relative; z-index: 10;">
@@ -1742,12 +1724,6 @@
                     phoneContainer.classList.add('contact-form-mode');
                     document.getElementById('contact-form-interactive-overlay').style.display = 'block';
                     
-                    // Hide phone header when contact form is active
-                    const phoneHeader = document.querySelector('.phone-header');
-                    if (phoneHeader) {
-                        phoneHeader.style.display = 'none';
-                        console.log('Phone header hidden for contact form');
-                    }
                     
                     // Hide gleam element using CSS (more reliable than DOM removal)
                     const gleamElement = phoneContainer.querySelector('.phone-gleam');
@@ -1784,12 +1760,6 @@
                     phoneContainer.classList.remove('contact-form-mode');
                     document.getElementById('contact-form-interactive-overlay').style.display = 'none';
                     
-                    // Show phone header again when exiting contact form
-                    const phoneHeader = document.querySelector('.phone-header');
-                    if (phoneHeader) {
-                        phoneHeader.style.display = 'block';
-                        console.log('Phone header shown again after contact form');
-                    }
                     
                     // Show typing text
                     const typingContainer = document.querySelector('.typing-container');
@@ -2009,7 +1979,6 @@
             
                 // Debug: Check if header element exists
                 const headerElement = document.getElementById('landing-text-container');
-                const phoneHeaderElement = document.querySelector('.phone-header');
             
             // Phone fade-in on scroll
             const phoneContainer = document.getElementById('landing-phone-container');
@@ -2029,14 +1998,6 @@
                 return;
             }
             
-            // Check if header element exists
-            const phoneHeader = document.querySelector('.phone-header');
-            if (phoneHeader) {
-                console.log('Phone header element found:', phoneHeader);
-                console.log('Header initial opacity:', window.getComputedStyle(phoneHeader).opacity);
-            } else {
-                console.log('Phone header element NOT found!');
-            }
             
             // Initialize phone container state
             phoneContainer.style.opacity = '0';
