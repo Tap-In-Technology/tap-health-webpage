@@ -2047,7 +2047,16 @@
                     // These values are fine-tuned and working - DO NOT CHANGE
                     const startTop = 80;  // 80% (just off-screen, visible immediately)
                     const endTop = 67.5;  // 67.5% final position - PERFECTLY ALIGNED
-                    const currentTop = startTop + (endTop - startTop) * easedProgress;
+                    
+                    // Once phone reaches full opacity, stop moving and stay at final position
+                    let currentTop;
+                    if (lightningScrollProgress >= 1.0) {
+                        // Phone transition complete - lock at final position
+                        currentTop = endTop;
+                    } else {
+                        // Phone still transitioning - continue movement
+                        currentTop = startTop + (endTop - startTop) * easedProgress;
+                    }
                     
                     // DEBUG: Phone transition tracking
                     if (lightningScrollProgress > 0 && lightningScrollProgress < 0.01) {
@@ -2057,7 +2066,7 @@
                         console.log('📱 PHONE FULLY OPAQUE - Scroll Y:', scrolled, 'Opacity:', opacity.toFixed(3));
                     }
                     
-                    // Apply the animation - DO NOT MODIFY
+                    // Apply the animation
                     phoneContainer.style.opacity = opacity.toString();
                     phoneContainer.style.top = currentTop + '%';
                     phoneContainer.style.left = '50%';
