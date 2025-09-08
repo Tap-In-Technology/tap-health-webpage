@@ -2008,25 +2008,33 @@
             
             
             // ========================================
-            // PERFECT PHONE TRANSITION FROM LEGACY-2
+            // PERFECT PHONE TRANSITION - ADJUSTED FOR LIGHTNING SECTION
             // ========================================
             function updatePhoneOpacity() {
                 const scrolled = document.documentElement.scrollTop || window.pageYOffset;
                 const phoneContainer = document.getElementById('phone-container');
                 
                 if (phoneContainer) {
-                    // Continuous phone animation based on scroll percentage
-                    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-                    const scrollProgress = Math.min(scrolled / maxScroll, 1); // 0 to 1
+                    // Find the lightning section to calculate relative scroll progress
+                    const lightningSection = document.querySelector('.lightning-bg');
+                    if (!lightningSection) return;
+                    
+                    const lightningRect = lightningSection.getBoundingClientRect();
+                    const lightningTop = lightningRect.top + scrolled;
+                    const lightningHeight = lightningRect.height;
+                    const windowHeight = window.innerHeight;
+                    
+                    // Calculate scroll progress within the lightning section (0 to 1)
+                    const lightningScrollProgress = Math.max(0, Math.min(1, (scrolled - lightningTop + windowHeight) / lightningHeight));
                     
                     // Smooth easing function - DO NOT CHANGE
                     function easeInOutCubic(t) {
                         return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
                     }
                     
-                    const easedProgress = easeInOutCubic(scrollProgress);
+                    const easedProgress = easeInOutCubic(lightningScrollProgress);
                     
-                    // Opacity: 0 at top, 1 at bottom - WORKING PERFECTLY
+                    // Opacity: 0 at top of lightning section, 1 at bottom - WORKING PERFECTLY
                     const opacity = easedProgress;
                     
                     // Position: 80% at top (just off-screen), lightning-aligned position at bottom
@@ -2043,33 +2051,43 @@
                 }
             }
             
-            // Text opacity transitions from legacy-2
+            // Text opacity transitions - adjusted for lightning section position
             function updateTextOpacity() {
                 const scrolled = document.documentElement.scrollTop || window.pageYOffset;
                 const windowHeight = window.innerHeight;
                 const documentHeight = document.documentElement.scrollHeight;
                 const maxScroll = documentHeight - windowHeight;
-                const scrollProgress = scrolled / maxScroll;
                 
-                // Text transition thresholds
-                const text1End = 0.3;  // Text 1 fades out at 30% scroll
-                const text2Start = 0.7; // Text 2 fades in at 70% scroll
+                // Find the lightning section to calculate relative scroll progress
+                const lightningSection = document.querySelector('.lightning-bg');
+                if (!lightningSection) return;
+                
+                const lightningRect = lightningSection.getBoundingClientRect();
+                const lightningTop = lightningRect.top + scrolled;
+                const lightningHeight = lightningRect.height;
+                
+                // Calculate scroll progress within the lightning section (0 to 1)
+                const lightningScrollProgress = Math.max(0, Math.min(1, (scrolled - lightningTop + windowHeight) / lightningHeight));
+                
+                // Text transition thresholds within lightning section
+                const text1End = 0.3;  // Text 1 fades out at 30% of lightning section
+                const text2Start = 0.7; // Text 2 fades in at 70% of lightning section
                 
                 const text1 = document.getElementById('text-1');
                 const text2 = document.getElementById('text-2');
                 
                 if (text1 && text2) {
-                    if (scrollProgress <= text1End) {
+                    if (lightningScrollProgress <= text1End) {
                         // Show text 1, hide text 2
                         text1.style.opacity = '1';
                         text2.style.opacity = '0';
-                    } else if (scrollProgress >= text2Start) {
+                    } else if (lightningScrollProgress >= text2Start) {
                         // Show text 2, hide text 1
                         text1.style.opacity = '0';
                         text2.style.opacity = '1';
                     } else {
                         // Transition zone - fade between texts
-                        const transitionProgress = (scrollProgress - text1End) / (text2Start - text1End);
+                        const transitionProgress = (lightningScrollProgress - text1End) / (text2Start - text1End);
                         text1.style.opacity = (1 - transitionProgress).toString();
                         text2.style.opacity = transitionProgress.toString();
                     }
@@ -2120,7 +2138,7 @@
         </div>
         
         <!-- Main heading text with opacity shifts -->
-        <div class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30" id="text-container">
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30" id="text-container">
             <h1 class="text-white font-bold text-center leading-tight text-fade" id="text-1" style="text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5); font-size: clamp(1.5rem, 6vw, 6rem); opacity: 1; transition: opacity 1s ease-in-out;">
                 Your data.<br>Where you want it.
             </h1>
