@@ -1972,16 +1972,16 @@
                 
                 
                 
-                // Parallax effect for lightning background (only when section is in view)
-                const lightningBg = document.querySelector('.lightning-bg-overlay');
-                if (lightningBg && rect.top < windowHeight && rect.bottom > 0) {
-                    const parallaxSpeed = 0.3; // Slower movement for parallax effect
-                    const sectionOffset = rect.top;
-                    const yPos = -(sectionOffset * parallaxSpeed);
-                    lightningBg.style.transform = `translateY(${yPos}px)`;
-                } else if (lightningBg) {
-                    lightningBg.style.transform = 'translateY(0px)';
-                }
+                // Parallax effect DISABLED - was causing document height changes
+                // const lightningBg = document.querySelector('.lightning-bg-overlay');
+                // if (lightningBg && rect.top < windowHeight && rect.bottom > 0) {
+                //     const parallaxSpeed = 0.3; // Slower movement for parallax effect
+                //     const sectionOffset = rect.top;
+                //     const yPos = -(sectionOffset * parallaxSpeed);
+                //     lightningBg.style.transform = `translateY(${yPos}px)`;
+                // } else if (lightningBg) {
+                //     lightningBg.style.transform = 'translateY(0px)';
+                // }
                 
                 // Start phone transition at 96% scroll progress
                 const transitionStart = 0.96;
