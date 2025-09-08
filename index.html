@@ -1240,7 +1240,7 @@
                             In your hands.
                         </h2>
                         <p class="hero-description">
-                            Tap gives you one platform to manage identity verification and form completion, bringing instant simplicity to complex interactions.
+                            Tap populates forms with your saved information, preventing you from filling out the same fields again and again and giving you total control over who has your data.
                         </p>
                         <div class="hero-buttons">
                             <button class="hero-cta-button primary">Get started</button>
@@ -1634,37 +1634,6 @@
         </div>
     </div>
     
-    <!-- Landing Page Section -->
-    <section class="landing-page-section" style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); min-height: 100vh; position: relative; overflow: visible;">
-        <!-- Lightning background effect with parallax -->
-        <div class="lightning-bg-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('/media/lightning_bg.jpg'); background-size: cover; background-position: center; opacity: 0.3; z-index: 1;"></div>
-        
-        <!-- Gradient overlay for blending -->
-        <div class="lightning-gradient-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 20%, rgba(0,0,0,0) 80%, rgba(0,0,0,0.8) 100%); z-index: 2; pointer-events: none;"></div>
-        
-
-        <!-- Main content -->
-        <div class="relative z-10" style="position: relative; z-index: 10;">
-            <!-- Phone image large and centered -->
-            <div id="landing-phone-container" style="position: absolute; top: 100%; left: 50%; transform: translate(-50%, 0%) translateY(100px); z-index: 20; opacity: 0;">
-                    <img src="/media/phone.png" alt="Phone" class="h-[60vh] w-auto" id="landing-phone">
-                <!-- Phone gradient overlay removed - no darkening effect -->
-                <!-- Phone gleam effect -->
-                <div class="phone-gleam"></div>
-                <!-- Interactive contact form overlay -->
-                <div id="contact-form-interactive-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: auto; z-index: 26; display: none;">
-                    <input type="text" id="phone-name" class="phone-form-field" required>
-                    <input type="tel" id="phone-phone" class="phone-form-field">
-                    <input type="email" id="phone-email" class="phone-form-field" required>
-                    <textarea id="phone-message" class="phone-form-field" required></textarea>
-                    <button type="button" id="phone-approve" class="phone-form-button" onclick="approveForm()"></button>
-                    <button type="button" id="phone-cancel" class="phone-form-button" onclick="goBackToDefault()"></button>
-                            </div>
-                        </div>
-
-            
-                            </div>
-    </section>
     
     <!-- Footer -->
     <footer class="bg-black text-white py-4 px-6 relative z-10">
@@ -2125,6 +2094,31 @@
             window.addEventListener('load', updatePhoneOpacity);
             window.addEventListener('load', updateTextOpacity);
         });
+        
+        // Footer scroll boundary - prevent scrolling past footer
+        function enforceFooterBoundary() {
+            const footer = document.querySelector('footer');
+            if (!footer) return;
+            
+            const footerRect = footer.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+            const scrollY = window.scrollY;
+            
+            // Calculate the maximum scroll position (footer should be at bottom of viewport)
+            const maxScroll = scrollY + footerRect.top + footerRect.height - windowHeight;
+            
+            // If user tries to scroll past the footer, stop them
+            if (scrollY > maxScroll) {
+                window.scrollTo({
+                    top: maxScroll,
+                    behavior: 'auto'
+                });
+            }
+        }
+        
+        // Add scroll boundary enforcement
+        window.addEventListener('scroll', enforceFooterBoundary);
+        window.addEventListener('resize', enforceFooterBoundary);
         
         // Scroll to top function
         function scrollToTop() {
