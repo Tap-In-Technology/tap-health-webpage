@@ -1799,6 +1799,7 @@
                     gradientOverlay.style.width = '100%';
                     gradientOverlay.style.height = '100vh';
                     gradientOverlay.style.zIndex = '999';
+                    gradientOverlay.style.pointerEvents = 'auto'; // Allow interaction
                     console.log("Lightning 1 gradient made sticky");
                 } else {
                     gradientOverlay.style.position = 'absolute';
@@ -1807,13 +1808,33 @@
                     gradientOverlay.style.width = '100%';
                     gradientOverlay.style.height = '100%';
                     gradientOverlay.style.zIndex = '2';
+                    gradientOverlay.style.pointerEvents = 'none'; // No interaction
                     console.log("Lightning 1 gradient unstickied");
                 }
             }
         }
 
+        // Function to enforce scroll boundary when gradient is sticky
+        function enforceStickyGradientBoundary() {
+            if (hasReachedBottom) {
+                const firstLightningSection = document.querySelector('.lightning-bg');
+                if (firstLightningSection) {
+                    const lightningRect = firstLightningSection.getBoundingClientRect();
+                    const lightningBottom = window.scrollY + lightningRect.bottom;
+                    
+                    // Prevent scrolling beyond lightning section bottom when gradient is sticky
+                    if (window.scrollY > lightningBottom - 10) {
+                        window.scrollTo({ top: lightningBottom - 10, behavior: 'auto' });
+                    }
+                }
+            }
+        }
+
         // Add scroll event listener
-        window.addEventListener('scroll', trackScroll);
+        window.addEventListener('scroll', function() {
+            trackScroll();
+            enforceStickyGradientBoundary();
+        });
             </script>
 
 </body>
