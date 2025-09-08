@@ -2052,26 +2052,7 @@
                     }
                 }
                 
-                // Debug scroll position information
-                const maxScroll = documentHeight - windowHeight;
-                if (scrollY % 100 < 10) { // Only log every ~100px of scroll
-                    console.log('=== SCROLL DEBUG ===');
-                    console.log('Current scrollY:', scrollY);
-                    console.log('Document height:', documentHeight);
-                    console.log('Window height:', windowHeight);
-                    console.log('Max scroll:', maxScroll);
-                    console.log('Scroll progress:', scrollProgress);
-                    console.log('Scroll percentage:', (scrollY / maxScroll * 100).toFixed(1) + '%');
-                    
-                    // Check if document height is changing (this shouldn't happen!)
-                    if (window.lastDocumentHeight && window.lastDocumentHeight !== documentHeight) {
-                        console.log('🚨 DOCUMENT HEIGHT CHANGED!');
-                        console.log('Previous height:', window.lastDocumentHeight);
-                        console.log('New height:', documentHeight);
-                        console.log('Difference:', documentHeight - window.lastDocumentHeight);
-                    }
-                    window.lastDocumentHeight = documentHeight;
-                }
+                // Scroll behavior now working correctly - debug messages removed
             }
             
             window.addEventListener('scroll', handleScroll);
