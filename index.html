@@ -2049,6 +2049,15 @@
                     console.log('Max scroll:', maxScroll);
                     console.log('Scroll progress:', scrollProgress);
                     console.log('Scroll percentage:', (scrollY / maxScroll * 100).toFixed(1) + '%');
+                    
+                    // Check if document height is changing (this shouldn't happen!)
+                    if (window.lastDocumentHeight && window.lastDocumentHeight !== documentHeight) {
+                        console.log('🚨 DOCUMENT HEIGHT CHANGED!');
+                        console.log('Previous height:', window.lastDocumentHeight);
+                        console.log('New height:', documentHeight);
+                        console.log('Difference:', documentHeight - window.lastDocumentHeight);
+                    }
+                    window.lastDocumentHeight = documentHeight;
                 }
             }
             
