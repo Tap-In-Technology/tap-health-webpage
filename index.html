@@ -1734,6 +1734,43 @@
             }
         });
 
+        // Debug background elements
+        function debugBackgrounds() {
+            const lightningBg = document.querySelector('.lightning-page-bg');
+            const gradientOverlay = document.querySelector('.gradient-overlay');
+            const lightningSections = document.querySelectorAll('.lightning-bg');
+            
+            console.log("=== BACKGROUND DEBUG ===");
+            console.log("Lightning page background element:", lightningBg);
+            console.log("Gradient overlay element:", gradientOverlay);
+            console.log("Lightning sections found:", lightningSections.length);
+            
+            if (lightningBg) {
+                const computedStyle = window.getComputedStyle(lightningBg);
+                console.log("Lightning background computed styles:");
+                console.log("- background-image:", computedStyle.backgroundImage);
+                console.log("- background-attachment:", computedStyle.backgroundAttachment);
+                console.log("- position:", computedStyle.position);
+                console.log("- z-index:", computedStyle.zIndex);
+            }
+            
+            if (gradientOverlay) {
+                const computedStyle = window.getComputedStyle(gradientOverlay);
+                console.log("Gradient overlay computed styles:");
+                console.log("- background-image:", computedStyle.backgroundImage);
+                console.log("- background-attachment:", computedStyle.backgroundAttachment);
+                console.log("- position:", computedStyle.position);
+                console.log("- z-index:", computedStyle.zIndex);
+            }
+            
+            if (lightningSections.length > 0) {
+                const computedStyle = window.getComputedStyle(lightningSections[0]);
+                console.log("Lightning section computed styles:");
+                console.log("- background-image:", computedStyle.backgroundImage);
+                console.log("- background-attachment:", computedStyle.backgroundAttachment);
+            }
+        }
+
         // Simple scroll tracking for debugging (optional)
         function trackScroll() {
             const scrolled = document.documentElement.scrollTop || window.pageYOffset;
@@ -1746,6 +1783,11 @@
                 console.log("scrolled to bottom");
             }
         }
+
+        // Run debug on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(debugBackgrounds, 1000); // Wait 1 second for everything to load
+        });
 
         // Add scroll event listener
         window.addEventListener('scroll', trackScroll);
