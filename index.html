@@ -1560,13 +1560,18 @@
         <!-- Gradient overlay for blending -->
         <div class="lightning-gradient-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 20%, rgba(0,0,0,0) 80%, rgba(0,0,0,0.8) 100%); z-index: 2; pointer-events: none;"></div>
         
+        <!-- NFC Sticker above ready header -->
+        <div class="nfc-sticker-above-header" style="position: absolute; top: 35%; left: 50%; transform: translateX(-50%); z-index: 25; text-align: center; pointer-events: none; opacity: 1; transition: opacity 0.5s ease;">
+            <img src="/media/NFCTapSticker.png" alt="NFC Tap Sticker" style="width: 80px; height: 80px; opacity: 0.8;">
+                            </div>
+        
         <!-- Header that transitions out as phone transitions in -->
         <div class="ready-header" style="position: absolute; top: 45%; left: 50%; transform: translateX(-50%); z-index: 25; text-align: center; pointer-events: none; opacity: 1; transition: opacity 0.5s ease; width: 100%;">
             <h2 class="text-white font-bold text-center leading-tight" style="text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5); font-size: clamp(1.5rem, 5vw, 5rem); font-family: 'Playfair Display', serif; margin: 0;">
                 Ready to transform your forms?
             </h2>
-                            </div>
-        
+                        </div>
+
         <!-- Header over phone - positioned in lightning background -->
         <div class="phone-header" style="position: absolute; bottom: 45%; left: 50%; transform: translateX(-50%); z-index: 25; text-align: center; pointer-events: none; opacity: 0; transition: opacity 0.5s ease; width: 100%;">
             <h2 class="text-white font-bold text-center leading-tight" style="text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5); font-size: clamp(1.8rem, 6vw, 6rem); font-family: 'Playfair Display', serif; margin: 0;">
@@ -2003,8 +2008,12 @@
                     
                     // Transition ready header out as phone transitions in
                     const readyHeader = document.querySelector('.ready-header');
+                    const nfcSticker = document.querySelector('.nfc-sticker-above-header');
                     if (readyHeader) {
                         readyHeader.style.opacity = (1 - transitionProgress).toString();
+                    }
+                    if (nfcSticker) {
+                        nfcSticker.style.opacity = (1 - transitionProgress).toString();
                     }
                     
                     // Show phone header when fully transitioned
@@ -2034,8 +2043,12 @@
                     }
                     
                     const readyHeader = document.querySelector('.ready-header');
+                    const nfcSticker = document.querySelector('.nfc-sticker-above-header');
                     if (readyHeader) {
                         readyHeader.style.opacity = '1';
+                    }
+                    if (nfcSticker) {
+                        nfcSticker.style.opacity = '1';
                     }
                 }
                 
