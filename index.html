@@ -1978,6 +1978,8 @@
                     // Calculate the exact scroll position where phone transition completes
                     const phoneTransitionEndScroll = maxScroll * 0.95; // 95% of max scroll
                     
+                    console.log('Scroll boundary check - Current:', scrollY, 'Max allowed:', phoneTransitionEndScroll, 'Max scroll:', maxScroll);
+                    
                     // More aggressive scroll boundary - stop when phone transition completes
                     if (scrollY >= phoneTransitionEndScroll) {
                         console.log('SCROLL BOUNDARY: Preventing scroll past phone transition completion');
