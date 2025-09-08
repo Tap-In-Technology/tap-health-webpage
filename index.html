@@ -92,7 +92,9 @@
         
         /* Lightning background styling from legacy-2 */
         .lightning-bg {
-            background-image: url('/media/lightning_bg.jpg');
+            background-image: 
+                linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 20%, rgba(0,0,0,0) 80%, rgba(0,0,0,0.8) 100%),
+                url('/media/lightning_bg.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -1640,9 +1642,6 @@
     
     <!-- Lightning background section with gradient overlay -->
     <section class="lightning-bg relative" style="min-height: 100vh; position: relative; z-index: 5;">
-        <!-- Black to transparent to black vertical gradient overlay -->
-        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 20%, rgba(0,0,0,0) 80%, rgba(0,0,0,0.8) 100%); z-index: 2; pointer-events: none;"></div>
-        
         <!-- Tap NFC Sticker and heading in the center -->
         <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10; text-align: center;">
             <!-- Tap NFC Sticker -->
@@ -1652,14 +1651,11 @@
             <h2 style="color: white; font-size: clamp(2rem, 5vw, 4rem); font-weight: 700; font-family: 'Playfair Display', serif; text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5); margin: 0;">
                 Ready to transform your forms?
             </h2>
-                            </div>
+        </div>
     </section>
 
     <!-- Lightning 2 section -->
     <section class="lightning-bg relative" style="min-height: 100vh; position: relative; z-index: 5;">
-        <!-- Black to transparent to black vertical gradient overlay -->
-        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 20%, rgba(0,0,0,0) 80%, rgba(0,0,0,0.8) 100%); z-index: 2; pointer-events: none;"></div>
-        
         <!-- Content placeholder for Lightning 2 -->
         <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10; text-align: center;">
             <!-- Lightning 2 content will go here -->
@@ -1747,94 +1743,21 @@
             }
         });
 
-        // Scroll tracking functionality
-        let hasReachedBottom = false;
-        let lastScrollY = 0;
-        let bottomScrollPosition = 0;
-
+        // Simple scroll tracking for debugging (optional)
         function trackScroll() {
             const scrolled = document.documentElement.scrollTop || window.pageYOffset;
             const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight;
+            const maxScroll = documentHeight - windowHeight;
             
-            // Get the lightning section's bottom position (before the new section)
-            const lightningSection = document.querySelector('.lightning-bg');
-            if (!lightningSection) return;
-            
-            const lightningRect = lightningSection.getBoundingClientRect();
-            const lightningBottom = scrolled + lightningRect.bottom;
-            
-            // Check if user has scrolled to the lightning section's bottom
-            if (scrolled >= lightningBottom - 10) { // 10px buffer for bottom detection
-                if (!hasReachedBottom) {
-                    console.log("scrolled to lightning section bottom");
-                    hasReachedBottom = true;
-                    bottomScrollPosition = scrolled; // Store the bottom position
-                    // Make gradient sticky when at lightning section bottom
-                    makeGradientSticky(true);
-                }
-            }
-            
-            // If user has reached lightning section bottom and now scrolls up beyond it
-            if (hasReachedBottom && scrolled < lightningBottom - 10) {
-                console.log("scrolled back up beyond lightning section bottom");
-                hasReachedBottom = false; // Reset so it can detect bottom again
-                // Remove sticky gradient when scrolling up beyond lightning section bottom
-                makeGradientSticky(false);
-            }
-            
-            lastScrollY = scrolled;
-        }
-
-        // Function to make gradient sticky or not
-        function makeGradientSticky(isSticky) {
-            // Target only the first lightning section's gradient (Lightning 1)
-            const firstLightningSection = document.querySelector('.lightning-bg');
-            const gradientOverlay = firstLightningSection ? firstLightningSection.querySelector('div[style*="linear-gradient"]') : null;
-            
-            if (gradientOverlay) {
-                if (isSticky) {
-                    gradientOverlay.style.position = 'fixed';
-                    gradientOverlay.style.top = '0';
-                    gradientOverlay.style.left = '0';
-                    gradientOverlay.style.width = '100%';
-                    gradientOverlay.style.height = '100vh';
-                    gradientOverlay.style.zIndex = '999';
-                    gradientOverlay.style.pointerEvents = 'auto'; // Allow interaction
-                    console.log("Lightning 1 gradient made sticky");
-                } else {
-                    gradientOverlay.style.position = 'absolute';
-                    gradientOverlay.style.top = '0';
-                    gradientOverlay.style.left = '0';
-                    gradientOverlay.style.width = '100%';
-                    gradientOverlay.style.height = '100%';
-                    gradientOverlay.style.zIndex = '2';
-                    gradientOverlay.style.pointerEvents = 'none'; // No interaction
-                    console.log("Lightning 1 gradient unstickied");
-                }
-            }
-        }
-
-        // Function to enforce scroll boundary when gradient is sticky
-        function enforceStickyGradientBoundary() {
-            if (hasReachedBottom) {
-                const firstLightningSection = document.querySelector('.lightning-bg');
-                if (firstLightningSection) {
-                    const lightningRect = firstLightningSection.getBoundingClientRect();
-                    const lightningBottom = window.scrollY + lightningRect.bottom;
-                    
-                    // Prevent scrolling beyond lightning section bottom when gradient is sticky
-                    if (window.scrollY > lightningBottom - 10) {
-                        window.scrollTo({ top: lightningBottom - 10, behavior: 'auto' });
-                    }
-                }
+            // Check if user has scrolled to the bottom
+            if (scrolled >= maxScroll - 10) {
+                console.log("scrolled to bottom");
             }
         }
 
         // Add scroll event listener
-        window.addEventListener('scroll', function() {
-            trackScroll();
-            enforceStickyGradientBoundary();
-        });
+        window.addEventListener('scroll', trackScroll);
             </script>
 
 </body>
