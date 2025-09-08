@@ -1719,8 +1719,8 @@
         };
 
         function switchPhoneImage(imageType) {
-            const phoneImg = document.getElementById('landing-phone');
-            const phoneContainer = document.getElementById('landing-phone-container');
+            const phoneImg = document.getElementById('phone');
+            const phoneContainer = document.getElementById('phone-container');
             
             if (phoneImg && PHONE_IMAGES[imageType]) {
                 phoneImg.src = PHONE_IMAGES[imageType];
@@ -1987,8 +1987,8 @@
                 const headerElement = document.getElementById('landing-text-container');
             
             // Phone fade-in on scroll
-            const phoneContainer = document.getElementById('landing-phone-container');
-            const landingSection = document.querySelector('.landing-page-section');
+            const phoneContainer = document.getElementById('phone-container');
+            const landingSection = document.querySelector('.lightning-bg');
             
             // Debug: Check if elements exist
             console.log('=== ELEMENT INITIALIZATION ===');
