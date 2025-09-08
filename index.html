@@ -1701,7 +1701,41 @@
                 behavior: 'smooth'
             });
         }
-            </script>
+
+        // Scroll tracking functionality
+        let hasReachedBottom = false;
+        let lastScrollY = 0;
+
+        function trackScroll() {
+            const scrolled = document.documentElement.scrollTop || window.pageYOffset;
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight;
+            const maxScroll = documentHeight - windowHeight;
+            
+            // Check if user has scrolled to the bottom
+            if (scrolled >= maxScroll - 10) { // 10px buffer for bottom detection
+                if (!hasReachedBottom) {
+                    console.log("scrolled to bottom");
+                    hasReachedBottom = true;
+                }
+            }
+            
+            // If user has reached bottom and now scrolls up
+            if (hasReachedBottom && scrolled < lastScrollY) {
+                const scrollUpPercentage = ((lastScrollY - scrolled) / maxScroll) * 100;
+                
+                if (scrollUpPercentage >= 5) {
+                    console.log("up 5%");
+                    hasReachedBottom = false; // Reset so it can detect bottom again
+                }
+            }
+            
+            lastScrollY = scrolled;
+        }
+
+        // Add scroll event listener
+        window.addEventListener('scroll', trackScroll);
+    </script>
 
 </body>
 
