@@ -1877,6 +1877,13 @@
         <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10; text-align: center;">
             <!-- Lightning 2 content will go here -->
                             </div>
+        
+        <!-- Main heading text that appears over phone when fully transitioned -->
+        <div class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30" id="phone-text-container" style="opacity: 0; transition: opacity 1s ease-in-out;">
+            <h1 class="text-white font-bold text-center leading-tight" style="text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5); font-size: clamp(1.5rem, 6vw, 6rem); font-family: 'Playfair Display', serif;">
+                One Tap is all it takes.
+            </h1>
+        </div>
     </section>
     
     <!-- Footer -->
@@ -2228,10 +2235,20 @@
             const opacity = scrollProgress; // 0% scroll = 0 opacity, 100% scroll = 1 opacity
             
             // Apply the animation - same as legacy-2
-                    phoneContainer.style.opacity = opacity.toString();
-                    phoneContainer.style.top = currentTop + '%';
-                    phoneContainer.style.left = '50%';
-                    phoneContainer.style.transform = 'translate(-50%, -50%)';
+            phoneContainer.style.opacity = opacity.toString();
+            phoneContainer.style.top = currentTop + '%';
+            phoneContainer.style.left = '50%';
+            phoneContainer.style.transform = 'translate(-50%, -50%)';
+            
+            // Show "One Tap is all it takes" text when phone is fully visible
+            const phoneTextContainer = document.getElementById('phone-text-container');
+            if (phoneTextContainer) {
+                if (opacity >= 0.95) {
+                    phoneTextContainer.style.opacity = '1';
+                } else {
+                    phoneTextContainer.style.opacity = '0';
+                }
+            }
             
             }
             
