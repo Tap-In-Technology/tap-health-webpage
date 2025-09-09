@@ -1834,7 +1834,7 @@
                     // Calculate fade out based on scroll past the sticky point
                     const stickyPoint = lightning1Top + (lightning1Rect.height / 2);
                     const scrollPastSticky = Math.max(0, scrolled - stickyPoint);
-                    const fadeDistance = windowHeight * 0.02; // Fade over 2% of viewport height (ultra fast fade)
+                    const fadeDistance = windowHeight * 0.005; // Fade over 0.5% of viewport height (extremely aggressive fade)
                     const fadeProgress = Math.min(scrollPastSticky / fadeDistance, 1);
                     const opacity = 1 - fadeProgress;
                     
