@@ -2252,17 +2252,14 @@
             
             }
             
-        // Lightning 1 content - show when phone is fully transitioned (like new header)
+        // Lightning 1 content - show when phone is fully visible
         function updateLightning1Content() {
             const scrolled = document.documentElement.scrollTop || window.pageYOffset;
-            const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-            const scrollProgress = Math.min(scrolled / maxScroll, 1);
-            
-            // Show "Ready to transform" content when phone is fully visible (same as new header)
+            const phoneContainer = document.getElementById('phone-container');
             const lightning1Section = document.querySelector('.lightning-bg');
             const lightning1Content = lightning1Section ? lightning1Section.querySelector('div[style*="transform: translate(-50%, -50%)"]') : null;
             
-            if (lightning1Content) {
+            if (lightning1Content && phoneContainer) {
                 // Keep content in normal position, just control opacity
                 lightning1Content.style.position = 'absolute';
                 lightning1Content.style.top = '50%';
@@ -2270,8 +2267,9 @@
                 lightning1Content.style.transform = 'translate(-50%, -50%)';
                 lightning1Content.style.zIndex = '10';
                 
-                // Show when phone is fully visible (same threshold as new header)
-                if (scrollProgress >= 0.95) {
+                // Show when phone is fully visible (check phone opacity)
+                const phoneOpacity = parseFloat(phoneContainer.style.opacity) || 0;
+                if (phoneOpacity >= 0.95) {
                     lightning1Content.style.opacity = '1';
                 } else {
                     lightning1Content.style.opacity = '0';
