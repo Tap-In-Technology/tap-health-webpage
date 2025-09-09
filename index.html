@@ -1942,6 +1942,14 @@
                     // Prevent scrolling when contact form is active
                     document.body.style.overflow = 'hidden';
                     
+                    // Transition contact phone up to center
+                    setTimeout(() => {
+                        phoneContainer.style.transition = 'all 0.8s ease-in-out';
+                        phoneContainer.style.top = '50%';
+                        phoneContainer.style.left = '50%';
+                        phoneContainer.style.transform = 'translate(-50%, -50%)';
+                    }, 100); // Small delay to ensure image is loaded
+                    
                     // Hide gleam element
                     const gleamElement = phoneContainer.querySelector('.phone-gleam');
                     if (gleamElement) {
@@ -1984,13 +1992,40 @@
                         `;
                     }
                 } else {
-                    // Exiting contact form mode
+                    // Exiting contact form mode - transition back down first
+                    phoneContainer.style.transition = 'all 0.8s ease-in-out';
+                    
+                    // Get current phone position from updatePhoneOpacity function
+                    const scrolled = document.documentElement.scrollTop || window.pageYOffset;
+                    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+                    const scrollProgress = Math.min(scrolled / maxScroll, 1);
+                    
+                    function easeInOutCubic(t) {
+                        return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+                    }
+                    
+                    const easedProgress = easeInOutCubic(scrollProgress);
+                    const startTop = 80;
+                    const endTop = 65;
+                    const phoneProgress = Math.min(scrollProgress / 0.5, 1);
+                    const currentTop = startTop + (endTop - startTop) * phoneProgress;
+                    
+                    // Transition back to original position
+                    phoneContainer.style.top = currentTop + '%';
+                    phoneContainer.style.left = '50%';
+                    phoneContainer.style.transform = 'translate(-50%, -50%)';
+                    
+                    // After transition completes, switch back to default phone
+                    setTimeout(() => {
                     phoneContainer.classList.remove('contact-form-mode');
                     document.getElementById('contact-form-interactive-overlay').style.display = 'none';
                     
-                    // Restore original z-index and scrolling
-                    phoneContainer.style.zIndex = '20'; // Back to original z-index
-                    document.body.style.overflow = ''; // Restore scrolling
+                        // Restore original z-index and scrolling
+                        phoneContainer.style.zIndex = '20'; // Back to original z-index
+                        document.body.style.overflow = ''; // Restore scrolling
+                        
+                        // Remove transition to allow normal phone animation
+                        phoneContainer.style.transition = 'none';
                     
                     // Change Go Back button back to Get in Touch button
                     let goBackBtn = document.querySelector('button[onclick="goBackToDefault()"]:not(.phone-form-button)');
@@ -2007,29 +2042,29 @@
                         goBackBtn.textContent = 'Get in Touch';
                         goBackBtn.setAttribute('onclick', 'openContactForm()');
                     }
-                    
                     // Remove glow
                     phoneImg.classList.remove('contact-form-glow');
                     phoneImg.onload = null;
                     
-                    // Restore original upper-right gradient
-                    const gradientDiv = phoneContainer.querySelector('.phone-gradient');
-                    if (gradientDiv) {
-                        gradientDiv.style.background = `
-                            radial-gradient(ellipse at 85% 15%, 
-                                transparent 0%, 
-                                transparent 20%, 
-                                rgba(0, 0, 0, 0.1) 35%, 
-                                rgba(0, 0, 0, 0.4) 50%, 
-                                rgba(0, 0, 0, 0.8) 70%, 
-                                rgba(0, 0, 0, 0.95) 100%),
-                            linear-gradient(to bottom, 
-                                transparent 50%, 
-                                rgba(0, 0, 0, 0.3) 70%, 
-                                rgba(0, 0, 0, 0.7) 85%, 
-                                rgba(0, 0, 0, 1) 100%)
-                        `;
-                    }
+                        // Restore original upper-right gradient
+                        const gradientDiv = phoneContainer.querySelector('.phone-gradient');
+                        if (gradientDiv) {
+                            gradientDiv.style.background = `
+                                radial-gradient(ellipse at 85% 15%, 
+                                    transparent 0%, 
+                                    transparent 20%, 
+                                    rgba(0, 0, 0, 0.1) 35%, 
+                                    rgba(0, 0, 0, 0.4) 50%, 
+                                    rgba(0, 0, 0, 0.8) 70%, 
+                                    rgba(0, 0, 0, 0.95) 100%),
+                                linear-gradient(to bottom, 
+                                    transparent 50%, 
+                                    rgba(0, 0, 0, 0.3) 70%, 
+                                    rgba(0, 0, 0, 0.7) 85%, 
+                                    rgba(0, 0, 0, 1) 100%)
+                            `;
+                        }
+                    }, 800); // Wait for transition to complete
                 }
             }
         }
@@ -2072,7 +2107,6 @@
                 return;
             }
             
-            console.log('Phone form submitted:', { name, phone, email, message });
             exitingContactForm();
             
             const successPopup = document.getElementById('successPopup');
@@ -2092,7 +2126,6 @@
                 return;
             }
             
-            console.log('Phone form submitted:', { name, phone, email, message });
             exitingContactForm();
             
             const successPopup = document.getElementById('successPopup');
@@ -2162,35 +2195,6 @@
             const gradientOverlay = document.querySelector('.gradient-overlay');
             const lightningSections = document.querySelectorAll('.lightning-bg');
             
-            console.log("=== BACKGROUND DEBUG ===");
-            console.log("Lightning page background element:", lightningBg);
-            console.log("Gradient overlay element:", gradientOverlay);
-            console.log("Lightning sections found:", lightningSections.length);
-            
-            if (lightningBg) {
-                const computedStyle = window.getComputedStyle(lightningBg);
-                console.log("Lightning background computed styles:");
-                console.log("- background-image:", computedStyle.backgroundImage);
-                console.log("- background-attachment:", computedStyle.backgroundAttachment);
-                console.log("- position:", computedStyle.position);
-                console.log("- z-index:", computedStyle.zIndex);
-            }
-            
-            if (gradientOverlay) {
-                const computedStyle = window.getComputedStyle(gradientOverlay);
-                console.log("Gradient overlay computed styles:");
-                console.log("- background-image:", computedStyle.backgroundImage);
-                console.log("- background-attachment:", computedStyle.backgroundAttachment);
-                console.log("- position:", computedStyle.position);
-                console.log("- z-index:", computedStyle.zIndex);
-            }
-            
-            if (lightningSections.length > 0) {
-                const computedStyle = window.getComputedStyle(lightningSections[0]);
-                console.log("Lightning section computed styles:");
-                console.log("- background-image:", computedStyle.backgroundImage);
-                console.log("- background-attachment:", computedStyle.backgroundAttachment);
-            }
         }
 
         // Phone animation - exact same as legacy-2
@@ -2199,11 +2203,8 @@
                 const phoneContainer = document.getElementById('phone-container');
                 
             if (!phoneContainer) {
-                console.log('❌ PHONE CONTAINER NOT FOUND!');
                 return;
             }
-            
-            console.log('✅ PHONE CONTAINER FOUND');
             // Continuous phone animation based on scroll percentage
             const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
             const scrollProgress = Math.min(scrolled / maxScroll, 1); // 0 to 1
@@ -2233,8 +2234,6 @@
                     phoneContainer.style.left = '50%';
                     phoneContainer.style.transform = 'translate(-50%, -50%)';
             
-            // Console logs for phone position debugging
-            console.log(`📱 PHONE DEBUG - Scroll: ${(scrollProgress * 100).toFixed(1)}% | ScrollProgress: ${scrollProgress.toFixed(3)} | Opacity: ${opacity.toFixed(3)} | PhoneContainer Opacity: ${phoneContainer.style.opacity}`);
             }
             
         // Lightning 1 content sticky animation with fade out
@@ -2270,14 +2269,6 @@
                     
                     lightning1Content.style.opacity = opacity.toString();
                     
-                    // Debug logging
-                    console.log(`📌 LIGHTNING 1 DEBUG - StickyPoint: ${stickyPoint.toFixed(1)} | Scrolled: ${scrolled.toFixed(1)} | ScrollPast: ${scrollPastEarly.toFixed(1)} | FadeProgress: ${fadeProgress.toFixed(3)} | Opacity: ${opacity.toFixed(3)}`);
-                    
-                    if (fadeProgress > 0) {
-                        console.log(`📌 LIGHTNING 1 CONTENT FADING - Opacity: ${opacity.toFixed(3)}`);
-                    } else {
-                        console.log('📌 LIGHTNING 1 CONTENT MADE STICKY');
-                        }
                     } else {
                     // Keep content in normal position
                     lightning1Content.style.position = 'absolute';
@@ -2297,10 +2288,6 @@
                 const documentHeight = document.documentElement.scrollHeight;
                 const maxScroll = documentHeight - windowHeight;
                 
-            // Check if user has scrolled to the bottom
-            if (scrolled >= maxScroll - 10) {
-                console.log("scrolled to bottom");
-            }
         }
 
         // Run debug on page load
