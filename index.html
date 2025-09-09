@@ -2283,7 +2283,7 @@
             const scrolled = document.documentElement.scrollTop || window.pageYOffset;
             const phoneContainer = document.getElementById('phone-container');
             const lightning1Section = document.querySelector('.lightning-bg');
-            const lightning1Content = lightning1Section ? lightning1Section.querySelector('div[style*="transform: translate(-50%, -50%)"]') : null;
+            const lightning1Content = lightning1Section ? lightning1Section.querySelector('div[style*="position: absolute"]') : null;
             
             if (lightning1Content && phoneContainer) {
                 // Keep content in normal position, just control opacity
@@ -2295,10 +2295,14 @@
                 
                 // Show when phone is fully visible (check phone opacity)
                 const phoneOpacity = parseFloat(phoneContainer.style.opacity) || 0;
+                console.log('🔍 LIGHTNING 1 DEBUG - Phone Opacity:', phoneOpacity, '| Content Element:', lightning1Content);
+                
                 if (phoneOpacity >= 0.95) {
                     lightning1Content.style.opacity = '1';
+                    console.log('✅ LIGHTNING 1 CONTENT SHOWN');
                 } else {
                     lightning1Content.style.opacity = '0';
+                    console.log('❌ LIGHTNING 1 CONTENT HIDDEN');
                 }
             }
         }
