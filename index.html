@@ -2252,47 +2252,29 @@
             
             }
             
-        // Lightning 1 content sticky animation with fade out
+        // Lightning 1 content - show when phone is fully transitioned (like new header)
         function updateLightning1Content() {
-                const scrolled = document.documentElement.scrollTop || window.pageYOffset;
+            const scrolled = document.documentElement.scrollTop || window.pageYOffset;
+            const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollProgress = Math.min(scrolled / maxScroll, 1);
+            
+            // Show "Ready to transform" content when phone is fully visible (same as new header)
             const lightning1Section = document.querySelector('.lightning-bg');
             const lightning1Content = lightning1Section ? lightning1Section.querySelector('div[style*="transform: translate(-50%, -50%)"]') : null;
             
-            if (lightning1Content && lightning1Section) {
-                const lightning1Rect = lightning1Section.getBoundingClientRect();
-                const lightning1Top = scrolled + lightning1Rect.top;
-                const windowHeight = window.innerHeight;
+            if (lightning1Content) {
+                // Keep content in normal position, just control opacity
+                lightning1Content.style.position = 'absolute';
+                lightning1Content.style.top = '50%';
+                lightning1Content.style.left = '50%';
+                lightning1Content.style.transform = 'translate(-50%, -50%)';
+                lightning1Content.style.zIndex = '10';
                 
-                // Check if Lightning 1 content has reached center of screen
-                const contentCenter = lightning1Top + (lightning1Rect.height / 2);
-                const screenCenter = scrolled + (windowHeight / 2);
-                
-                if (contentCenter <= screenCenter) {
-                    // Make content sticky
-                    lightning1Content.style.position = 'fixed';
-                    lightning1Content.style.top = '50%';
-                    lightning1Content.style.left = '50%';
-                    lightning1Content.style.transform = 'translate(-50%, -50%)';
-                    lightning1Content.style.zIndex = '15';
-                    
-                    // Calculate fade out based on scroll past the sticky point - start fading much earlier
-                    const stickyPoint = lightning1Top + (lightning1Rect.height / 2);
-                    const earlyFadeStart = stickyPoint - (windowHeight * 0.4); // Start fading 40% viewport height before sticky point
-                    const scrollPastEarly = Math.max(0, scrolled - earlyFadeStart);
-                    const fadeDistance = windowHeight * 0.02; // Fade over 2% of viewport height (slower but still fast)
-                    const fadeProgress = Math.min(scrollPastEarly / fadeDistance, 1);
-                    const opacity = 1 - fadeProgress;
-                    
-                    lightning1Content.style.opacity = opacity.toString();
-                    
-                    } else {
-                    // Keep content in normal position
-                    lightning1Content.style.position = 'absolute';
-                    lightning1Content.style.top = '50%';
-                    lightning1Content.style.left = '50%';
-                    lightning1Content.style.transform = 'translate(-50%, -50%)';
-                    lightning1Content.style.zIndex = '10';
+                // Show when phone is fully visible (same threshold as new header)
+                if (scrollProgress >= 0.95) {
                     lightning1Content.style.opacity = '1';
+                } else {
+                    lightning1Content.style.opacity = '0';
                 }
             }
         }
