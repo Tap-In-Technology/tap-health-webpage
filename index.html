@@ -1790,10 +1790,13 @@
                     const currentTop = startTop + (endTop - startTop) * easedProgress;
                     
                 // Apply the animation - same as legacy-2
-                    phoneContainer.style.opacity = opacity.toString();
-                    phoneContainer.style.top = currentTop + '%';
-                    phoneContainer.style.left = '50%';
-                    phoneContainer.style.transform = 'translate(-50%, -50%)';
+                phoneContainer.style.opacity = opacity.toString();
+                phoneContainer.style.top = currentTop + '%';
+                phoneContainer.style.left = '50%';
+                phoneContainer.style.transform = 'translate(-50%, -50%)';
+                
+                // Console logs for phone position debugging
+                console.log(`📱 PHONE POSITION - Scroll Progress: ${(scrollProgress * 100).toFixed(1)}% | Top: ${currentTop.toFixed(1)}% | Opacity: ${opacity.toFixed(3)}`);
                 }
             }
             
