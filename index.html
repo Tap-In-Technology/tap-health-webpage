@@ -1625,8 +1625,8 @@
     <!-- Gradient overlay section with phone reveal - fades from black to transparent -->
     <section style="height: 200px; background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 30%, rgba(0,0,0,0.4) 70%, rgba(0,0,0,0) 100%); position: relative; z-index: 4; overflow: hidden;">
         <!-- Phone coming in from bottom -->
-        <div id="reveal-phone" style="position: absolute; bottom: -200px; left: 50%; transform: translateX(-50%); transition: bottom 0.8s ease-out; z-index: 5;">
-            <img src="./media/phone.png" alt="Phone" style="width: 200px; height: auto; opacity: 0.9;">
+        <div id="reveal-phone" style="position: absolute; bottom: -200px; left: 50%; transform: translateX(-50%); opacity: 0; z-index: 5;">
+            <img src="./media/phone.png" alt="Phone" style="width: 200px; height: auto;">
         </div>
     </section>
     
@@ -1764,13 +1764,13 @@
             }
         }
 
-        // Phone reveal animation
+        // Phone reveal animation - inspired by legacy-2
         function animatePhoneReveal() {
             const revealPhone = document.getElementById('reveal-phone');
             if (!revealPhone) return;
             
-                const scrolled = document.documentElement.scrollTop || window.pageYOffset;
-                    const windowHeight = window.innerHeight;
+            const scrolled = document.documentElement.scrollTop || window.pageYOffset;
+            const windowHeight = window.innerHeight;
             const documentHeight = document.documentElement.scrollHeight;
             
             // Get the gradient section position
@@ -1782,13 +1782,26 @@
             const sectionHeight = 200; // Height of gradient section
             const scrollProgress = Math.max(0, Math.min(1, (scrolled - gradientTop + windowHeight) / sectionHeight));
             
-            // Animate phone position based on scroll progress
-            const phoneBottom = -200 + (scrollProgress * 250); // Move from -200px to 50px
-            revealPhone.style.bottom = phoneBottom + 'px';
+            // Smooth easing function - same as legacy-2
+            function easeInOutCubic(t) {
+                return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+            }
             
-            // Add some rotation for effect
-            const rotation = scrollProgress * 10; // Rotate up to 10 degrees
-            revealPhone.style.transform = `translateX(-50%) rotate(${rotation}deg)`;
+            const easedProgress = easeInOutCubic(scrollProgress);
+            
+            // Opacity: 0 at start, 1 at end - same as legacy-2
+            const opacity = easedProgress;
+            
+            // Position: start at -200px (hidden), end at 50px (revealed)
+            const startBottom = -200;  // Hidden below section
+            const endBottom = 50;      // Revealed position
+            const currentBottom = startBottom + (endBottom - startBottom) * easedProgress;
+            
+            // Apply the animation - same style as legacy-2
+            revealPhone.style.opacity = opacity.toString();
+            revealPhone.style.bottom = currentBottom + 'px';
+            revealPhone.style.left = '50%';
+            revealPhone.style.transform = 'translateX(-50%)';
         }
 
         // Simple scroll tracking for debugging (optional)
