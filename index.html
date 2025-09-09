@@ -1784,19 +1784,22 @@
                 // Opacity: 0 at top, 1 at bottom - same as legacy-2
                     const opacity = easedProgress;
                     
-                // Position: 80% at top (just off-screen), middle of Lightning 2 at bottom
+                // Position: 80% at top (just off-screen), final aligned position
                     const startTop = 80;  // 80% (just off-screen, visible immediately)
-                const endTop = 50;    // 50% (middle of Lightning 2 section)
-                    const currentTop = startTop + (endTop - startTop) * easedProgress;
+                const endTop = 50;    // 50% (final position - lightning aligned)
+                
+                // Phone reaches final position at 70% scroll progress, then stays there
+                const phoneProgress = Math.min(scrollProgress / 0.7, 1); // Complete by 70% scroll
+                const currentTop = startTop + (endTop - startTop) * phoneProgress;
                     
                 // Apply the animation - same as legacy-2
-                phoneContainer.style.opacity = opacity.toString();
-                phoneContainer.style.top = currentTop + '%';
-                phoneContainer.style.left = '50%';
-                phoneContainer.style.transform = 'translate(-50%, -50%)';
+                    phoneContainer.style.opacity = opacity.toString();
+                    phoneContainer.style.top = currentTop + '%';
+                    phoneContainer.style.left = '50%';
+                    phoneContainer.style.transform = 'translate(-50%, -50%)';
                 
                 // Console logs for phone position debugging
-                console.log(`📱 PHONE POSITION - Scroll Progress: ${(scrollProgress * 100).toFixed(1)}% | Top: ${currentTop.toFixed(1)}% | Opacity: ${opacity.toFixed(3)}`);
+                console.log(`📱 PHONE POSITION - Scroll: ${(scrollProgress * 100).toFixed(1)}% | Phone Progress: ${(phoneProgress * 100).toFixed(1)}% | Top: ${currentTop.toFixed(1)}% | Opacity: ${opacity.toFixed(3)}`);
                 }
             }
             
