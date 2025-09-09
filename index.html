@@ -2148,19 +2148,19 @@
                     
                 const easedProgress = easeInOutCubic(scrollProgress);
                     
-                // Opacity: 0 at top, 1 at bottom - same as legacy-2
-                // But make it more opaque as phone moves up (higher phoneProgress = more opaque)
-                // Add fade-in effect: start completely transparent, fade in as it moves up
-                const fadeInProgress = Math.min(phoneProgress * 2, 1); // Fade in over first half of movement
-                const opacity = Math.min(easedProgress * 1.5 * fadeInProgress, 1); // Boost opacity by 50% for more dramatic effect
-                    
                 // Position: 80% at top (just off-screen), final aligned position
-                    const startTop = 80;  // 80% (just off-screen, visible immediately)
+                const startTop = 80;  // 80% (just off-screen, visible immediately)
                 const endTop = 65;    // 65% (lower position - can overlap footer)
                 
                 // PARALLAX EFFECT: Phone reaches final position at 50% scroll progress (was 70%)
                 const phoneProgress = Math.min(scrollProgress / 0.5, 1); // Complete by 50% scroll (parallax effect)
                 const currentTop = startTop + (endTop - startTop) * phoneProgress;
+                
+                // Opacity: 0 at top, 1 at bottom - same as legacy-2
+                // But make it more opaque as phone moves up (higher phoneProgress = more opaque)
+                // Add fade-in effect: start completely transparent, fade in as it moves up
+                const fadeInProgress = Math.min(phoneProgress * 2, 1); // Fade in over first half of movement
+                const opacity = Math.min(easedProgress * 1.5 * fadeInProgress, 1); // Boost opacity by 50% for more dramatic effect
                 
                 // Apply the animation - same as legacy-2
                     phoneContainer.style.opacity = opacity.toString();
