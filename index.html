@@ -2132,49 +2132,48 @@
         }
 
         // Phone animation - exact same as legacy-2
-            function updatePhoneOpacity() {
-                const scrolled = document.documentElement.scrollTop || window.pageYOffset;
-                const phoneContainer = document.getElementById('phone-container');
+        function updatePhoneOpacity() {
+            const scrolled = document.documentElement.scrollTop || window.pageYOffset;
+            const phoneContainer = document.getElementById('phone-container');
             
             if (!phoneContainer) {
-                    console.log('❌ PHONE CONTAINER NOT FOUND!');
+                console.log('❌ PHONE CONTAINER NOT FOUND!');
                 return;
             }
             
-                console.log('✅ PHONE CONTAINER FOUND');
-                // Continuous phone animation based on scroll percentage
-                const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-                const scrollProgress = Math.min(scrolled / maxScroll, 1); // 0 to 1
-                
-                // Smooth easing function - same as legacy-2
-                    function easeInOutCubic(t) {
-                        return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-                    }
-                    
-                const easedProgress = easeInOutCubic(scrollProgress);
-                    
-                // Position: 80% at top (just off-screen), final aligned position
-                    const startTop = 80;  // 80% (just off-screen, visible immediately)
-                const endTop = 65;    // 65% (lower position - can overlap footer)
-                
-                // PARALLAX EFFECT: Phone reaches final position at 50% scroll progress (was 70%)
-                const phoneProgress = Math.min(scrollProgress / 0.5, 1); // Complete by 50% scroll (parallax effect)
-                const currentTop = startTop + (endTop - startTop) * phoneProgress;
-                
-                // Opacity: 0 at top, 1 at bottom - fade in over entire scroll range
-                // Use scrollProgress instead of phoneProgress for full scroll range fade
-                const opacity = scrollProgress; // 0% scroll = 0 opacity, 100% scroll = 1 opacity
-                
-                // Apply the animation - same as legacy-2
-                    phoneContainer.style.opacity = opacity.toString();
-                    phoneContainer.style.top = currentTop + '%';
-                    phoneContainer.style.left = '50%';
-                    phoneContainer.style.transform = 'translate(-50%, -50%)';
-                
-                // Console logs for phone position debugging
-                console.log(`📱 PHONE DEBUG - Scroll: ${(scrollProgress * 100).toFixed(1)}% | ScrollProgress: ${scrollProgress.toFixed(3)} | Opacity: ${opacity.toFixed(3)} | PhoneContainer Opacity: ${phoneContainer.style.opacity}`);
-                }
+            console.log('✅ PHONE CONTAINER FOUND');
+            // Continuous phone animation based on scroll percentage
+            const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollProgress = Math.min(scrolled / maxScroll, 1); // 0 to 1
+            
+            // Smooth easing function - same as legacy-2
+            function easeInOutCubic(t) {
+                return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
             }
+            
+            const easedProgress = easeInOutCubic(scrollProgress);
+            
+            // Position: 80% at top (just off-screen), final aligned position
+            const startTop = 80;  // 80% (just off-screen, visible immediately)
+            const endTop = 65;    // 65% (lower position - can overlap footer)
+            
+            // PARALLAX EFFECT: Phone reaches final position at 50% scroll progress (was 70%)
+            const phoneProgress = Math.min(scrollProgress / 0.5, 1); // Complete by 50% scroll (parallax effect)
+            const currentTop = startTop + (endTop - startTop) * phoneProgress;
+            
+            // Opacity: 0 at top, 1 at bottom - fade in over entire scroll range
+            // Use scrollProgress instead of phoneProgress for full scroll range fade
+            const opacity = scrollProgress; // 0% scroll = 0 opacity, 100% scroll = 1 opacity
+            
+            // Apply the animation - same as legacy-2
+            phoneContainer.style.opacity = opacity.toString();
+            phoneContainer.style.top = currentTop + '%';
+            phoneContainer.style.left = '50%';
+            phoneContainer.style.transform = 'translate(-50%, -50%)';
+            
+            // Console logs for phone position debugging
+            console.log(`📱 PHONE DEBUG - Scroll: ${(scrollProgress * 100).toFixed(1)}% | ScrollProgress: ${scrollProgress.toFixed(3)} | Opacity: ${opacity.toFixed(3)} | PhoneContainer Opacity: ${phoneContainer.style.opacity}`);
+        }
             
         // Lightning 1 content sticky animation with fade out
         function updateLightning1Content() {
