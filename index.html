@@ -1803,7 +1803,7 @@
             }
         }
 
-        // Lightning 1 content sticky animation
+        // Lightning 1 content sticky animation with fade out
         function updateLightning1Content() {
             const scrolled = document.documentElement.scrollTop || window.pageYOffset;
             const lightning1Section = document.querySelector('.lightning-bg');
@@ -1825,7 +1825,21 @@
                     lightning1Content.style.left = '50%';
                     lightning1Content.style.transform = 'translate(-50%, -50%)';
                     lightning1Content.style.zIndex = '15';
-                    console.log('📌 LIGHTNING 1 CONTENT MADE STICKY');
+                    
+                    // Calculate fade out based on scroll past the sticky point
+                    const stickyPoint = lightning1Top + (lightning1Rect.height / 2);
+                    const scrollPastSticky = Math.max(0, scrolled - stickyPoint);
+                    const fadeDistance = windowHeight * 0.5; // Fade over half viewport height
+                    const fadeProgress = Math.min(scrollPastSticky / fadeDistance, 1);
+                    const opacity = 1 - fadeProgress;
+                    
+                    lightning1Content.style.opacity = opacity.toString();
+                    
+                    if (fadeProgress > 0) {
+                        console.log(`📌 LIGHTNING 1 CONTENT FADING - Opacity: ${opacity.toFixed(3)}`);
+                    } else {
+                        console.log('📌 LIGHTNING 1 CONTENT MADE STICKY');
+                    }
                 } else {
                     // Keep content in normal position
                     lightning1Content.style.position = 'absolute';
@@ -1833,6 +1847,7 @@
                     lightning1Content.style.left = '50%';
                     lightning1Content.style.transform = 'translate(-50%, -50%)';
                     lightning1Content.style.zIndex = '10';
+                    lightning1Content.style.opacity = '1';
                 }
             }
         }
