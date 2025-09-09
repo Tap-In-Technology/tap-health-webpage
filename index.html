@@ -1860,15 +1860,15 @@
             <div id="contact-form-glow" class="contact-form-glow-overlay" style="display: none;"></div>
             <div id="contact-form-fade" class="contact-form-fade-overlay" style="display: none;"></div>
             <div id="contact-form-interactive-overlay">
-                <input type="text" id="phone-name" class="phone-form-field" required>
-                <input type="tel" id="phone-phone" class="phone-form-field">
-                <input type="email" id="phone-email" class="phone-form-field" required>
-                <textarea id="phone-message" class="phone-form-field" required></textarea>
+                    <input type="text" id="phone-name" class="phone-form-field" required>
+                    <input type="tel" id="phone-phone" class="phone-form-field">
+                    <input type="email" id="phone-email" class="phone-form-field" required>
+                    <textarea id="phone-message" class="phone-form-field" required></textarea>
                 <button type="button" id="phone-approve" class="phone-form-button" onclick="approveForm()">Approve</button>
                 <button type="button" id="phone-cancel-mid" class="phone-form-button" onclick="goBackToDefault()">Cancel</button>
                 <button type="button" id="phone-cancel" class="phone-form-button" onclick="goBackToDefault()">Cancel</button>
                 <button type="button" id="phone-send" class="phone-form-button" onclick="submitPhoneForm()">Send</button>
-            </div>
+                            </div>
                         </div>
 
         <!-- Content placeholder for Lightning 2 -->
@@ -1916,20 +1916,12 @@
     
     <!-- JavaScript -->
     <script>
-        // Simple scroll to top function
-        function scrollToTop() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        }
-
         // Phone image transition functionality
         const PHONE_IMAGES = {
             default: './media/phone.png',
             contactForm: './media/contactFormPhone.png'
         };
-        
+
         function switchPhoneImage(imageType) {
             const phoneImg = document.getElementById('phone');
             const phoneContainer = document.getElementById('phone-container');
@@ -1991,11 +1983,11 @@
                 }
             }
         }
-        
+
         function enteringContactForm() {
             switchPhoneImage('contactForm');
         }
-        
+
         function exitingContactForm() {
             switchPhoneImage('default');
             
@@ -2010,7 +2002,7 @@
             if (phoneField) phoneField.value = '';
             if (messageField) messageField.value = '';
         }
-        
+
         function openContactForm() {
             enteringContactForm();
         }
@@ -2018,7 +2010,7 @@
         function goBackToDefault() {
             exitingContactForm();
         }
-        
+
         function approveForm() {
             const name = document.getElementById('phone-name').value;
             const phone = document.getElementById('phone-phone').value;
@@ -2038,7 +2030,7 @@
                 successPopup.classList.remove('hidden');
             }
         }
-        
+
         function submitPhoneForm() {
             const name = document.getElementById('phone-name').value;
             const phone = document.getElementById('phone-phone').value;
@@ -2066,6 +2058,15 @@
             }
             exitingContactForm();
         }
+        
+        // Simple scroll to top function
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
         
         // Menu toggle functionality
         function toggleMenu() {
