@@ -2136,7 +2136,12 @@
                 const scrolled = document.documentElement.scrollTop || window.pageYOffset;
                 const phoneContainer = document.getElementById('phone-container');
                 
-                if (phoneContainer) {
+                if (!phoneContainer) {
+                    console.log('❌ PHONE CONTAINER NOT FOUND!');
+                    return;
+                }
+                
+                console.log('✅ PHONE CONTAINER FOUND');
                 // Continuous phone animation based on scroll percentage
                 const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
                 const scrollProgress = Math.min(scrolled / maxScroll, 1); // 0 to 1
@@ -2167,7 +2172,7 @@
                     phoneContainer.style.transform = 'translate(-50%, -50%)';
                 
                 // Console logs for phone position debugging
-                console.log(`📱 PHONE POSITION - Scroll: ${(scrollProgress * 100).toFixed(1)}% | Phone Progress: ${(phoneProgress * 100).toFixed(1)}% | Top: ${currentTop.toFixed(1)}% | Opacity: ${opacity.toFixed(3)}`);
+                console.log(`📱 PHONE DEBUG - Scroll: ${(scrollProgress * 100).toFixed(1)}% | ScrollProgress: ${scrollProgress.toFixed(3)} | Opacity: ${opacity.toFixed(3)} | PhoneContainer Opacity: ${phoneContainer.style.opacity}`);
                 }
             }
             
