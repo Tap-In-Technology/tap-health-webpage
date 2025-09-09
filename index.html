@@ -1833,16 +1833,16 @@
                     
                     // Calculate fade out based on scroll past the sticky point - start fading much earlier
                     const stickyPoint = lightning1Top + (lightning1Rect.height / 2);
-                    const earlyFadeStart = stickyPoint - (windowHeight * 0.3); // Start fading 30% viewport height before sticky point
+                    const earlyFadeStart = stickyPoint - (windowHeight * 0.4); // Start fading 40% viewport height before sticky point
                     const scrollPastEarly = Math.max(0, scrolled - earlyFadeStart);
-                    const fadeDistance = windowHeight * 0.005; // Fade over 0.5% of viewport height (extremely aggressive fade)
+                    const fadeDistance = windowHeight * 0.02; // Fade over 2% of viewport height (slower but still fast)
                     const fadeProgress = Math.min(scrollPastEarly / fadeDistance, 1);
                     const opacity = 1 - fadeProgress;
                     
                     lightning1Content.style.opacity = opacity.toString();
                     
                     // Debug logging
-                    console.log(`📌 LIGHTNING 1 DEBUG - StickyPoint: ${stickyPoint.toFixed(1)} | Scrolled: ${scrolled.toFixed(1)} | ScrollPast: ${scrollPastSticky.toFixed(1)} | FadeProgress: ${fadeProgress.toFixed(3)} | Opacity: ${opacity.toFixed(3)}`);
+                    console.log(`📌 LIGHTNING 1 DEBUG - StickyPoint: ${stickyPoint.toFixed(1)} | Scrolled: ${scrolled.toFixed(1)} | ScrollPast: ${scrollPastEarly.toFixed(1)} | FadeProgress: ${fadeProgress.toFixed(3)} | Opacity: ${opacity.toFixed(3)}`);
                     
                     if (fadeProgress > 0) {
                         console.log(`📌 LIGHTNING 1 CONTENT FADING - Opacity: ${opacity.toFixed(3)}`);
