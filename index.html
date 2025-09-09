@@ -1786,7 +1786,8 @@
                 const easedProgress = easeInOutCubic(scrollProgress);
                     
                 // Opacity: 0 at top, 1 at bottom - same as legacy-2
-                    const opacity = easedProgress;
+                // But make it more opaque as phone moves up (higher phoneProgress = more opaque)
+                const opacity = Math.min(easedProgress * 1.5, 1); // Boost opacity by 50% for more dramatic effect
                     
                 // Position: 80% at top (just off-screen), final aligned position
                     const startTop = 80;  // 80% (just off-screen, visible immediately)
