@@ -1622,13 +1622,8 @@
         </div>
     </div>
     
-    <!-- Gradient overlay section with phone reveal - fades from black to transparent -->
-    <section style="height: 200px; background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 30%, rgba(0,0,0,0.4) 70%, rgba(0,0,0,0) 100%); position: relative; z-index: 4; overflow: hidden;">
-        <!-- Phone coming in from bottom -->
-        <div id="reveal-phone" style="position: absolute; bottom: -200px; left: 50%; transform: translateX(-50%); opacity: 0; z-index: 5;">
-            <img src="./media/phone.png" alt="Phone" style="width: 200px; height: auto;">
-        </div>
-    </section>
+    <!-- Gradient overlay section - fades from black to transparent -->
+    <section style="height: 200px; background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 30%, rgba(0,0,0,0.4) 70%, rgba(0,0,0,0) 100%); position: relative; z-index: 4;"></section>
     
     <!-- ========================================
          LEGACY-2 CONTENT - PERFECT PHONE TRANSITION
@@ -1650,6 +1645,11 @@
 
     <!-- Lightning 2 section -->
     <section class="lightning-bg relative" style="min-height: 100vh; position: relative; z-index: 5;">
+        <!-- Phone container - same as legacy-2 -->
+        <div id="phone-container" style="position: absolute; top: 80%; left: 50%; transform: translate(-50%, -50%); opacity: 0; transition: none; z-index: 20;">
+            <img src="./media/phone.png" alt="Phone" style="height: 80vh; width: auto;" id="phone">
+                        </div>
+
         <!-- Content placeholder for Lightning 2 -->
         <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10; text-align: center;">
             <!-- Lightning 2 content will go here -->
@@ -1764,46 +1764,39 @@
             }
         }
 
-        // Phone reveal animation - inspired by legacy-2
-        function animatePhoneReveal() {
-            const revealPhone = document.getElementById('reveal-phone');
-            if (!revealPhone) return;
-            
-            const scrolled = document.documentElement.scrollTop || window.pageYOffset;
-            const windowHeight = window.innerHeight;
-            const documentHeight = document.documentElement.scrollHeight;
-            
-            // Get the gradient section position
-            const gradientSection = revealPhone.closest('section');
-            const gradientRect = gradientSection.getBoundingClientRect();
-            const gradientTop = scrolled + gradientRect.top;
-            
-            // Calculate scroll progress through the gradient section
-            const sectionHeight = 200; // Height of gradient section
-            const scrollProgress = Math.max(0, Math.min(1, (scrolled - gradientTop + windowHeight) / sectionHeight));
-            
-            // Smooth easing function - same as legacy-2
-            function easeInOutCubic(t) {
-                return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+        // Phone animation - exact same as legacy-2
+            function updatePhoneOpacity() {
+                const scrolled = document.documentElement.scrollTop || window.pageYOffset;
+                const phoneContainer = document.getElementById('phone-container');
+                
+                if (phoneContainer) {
+                // Continuous phone animation based on scroll percentage
+                const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+                const scrollProgress = Math.min(scrolled / maxScroll, 1); // 0 to 1
+                
+                // Smooth easing function - same as legacy-2
+                    function easeInOutCubic(t) {
+                        return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+                    }
+                    
+                const easedProgress = easeInOutCubic(scrollProgress);
+                    
+                // Opacity: 0 at top, 1 at bottom - same as legacy-2
+                    const opacity = easedProgress;
+                    
+                // Position: 80% at top (just off-screen), middle of Lightning 2 at bottom
+                    const startTop = 80;  // 80% (just off-screen, visible immediately)
+                const endTop = 50;    // 50% (middle of Lightning 2 section)
+                    const currentTop = startTop + (endTop - startTop) * easedProgress;
+                    
+                // Apply the animation - same as legacy-2
+                    phoneContainer.style.opacity = opacity.toString();
+                    phoneContainer.style.top = currentTop + '%';
+                    phoneContainer.style.left = '50%';
+                    phoneContainer.style.transform = 'translate(-50%, -50%)';
+                }
             }
             
-            const easedProgress = easeInOutCubic(scrollProgress);
-            
-            // Opacity: 0 at start, 1 at end - same as legacy-2
-            const opacity = easedProgress;
-            
-            // Position: start at -200px (hidden), end at 50px (revealed)
-            const startBottom = -200;  // Hidden below section
-            const endBottom = 50;      // Revealed position
-            const currentBottom = startBottom + (endBottom - startBottom) * easedProgress;
-            
-            // Apply the animation - same style as legacy-2
-            revealPhone.style.opacity = opacity.toString();
-            revealPhone.style.bottom = currentBottom + 'px';
-            revealPhone.style.left = '50%';
-            revealPhone.style.transform = 'translateX(-50%)';
-        }
-
         // Simple scroll tracking for debugging (optional)
         function trackScroll() {
                 const scrolled = document.documentElement.scrollTop || window.pageYOffset;
@@ -1822,11 +1815,9 @@
             setTimeout(debugBackgrounds, 1000); // Wait 1 second for everything to load
         });
 
-        // Add scroll event listener
-        window.addEventListener('scroll', function() {
-            trackScroll();
-            animatePhoneReveal();
-        });
+        // Add scroll event listener - same as legacy-2
+            window.addEventListener('scroll', updatePhoneOpacity);
+            window.addEventListener('load', updatePhoneOpacity);
             </script>
 
 </body>
