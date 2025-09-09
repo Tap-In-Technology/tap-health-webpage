@@ -230,6 +230,8 @@
             height: 40px;
             background: transparent;
             color: transparent;
+            font-size: 0;
+            text-indent: -9999px;
         }
         
         /* Bottom buttons */
@@ -2148,7 +2150,9 @@
                     
                 // Opacity: 0 at top, 1 at bottom - same as legacy-2
                 // But make it more opaque as phone moves up (higher phoneProgress = more opaque)
-                const opacity = Math.min(easedProgress * 1.5, 1); // Boost opacity by 50% for more dramatic effect
+                // Add fade-in effect: start completely transparent, fade in as it moves up
+                const fadeInProgress = Math.min(phoneProgress * 2, 1); // Fade in over first half of movement
+                const opacity = Math.min(easedProgress * 1.5 * fadeInProgress, 1); // Boost opacity by 50% for more dramatic effect
                     
                 // Position: 80% at top (just off-screen), final aligned position
                     const startTop = 80;  // 80% (just off-screen, visible immediately)
