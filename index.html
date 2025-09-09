@@ -1936,12 +1936,11 @@
                     phoneContainer.classList.add('contact-form-mode');
                     document.getElementById('contact-form-interactive-overlay').style.display = 'block';
                     
-                    // Make phone sticky over both Lightning sections
-                    phoneContainer.style.position = 'fixed';
-                    phoneContainer.style.top = '50%';
-                    phoneContainer.style.left = '50%';
-                    phoneContainer.style.transform = 'translate(-50%, -50%)';
+                    // Keep phone in normal position but prevent scrolling
                     phoneContainer.style.zIndex = '30'; // Higher than Lightning sections
+                    
+                    // Prevent scrolling when contact form is active
+                    document.body.style.overflow = 'hidden';
                     
                     // Hide gleam element
                     const gleamElement = phoneContainer.querySelector('.phone-gleam');
@@ -1989,9 +1988,9 @@
                     phoneContainer.classList.remove('contact-form-mode');
                     document.getElementById('contact-form-interactive-overlay').style.display = 'none';
                     
-                    // Restore original positioning (absolute, not fixed)
-                    phoneContainer.style.position = 'absolute';
+                    // Restore original z-index and scrolling
                     phoneContainer.style.zIndex = '20'; // Back to original z-index
+                    document.body.style.overflow = ''; // Restore scrolling
                     
                     // Change Go Back button back to Get in Touch button
                     let goBackBtn = document.querySelector('button[onclick="goBackToDefault()"]:not(.phone-form-button)');
@@ -2114,10 +2113,24 @@
         function scrollToTop() {
             window.scrollTo({
                 top: 0,
-                behavior: 'smooth'
-            });
+                    behavior: 'smooth'
+                });
         }
-
+        
+        // FAQ toggle functionality
+        function toggleFAQ(item) {
+            const isActive = item.classList.contains('active');
+            
+            // Close all FAQ items
+            document.querySelectorAll('.faq-item').forEach(faqItem => {
+                faqItem.classList.remove('active');
+            });
+            
+            // Open clicked item if it wasn't already active
+            if (!isActive) {
+                item.classList.add('active');
+            }
+        }
 
         // Menu toggle functionality
         function toggleMenu() {
@@ -2181,10 +2194,10 @@
         }
 
         // Phone animation - exact same as legacy-2
-        function updatePhoneOpacity() {
-            const scrolled = document.documentElement.scrollTop || window.pageYOffset;
-            const phoneContainer = document.getElementById('phone-container');
-            
+            function updatePhoneOpacity() {
+                const scrolled = document.documentElement.scrollTop || window.pageYOffset;
+                const phoneContainer = document.getElementById('phone-container');
+                
             if (!phoneContainer) {
                 console.log('❌ PHONE CONTAINER NOT FOUND!');
                 return;
@@ -2196,14 +2209,14 @@
             const scrollProgress = Math.min(scrolled / maxScroll, 1); // 0 to 1
             
             // Smooth easing function - same as legacy-2
-            function easeInOutCubic(t) {
-                return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-            }
-            
+                    function easeInOutCubic(t) {
+                        return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+                    }
+                    
             const easedProgress = easeInOutCubic(scrollProgress);
             
             // Position: 80% at top (just off-screen), final aligned position
-            const startTop = 80;  // 80% (just off-screen, visible immediately)
+                    const startTop = 80;  // 80% (just off-screen, visible immediately)
             const endTop = 65;    // 65% (lower position - can overlap footer)
             
             // PARALLAX EFFECT: Phone reaches final position at 50% scroll progress (was 70%)
@@ -2215,14 +2228,14 @@
             const opacity = scrollProgress; // 0% scroll = 0 opacity, 100% scroll = 1 opacity
             
             // Apply the animation - same as legacy-2
-            phoneContainer.style.opacity = opacity.toString();
-            phoneContainer.style.top = currentTop + '%';
-            phoneContainer.style.left = '50%';
-            phoneContainer.style.transform = 'translate(-50%, -50%)';
+                    phoneContainer.style.opacity = opacity.toString();
+                    phoneContainer.style.top = currentTop + '%';
+                    phoneContainer.style.left = '50%';
+                    phoneContainer.style.transform = 'translate(-50%, -50%)';
             
             // Console logs for phone position debugging
             console.log(`📱 PHONE DEBUG - Scroll: ${(scrollProgress * 100).toFixed(1)}% | ScrollProgress: ${scrollProgress.toFixed(3)} | Opacity: ${opacity.toFixed(3)} | PhoneContainer Opacity: ${phoneContainer.style.opacity}`);
-        }
+            }
             
         // Lightning 1 content sticky animation with fade out
         function updateLightning1Content() {
