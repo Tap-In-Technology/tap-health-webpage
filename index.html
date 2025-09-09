@@ -1648,7 +1648,7 @@
     </section>
 
     <!-- Lightning 2 section -->
-    <section class="lightning-bg relative" style="min-height: 70vh; position: relative; z-index: 5;">
+    <section class="lightning-bg relative" style="min-height: 85vh; position: relative; z-index: 5;">
         <!-- Phone container - same as legacy-2 -->
         <div id="phone-container" style="position: absolute; top: 80%; left: 50%; transform: translate(-50%, -50%); opacity: 0; transition: none; z-index: 20;">
             <img src="./media/phone.png" alt="Phone" style="height: 80vh; width: auto;" id="phone">
@@ -1769,27 +1769,27 @@
         }
 
         // Phone animation - exact same as legacy-2
-        function updatePhoneOpacity() {
-            const scrolled = document.documentElement.scrollTop || window.pageYOffset;
-            const phoneContainer = document.getElementById('phone-container');
-            
-            if (phoneContainer) {
+            function updatePhoneOpacity() {
+                const scrolled = document.documentElement.scrollTop || window.pageYOffset;
+                const phoneContainer = document.getElementById('phone-container');
+                
+                if (phoneContainer) {
                 // Continuous phone animation based on scroll percentage
                 const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
                 const scrollProgress = Math.min(scrolled / maxScroll, 1); // 0 to 1
                 
                 // Smooth easing function - same as legacy-2
-                function easeInOutCubic(t) {
-                    return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-                }
-                
+                    function easeInOutCubic(t) {
+                        return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+                    }
+                    
                 const easedProgress = easeInOutCubic(scrollProgress);
-                
+                    
                 // Opacity: 0 at top, 1 at bottom - same as legacy-2
-                const opacity = easedProgress;
-                
+                    const opacity = easedProgress;
+                    
                 // Position: 80% at top (just off-screen), final aligned position
-                const startTop = 80;  // 80% (just off-screen, visible immediately)
+                    const startTop = 80;  // 80% (just off-screen, visible immediately)
                 const endTop = 65;    // 65% (lower position - can overlap footer)
                 
                 // Phone reaches final position at 70% scroll progress, then stays there
@@ -1797,19 +1797,19 @@
                 const currentTop = startTop + (endTop - startTop) * phoneProgress;
                 
                 // Apply the animation - same as legacy-2
-                phoneContainer.style.opacity = opacity.toString();
-                phoneContainer.style.top = currentTop + '%';
-                phoneContainer.style.left = '50%';
-                phoneContainer.style.transform = 'translate(-50%, -50%)';
+                    phoneContainer.style.opacity = opacity.toString();
+                    phoneContainer.style.top = currentTop + '%';
+                    phoneContainer.style.left = '50%';
+                    phoneContainer.style.transform = 'translate(-50%, -50%)';
                 
                 // Console logs for phone position debugging
                 console.log(`📱 PHONE POSITION - Scroll: ${(scrollProgress * 100).toFixed(1)}% | Phone Progress: ${(phoneProgress * 100).toFixed(1)}% | Top: ${currentTop.toFixed(1)}% | Opacity: ${opacity.toFixed(3)}`);
+                }
             }
-        }
-
+            
         // Lightning 1 content sticky animation with fade out
         function updateLightning1Content() {
-            const scrolled = document.documentElement.scrollTop || window.pageYOffset;
+                const scrolled = document.documentElement.scrollTop || window.pageYOffset;
             const lightning1Section = document.querySelector('.lightning-bg');
             const lightning1Content = lightning1Section ? lightning1Section.querySelector('div[style*="transform: translate(-50%, -50%)"]') : null;
             
@@ -1833,7 +1833,7 @@
                     // Calculate fade out based on scroll past the sticky point
                     const stickyPoint = lightning1Top + (lightning1Rect.height / 2);
                     const scrollPastSticky = Math.max(0, scrolled - stickyPoint);
-                    const fadeDistance = windowHeight * 0.1; // Fade over 10% of viewport height (very fast fade)
+                    const fadeDistance = windowHeight * 0.05; // Fade over 5% of viewport height (extremely fast fade)
                     const fadeProgress = Math.min(scrollPastSticky / fadeDistance, 1);
                     const opacity = 1 - fadeProgress;
                     
@@ -1846,8 +1846,8 @@
                         console.log(`📌 LIGHTNING 1 CONTENT FADING - Opacity: ${opacity.toFixed(3)}`);
                     } else {
                         console.log('📌 LIGHTNING 1 CONTENT MADE STICKY');
-                    }
-                } else {
+                        }
+                    } else {
                     // Keep content in normal position
                     lightning1Content.style.position = 'absolute';
                     lightning1Content.style.top = '50%';
