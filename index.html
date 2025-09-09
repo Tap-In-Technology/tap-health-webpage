@@ -1792,8 +1792,8 @@
                     const startTop = 80;  // 80% (just off-screen, visible immediately)
                 const endTop = 65;    // 65% (lower position - can overlap footer)
                 
-                // Phone reaches final position at 70% scroll progress, then stays there
-                const phoneProgress = Math.min(scrollProgress / 0.7, 1); // Complete by 70% scroll
+                // PARALLAX EFFECT: Phone reaches final position at 50% scroll progress (was 70%)
+                const phoneProgress = Math.min(scrollProgress / 0.5, 1); // Complete by 50% scroll (parallax effect)
                 const currentTop = startTop + (endTop - startTop) * phoneProgress;
                 
                 // Apply the animation - same as legacy-2
