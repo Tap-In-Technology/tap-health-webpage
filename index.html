@@ -103,6 +103,178 @@
             -webkit-mask-position: center;
         }
         
+        /* Contact form glow overlay */
+        .contact-form-glow-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, 
+                rgba(255, 255, 255, 0.3) 0%, 
+                rgba(255, 255, 255, 0.2) 30%, 
+                rgba(255, 255, 255, 0.1) 60%, 
+                transparent 100%);
+            pointer-events: none;
+            z-index: 24;
+            mask: url('./media/contactFormPhone.png');
+            -webkit-mask: url('./media/contactFormPhone.png');
+            mask-size: contain;
+            -webkit-mask-size: contain;
+            mask-repeat: no-repeat;
+            -webkit-mask-repeat: no-repeat;
+            mask-position: center;
+            -webkit-mask-position: center;
+        }
+        
+        /* Contact form fade overlay */
+        .contact-form-fade-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, 
+                transparent 0%, 
+                transparent 65%, 
+                rgba(0, 0, 0, 0.5) 75%, 
+                rgba(0, 0, 0, 0.7) 85%, 
+                rgba(0, 0, 0, 0.9) 100%);
+            pointer-events: none;
+            z-index: 25;
+            mask: url('./media/contactFormPhone.png');
+            -webkit-mask: url('./media/contactFormPhone.png');
+            mask-size: contain;
+            -webkit-mask-size: contain;
+            mask-repeat: no-repeat;
+            -webkit-mask-repeat: no-repeat;
+            mask-position: center;
+            -webkit-mask-position: center;
+        }
+        
+        /* Interactive contact form overlay */
+        #contact-form-interactive-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: auto;
+            z-index: 26;
+            display: none;
+        }
+        
+        /* Form field positioning on phone */
+        .phone-form-field {
+            position: absolute;
+            background: transparent;
+            border: none;
+            border-radius: 0;
+            padding: 4px 8px;
+            font-size: 12px;
+            color: #000;
+            width: 120px;
+            box-shadow: none;
+        }
+        
+        .phone-form-field:focus {
+            outline: none;
+            border: none;
+            box-shadow: none;
+        }
+        
+        /* Position form fields on phone - EXACT FIGMA MEASUREMENTS */
+        #phone-name {
+            top: 18.2%;
+            left: 11.5%;
+            width: 79.3%;
+            height: 40px;
+        }
+        
+        #phone-phone {
+            top: 28.4%;
+            left: 11.5%;
+            width: 79.3%;
+            height: 40px;
+        }
+        
+        #phone-email {
+            top: 38.6%;
+            left: 11.5%;
+            width: 79.3%;
+            height: 40px;
+        }
+        
+        #phone-message {
+            top: 48.9%;
+            left: 11.5%;
+            width: 79.3%;
+            height: 80px;
+            resize: none;
+        }
+        
+        /* Mid-form buttons */
+        #phone-approve {
+            top: 59.1%;
+            left: 11.5%;
+            width: 79.3%;
+            height: 40px;
+            background: transparent;
+            color: transparent;
+        }
+        
+        #phone-cancel-mid {
+            top: 65.9%;
+            left: 11.5%;
+            width: 79.3%;
+            height: 40px;
+            background: transparent;
+            color: transparent;
+        }
+        
+        /* Bottom buttons */
+        #phone-cancel {
+            bottom: 18%;
+            left: 25%;
+            width: 40%;
+            height: 40px;
+            background: transparent;
+            color: #000;
+        }
+        
+        #phone-send {
+            bottom: 18%;
+            right: 25%;
+            width: 40%;
+            height: 40px;
+            background: transparent;
+            color: #000;
+        }
+        
+        /* Phone form buttons */
+        .phone-form-button {
+            position: absolute;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s ease;
+        }
+        
+        .phone-form-button:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+        
+        /* Contact form glow effect */
+        #phone.contact-form-glow {
+            filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.3)) 
+                    drop-shadow(0 0 40px rgba(255, 255, 255, 0.2))
+                    drop-shadow(0 0 60px rgba(255, 255, 255, 0.1));
+        }
+        
         /* Lightning background as true page background */
         .lightning-page-bg {
             background-image: 
@@ -1684,6 +1856,19 @@
         <div id="phone-container" style="position: absolute; top: 80%; left: 50%; transform: translate(-50%, -50%); opacity: 0; transition: none; z-index: 20;">
             <img src="./media/phone.png" alt="Phone" style="height: 80vh; width: auto;" id="phone">
             <div class="phone-gradient"></div>
+            <!-- Contact form overlays -->
+            <div id="contact-form-glow" class="contact-form-glow-overlay" style="display: none;"></div>
+            <div id="contact-form-fade" class="contact-form-fade-overlay" style="display: none;"></div>
+            <div id="contact-form-interactive-overlay">
+                <input type="text" id="phone-name" class="phone-form-field" required>
+                <input type="tel" id="phone-phone" class="phone-form-field">
+                <input type="email" id="phone-email" class="phone-form-field" required>
+                <textarea id="phone-message" class="phone-form-field" required></textarea>
+                <button type="button" id="phone-approve" class="phone-form-button" onclick="approveForm()">Approve</button>
+                <button type="button" id="phone-cancel-mid" class="phone-form-button" onclick="goBackToDefault()">Cancel</button>
+                <button type="button" id="phone-cancel" class="phone-form-button" onclick="goBackToDefault()">Cancel</button>
+                <button type="button" id="phone-send" class="phone-form-button" onclick="submitPhoneForm()">Send</button>
+            </div>
                         </div>
 
         <!-- Content placeholder for Lightning 2 -->
@@ -1739,14 +1924,157 @@
             });
         }
 
+        // Phone image transition functionality
+        const PHONE_IMAGES = {
+            default: './media/phone.png',
+            contactForm: './media/contactFormPhone.png'
+        };
+        
+        function switchPhoneImage(imageType) {
+            const phoneImg = document.getElementById('phone');
+            const phoneContainer = document.getElementById('phone-container');
+            
+            if (phoneImg && PHONE_IMAGES[imageType]) {
+                phoneImg.src = PHONE_IMAGES[imageType];
+                
+                if (imageType === 'contactForm') {
+                    // Entering contact form mode
+                    phoneContainer.classList.add('contact-form-mode');
+                    document.getElementById('contact-form-interactive-overlay').style.display = 'block';
+                    
+                    // Hide gleam element
+                    const gleamElement = phoneContainer.querySelector('.phone-gleam');
+                    if (gleamElement) {
+                        gleamElement.style.display = 'none';
+                    }
+                    
+                    // Change Get in Touch button to Go Back button
+                    const getInTouchBtn = document.querySelector('button[onclick="openContactForm()"]:not(.phone-form-button)');
+                    if (getInTouchBtn) {
+                        getInTouchBtn.textContent = 'Go Back';
+                        getInTouchBtn.setAttribute('onclick', 'goBackToDefault()');
+                    }
+                    
+                    // Apply glow after the new phone image is loaded
+                    phoneImg.onload = function() {
+                        phoneImg.classList.add('contact-form-glow');
+                    };
+                    
+                    // If image is already loaded (cached), apply glow immediately
+                    if (phoneImg.complete) {
+                        phoneImg.classList.add('contact-form-glow');
+                    }
+                } else {
+                    // Exiting contact form mode
+                    phoneContainer.classList.remove('contact-form-mode');
+                    document.getElementById('contact-form-interactive-overlay').style.display = 'none';
+                    
+                    // Change Go Back button back to Get in Touch button
+                    let goBackBtn = document.querySelector('button[onclick="goBackToDefault()"]:not(.phone-form-button)');
+                    if (!goBackBtn) {
+                        const buttons = document.querySelectorAll('button:not(.phone-form-button)');
+                        for (let btn of buttons) {
+                            if (btn.textContent.trim() === 'Go Back') {
+                                goBackBtn = btn;
+                                break;
+                            }
+                        }
+                    }
+                    if (goBackBtn) {
+                        goBackBtn.textContent = 'Get in Touch';
+                        goBackBtn.setAttribute('onclick', 'openContactForm()');
+                    }
+                    
+                    // Remove glow
+                    phoneImg.classList.remove('contact-form-glow');
+                    phoneImg.onload = null;
+                }
+            }
+        }
+        
+        function enteringContactForm() {
+            switchPhoneImage('contactForm');
+        }
+        
+        function exitingContactForm() {
+            switchPhoneImage('default');
+            
+            // Clear all form fields when exiting
+            const nameField = document.getElementById('phone-name');
+            const emailField = document.getElementById('phone-email');
+            const phoneField = document.getElementById('phone-phone');
+            const messageField = document.getElementById('phone-message');
+            
+            if (nameField) nameField.value = '';
+            if (emailField) emailField.value = '';
+            if (phoneField) phoneField.value = '';
+            if (messageField) messageField.value = '';
+        }
+        
+        function openContactForm() {
+            enteringContactForm();
+        }
+        
+        function goBackToDefault() {
+            exitingContactForm();
+        }
+        
+        function approveForm() {
+            const name = document.getElementById('phone-name').value;
+            const phone = document.getElementById('phone-phone').value;
+            const email = document.getElementById('phone-email').value;
+            const message = document.getElementById('phone-message').value;
+            
+            if (!name || !email || !message) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+            
+            console.log('Phone form submitted:', { name, phone, email, message });
+            exitingContactForm();
+            
+            const successPopup = document.getElementById('successPopup');
+            if (successPopup) {
+                successPopup.classList.remove('hidden');
+            }
+        }
+        
+        function submitPhoneForm() {
+            const name = document.getElementById('phone-name').value;
+            const phone = document.getElementById('phone-phone').value;
+            const email = document.getElementById('phone-email').value;
+            const message = document.getElementById('phone-message').value;
+            
+            if (!name || !email || !message) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+            
+            console.log('Phone form submitted:', { name, phone, email, message });
+            exitingContactForm();
+            
+            const successPopup = document.getElementById('successPopup');
+            if (successPopup) {
+                successPopup.classList.remove('hidden');
+            }
+        }
+        
+        function closeSuccessPopup() {
+            const successPopup = document.getElementById('successPopup');
+            if (successPopup) {
+                successPopup.classList.add('hidden');
+            }
+            exitingContactForm();
+        }
+        
         // Menu toggle functionality
         function toggleMenu() {
             const menuOverlay = document.getElementById('menu-overlay');
             if (menuOverlay) {
-            if (menuOverlay.classList.contains('hidden')) {
-                menuOverlay.classList.remove('hidden');
-            } else {
-                menuOverlay.classList.add('hidden');
+                if (menuOverlay.classList.contains('hidden')) {
+                    menuOverlay.classList.remove('hidden');
+                } else {
+                    menuOverlay.classList.add('hidden');
                 }
             }
         }
