@@ -1948,6 +1948,17 @@
                     // Prevent scrolling when contact form is active
                     document.body.style.overflow = 'hidden';
                     
+                    // Hide headers when contact form is active
+                    const phoneTextContainer = document.getElementById('phone-text-container');
+                    const lightning1Content = document.querySelector('.lightning-bg') ? document.querySelector('.lightning-bg').querySelector('div[style*="transform: translate(-50%, -50%)"]') : null;
+                    
+                    if (phoneTextContainer) {
+                        phoneTextContainer.style.opacity = '0';
+                    }
+                    if (lightning1Content) {
+                        lightning1Content.style.opacity = '0';
+                    }
+                    
                     // Transition contact phone up to center
                     setTimeout(() => {
                         phoneContainer.style.transition = 'all 0.8s ease-in-out';
@@ -2032,8 +2043,23 @@
                         
                         // Remove transition to allow normal phone animation
                         phoneContainer.style.transition = 'none';
-                    
-                    // Change Go Back button back to Get in Touch button
+                        
+                        // Restore headers when exiting contact form
+                        const phoneTextContainer = document.getElementById('phone-text-container');
+                        const lightning1Content = document.querySelector('.lightning-bg') ? document.querySelector('.lightning-bg').querySelector('div[style*="transform: translate(-50%, -50%)"]') : null;
+                        
+                        if (phoneTextContainer) {
+                            // Check if phone is still fully visible to determine header visibility
+                            const phoneOpacity = parseFloat(phoneContainer.style.opacity) || 0;
+                            phoneTextContainer.style.opacity = phoneOpacity >= 0.95 ? '1' : '0';
+                        }
+                        if (lightning1Content) {
+                            // Check if phone is still fully visible to determine header visibility
+                            const phoneOpacity = parseFloat(phoneContainer.style.opacity) || 0;
+                            lightning1Content.style.opacity = phoneOpacity >= 0.95 ? '1' : '0';
+                        }
+                        
+                        // Change Go Back button back to Get in Touch button
                     let goBackBtn = document.querySelector('button[onclick="goBackToDefault()"]:not(.phone-form-button)');
                     if (!goBackBtn) {
                         const buttons = document.querySelectorAll('button:not(.phone-form-button)');
