@@ -1868,7 +1868,7 @@
                     <textarea id="phone-message" class="phone-form-field" required></textarea>
                 <button type="button" id="phone-approve" class="phone-form-button" onclick="approveForm()">Approve</button>
                 <button type="button" id="phone-cancel-mid" class="phone-form-button" onclick="goBackToDefault()"></button>
-                <button type="button" id="phone-cancel" class="phone-form-button" onclick="goBackToDefault()"></button>
+                    <button type="button" id="phone-cancel" class="phone-form-button" onclick="goBackToDefault()"></button>
                 <button type="button" id="phone-send" class="phone-form-button" onclick="submitPhoneForm()">Send</button>
                             </div>
                         </div>
@@ -2135,12 +2135,12 @@
             function updatePhoneOpacity() {
                 const scrolled = document.documentElement.scrollTop || window.pageYOffset;
                 const phoneContainer = document.getElementById('phone-container');
-                
-                if (!phoneContainer) {
+            
+            if (!phoneContainer) {
                     console.log('❌ PHONE CONTAINER NOT FOUND!');
-                    return;
-                }
-                
+                return;
+            }
+            
                 console.log('✅ PHONE CONTAINER FOUND');
                 // Continuous phone animation based on scroll percentage
                 const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
