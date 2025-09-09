@@ -1835,6 +1835,9 @@
                     
                     lightning1Content.style.opacity = opacity.toString();
                     
+                    // Debug logging
+                    console.log(`📌 LIGHTNING 1 DEBUG - StickyPoint: ${stickyPoint.toFixed(1)} | Scrolled: ${scrolled.toFixed(1)} | ScrollPast: ${scrollPastSticky.toFixed(1)} | FadeProgress: ${fadeProgress.toFixed(3)} | Opacity: ${opacity.toFixed(3)}`);
+                    
                     if (fadeProgress > 0) {
                         console.log(`📌 LIGHTNING 1 CONTENT FADING - Opacity: ${opacity.toFixed(3)}`);
                     } else {
