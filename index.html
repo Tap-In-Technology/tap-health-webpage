@@ -1644,7 +1644,7 @@
     </section>
 
     <!-- Lightning 2 section -->
-    <section class="lightning-bg relative" style="min-height: 100vh; position: relative; z-index: 5;">
+    <section class="lightning-bg relative" style="min-height: 80vh; position: relative; z-index: 5;">
         <!-- Phone container - same as legacy-2 -->
         <div id="phone-container" style="position: absolute; top: 80%; left: 50%; transform: translate(-50%, -50%); opacity: 0; transition: none; z-index: 20;">
             <img src="./media/phone.png" alt="Phone" style="height: 80vh; width: auto;" id="phone">
@@ -1829,7 +1829,7 @@
                     // Calculate fade out based on scroll past the sticky point
                     const stickyPoint = lightning1Top + (lightning1Rect.height / 2);
                     const scrollPastSticky = Math.max(0, scrolled - stickyPoint);
-                    const fadeDistance = windowHeight * 0.5; // Fade over half viewport height
+                    const fadeDistance = windowHeight * 0.2; // Fade over 20% of viewport height (faster fade)
                     const fadeProgress = Math.min(scrollPastSticky / fadeDistance, 1);
                     const opacity = 1 - fadeProgress;
                     
