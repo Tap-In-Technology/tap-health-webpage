@@ -1648,7 +1648,7 @@
     </section>
 
     <!-- Lightning 2 section -->
-    <section class="lightning-bg relative" style="min-height: 90vh; position: relative; z-index: 5;">
+    <section class="lightning-bg relative" style="min-height: 100vh; position: relative; z-index: 5;">
         <!-- Phone container - same as legacy-2 -->
         <div id="phone-container" style="position: absolute; top: 80%; left: 50%; transform: translate(-50%, -50%); opacity: 0; transition: none; z-index: 20;">
             <img src="./media/phone.png" alt="Phone" style="height: 80vh; width: auto;" id="phone">
@@ -1831,11 +1831,12 @@
                     lightning1Content.style.transform = 'translate(-50%, -50%)';
                     lightning1Content.style.zIndex = '15';
                     
-                    // Calculate fade out based on scroll past the sticky point
+                    // Calculate fade out based on scroll past the sticky point - start fading much earlier
                     const stickyPoint = lightning1Top + (lightning1Rect.height / 2);
-                    const scrollPastSticky = Math.max(0, scrolled - stickyPoint);
+                    const earlyFadeStart = stickyPoint - (windowHeight * 0.3); // Start fading 30% viewport height before sticky point
+                    const scrollPastEarly = Math.max(0, scrolled - earlyFadeStart);
                     const fadeDistance = windowHeight * 0.005; // Fade over 0.5% of viewport height (extremely aggressive fade)
-                    const fadeProgress = Math.min(scrollPastSticky / fadeDistance, 1);
+                    const fadeProgress = Math.min(scrollPastEarly / fadeDistance, 1);
                     const opacity = 1 - fadeProgress;
                     
                     lightning1Content.style.opacity = opacity.toString();
