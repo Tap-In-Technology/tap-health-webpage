@@ -1765,25 +1765,25 @@
         }
 
         // Phone animation - exact same as legacy-2
-            function updatePhoneOpacity() {
-                const scrolled = document.documentElement.scrollTop || window.pageYOffset;
-                const phoneContainer = document.getElementById('phone-container');
-                
-                if (phoneContainer) {
+        function updatePhoneOpacity() {
+            const scrolled = document.documentElement.scrollTop || window.pageYOffset;
+            const phoneContainer = document.getElementById('phone-container');
+            
+            if (phoneContainer) {
                 // Continuous phone animation based on scroll percentage
                 const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
                 const scrollProgress = Math.min(scrolled / maxScroll, 1); // 0 to 1
                 
                 // Smooth easing function - same as legacy-2
-                    function easeInOutCubic(t) {
-                        return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-                    }
-                    
+                function easeInOutCubic(t) {
+                    return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+                }
+                
                 const easedProgress = easeInOutCubic(scrollProgress);
-                    
+                
                 // Opacity: 0 at top, 1 at bottom - same as legacy-2
-                    const opacity = easedProgress;
-                    
+                const opacity = easedProgress;
+                
                 // Position: 80% at top (just off-screen), final aligned position
                 const startTop = 80;  // 80% (just off-screen, visible immediately)
                 const endTop = 65;    // 65% (lower position - can overlap footer)
@@ -1791,17 +1791,51 @@
                 // Phone reaches final position at 70% scroll progress, then stays there
                 const phoneProgress = Math.min(scrollProgress / 0.7, 1); // Complete by 70% scroll
                 const currentTop = startTop + (endTop - startTop) * phoneProgress;
-                    
+                
                 // Apply the animation - same as legacy-2
-                    phoneContainer.style.opacity = opacity.toString();
-                    phoneContainer.style.top = currentTop + '%';
-                    phoneContainer.style.left = '50%';
-                    phoneContainer.style.transform = 'translate(-50%, -50%)';
+                phoneContainer.style.opacity = opacity.toString();
+                phoneContainer.style.top = currentTop + '%';
+                phoneContainer.style.left = '50%';
+                phoneContainer.style.transform = 'translate(-50%, -50%)';
                 
                 // Console logs for phone position debugging
                 console.log(`📱 PHONE POSITION - Scroll: ${(scrollProgress * 100).toFixed(1)}% | Phone Progress: ${(phoneProgress * 100).toFixed(1)}% | Top: ${currentTop.toFixed(1)}% | Opacity: ${opacity.toFixed(3)}`);
+            }
+        }
+
+        // Lightning 1 content sticky animation
+        function updateLightning1Content() {
+            const scrolled = document.documentElement.scrollTop || window.pageYOffset;
+            const lightning1Section = document.querySelector('.lightning-bg');
+            const lightning1Content = lightning1Section ? lightning1Section.querySelector('div[style*="transform: translate(-50%, -50%)"]') : null;
+            
+            if (lightning1Content && lightning1Section) {
+                const lightning1Rect = lightning1Section.getBoundingClientRect();
+                const lightning1Top = scrolled + lightning1Rect.top;
+                const windowHeight = window.innerHeight;
+                
+                // Check if Lightning 1 content has reached center of screen
+                const contentCenter = lightning1Top + (lightning1Rect.height / 2);
+                const screenCenter = scrolled + (windowHeight / 2);
+                
+                if (contentCenter <= screenCenter) {
+                    // Make content sticky
+                    lightning1Content.style.position = 'fixed';
+                    lightning1Content.style.top = '50%';
+                    lightning1Content.style.left = '50%';
+                    lightning1Content.style.transform = 'translate(-50%, -50%)';
+                    lightning1Content.style.zIndex = '15';
+                    console.log('📌 LIGHTNING 1 CONTENT MADE STICKY');
+                } else {
+                    // Keep content in normal position
+                    lightning1Content.style.position = 'absolute';
+                    lightning1Content.style.top = '50%';
+                    lightning1Content.style.left = '50%';
+                    lightning1Content.style.transform = 'translate(-50%, -50%)';
+                    lightning1Content.style.zIndex = '10';
                 }
             }
+        }
             
         // Simple scroll tracking for debugging (optional)
         function trackScroll() {
@@ -1822,8 +1856,14 @@
         });
 
         // Add scroll event listener - same as legacy-2
-            window.addEventListener('scroll', updatePhoneOpacity);
-            window.addEventListener('load', updatePhoneOpacity);
+        window.addEventListener('scroll', function() {
+            updatePhoneOpacity();
+            updateLightning1Content();
+        });
+        window.addEventListener('load', function() {
+            updatePhoneOpacity();
+            updateLightning1Content();
+        });
             </script>
 
 </body>
