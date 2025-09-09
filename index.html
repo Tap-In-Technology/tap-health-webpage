@@ -1867,8 +1867,8 @@
                     <input type="email" id="phone-email" class="phone-form-field" required>
                     <textarea id="phone-message" class="phone-form-field" required></textarea>
                 <button type="button" id="phone-approve" class="phone-form-button" onclick="approveForm()">Approve</button>
-                <button type="button" id="phone-cancel-mid" class="phone-form-button" onclick="goBackToDefault()">Cancel</button>
-                <button type="button" id="phone-cancel" class="phone-form-button" onclick="goBackToDefault()">Cancel</button>
+                <button type="button" id="phone-cancel-mid" class="phone-form-button" onclick="goBackToDefault()"></button>
+                <button type="button" id="phone-cancel" class="phone-form-button" onclick="goBackToDefault()"></button>
                 <button type="button" id="phone-send" class="phone-form-button" onclick="submitPhoneForm()">Send</button>
                             </div>
                         </div>
@@ -2156,9 +2156,9 @@
                 const phoneProgress = Math.min(scrollProgress / 0.5, 1); // Complete by 50% scroll (parallax effect)
                 const currentTop = startTop + (endTop - startTop) * phoneProgress;
                 
-                // Opacity: 0 at top, 1 at bottom - same as legacy-2
-                // Simple fade-in: start completely transparent, fade in as phone moves up
-                const opacity = phoneProgress; // Direct relationship: 0% phoneProgress = 0 opacity, 100% = 1 opacity
+                // Opacity: 0 at top, 1 at bottom - fade in over entire scroll range
+                // Use scrollProgress instead of phoneProgress for full scroll range fade
+                const opacity = scrollProgress; // 0% scroll = 0 opacity, 100% scroll = 1 opacity
                 
                 // Apply the animation - same as legacy-2
                     phoneContainer.style.opacity = opacity.toString();
