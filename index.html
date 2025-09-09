@@ -1785,8 +1785,8 @@
                     const opacity = easedProgress;
                     
                 // Position: 80% at top (just off-screen), final aligned position
-                    const startTop = 80;  // 80% (just off-screen, visible immediately)
-                const endTop = 50;    // 50% (final position - lightning aligned)
+                const startTop = 80;  // 80% (just off-screen, visible immediately)
+                const endTop = 65;    // 65% (lower position - can overlap footer)
                 
                 // Phone reaches final position at 70% scroll progress, then stays there
                 const phoneProgress = Math.min(scrollProgress / 0.7, 1); // Complete by 70% scroll
