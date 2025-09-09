@@ -1936,6 +1936,13 @@
                     phoneContainer.classList.add('contact-form-mode');
                     document.getElementById('contact-form-interactive-overlay').style.display = 'block';
                     
+                    // Make phone sticky over both Lightning sections
+                    phoneContainer.style.position = 'fixed';
+                    phoneContainer.style.top = '50%';
+                    phoneContainer.style.left = '50%';
+                    phoneContainer.style.transform = 'translate(-50%, -50%)';
+                    phoneContainer.style.zIndex = '30'; // Higher than Lightning sections
+                    
                     // Hide gleam element
                     const gleamElement = phoneContainer.querySelector('.phone-gleam');
                     if (gleamElement) {
@@ -1962,6 +1969,10 @@
                     // Exiting contact form mode
                     phoneContainer.classList.remove('contact-form-mode');
                     document.getElementById('contact-form-interactive-overlay').style.display = 'none';
+                    
+                    // Restore original positioning (absolute, not fixed)
+                    phoneContainer.style.position = 'absolute';
+                    phoneContainer.style.zIndex = '20'; // Back to original z-index
                     
                     // Change Go Back button back to Get in Touch button
                     let goBackBtn = document.querySelector('button[onclick="goBackToDefault()"]:not(.phone-form-button)');
