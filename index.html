@@ -25,10 +25,6 @@
     <meta http-equiv="Expires" content="0">
     <script src="https://cdn.tailwindcss.com?v=4"></script>
     <link rel="icon" href="favicon.ico" />
-    <!-- Playfair Display font from Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         html {
             scroll-behavior: smooth;
@@ -49,9 +45,9 @@
             z-index: 3;
         }
         
-        /* Futuristic typography with Playfair Display font */
+        /* Futuristic typography with sans-serif font */
         .futuristic-title {
-            font-family: 'Playfair Display', serif;
+            font-family: sans-serif;
             font-weight: 800;
             color: #ffffff;
             letter-spacing: -0.03em;
@@ -59,233 +55,23 @@
         }
         
         .futuristic-subtitle {
-            font-family: 'Playfair Display', serif;
+            font-family: sans-serif;
             font-weight: 400;
             color: #b0b0b0;
             letter-spacing: -0.01em;
         }
         
-        /* Apply Playfair Display font to all text elements */
+        /* Apply sans-serif font to all text elements */
         body {
-            font-family: 'Playfair Display', serif;
+            font-family: sans-serif;
             margin: 0;
             padding: 0;
         }
         
-        /* Phone gradient overlay - same as legacy-2 */
-        .phone-gradient {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(ellipse at 85% 15%, 
-                    transparent 0%, 
-                    transparent 20%, 
-                    rgba(0, 0, 0, 0.1) 35%, 
-                    rgba(0, 0, 0, 0.4) 50%, 
-                    rgba(0, 0, 0, 0.8) 70%, 
-                    rgba(0, 0, 0, 0.95) 100%),
-                linear-gradient(to bottom, 
-                    transparent 50%, 
-                    rgba(0, 0, 0, 0.3) 70%, 
-                    rgba(0, 0, 0, 0.7) 85%, 
-                    rgba(0, 0, 0, 1) 100%);
-            pointer-events: none;
-            mask: url('./media/phone.png');
-            mask-size: contain;
-            mask-repeat: no-repeat;
-            mask-position: center;
-            -webkit-mask: url('./media/phone.png');
-            -webkit-mask-size: contain;
-            -webkit-mask-repeat: no-repeat;
-            -webkit-mask-position: center;
-        }
         
-        /* Contact form glow overlay */
-        .contact-form-glow-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(ellipse at center, 
-                rgba(255, 255, 255, 0.3) 0%, 
-                rgba(255, 255, 255, 0.2) 30%, 
-                rgba(255, 255, 255, 0.1) 60%, 
-                transparent 100%);
-            pointer-events: none;
-            z-index: 24;
-            mask: url('./media/contactFormPhone.png');
-            -webkit-mask: url('./media/contactFormPhone.png');
-            mask-size: contain;
-            -webkit-mask-size: contain;
-            mask-repeat: no-repeat;
-            -webkit-mask-repeat: no-repeat;
-            mask-position: center;
-            -webkit-mask-position: center;
-        }
-        
-        /* Contact form fade overlay */
-        .contact-form-fade-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, 
-                transparent 0%, 
-                transparent 65%, 
-                rgba(0, 0, 0, 0.5) 75%, 
-                rgba(0, 0, 0, 0.7) 85%, 
-                rgba(0, 0, 0, 0.9) 100%);
-            pointer-events: none;
-            z-index: 25;
-            mask: url('./media/contactFormPhone.png');
-            -webkit-mask: url('./media/contactFormPhone.png');
-            mask-size: contain;
-            -webkit-mask-size: contain;
-            mask-repeat: no-repeat;
-            -webkit-mask-repeat: no-repeat;
-            mask-position: center;
-            -webkit-mask-position: center;
-        }
-        
-        /* Interactive contact form overlay */
-        #contact-form-interactive-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: auto;
-            z-index: 26;
-            display: none;
-        }
-        
-        /* Form field positioning on phone */
-        .phone-form-field {
-            position: absolute;
-            background: transparent;
-            border: none;
-            border-radius: 0;
-            padding: 4px 8px;
-            font-size: 12px;
-            color: #000;
-            width: 120px;
-            box-shadow: none;
-        }
-        
-        .phone-form-field:focus {
-            outline: none;
-            border: none;
-            box-shadow: none;
-        }
-        
-        /* Position form fields on phone - EXACT FIGMA MEASUREMENTS */
-        #phone-name {
-            top: 18.2%;
-            left: 11.5%;
-            width: 79.3%;
-            height: 40px;
-        }
-        
-        #phone-phone {
-            top: 28.4%;
-            left: 11.5%;
-            width: 79.3%;
-            height: 40px;
-        }
-        
-        #phone-email {
-            top: 38.6%;
-            left: 11.5%;
-            width: 79.3%;
-            height: 40px;
-        }
-        
-        #phone-message {
-            top: 48.9%;
-            left: 11.5%;
-            width: 79.3%;
-            height: 80px;
-            resize: none;
-        }
-        
-        /* Mid-form buttons */
-        #phone-approve {
-            top: 59.1%;
-            left: 11.5%;
-            width: 79.3%;
-            height: 40px;
-            background: transparent;
-            color: transparent;
-        }
-        
-        #phone-cancel-mid {
-            top: 65.9%;
-            left: 11.5%;
-            width: 79.3%;
-            height: 40px;
-            background: transparent;
-            color: transparent;
-            font-size: 0;
-            text-indent: -9999px;
-        }
-        
-        /* Bottom buttons */
-        #phone-cancel {
-            bottom: 18%;
-            left: 25%;
-            width: 40%;
-            height: 40px;
-            background: transparent;
-            color: #000;
-        }
-        
-        #phone-send {
-            bottom: 18%;
-            right: 25%;
-            width: 40%;
-            height: 40px;
-            background: transparent;
-            color: #000;
-        }
-        
-        /* Phone form buttons */
-        .phone-form-button {
-            position: absolute;
-            padding: 8px 12px;
-            border-radius: 6px;
-            font-size: 11px;
-            font-weight: 600;
-            cursor: pointer;
-            border: none;
-            transition: all 0.2s ease;
-        }
-        
-        .phone-form-button:hover {
-            opacity: 0.9;
-            transform: translateY(-1px);
-        }
-        
-        /* Contact form glow effect */
-        #phone.contact-form-glow {
-            filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.3)) 
-                    drop-shadow(0 0 40px rgba(255, 255, 255, 0.2))
-                    drop-shadow(0 0 60px rgba(255, 255, 255, 0.1));
-        }
-        
-        /* Lightning background as true page background */
+        /* Simple black background */
         .lightning-page-bg {
-            background-image: 
-                url('./media/gradient.png'),
-                url('./media/lightning_bg.jpg');
-            background-size: cover, cover;
-            background-position: center, center;
-            background-repeat: no-repeat, no-repeat;
-            background-attachment: fixed, fixed;
+            background-color: #000000;
             position: fixed;
             top: 0;
             left: 0;
@@ -301,27 +87,14 @@
             z-index: 10;
         }
         
-        /* Lightning background styling from legacy-2 */
+        /* Simple black background */
         .lightning-bg {
-            background-image: 
-                url('./media/gradient.png'),
-                url('./media/lightning_bg.jpg');
-            background-size: cover, cover;
-            background-position: center, center;
-            background-repeat: no-repeat, no-repeat;
-            background-attachment: fixed, fixed;
+            background-color: #000000;
             min-height: 120vh;
             position: relative;
         }
         
         
-        /* Force phone aspect ratio */
-        #phone {
-            object-fit: contain;
-            max-width: none;
-            height: 80vh;
-            width: auto;
-        }
         
         /* Typing animation styles */
         .typing-text {
@@ -345,120 +118,6 @@
             51%, 100% { opacity: 0; }
         }
         
-        /* Contact form glow effect */
-        .contact-form-glow {
-            filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.8)) drop-shadow(0 0 40px rgba(255, 255, 255, 0.6)) drop-shadow(0 0 60px rgba(255, 255, 255, 0.4)) !important;
-        }
-        
-        /* Form field positioning on phone - EXACT FIGMA MEASUREMENTS */
-        .phone-form-field {
-            position: absolute;
-            background: transparent;
-            border: none;
-            border-radius: 0;
-            padding: 4px 8px;
-            font-size: 12px;
-            color: #000;
-            box-shadow: none;
-        }
-        
-        .phone-form-field:focus {
-            outline: none;
-            border: none;
-            box-shadow: none;
-        }
-        
-        .phone-form-button {
-            position: absolute;
-            background: transparent;
-            border: none;
-            color: #000;
-            font-size: 12px;
-            padding: 4px 8px;
-            cursor: pointer;
-        }
-        
-        /* Phone: 426px × 880px, Fields: 338px × 40px, Left offset: 49px */
-        #phone-name {
-            top: 18.2%;
-            left: 11.5%;
-            width: 79.3%;
-        }
-        
-        #phone-phone {
-            top: 28.4%;
-            left: 11.5%;
-            width: 79.3%;
-        }
-        
-        #phone-email {
-            top: 38.6%;
-            left: 11.5%;
-            width: 79.3%;
-        }
-        
-        #phone-message {
-            top: 48.9%;
-            left: 11.5%;
-            width: 79.3%;
-            height: 40px;
-            resize: none;
-        }
-        
-        /* Mid-form buttons (Approve/Cancel) - EXACT FIGMA MEASUREMENTS */
-        #phone-approve {
-            top: 59.1%;
-            left: 11.5%;
-            width: 79.3%;
-        }
-        
-        #phone-cancel {
-            top: 65.9%;
-            left: 11.5%;
-            width: 79.3%;
-        }
-        
-        /* Phone gleam effect */
-        .phone-gleam {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 3;
-            mask: url('/media/phone.png');
-            -webkit-mask: url('/media/phone.png');
-            mask-size: contain;
-            -webkit-mask-size: contain;
-            mask-repeat: no-repeat;
-            -webkit-mask-repeat: no-repeat;
-            mask-position: center;
-            -webkit-mask-position: center;
-        }
-        
-        .phone-gleam::before {
-            content: '';
-            position: absolute;
-            top: -150%;
-            left: -150%;
-            width: 300%;
-            height: 300%;
-            background: linear-gradient(135deg, transparent, rgba(255, 255, 255, 0.15), transparent);
-            animation: gleam 4s ease-in-out infinite;
-        }
-        
-        @keyframes gleam {
-            0% {
-                transform: translate(-150%, -150%);
-            }
-            70% {
-                transform: translate(150%, 150%);
-            }
-            100% {
-                transform: translate(150%, 150%);
-            }
-        }
         
         /* Hero section styling - slash.com inspired */
         .hero-section {
@@ -607,7 +266,7 @@
             color: white;
             margin-bottom: 40px;
             line-height: 1.1;
-            font-family: 'Playfair Display', serif;
+            font-family: sans-serif;
             position: relative;
             background: linear-gradient(45deg, #ffffff, #00ffff, #8a2be2, #ffffff);
             background-size: 300% 300%;
@@ -631,7 +290,7 @@
             color: rgba(255, 255, 255, 0.8);
             margin-bottom: 50px;
             line-height: 1.6;
-            font-family: 'Playfair Display', serif;
+            font-family: sans-serif;
             max-width: 700px;
             margin-left: auto;
             margin-right: auto;
@@ -651,7 +310,7 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-family: 'Playfair Display', serif;
+            font-family: sans-serif;
             border: none;
         }
         
@@ -803,7 +462,7 @@
             color: white;
             text-align: center;
             margin-bottom: 20px;
-            font-family: 'Playfair Display', serif;
+            font-family: sans-serif;
         }
         
         .pricing-divider {
@@ -844,7 +503,7 @@
             font-weight: 700;
             color: white;
             margin-bottom: 20px;
-            font-family: 'Playfair Display', serif;
+            font-family: sans-serif;
         }
         
         .plan-price {
@@ -852,14 +511,14 @@
             font-weight: 800;
             color: white;
             margin-bottom: 5px;
-            font-family: 'Playfair Display', serif;
+            font-family: sans-serif;
         }
         
         .plan-period {
             font-size: 1rem;
             color: rgba(255, 255, 255, 0.6);
             margin-bottom: 20px;
-            font-family: 'Playfair Display', serif;
+            font-family: sans-serif;
         }
         
         .plan-description {
@@ -867,7 +526,7 @@
             color: rgba(255, 255, 255, 0.7);
             margin-bottom: 30px;
             line-height: 1.5;
-            font-family: 'Playfair Display', serif;
+            font-family: sans-serif;
         }
         
         .plan-button {
@@ -879,7 +538,7 @@
             cursor: pointer;
             transition: all 0.3s ease;
             margin-bottom: 30px;
-            font-family: 'Playfair Display', serif;
+            font-family: sans-serif;
         }
         
         .plan-button.free {
@@ -917,7 +576,7 @@
             margin-bottom: 12px;
             font-size: 0.95rem;
             color: rgba(255, 255, 255, 0.8);
-            font-family: 'Playfair Display', serif;
+            font-family: sans-serif;
         }
         
         .plan-feature:last-child {
@@ -952,14 +611,14 @@
             line-height: 0.9;
             color: white;
             margin-bottom: 30px;
-            font-family: 'Playfair Display', serif;
+            font-family: sans-serif;
         }
         
         .faq-subtitle {
             font-size: 1.1rem;
             color: rgba(255, 255, 255, 0.7);
             margin-bottom: 10px;
-            font-family: 'Playfair Display', serif;
+            font-family: sans-serif;
         }
         
         .faq-cta {
@@ -968,7 +627,7 @@
             font-weight: 500;
             font-size: 1.1rem;
             transition: color 0.3s ease;
-            font-family: 'Playfair Display', serif;
+            font-family: sans-serif;
         }
         
         .faq-cta:hover {
@@ -999,7 +658,7 @@
             font-size: 1.1rem;
             font-weight: 500;
             transition: color 0.3s ease;
-            font-family: 'Playfair Display', serif;
+            font-family: sans-serif;
         }
         
         .faq-question:hover {
@@ -1024,7 +683,7 @@
             font-size: 1rem;
             line-height: 1.6;
             margin-top: 15px;
-            font-family: 'Playfair Display', serif;
+            font-family: sans-serif;
             position: relative;
         }
         
@@ -1069,7 +728,7 @@
             color: white;
             margin-bottom: 30px;
             line-height: 1.1;
-            font-family: 'Playfair Display', serif;
+            font-family: sans-serif;
             position: relative;
             z-index: 2;
         }
@@ -1102,7 +761,7 @@
             font-size: 1.2rem;
             color: rgba(255, 255, 255, 0.8);
             line-height: 1.6;
-            font-family: 'Playfair Display', serif;
+            font-family: sans-serif;
         }
 
         @media (max-width: 768px) {
@@ -1139,7 +798,7 @@
             transform: translate(-50%, -50%);
             font-size: 12vw;
             font-weight: 900;
-            font-family: 'Playfair Display', serif;
+            font-family: sans-serif;
             color: transparent;
             -webkit-text-stroke: 2px rgba(255, 255, 255, 0.1);
             text-stroke: 2px rgba(255, 255, 255, 0.1);
@@ -1177,7 +836,7 @@
             font-weight: 700;
             color: white;
             margin-bottom: 20px;
-            font-family: 'Playfair Display', serif;
+            font-family: sans-serif;
             position: relative;
             z-index: 10;
         }
@@ -1186,7 +845,7 @@
             font-size: 1.2rem;
             color: rgba(255, 255, 255, 0.7);
             margin-bottom: 60px;
-            font-family: 'Playfair Display', serif;
+            font-family: sans-serif;
             position: relative;
             z-index: 10;
         }
@@ -1221,7 +880,7 @@
             border-radius: 0;
             transition: all 0.3s ease;
             position: relative;
-            font-family: 'Playfair Display', serif;
+            font-family: sans-serif;
             font-weight: 600;
             font-size: 1.1rem;
             text-transform: uppercase;
@@ -1251,7 +910,7 @@
             font-weight: 600;
             color: inherit;
             text-align: center;
-            font-family: 'Playfair Display', serif;
+            font-family: sans-serif;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
@@ -1322,7 +981,7 @@
             font-size: 1.2rem;
             color: rgba(255, 255, 255, 0.8);
             line-height: 1.6;
-            font-family: 'Playfair Display', serif;
+            font-family: sans-serif;
         }
         
         @media (max-width: 768px) {
@@ -1392,28 +1051,12 @@
             <!-- Header -->
             <header class="fixed top-0 left-0 w-full z-50 py-4 px-6 flex justify-between items-center">
                 <div class="flex items-center">
-                    <a href="index2.html">
-                        <img src="/media/Tap_inverted.png" alt="Tap Health Logo" class="h-16 md:h-20 lg:h-24 mr-4">
-                    </a>
-                    </div>
+                    <img src="/media/Tap_inverted.png" alt="Tap Health Logo" class="h-16 md:h-20 lg:h-24 mr-4">
+                </div>
                 <div class="flex items-center gap-6">
                     <h1 class="text-2xl md:text-3xl font-bold futuristic-title bg-black px-4 py-2 rounded-lg relative z-10">
                         The Future of Forms
                     </h1>
-                    <div class="relative">
-                        <button id="menu-toggle" class="text-white hover:text-gray-300 transition-colors" onclick="toggleMenu()">
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                            </svg>
-                        </button>
-                        <div id="menu-overlay" class="fixed top-20 right-6 bg-black bg-opacity-90 backdrop-blur-sm rounded-lg shadow-2xl z-50 hidden min-w-48">
-                            <nav class="px-6 py-4 text-white">
-                                <a href="index2.html" class="block py-3 text-lg font-bold hover:text-gray-300 transition-colors border-b border-gray-600">Home</a>
-                                <a href="security-compliance.html" class="block py-3 text-lg font-bold hover:text-gray-300 transition-colors border-b border-gray-600">Security & Compliance</a>
-                                <a href="#" class="block py-3 text-lg font-bold hover:text-gray-300 transition-colors">Join Our Pilot Program</a>
-            </nav>
-                    </div>
-                    </div>
                 </div>
             </header>
             
@@ -1831,58 +1474,19 @@
         </div>
     </div>
     
-    <!-- Gradient overlay section - fades from black to transparent -->
-    <section style="height: 200px; background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 30%, rgba(0,0,0,0.4) 70%, rgba(0,0,0,0) 100%); position: relative; z-index: 4;"></section>
-    
     <!-- ========================================
-         LEGACY-2 CONTENT - PERFECT PHONE TRANSITION
+         SIMPLE BLACK AND WHITE CONTENT
          ======================================== -->
     
-    <!-- Lightning background section with gradient overlay -->
-    <section class="lightning-bg relative" style="min-height: 100vh; position: relative; z-index: 5;">
-        <!-- Tap NFC Sticker and heading in the center -->
-        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10; text-align: center;">
-            <!-- Tap NFC Sticker -->
-            <img src="/media/NFCTapSticker.png" alt="Tap NFC Sticker" style="width: 120px; height: auto; margin: 0 auto 30px auto; display: block; opacity: 1;">
-            
-            <!-- Heading -->
-            <h2 style="color: white; font-size: clamp(2rem, 5vw, 4rem); font-weight: 700; font-family: 'Playfair Display', serif; text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5); margin: 0;">
-                Ready to transform your forms?
-            </h2>
-                            </div>
-    </section>
-
-    <!-- Lightning 2 section -->
-    <section class="lightning-bg relative" style="min-height: 100vh; position: relative; z-index: 5;">
-        <!-- Phone container - same as legacy-2 -->
-        <div id="phone-container" style="position: absolute; top: 80%; left: 50%; transform: translate(-50%, -50%); opacity: 0; transition: none; z-index: 20;">
-            <img src="./media/phone.png" alt="Phone" style="height: 80vh; width: auto;" id="phone">
-            <div class="phone-gradient"></div>
-            <!-- Contact form overlays -->
-            <div id="contact-form-glow" class="contact-form-glow-overlay" style="display: none;"></div>
-            <div id="contact-form-fade" class="contact-form-fade-overlay" style="display: none;"></div>
-            <div id="contact-form-interactive-overlay">
-                    <input type="text" id="phone-name" class="phone-form-field" required>
-                    <input type="tel" id="phone-phone" class="phone-form-field">
-                    <input type="email" id="phone-email" class="phone-form-field" required>
-                    <textarea id="phone-message" class="phone-form-field" required></textarea>
-                <button type="button" id="phone-approve" class="phone-form-button" onclick="approveForm()">Approve</button>
-                <button type="button" id="phone-cancel-mid" class="phone-form-button" onclick="goBackToDefault()"></button>
-                    <button type="button" id="phone-cancel" class="phone-form-button" onclick="goBackToDefault()"></button>
-                <button type="button" id="phone-send" class="phone-form-button" onclick="submitPhoneForm()">Send</button>
-                            </div>
-                        </div>
-
-        <!-- Content placeholder for Lightning 2 -->
-        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10; text-align: center;">
-            <!-- Lightning 2 content will go here -->
-                            </div>
-        
-        <!-- Main heading text that appears over phone when fully transitioned -->
-        <div class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30" id="phone-text-container" style="opacity: 0; transition: opacity 1s ease-in-out;">
-            <h1 class="text-white font-bold text-center leading-tight" style="text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5); font-size: clamp(1.5rem, 6vw, 6rem); font-family: 'Playfair Display', serif;">
+    <!-- Simple black and white section -->
+    <section class="bg-black text-white" style="min-height: 100vh; position: relative; z-index: 5; display: flex; align-items: center; justify-content: center;">
+        <div style="text-align: center;">
+            <h1 class="text-white font-bold text-center leading-tight" style="font-size: clamp(2rem, 8vw, 8rem); font-family: sans-serif;">
                 One Tap is all it takes.
             </h1>
+            <p class="text-white text-xl mt-8" style="font-family: sans-serif;">
+                Ready to transform your forms?
+            </p>
         </div>
     </section>
     
@@ -1924,242 +1528,8 @@
     
     <!-- JavaScript -->
     <script>
-        // Phone image transition functionality
-        const PHONE_IMAGES = {
-            default: './media/phone.png',
-            contactForm: './media/contactFormPhone.png'
-        };
-
-        function switchPhoneImage(imageType) {
-            const phoneImg = document.getElementById('phone');
-            const phoneContainer = document.getElementById('phone-container');
-            
-            if (phoneImg && PHONE_IMAGES[imageType]) {
-                phoneImg.src = PHONE_IMAGES[imageType];
-                
-                if (imageType === 'contactForm') {
-                    // Entering contact form mode
-                    phoneContainer.classList.add('contact-form-mode');
-                    document.getElementById('contact-form-interactive-overlay').style.display = 'block';
-                    
-                    // Keep phone in normal position but prevent scrolling
-                    phoneContainer.style.zIndex = '30'; // Higher than Lightning sections
-                    
-                    // Prevent scrolling when contact form is active
-                    document.body.style.overflow = 'hidden';
-                    
-                    // Hide headers when contact form is active
-                    const phoneTextContainer = document.getElementById('phone-text-container');
-                    const lightning1Content = document.querySelector('.lightning-bg') ? document.querySelector('.lightning-bg').querySelector('div[style*="transform: translate(-50%, -50%)"]') : null;
-                    
-                    if (phoneTextContainer) {
-                        phoneTextContainer.style.opacity = '0';
-                    }
-                    if (lightning1Content) {
-                        lightning1Content.style.opacity = '0';
-                    }
-                    
-                    // Transition contact phone up to center
-                    setTimeout(() => {
-                        phoneContainer.style.transition = 'all 0.8s ease-in-out';
-                        phoneContainer.style.top = '50%';
-                        phoneContainer.style.left = '50%';
-                        phoneContainer.style.transform = 'translate(-50%, -50%)';
-                    }, 100); // Small delay to ensure image is loaded
-                    
-                    // Hide gleam element
-                    const gleamElement = phoneContainer.querySelector('.phone-gleam');
-                    if (gleamElement) {
-                        gleamElement.style.display = 'none';
-                    }
-                    
-                    // Change Get in Touch button to Go Back button
-                    const getInTouchBtn = document.querySelector('button[onclick="openContactForm()"]:not(.phone-form-button)');
-                    if (getInTouchBtn) {
-                        getInTouchBtn.textContent = 'Go Back';
-                        getInTouchBtn.setAttribute('onclick', 'goBackToDefault()');
-                    }
-                    
-                    // Apply glow after the new phone image is loaded
-                    phoneImg.onload = function() {
-                        phoneImg.classList.add('contact-form-glow');
-                    };
-                    
-                    // If image is already loaded (cached), apply glow immediately
-                    if (phoneImg.complete) {
-                        phoneImg.classList.add('contact-form-glow');
-                    }
-                    
-                    // Change gradient to top lighting for contact form
-                    const gradientDiv = phoneContainer.querySelector('.phone-gradient');
-                    if (gradientDiv) {
-                        gradientDiv.style.background = `
-                            radial-gradient(ellipse at 50% 15%, 
-                                transparent 0%, 
-                                transparent 20%, 
-                                rgba(0, 0, 0, 0.1) 35%, 
-                                rgba(0, 0, 0, 0.4) 50%, 
-                                rgba(0, 0, 0, 0.8) 70%, 
-                                rgba(0, 0, 0, 0.95) 100%),
-                            linear-gradient(to bottom, 
-                                transparent 50%, 
-                                rgba(0, 0, 0, 0.3) 70%, 
-                                rgba(0, 0, 0, 0.7) 85%, 
-                                rgba(0, 0, 0, 1) 100%)
-                        `;
-                    }
-                } else {
-                    // Exiting contact form mode - transition back down first
-                    phoneContainer.style.transition = 'all 0.8s ease-in-out';
-                    
-                    // Get current phone position from updatePhoneOpacity function
-                    const scrolled = document.documentElement.scrollTop || window.pageYOffset;
-                    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-                    const scrollProgress = Math.min(scrolled / maxScroll, 1);
-                    
-                    function easeInOutCubic(t) {
-                        return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-                    }
-                    
-                    const easedProgress = easeInOutCubic(scrollProgress);
-                    const startTop = 80;
-                    const endTop = 65;
-                    const phoneProgress = Math.min(scrollProgress / 0.5, 1);
-                    const currentTop = startTop + (endTop - startTop) * phoneProgress;
-                    
-                    // Transition back to original position
-                    phoneContainer.style.top = currentTop + '%';
-                    phoneContainer.style.left = '50%';
-                    phoneContainer.style.transform = 'translate(-50%, -50%)';
-                    
-                    // After transition completes, switch back to default phone
-                    setTimeout(() => {
-                    phoneContainer.classList.remove('contact-form-mode');
-                    document.getElementById('contact-form-interactive-overlay').style.display = 'none';
-                    
-                        // Restore original z-index and scrolling
-                        phoneContainer.style.zIndex = '20'; // Back to original z-index
-                        document.body.style.overflow = ''; // Restore scrolling
-                        
-                        // Remove transition to allow normal phone animation
-                        phoneContainer.style.transition = 'none';
-                        
-                        // Restore headers when exiting contact form
-                        const phoneTextContainer = document.getElementById('phone-text-container');
-                        const lightning1Content = document.querySelector('.lightning-bg') ? document.querySelector('.lightning-bg').querySelector('div[style*="transform: translate(-50%, -50%)"]') : null;
-                        
-                        if (phoneTextContainer) {
-                            // Check if phone is still fully visible to determine header visibility
-                            const phoneOpacity = parseFloat(phoneContainer.style.opacity) || 0;
-                            phoneTextContainer.style.opacity = phoneOpacity >= 0.95 ? '1' : '0';
-                        }
-                        if (lightning1Content) {
-                            // Check if phone is still fully visible to determine header visibility
-                            const phoneOpacity = parseFloat(phoneContainer.style.opacity) || 0;
-                            lightning1Content.style.opacity = phoneOpacity >= 0.95 ? '1' : '0';
-                        }
-                        
-                        // Change Go Back button back to Get in Touch button
-                    let goBackBtn = document.querySelector('button[onclick="goBackToDefault()"]:not(.phone-form-button)');
-                    if (!goBackBtn) {
-                        const buttons = document.querySelectorAll('button:not(.phone-form-button)');
-                        for (let btn of buttons) {
-                            if (btn.textContent.trim() === 'Go Back') {
-                                goBackBtn = btn;
-                                break;
-                            }
-                        }
-                    }
-                    if (goBackBtn) {
-                        goBackBtn.textContent = 'Get in Touch';
-                        goBackBtn.setAttribute('onclick', 'openContactForm()');
-                    }
-                    // Remove glow
-                    phoneImg.classList.remove('contact-form-glow');
-                    phoneImg.onload = null;
-                    
-                        // Restore original upper-right gradient
-                        const gradientDiv = phoneContainer.querySelector('.phone-gradient');
-                        if (gradientDiv) {
-                            gradientDiv.style.background = `
-                                radial-gradient(ellipse at 85% 15%, 
-                                    transparent 0%, 
-                                    transparent 20%, 
-                                    rgba(0, 0, 0, 0.1) 35%, 
-                                    rgba(0, 0, 0, 0.4) 50%, 
-                                    rgba(0, 0, 0, 0.8) 70%, 
-                                    rgba(0, 0, 0, 0.95) 100%),
-                                linear-gradient(to bottom, 
-                                    transparent 50%, 
-                                    rgba(0, 0, 0, 0.3) 70%, 
-                                    rgba(0, 0, 0, 0.7) 85%, 
-                                    rgba(0, 0, 0, 1) 100%)
-                            `;
-                        }
-                    }, 800); // Wait for transition to complete
-                }
-            }
-        }
-
-        function enteringContactForm() {
-            switchPhoneImage('contactForm');
-        }
-
-        function exitingContactForm() {
-            switchPhoneImage('default');
-            
-            // Clear all form fields when exiting
-            const nameField = document.getElementById('phone-name');
-            const emailField = document.getElementById('phone-email');
-            const phoneField = document.getElementById('phone-phone');
-            const messageField = document.getElementById('phone-message');
-            
-            if (nameField) nameField.value = '';
-            if (emailField) emailField.value = '';
-            if (phoneField) phoneField.value = '';
-            if (messageField) messageField.value = '';
-        }
-
         function openContactForm() {
-            enteringContactForm();
-        }
-        
-        function goBackToDefault() {
-            exitingContactForm();
-        }
-
-        function approveForm() {
-            const name = document.getElementById('phone-name').value;
-            const phone = document.getElementById('phone-phone').value;
-            const email = document.getElementById('phone-email').value;
-            const message = document.getElementById('phone-message').value;
-            
-            if (!name || !email || !message) {
-                alert('Please fill in all required fields.');
-                return;
-            }
-            
-            exitingContactForm();
-            
-            const successPopup = document.getElementById('successPopup');
-            if (successPopup) {
-                successPopup.classList.remove('hidden');
-            }
-        }
-
-        function submitPhoneForm() {
-            const name = document.getElementById('phone-name').value;
-            const phone = document.getElementById('phone-phone').value;
-            const email = document.getElementById('phone-email').value;
-            const message = document.getElementById('phone-message').value;
-            
-            if (!name || !email || !message) {
-                alert('Please fill in all required fields.');
-                return;
-            }
-            
-            exitingContactForm();
-            
+            // Simple contact form functionality
             const successPopup = document.getElementById('successPopup');
             if (successPopup) {
                 successPopup.classList.remove('hidden');
@@ -2171,7 +1541,6 @@
             if (successPopup) {
                 successPopup.classList.add('hidden');
             }
-            exitingContactForm();
         }
         
         // Simple scroll to top function
@@ -2197,141 +1566,7 @@
             }
         }
 
-        // Menu toggle functionality
-        function toggleMenu() {
-            const menuOverlay = document.getElementById('menu-overlay');
-            if (menuOverlay) {
-            if (menuOverlay.classList.contains('hidden')) {
-                menuOverlay.classList.remove('hidden');
-            } else {
-                menuOverlay.classList.add('hidden');
-                }
-            }
-        }
-        
-        // Close menu when clicking outside
-        document.addEventListener('DOMContentLoaded', function() {
-            const menuOverlay = document.getElementById('menu-overlay');
-            if (menuOverlay) {
-                menuOverlay.addEventListener('click', function(e) {
-            if (e.target === this) {
-                toggleMenu();
-            }
-                });
-            }
-        });
-
-        // Debug background elements
-        function debugBackgrounds() {
-            const lightningBg = document.querySelector('.lightning-page-bg');
-            const gradientOverlay = document.querySelector('.gradient-overlay');
-            const lightningSections = document.querySelectorAll('.lightning-bg');
-            
-        }
-
-        // Phone animation - exact same as legacy-2
-            function updatePhoneOpacity() {
-                const scrolled = document.documentElement.scrollTop || window.pageYOffset;
-                const phoneContainer = document.getElementById('phone-container');
-                
-            if (!phoneContainer) {
-                return;
-            }
-            // Continuous phone animation based on scroll percentage
-            const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-            const scrollProgress = Math.min(scrolled / maxScroll, 1); // 0 to 1
-            
-            // Smooth easing function - same as legacy-2
-                    function easeInOutCubic(t) {
-                        return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-                    }
-                    
-            const easedProgress = easeInOutCubic(scrollProgress);
-            
-            // Position: 80% at top (just off-screen), final aligned position
-                    const startTop = 80;  // 80% (just off-screen, visible immediately)
-            const endTop = 65;    // 65% (lower position - can overlap footer)
-            
-            // PARALLAX EFFECT: Phone reaches final position at 50% scroll progress (was 70%)
-            const phoneProgress = Math.min(scrollProgress / 0.5, 1); // Complete by 50% scroll (parallax effect)
-            const currentTop = startTop + (endTop - startTop) * phoneProgress;
-            
-            // Opacity: 0 at top, 1 at bottom - fade in over entire scroll range
-            // Use scrollProgress instead of phoneProgress for full scroll range fade
-            const opacity = scrollProgress; // 0% scroll = 0 opacity, 100% scroll = 1 opacity
-            
-            // Apply the animation - same as legacy-2
-            phoneContainer.style.opacity = opacity.toString();
-            phoneContainer.style.top = currentTop + '%';
-            phoneContainer.style.left = '50%';
-            phoneContainer.style.transform = 'translate(-50%, -50%)';
-            
-            // Show "One Tap is all it takes" text when phone is fully visible
-            const phoneTextContainer = document.getElementById('phone-text-container');
-            if (phoneTextContainer) {
-                if (opacity >= 0.95) {
-                    phoneTextContainer.style.opacity = '1';
-                } else {
-                    phoneTextContainer.style.opacity = '0';
-                }
-            }
-            
-            }
-            
-        // Lightning 1 content - show when phone is fully visible
-        function updateLightning1Content() {
-            const scrolled = document.documentElement.scrollTop || window.pageYOffset;
-            const phoneContainer = document.getElementById('phone-container');
-            const lightning1Section = document.querySelector('.lightning-bg');
-            const lightning1Content = lightning1Section ? lightning1Section.querySelector('div[style*="position: absolute"]') : null;
-            
-            if (lightning1Content && phoneContainer) {
-                // Keep content in normal position, just control opacity
-                lightning1Content.style.position = 'absolute';
-                lightning1Content.style.top = '50%';
-                lightning1Content.style.left = '50%';
-                lightning1Content.style.transform = 'translate(-50%, -50%)';
-                lightning1Content.style.zIndex = '10';
-                
-                // Show when phone is fully visible (check phone opacity)
-                const phoneOpacity = parseFloat(phoneContainer.style.opacity) || 0;
-                console.log('🔍 LIGHTNING 1 DEBUG - Phone Opacity:', phoneOpacity, '| Content Element:', lightning1Content);
-                
-                if (phoneOpacity >= 0.95) {
-                    lightning1Content.style.opacity = '1';
-                    console.log('✅ LIGHTNING 1 CONTENT SHOWN');
-                } else {
-                    lightning1Content.style.opacity = '0';
-                    console.log('❌ LIGHTNING 1 CONTENT HIDDEN');
-                }
-            }
-        }
-            
-        // Simple scroll tracking for debugging (optional)
-        function trackScroll() {
-                const scrolled = document.documentElement.scrollTop || window.pageYOffset;
-                const windowHeight = window.innerHeight;
-                const documentHeight = document.documentElement.scrollHeight;
-                const maxScroll = documentHeight - windowHeight;
-                
-        }
-
-        // Run debug on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(debugBackgrounds, 1000); // Wait 1 second for everything to load
-        });
-
-        // Add scroll event listener - same as legacy-2
-        window.addEventListener('scroll', function() {
-            updatePhoneOpacity();
-            updateLightning1Content();
-        });
-        window.addEventListener('load', function() {
-            updatePhoneOpacity();
-            updateLightning1Content();
-        });
-            </script>
-f the 
+    </script>
 </body>
 
 </html>
