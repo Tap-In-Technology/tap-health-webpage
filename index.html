@@ -310,10 +310,11 @@
         
         .pricing-container {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            max-width: 800px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            max-width: 1400px;
             margin: 0 auto;
+            width: 100%;
         }
         
         .pricing-plan {
@@ -386,8 +387,8 @@
         
         .plan-button.free {
             background: transparent;
-            border: 1px solid white;
-            color: white;
+            border: 1px solid #000000;
+            color: #000000;
         }
         
         .plan-button.free:hover {
@@ -403,7 +404,7 @@
         
         .plan-button.pro:hover {
             background: transparent;
-            color: white;
+            color: #000000;
         }
         
         .plan-features {
@@ -583,6 +584,13 @@
             line-height: 1.6;
             font-family: sans-serif;
         }
+        
+        @media (max-width: 1024px) {
+            .pricing-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+        }
 
         @media (max-width: 768px) {
             .spotlight-content {
@@ -620,8 +628,8 @@
             font-weight: 900;
             font-family: sans-serif;
             color: transparent;
-            -webkit-text-stroke: 2px rgba(255, 255, 255, 0.1);
-            text-stroke: 2px rgba(255, 255, 255, 0.1);
+            -webkit-text-stroke: 2px rgba(0, 0, 0, 0.1);
+            text-stroke: 2px rgba(0, 0, 0, 0.1);
             white-space: nowrap;
             z-index: 0;
             letter-spacing: 0.05em;
@@ -708,8 +716,8 @@
         }
 
         .export-format-item:hover {
-            background: black;
-            color: white;
+            background: #000000;
+            color: #ffffff;
             transform: translateY(-2px);
         }
 
@@ -773,7 +781,7 @@
             display: inline-block;
             font-family: 'Courier New', monospace;
             font-size: 1rem;
-            color: #ffffff;
+            color: #000000;
             min-height: 1.25rem;
             white-space: nowrap;
         }
@@ -782,7 +790,7 @@
             display: inline-block;
             width: 2px;
             height: 1rem;
-            background-color: #ffffff;
+            background-color: #000000;
             animation: blink 1s infinite;
         }
 
@@ -833,7 +841,7 @@
             
             .pricing-container {
                 grid-template-columns: 1fr;
-                gap: 30px;
+                gap: 20px;
             }
             
             .pricing-title {
@@ -852,10 +860,335 @@
                 font-size: 3rem;
             }
         }
+        
+        /* Dark Mode Styles */
+        .dark-mode {
+            background-color: #000000;
+        }
+        
+        .dark-mode .futuristic-bg {
+            background-color: #000000;
+        }
+        
+        .dark-mode .lightning-page-bg {
+            background-color: #000000;
+        }
+        
+        .dark-mode .black-section-overlay {
+            background-color: #000000;
+        }
+        
+        .dark-mode .lightning-bg {
+            background-color: #000000;
+        }
+        
+        .dark-mode .futuristic-title {
+            color: #ffffff;
+        }
+        
+        .dark-mode .futuristic-subtitle {
+            color: #ffffff;
+        }
+        
+        .dark-mode body {
+            color: #ffffff;
+        }
+        
+        .dark-mode .hero-title {
+            color: #ffffff;
+        }
+        
+        .dark-mode .hero-description {
+            color: #ffffff;
+        }
+        
+        .dark-mode .business-title {
+            color: #ffffff;
+        }
+        
+        .dark-mode .business-description {
+            color: #ffffff;
+        }
+        
+        .dark-mode .plan-title {
+            color: #ffffff;
+        }
+        
+        .dark-mode .plan-price {
+            color: #ffffff;
+        }
+        
+        .dark-mode .plan-period {
+            color: #ffffff;
+        }
+        
+        .dark-mode .plan-description {
+            color: #ffffff;
+        }
+        
+        .dark-mode .plan-feature {
+            color: #ffffff;
+        }
+        
+        .dark-mode .feature-checkmark {
+            color: #ffffff;
+        }
+        
+        .dark-mode .pricing-title {
+            color: #ffffff;
+        }
+        
+        .dark-mode .pricing-divider {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .dark-mode .pricing-plan:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
+        }
+        
+        .dark-mode .faq-title {
+            color: #ffffff;
+        }
+        
+        .dark-mode .faq-subtitle {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .dark-mode .faq-cta {
+            color: #ffffff;
+        }
+        
+        .dark-mode .faq-cta:hover {
+            color: #ffffff;
+        }
+        
+        .dark-mode .faq-question {
+            color: #ffffff;
+        }
+        
+        .dark-mode .faq-question:hover {
+            color: #ffffff;
+        }
+        
+        .dark-mode .faq-answer {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .dark-mode .spotlight-title {
+            color: #ffffff;
+        }
+        
+        .dark-mode .spotlight-description {
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .dark-mode .export-formats-title {
+            color: #ffffff;
+        }
+        
+        .dark-mode .export-formats-subtitle {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .dark-mode .typing-text {
+            color: #ffffff;
+        }
+        
+        .dark-mode .typing-cursor {
+            background-color: #ffffff;
+        }
+        
+        .dark-mode .carousel-btn {
+            color: #ffffff;
+        }
+        
+        .dark-mode .carousel-btn:hover {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .dark-mode .business-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .dark-mode .business-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+        }
+        
+        .dark-mode .business-card::before {
+            background: white;
+        }
+        
+        .dark-mode .pricing-plan {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .dark-mode .pricing-plan:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
+        }
+        
+        .dark-mode .hero-cta-button.primary {
+            background: #ffffff;
+            color: #000000;
+        }
+        
+        .dark-mode .hero-cta-button.primary:hover {
+            background: rgba(255, 255, 255, 0.9);
+        }
+        
+        .dark-mode .hero-cta-button.secondary {
+            background: transparent;
+            color: #ffffff;
+            border: 2px solid #ffffff;
+        }
+        
+        .dark-mode .hero-cta-button.secondary:hover {
+            background: #ffffff;
+            color: #000000;
+        }
+        
+        .dark-mode .cta-gradient-section {
+            background: #000000;
+        }
+        
+        .dark-mode .cta-title {
+            color: #ffffff;
+        }
+        
+        .dark-mode .cta-description {
+            color: #ffffff;
+        }
+        
+        .dark-mode .cta-button {
+            background: #ffffff;
+            color: #000000;
+        }
+        
+        .dark-mode .cta-button:hover {
+            background: rgba(255, 255, 255, 0.9);
+        }
+        
+        .dark-mode .footer {
+            background: #000000;
+        }
+        
+        .dark-mode .footer-content {
+            color: #ffffff;
+        }
+        
+        .dark-mode .footer-links a {
+            color: #ffffff;
+        }
+        
+        .dark-mode .footer-links a:hover {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .dark-mode .footer-bottom {
+            color: #ffffff;
+        }
+        
+        .dark-mode .footer-bottom a {
+            color: #ffffff;
+        }
+        
+        .dark-mode .footer-bottom a:hover {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .dark-mode .contact-popup {
+            background: #000000;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .dark-mode .contact-popup h3 {
+            color: #ffffff;
+        }
+        
+        .dark-mode .contact-popup label {
+            color: #ffffff;
+        }
+        
+        .dark-mode .contact-popup input,
+        .dark-mode .contact-popup textarea {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #ffffff;
+        }
+        
+        .dark-mode .contact-popup input::placeholder,
+        .dark-mode .contact-popup textarea::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .dark-mode .contact-popup .contact-buttons button {
+            background: #ffffff;
+            color: #000000;
+        }
+        
+        .dark-mode .contact-popup .contact-buttons button:hover {
+            background: rgba(255, 255, 255, 0.9);
+        }
+        
+        .dark-mode .contact-popup .contact-buttons button.secondary {
+            background: transparent;
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .dark-mode .contact-popup .contact-buttons button.secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .dark-mode .success-popup {
+            background: #000000;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .dark-mode .success-popup h3 {
+            color: #ffffff;
+        }
+        
+        .dark-mode .success-popup p {
+            color: #ffffff;
+        }
+        
+        .dark-mode .success-popup button {
+            background: #ffffff;
+            color: #000000;
+        }
+        
+        .dark-mode .success-popup button:hover {
+            background: rgba(255, 255, 255, 0.9);
+        }
+        
+        .dark-mode .theme-toggle {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .dark-mode .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .dark-mode .theme-toggle svg {
+            fill: #ffffff;
+        }
+        
+        .dark-mode .theme-toggle span {
+            color: #ffffff;
+        }
     </style>
 </head>
 
-<body class="bg-black text-white">
+<body class="bg-white text-black">
     <!-- Lightning background as true page background -->
     <div class="lightning-page-bg"></div>
     
@@ -887,7 +1220,7 @@
                             Tap populates forms with your saved information, preventing you from filling out the same fields again and again and giving you total control over who has your data.
                         </p>
                         <div class="hero-buttons">
-                            <button class="hero-cta-button primary" onclick="openContactForm()">Get in Contact</button>
+                            <button class="hero-cta-button primary" onclick="openContactForm()">Get in Touch</button>
                         </div>
                     </div>
                 </section>
@@ -1109,7 +1442,7 @@
                         </h2>
                         <div class="pricing-divider"></div>
                         
-                        <div class="pricing-container" style="grid-template-columns: repeat(4, 1fr); gap: 20px;">
+                        <div class="pricing-container">
                             <!-- Starter Plan -->
                             <div class="pricing-plan">
                                 <h3 class="plan-title">Starter</h3>
@@ -1219,7 +1552,7 @@
                                     asked questions
                                 </h2>
                                 <p class="faq-subtitle">Don't see the answer you're looking for?</p>
-                                <a href="#" class="faq-cta">Get in touch.</a>
+                                <a href="#" class="faq-cta" onclick="openContactForm(); return false;">Get in touch.</a>
                             </div>
                             
                             <div class="faq-list">
