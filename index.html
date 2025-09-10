@@ -18,9 +18,9 @@
             padding: 0;
         }
 
-        /* Pure black background */
+        /* Pure white background */
         .futuristic-bg {
-            background: #000000;
+            background: #ffffff;
             min-height: 100vh;
             position: relative;
         }
@@ -35,14 +35,14 @@
         .futuristic-title {
             font-family: sans-serif;
             font-weight: 800;
-            color: #ffffff;
+            color: #000000;
             letter-spacing: -0.03em;
         }
         
         .futuristic-subtitle {
             font-family: sans-serif;
             font-weight: 400;
-            color: #b0b0b0;
+            color: #404040;
             letter-spacing: -0.01em;
         }
         
@@ -51,12 +51,14 @@
             font-family: sans-serif;
             margin: 0;
             padding: 0;
+            background-color: #ffffff;
+            color: #000000;
         }
         
         
-        /* Simple black background */
+        /* Simple white background */
         .lightning-page-bg {
-            background-color: #000000;
+            background-color: #ffffff;
             position: fixed;
             top: 0;
             left: 0;
@@ -65,16 +67,16 @@
             z-index: -2;
         }
         
-        /* Black overlay for all sections except lightning section */
+        /* White overlay for all sections */
         .black-section-overlay {
-            background-color: #000000;
+            background-color: #ffffff;
             position: relative;
             z-index: 10;
         }
         
-        /* Simple black background */
+        /* Simple white background */
         .lightning-bg {
-            background-color: #000000;
+            background-color: #ffffff;
             min-height: 120vh;
             position: relative;
         }
@@ -248,7 +250,7 @@
         .hero-title {
             font-size: 5rem;
             font-weight: 800;
-            color: white;
+            color: #000000;
             margin-bottom: 40px;
             line-height: 1.1;
             font-family: sans-serif;
@@ -258,7 +260,7 @@
         
         .hero-description {
             font-size: 1.3rem;
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(0, 0, 0, 0.8);
             margin-bottom: 50px;
             line-height: 1.6;
             font-family: sans-serif;
@@ -286,26 +288,26 @@
         }
         
         .hero-cta-button.primary {
-            background: white;
-            color: black;
-            box-shadow: 0 2px 10px rgba(255, 255, 255, 0.2);
+            background: #000000;
+            color: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         }
         
         .hero-cta-button.primary:hover {
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(0, 0, 0, 0.9);
             transform: translateY(-2px);
-            box-shadow: 0 4px 20px rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
         
         .hero-cta-button.secondary {
             background: transparent;
-            color: white;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #000000;
+            border: 1px solid rgba(0, 0, 0, 0.3);
         }
         
         .hero-cta-button.secondary:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.5);
+            background: rgba(0, 0, 0, 0.1);
+            border-color: rgba(0, 0, 0, 0.5);
             transform: translateY(-2px);
         }
         
@@ -365,8 +367,8 @@
         .business-card {
             min-width: 300px;
             height: 400px;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.02);
+            border: 1px solid rgba(0, 0, 0, 0.1);
             border-radius: 20px;
             padding: 30px;
             position: relative;
@@ -376,8 +378,8 @@
         
         .business-card:hover {
             transform: translateY(-5px);
-            border-color: rgba(255, 255, 255, 0.3);
-            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+            border-color: rgba(0, 0, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
         
         .business-card::before {
@@ -387,13 +389,13 @@
             left: 0;
             right: 0;
             height: 3px;
-            background: white;
+            background: #000000;
         }
         
         .business-title {
             font-size: 1.5rem;
             font-weight: 700;
-            color: white;
+            color: #000000;
             margin-bottom: 20px;
         }
         
@@ -458,7 +460,14 @@
         .plan-title {
             font-size: 2rem;
             font-weight: 700;
-            color: white;
+            color: #000000;
+            margin-bottom: 10px;
+            font-family: sans-serif;
+        }
+        
+        .plan-subtitle {
+            font-size: 1rem;
+            color: #666666;
             margin-bottom: 20px;
             font-family: sans-serif;
         }
@@ -466,21 +475,21 @@
         .plan-price {
             font-size: 4rem;
             font-weight: 800;
-            color: white;
+            color: #000000;
             margin-bottom: 5px;
             font-family: sans-serif;
         }
         
         .plan-period {
             font-size: 1rem;
-            color: rgba(255, 255, 255, 0.6);
+            color: #666666;
             margin-bottom: 20px;
             font-family: sans-serif;
         }
         
         .plan-description {
             font-size: 1rem;
-            color: rgba(255, 255, 255, 0.7);
+            color: #666666;
             margin-bottom: 30px;
             line-height: 1.5;
             font-family: sans-serif;
@@ -532,7 +541,7 @@
             align-items: center;
             margin-bottom: 12px;
             font-size: 0.95rem;
-            color: rgba(255, 255, 255, 0.8);
+            color: #000000;
             font-family: sans-serif;
         }
         
@@ -541,7 +550,7 @@
         }
         
         .feature-checkmark {
-            color: white;
+            color: #000000;
             margin-right: 12px;
             font-size: 1.1rem;
         }
@@ -979,10 +988,10 @@
             <!-- Header -->
             <header class="fixed top-0 left-0 w-full z-50 py-4 px-6 flex justify-between items-center">
                 <div class="flex items-center">
-                    <img src="/media/Tap_inverted.png" alt="Tap Health Logo" class="h-16 md:h-20 lg:h-24 mr-4">
-                </div>
+                    <img src="/media/tap_health_logo.png" alt="Tap Health Logo" class="h-16 md:h-20 lg:h-24 mr-4">
+                    </div>
                 <div class="flex items-center gap-6">
-                    <h1 class="text-2xl md:text-3xl font-bold futuristic-title bg-black px-4 py-2 rounded-lg relative z-10">
+                    <h1 class="text-2xl md:text-3xl font-bold futuristic-title bg-white border border-black px-4 py-2 rounded-lg relative z-10">
                         The Future of Forms
                     </h1>
                 </div>
@@ -1234,79 +1243,99 @@
                         </h2>
                         <div class="pricing-divider"></div>
                         
-                        <div class="pricing-container">
-                            <!-- Standard Plan -->
+                        <div class="pricing-container" style="grid-template-columns: repeat(4, 1fr); gap: 20px;">
+                            <!-- Starter Plan -->
                             <div class="pricing-plan">
-                                <h3 class="plan-title">Standard</h3>
-                                <div class="plan-price">contact us</div>
-                                <div class="plan-period">/check-in</div>
-                                <p class="plan-description">
-                                    Pay per use pricing for businesses of all sizes. Simple, transparent, and scalable.
-                                </p>
-                                <button class="plan-button free" onclick="openContactForm()">Get in Contact</button>
+                                <h3 class="plan-title">Starter</h3>
+                                <p class="plan-subtitle">For Small Businesses</p>
+                                <div class="plan-price">$29.99</div>
+                                <div class="plan-period">per month</div>
+                                <button class="plan-button free" onclick="openContactForm()">Start trial</button>
                                 
                                 <ul class="plan-features">
                                     <li class="plan-feature">
                                         <span class="feature-checkmark">✓</span>
-                                        Up to 100 verifications per month
+                                        First 30 Days Free
                             </li>
                                     <li class="plan-feature">
                                         <span class="feature-checkmark">✓</span>
-                                        Basic identity verification
+                                        1 Location
                             </li>
                                     <li class="plan-feature">
                                         <span class="feature-checkmark">✓</span>
-                                        Standard security protocols
+                                        Unlimited Taps
                             </li>
+                                </ul>
+                            </div>
+                            
+                            <!-- Launch Plan -->
+                            <div class="pricing-plan">
+                                <h3 class="plan-title">Launch</h3>
+                                <p class="plan-subtitle">For Multi-Location Businesses</p>
+                                <div class="plan-price">$99.99</div>
+                                <div class="plan-period">per month</div>
+                                <button class="plan-button free" onclick="openContactForm()">Start trial</button>
+                                
+                                <ul class="plan-features">
                                     <li class="plan-feature">
                                         <span class="feature-checkmark">✓</span>
-                                        Email support
+                                        First 30 days free
                                     </li>
                                     <li class="plan-feature">
                                         <span class="feature-checkmark">✓</span>
-                                        Basic analytics dashboard
+                                        Up to 3 Locations
                                     </li>
                                     <li class="plan-feature">
                                         <span class="feature-checkmark">✓</span>
-                                        API access
+                                        1,000 Monthly Taps Included
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <!-- Growth Plan -->
+                            <div class="pricing-plan">
+                                <h3 class="plan-title">Growth</h3>
+                                <p class="plan-subtitle">For Chain Businesses</p>
+                                <div class="plan-price">$499.99</div>
+                                <div class="plan-period">per month</div>
+                                <button class="plan-button free" onclick="openContactForm()">Start trial</button>
+                                
+                                <ul class="plan-features">
+                                    <li class="plan-feature">
+                                        <span class="feature-checkmark">✓</span>
+                                        First 30 Days Free
                                     </li>
                                     <li class="plan-feature">
                                         <span class="feature-checkmark">✓</span>
-                                        Standard compliance features
+                                        Up to 10 Locations
                                     </li>
                                     <li class="plan-feature">
                                         <span class="feature-checkmark">✓</span>
-                                        Documentation & guides
+                                        10,000 Included Taps Per Month
                                     </li>
                                 </ul>
                                 </div>
                             
-                            <!-- Early Adopter Program -->
+                            <!-- Enterprise Plan -->
                             <div class="pricing-plan">
-                                <h3 class="plan-title">Pilot Adopters</h3>
-                                <div class="plan-price">contact us</div>
-                                <div class="plan-period">/check-in</div>
-                                <p class="plan-description">
-                                    Exclusive program for select partners with premium benefits and grandfathered pricing.
-                                </p>
-                                <button class="plan-button pro" onclick="openContactForm()">Get in Contact</button>
+                                <h3 class="plan-title">Enterprise</h3>
+                                <p class="plan-subtitle">For Large Enterprises</p>
+                                <div class="plan-price" style="font-size: 2rem;">Custom</div>
+                                <div class="plan-period">pricing</div>
+                                <button class="plan-button pro" onclick="openContactForm()">Contact us</button>
                                 
                                 <ul class="plan-features">
                                     <li class="plan-feature">
                                         <span class="feature-checkmark">✓</span>
-                                        No monthly fees
+                                        10+ Locations
                                     </li>
                                     <li class="plan-feature">
                                         <span class="feature-checkmark">✓</span>
-                                        Unlimited usage
+                                        White Glove Support
                                     </li>
                                     <li class="plan-feature">
                                         <span class="feature-checkmark">✓</span>
-                                        White glove support
-                                    </li>
-                                    <li class="plan-feature">
-                                        <span class="feature-checkmark">✓</span>
-                                        Grandfathered pricing for new locations
+                                        Custom Pricing
                             </li>
                         </ul>
                             </div>
@@ -1453,7 +1482,7 @@
             </form>
         </div>
     </div>
-
+    
     <!-- Success Confirmation Popup -->
     <div id="successPopup" class="fixed inset-0 bg-black bg-opacity-90 z-50 hidden flex items-center justify-center p-4">
         <div class="bg-black border border-white rounded-2xl p-8 w-96 max-w-sm shadow-2xl text-center backdrop-blur-sm">
@@ -1508,19 +1537,19 @@
                     const name = document.getElementById('contactName').value;
                     const email = document.getElementById('contactEmail').value;
                     const message = document.getElementById('contactMessage').value;
-                    
-                    if (!name || !email || !message) {
+            
+            if (!name || !email || !message) {
                         alert('Please fill in all fields.');
-                        return;
-                    }
-                    
+                return;
+            }
+            
                     // Close contact popup and show success popup
                     closeContactPopup();
-                    
-                    const successPopup = document.getElementById('successPopup');
-                    if (successPopup) {
-                        successPopup.classList.remove('hidden');
-                    }
+            
+            const successPopup = document.getElementById('successPopup');
+            if (successPopup) {
+                successPopup.classList.remove('hidden');
+            }
                 });
             }
         });
@@ -1548,7 +1577,8 @@
             }
         }
 
-    </script>
+            </script>
 </body>
 
 </html>
+
