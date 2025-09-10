@@ -87,7 +87,7 @@
         .typing-text {
             font-family: 'Courier New', monospace;
             font-size: 1rem;
-            color: #ffffff;
+            color: #000000;
             min-height: 1.25rem;
             white-space: nowrap;
         }
@@ -96,7 +96,7 @@
             display: inline-block;
             width: 2px;
             height: 1rem;
-            background-color: #ffffff;
+            background-color: #000000;
             animation: blink 1s infinite;
         }
         
@@ -115,129 +115,6 @@
             overflow: hidden;
         }
 
-        /* NFC Stickers Background */
-        .hero-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 20%, rgba(0, 0, 0, 0.8) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(0, 0, 0, 0.6) 0%, transparent 50%),
-                radial-gradient(circle at 50% 10%, rgba(0, 0, 0, 0.4) 0%, transparent 40%);
-            z-index: 0;
-        }
-
-        .nfc-sticker-bg {
-            position: absolute;
-            width: 80px;
-            height: 80px;
-            background-image: url('/media/NFCTapSticker.png');
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-            z-index: 1;
-            opacity: 0.1;
-            animation: floatSticker 8s ease-in-out infinite;
-        }
-
-        .nfc-sticker-bg:nth-child(1) {
-            top: 15%;
-            left: 10%;
-            transform: rotate(15deg);
-            animation-delay: 0s;
-        }
-
-        .nfc-sticker-bg:nth-child(2) {
-            top: 25%;
-            right: 15%;
-            transform: rotate(-25deg);
-            animation-delay: 2s;
-            opacity: 0.08;
-        }
-
-        .nfc-sticker-bg:nth-child(3) {
-            top: 60%;
-            left: 5%;
-            transform: rotate(35deg);
-            animation-delay: 4s;
-            opacity: 0.06;
-        }
-
-        .nfc-sticker-bg:nth-child(4) {
-            top: 70%;
-            right: 8%;
-            transform: rotate(-15deg);
-            animation-delay: 6s;
-            opacity: 0.05;
-        }
-
-        .nfc-sticker-bg:nth-child(5) {
-            top: 40%;
-            left: 20%;
-            transform: rotate(45deg);
-            animation-delay: 1s;
-            opacity: 0.07;
-        }
-
-        .nfc-sticker-bg:nth-child(6) {
-            top: 50%;
-            right: 25%;
-            transform: rotate(-35deg);
-            animation-delay: 3s;
-            opacity: 0.04;
-        }
-
-        .nfc-sticker-bg:nth-child(7) {
-            top: 80%;
-            left: 30%;
-            transform: rotate(20deg);
-            animation-delay: 5s;
-            opacity: 0.03;
-        }
-
-        .nfc-sticker-bg:nth-child(8) {
-            top: 10%;
-            left: 50%;
-            transform: rotate(-40deg);
-            animation-delay: 7s;
-            opacity: 0.09;
-        }
-
-        @keyframes floatSticker {
-            0%, 100% {
-                transform: translateY(0px) rotate(var(--rotation, 0deg));
-                opacity: var(--base-opacity, 0.1);
-            }
-            50% {
-                transform: translateY(-15px) rotate(calc(var(--rotation, 0deg) + 5deg));
-                opacity: calc(var(--base-opacity, 0.1) * 1.5);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nfc-sticker-bg {
-                width: 60px;
-                height: 60px;
-                opacity: 0.05;
-            }
-            
-            .nfc-sticker-bg:nth-child(1),
-            .nfc-sticker-bg:nth-child(2),
-            .nfc-sticker-bg:nth-child(3),
-            .nfc-sticker-bg:nth-child(4) {
-                opacity: 0.03;
-            }
-            
-            .nfc-sticker-bg:nth-child(5),
-            .nfc-sticker-bg:nth-child(6),
-            .nfc-sticker-bg:nth-child(7),
-            .nfc-sticker-bg:nth-child(8) {
-                opacity: 0.02;
-            }
-        }
         
         .hero-content {
             max-width: 900px;
@@ -332,9 +209,9 @@
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: white;
+            background: rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            color: #000000;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -343,8 +220,8 @@
         }
         
         .carousel-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-            border-color: rgba(255, 255, 255, 0.4);
+            background: rgba(0, 0, 0, 0.2);
+            border-color: rgba(0, 0, 0, 0.4);
         }
         
         .carousel-container {
@@ -440,8 +317,8 @@
         }
         
         .pricing-plan {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.02);
+            border: 1px solid rgba(0, 0, 0, 0.1);
             border-radius: 20px;
             padding: 40px 30px;
             text-align: center;
@@ -1001,16 +878,6 @@
             <main class="relative z-10 pt-24 pb-16 px-6">
                 <!-- 1. Our Solution Section -->
                 <section class="hero-section">
-                    <!-- NFC Stickers Background -->
-                    <div class="nfc-sticker-bg"></div>
-                    <div class="nfc-sticker-bg"></div>
-                    <div class="nfc-sticker-bg"></div>
-                    <div class="nfc-sticker-bg"></div>
-                    <div class="nfc-sticker-bg"></div>
-                    <div class="nfc-sticker-bg"></div>
-                    <div class="nfc-sticker-bg"></div>
-                    <div class="nfc-sticker-bg"></div>
-                    
                     <div class="hero-content">
                         <h2 class="hero-title">
                             Your data.<br>
@@ -1021,7 +888,6 @@
                         </p>
                         <div class="hero-buttons">
                             <button class="hero-cta-button primary" onclick="openContactForm()">Get in Contact</button>
-                            <button class="hero-cta-button secondary" onclick="openContactForm()">Get in Contact</button>
                         </div>
                     </div>
                 </section>
@@ -1436,6 +1302,15 @@
                             </div>
                         </div>
             <div class="flex items-center gap-4">
+                <button id="theme-toggle" onclick="toggleTheme()" class="bg-gray-700 text-white px-4 py-2 rounded-lg text-sm font-bold hover:bg-gray-600 active:bg-gray-800 active:scale-95 transform transition-all duration-150 ease-in-out shadow-md hover:shadow-lg active:shadow-sm flex items-center gap-2">
+                    <svg id="sun-icon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="display: none;">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                    </svg>
+                    <svg id="moon-icon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                    </svg>
+                    <span id="theme-text">Dark Mode</span>
+                </button>
                 <button onclick="openContactForm()" class="bg-white text-black px-4 py-2 rounded-lg text-sm font-bold hover:bg-gray-200 active:bg-gray-300 active:scale-95 transform transition-all duration-150 ease-in-out shadow-md hover:shadow-lg active:shadow-sm">
                     Get in Touch
                 </button>
@@ -1527,8 +1402,44 @@
             }
         }
         
-        // Handle form submission
+        // Theme toggle functionality
+        let isDarkMode = false; // Start with light mode
+        
+        function toggleTheme() {
+            isDarkMode = !isDarkMode;
+            updateTheme();
+            localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+        }
+        
+        function updateTheme() {
+            const body = document.body;
+            const sunIcon = document.getElementById('sun-icon');
+            const moonIcon = document.getElementById('moon-icon');
+            const themeText = document.getElementById('theme-text');
+            
+            if (isDarkMode) {
+                // Switch to dark mode
+                body.classList.add('dark-mode');
+                sunIcon.style.display = 'block';
+                moonIcon.style.display = 'none';
+                themeText.textContent = 'Light Mode';
+            } else {
+                // Switch to light mode
+                body.classList.remove('dark-mode');
+                sunIcon.style.display = 'none';
+                moonIcon.style.display = 'block';
+                themeText.textContent = 'Dark Mode';
+            }
+        }
+        
+        // Load saved theme on page load
         document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                isDarkMode = true;
+                updateTheme();
+            }
+            
             const contactForm = document.getElementById('contactForm');
             if (contactForm) {
                 contactForm.addEventListener('submit', function(e) {
