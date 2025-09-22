@@ -5,216 +5,282 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy - Tap Technology</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <script src="https://cdn.tailwindcss.com?v=4"></script>
     <link rel="icon" href="favicon.ico" />
     <style>
         html {
             scroll-behavior: smooth;
+            margin: 0;
+            padding: 0;
         }
-        
-        /* Background image styling */
-        .lightning-bg {
-            background-image: url('/media/lightning_bg.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
+
+        /* Pure white background */
+        .futuristic-bg {
+            background: #ffffff;
             min-height: 100vh;
             position: relative;
         }
         
-        /* Vignette overlay */
-        .lightning-bg::before {
-            content: '';
-            position: absolute;
+        /* Content overlay */
+        .content-overlay {
+            position: relative;
+            z-index: 3;
+        }
+        
+        /* Futuristic typography with sans-serif font */
+        .futuristic-title {
+            font-family: sans-serif;
+            font-weight: 800;
+            color: #000000;
+            letter-spacing: -0.03em;
+        }
+        
+        .futuristic-subtitle {
+            font-family: sans-serif;
+            font-weight: 400;
+            color: #404040;
+            letter-spacing: -0.01em;
+        }
+        
+        /* Apply sans-serif font to all text elements */
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: #000000;
+        }
+        
+        /* Simple white background */
+        .lightning-page-bg {
+            background-color: #ffffff;
+            position: fixed;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(ellipse at center, 
-                rgba(0, 0, 0, 0.2) 0%, 
-                rgba(0, 0, 0, 0.4) 40%, 
-                rgba(0, 0, 0, 0.7) 70%, 
-                rgba(0, 0, 0, 0.9) 100%);
-            pointer-events: none;
-            z-index: 1;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
         }
         
-        body {
-            background-color: #000000;
-            overflow-x: hidden;
-        }
-        
-        .content-container {
+        /* White overlay for all sections */
+        .black-section-overlay {
+            background-color: #ffffff;
             position: relative;
             z-index: 10;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
-        .glow-text {
-            text-shadow: 0 0 10px rgba(59, 130, 246, 0.5), 0 0 20px rgba(59, 130, 246, 0.3);
+        /* Privacy content styling */
+        .privacy-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
         }
         
-        .tech-border {
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.05), rgba(0, 0, 0, 0.8));
+        .privacy-title {
+            font-size: 4rem;
+            font-weight: 800;
+            color: #000000;
+            margin-bottom: 20px;
+            font-family: sans-serif;
+            text-align: center;
         }
         
-        /* Mobile-specific styles */
+        .privacy-subtitle {
+            font-size: 1.2rem;
+            color: #666666;
+            margin-bottom: 60px;
+            font-family: sans-serif;
+            text-align: center;
+        }
+        
+        .privacy-section {
+            margin-bottom: 40px;
+        }
+        
+        .privacy-section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #000000;
+            margin-bottom: 20px;
+            font-family: sans-serif;
+        }
+        
+        .privacy-text {
+            font-size: 1rem;
+            color: #666666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-family: sans-serif;
+        }
+        
+        .privacy-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+        
+        .privacy-list li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            font-size: 1rem;
+            color: #000000;
+            font-family: sans-serif;
+        }
+        
+        .privacy-list li::before {
+            content: '•';
+            color: #000000;
+            margin-right: 12px;
+            font-size: 1.2rem;
+        }
+        
+        .back-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background: #000000;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            font-family: sans-serif;
+            margin-top: 40px;
+        }
+        
+        .back-button:hover {
+            background: rgba(0, 0, 0, 0.9);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+        
         @media (max-width: 768px) {
-            .lightning-bg {
-                padding-top: 120px; /* Add space for logo */
+            .privacy-title {
+                font-size: 3rem;
             }
             
-            .content-container {
-                margin-top: 2rem;
-            }
-            
-            .fixed {
-                position: fixed;
-                top: 1rem;
-                left: 1rem;
-                z-index: 30;
-            }
-            
-            .fixed img {
-                height: 4rem; /* Smaller logo on mobile */
+            .privacy-content {
+                padding: 20px 15px;
             }
         }
     </style>
 </head>
 
-<body class="min-h-screen">
-    <!-- Lightning background -->
-    <section class="lightning-bg relative">
-        <!-- Tap logo in top left -->
-        <div class="fixed -top-2 left-6 z-20">
-            <a href="index.html">
-                <img src="/media/Tap_inverted.png" alt="Tap Health Logo" class="h-36 w-auto hover:opacity-80 transition-opacity">
-            </a>
-        </div>
-        
-        <!-- Main content -->
-        <div class="min-h-screen flex items-center justify-center p-8">
-            <div class="content-container max-w-4xl mx-auto p-8 rounded-2xl tech-border">
-                <div class="text-center mb-8">
-                    <h1 class="text-4xl md:text-6xl font-bold text-white mb-4 glow-text">
-                        Privacy Policy
-                    </h1>
-                    <p class="text-blue-400 text-lg">Last updated: September 2025</p>
+<body class="bg-white text-black">
+    <!-- Lightning background as true page background -->
+    <div class="lightning-page-bg"></div>
+    
+    <!-- Futuristic Background -->
+    <div class="futuristic-bg black-section-overlay">
+        <div class="content-overlay">
+            <!-- Header -->
+            <header class="fixed top-0 left-0 w-full z-50 py-4 px-6 flex justify-between items-center">
+                <div class="flex items-center">
+                    <img src="/media/tap_health_logo.png" alt="Tap Technology Logo" class="h-16 md:h-20 lg:h-24 mr-4">
                 </div>
-                
-                <div class="space-y-8 text-gray-300">
-                    <section>
-                        <h2 class="text-2xl font-bold text-white mb-4 glow-text">Information We Collect</h2>
-                        <p class="leading-relaxed">
+            </header>
+            
+            <!-- Main Content -->
+            <main class="relative z-10 pt-24 pb-16 px-6">
+                <div class="privacy-content">
+                    <h1 class="privacy-title">Privacy Policy</h1>
+                    <p class="privacy-subtitle">Last updated: September 2025</p>
+                    
+                    <div class="privacy-section">
+                        <h2 class="privacy-section-title">Information We Collect</h2>
+                        <p class="privacy-text">
                             When you use our contact form, we collect the following information:
                         </p>
-                        <ul class="list-disc list-inside mt-4 space-y-2 ml-4">
+                        <ul class="privacy-list">
                             <li>Name (required)</li>
                             <li>Email address (required)</li>
                             <li>Phone number (optional)</li>
                             <li>Message content (required)</li>
                         </ul>
-                    </section>
+                    </div>
                     
-                    <section>
-                        <h2 class="text-2xl font-bold text-white mb-4 glow-text">How We Use Your Information</h2>
-                        <p class="leading-relaxed">
+                    <div class="privacy-section">
+                        <h2 class="privacy-section-title">How We Use Your Information</h2>
+                        <p class="privacy-text">
                             We use the information you provide to:
                         </p>
-                        <ul class="list-disc list-inside mt-4 space-y-2 ml-4">
+                        <ul class="privacy-list">
                             <li>Respond to your inquiries and messages</li>
                             <li>Provide customer support</li>
                             <li>Improve our services</li>
                             <li>Send you updates about Tap Technology (with your consent)</li>
                         </ul>
-                    </section>
+                    </div>
                     
-                    <section>
-                        <h2 class="text-2xl font-bold text-white mb-4 glow-text">Data Protection</h2>
-                        <p class="leading-relaxed">
+                    <div class="privacy-section">
+                        <h2 class="privacy-section-title">Data Protection</h2>
+                        <p class="privacy-text">
                             We take your privacy seriously. Your information is:
                         </p>
-                        <ul class="list-disc list-inside mt-4 space-y-2 ml-4">
+                        <ul class="privacy-list">
                             <li>Stored securely and encrypted</li>
                             <li>Never sold to third parties</li>
                             <li>Only shared with authorized personnel</li>
                             <li>Retained only as long as necessary</li>
                         </ul>
-                    </section>
+                    </div>
                     
-                    <section>
-                        <h2 class="text-2xl font-bold text-white mb-4 glow-text">Your Rights</h2>
-                        <p class="leading-relaxed">
+                    <div class="privacy-section">
+                        <h2 class="privacy-section-title">Your Rights</h2>
+                        <p class="privacy-text">
                             You have the right to:
                         </p>
-                        <ul class="list-disc list-inside mt-4 space-y-2 ml-4">
+                        <ul class="privacy-list">
                             <li>Access your personal data</li>
                             <li>Request correction of inaccurate data</li>
                             <li>Request deletion of your data</li>
                             <li>Opt-out of marketing communications</li>
                         </ul>
-                    </section>
+                    </div>
                     
-                    <section>
-                        <h2 class="text-2xl font-bold text-white mb-4 glow-text">Security & Compliance</h2>
-                        <p class="leading-relaxed">
+                    <div class="privacy-section">
+                        <h2 class="privacy-section-title">Security & Compliance</h2>
+                        <p class="privacy-text">
                             Tap Technology maintains the highest standards of security and compliance:
                         </p>
-                        <ul class="list-disc list-inside mt-4 space-y-2 ml-4">
+                        <ul class="privacy-list">
                             <li>HIPAA-aligned practices for healthcare data</li>
                             <li>Data encrypted in transit and at rest</li>
                             <li>Least-privilege access controls</li>
                             <li>Comprehensive audit logs</li>
                             <li>Business Associate Agreement (BAA) available for Enterprise customers</li>
                         </ul>
-                    </section>
+                    </div>
                     
+                    <div class="text-center">
+                        <a href="index.html" class="back-button">Back to Home</a>
+                    </div>
                 </div>
-                
-                <div class="text-center mt-12">
-                    <a href="#" id="backToHome" 
-                       class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full transition-colors glow-text">
-                        Back to Home
-                    </a>
+            </main>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="bg-black text-white py-4 px-6 relative z-10" style="margin: 0; padding: 16px 24px;">
+        <div class="w-full flex justify-between items-center">
+            <div class="flex items-center gap-4">
+                <a href="privacy.html" class="text-gray-400 hover:text-white transition-colors" style="font-size: 12px;">Privacy Policy</a>
+                <div class="text-gray-400 text-xs">
+                    © 2025 Tap Technology. All rights reserved.
                 </div>
             </div>
+            <div class="flex items-center gap-4">
+                <a href="index.html" class="bg-white text-black px-4 py-2 rounded-lg text-sm font-bold hover:bg-gray-200 active:bg-gray-300 active:scale-95 transform transition-all duration-150 ease-in-out shadow-md hover:shadow-lg active:shadow-sm">
+                    Get a Demo
+                </a>
+            </div>
         </div>
-    </section>
-    
-    <script>
-        // Detect if user is on mobile and redirect to appropriate home page
-        function isMobile() {
-            return window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-        }
-        
-        // Set the correct home page link based on device
-        document.addEventListener('DOMContentLoaded', function() {
-            const backToHomeLink = document.getElementById('backToHome');
-            
-            if (isMobile()) {
-                backToHomeLink.href = 'mobile.html';
-                console.log('Mobile detected - linking to mobile.html');
-            } else {
-                backToHomeLink.href = 'index.html';
-                console.log('Desktop detected - linking to index2.html');
-            }
-        });
-        
-        // Update link on window resize
-        window.addEventListener('resize', function() {
-            const backToHomeLink = document.getElementById('backToHome');
-            
-            if (isMobile()) {
-                backToHomeLink.href = 'mobile.html';
-            } else {
-                backToHomeLink.href = 'index.html';
-            }
-        });
-    </script>
+    </footer>
 </body>
 
 </html>
