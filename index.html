@@ -4,13 +4,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Future of Forms - Tap Health</title>
+    <title>Tap Technology - One Tap Check-ins Anywhere</title>
+    <meta name="description" content="Tap Technology enables one-tap check-ins and sign-ups. Skip forms and securely share verified info from your phone—built for healthcare, banking, retail, and more.">
     
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <script src="https://cdn.tailwindcss.com?v=4"></script>
     <link rel="icon" href="favicon.ico" />
+    
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Tap Technology",
+        "url": "https://taptechnology.com",
+        "logo": "https://taptechnology.com/media/tap_health_logo.png",
+        "sameAs": [
+            "https://linkedin.com/company/tap-technology",
+            "https://twitter.com/taptechnology"
+        ],
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "customer service",
+            "email": "support@taptechnology.com"
+        },
+        "makesOffer": {
+            "@type": "Product",
+            "name": "Tap",
+            "description": "One-tap check-ins and sign-ups. Skip forms and securely share verified info from your phone.",
+            "category": "Identity Verification Software"
+        }
+    }
+    </script>
     <style>
         html {
             scroll-behavior: smooth;
@@ -867,7 +894,7 @@
             <!-- Header -->
             <header class="fixed top-0 left-0 w-full z-50 py-4 px-6 flex justify-between items-center">
                 <div class="flex items-center">
-                    <img src="/media/tap_health_logo.png" alt="Tap Health Logo" class="h-16 md:h-20 lg:h-24 mr-4">
+                    <img src="/media/tap_health_logo.png" alt="Tap Technology Logo" class="h-16 md:h-20 lg:h-24 mr-4">
                     </div>
                 <div class="flex items-center gap-6">
                 </div>
@@ -879,14 +906,38 @@
                 <section class="hero-section">
                     <div class="hero-content">
                         <h2 class="hero-title">
-                            One Tap that just works—<br>
-                            anywhere
+                            One Tap Check-ins<br>
+                            Anywhere.
                         </h2>
                         <p class="hero-description">
-                            Your phone's NFC chip is used everywhere to pay--so why not to use it everywhere? <br> Tap simplifies verified interactions down to a single action. <br>No more forms. No more typing. Just Tap and go.
+                            Your phone's NFC chip is used everywhere to pay--so why not use it everywhere? <br> Tap simplifies verified interactions down to a single action. <br>Skip forms. Share verified info with one Tap.
                         </p>
                         <div class="hero-buttons">
-                            <button class="hero-cta-button primary" onclick="openContactForm()">Get in Touch</button>
+                            <button class="hero-cta-button primary" onclick="openContactForm()">Get a Demo</button>
+                        </div>
+                        
+                        <!-- Hero Visual -->
+                        <div class="mt-16 flex justify-center items-center space-x-8">
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-gray-200 rounded-lg flex items-center justify-center mb-2">
+                                    <span class="text-2xl">📱</span>
+                                </div>
+                                <p class="text-sm text-gray-600">Phone</p>
+                            </div>
+                            <div class="text-2xl text-gray-400">→</div>
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-gray-200 rounded-lg flex items-center justify-center mb-2">
+                                    <span class="text-2xl">🏷️</span>
+                                </div>
+                                <p class="text-sm text-gray-600">NFC Sticker</p>
+                            </div>
+                            <div class="text-2xl text-gray-400">→</div>
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-gray-200 rounded-lg flex items-center justify-center mb-2">
+                                    <span class="text-2xl">💻</span>
+                                </div>
+                                <p class="text-sm text-gray-600">Data</p>
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -917,7 +968,7 @@
                                 <div class="business-title">Clinical Settings</div>
                                 <div class="business-content">
                                     <p class="futuristic-subtitle">
-                                        Tap can automatically check-in patients, verify that insurance is up to date, and complete redundant forms.
+                                        Cut intake time, fewer typos, happier patients.
                                     </p>
                 </div>
         </div>
@@ -926,7 +977,7 @@
                                 <div class="business-title">Banking</div>
                                 <div class="business-content">
                                     <p class="futuristic-subtitle">
-                                        Instantly share Global ID and information when entering a branch or opening an account.
+                                        Instant KYC prefill at branch.
                                     </p>
             </div>
                             </div>
@@ -935,7 +986,7 @@
                                 <div class="business-title">Retail</div>
                                 <div class="business-content">
                                     <p class="futuristic-subtitle">
-                                        Seamless loyalty programs (no more entering in your phone number for rewards. Just tap your phone).
+                                        1-Tap loyalty—no phone numbers or QR at checkout.
                                     </p>
                     </div>
                             </div>
@@ -944,7 +995,7 @@
                                 <div class="business-title">Hospitality</div>
                                 <div class="business-content">
                                     <p class="futuristic-subtitle">
-                                        Unlock hotel rooms or check-in/out instantly using your phone.
+                                        Faster check-in; optional mobile key.
                                     </p>
                                 </div>
                         </div>
@@ -953,7 +1004,7 @@
                                 <div class="business-title">Workplaces</div>
                                 <div class="business-content">
                                     <p class="futuristic-subtitle">
-                                        Badge-free secure access to offices or lockers.
+                                        Badge-free access with audit trails.
                                     </p>
                                 </div>
                             </div>
@@ -979,131 +1030,22 @@
                     </div>
                 </section>
                 
-                <!-- 3. Spotlight Section -->
-                <section class="spotlight-section black-section-overlay">
-                    <div class="spotlight-content">
-                        <div class="spotlight-left">
-                            <p class="spotlight-description">
-                                Traditional identity verification systems force businesses into rigid, one-size-fits-all solutions that don't adapt to their unique needs. These outdated approaches create friction, increase costs, and frustrate both businesses and their customers. The result? Lost opportunities, abandoned processes, and a competitive disadvantage in today's fast-paced digital world.
-                            </p>
-                        </div>
-                        <div class="spotlight-right">
-                            <h2 class="spotlight-title">
-                                The era of<br>
-                                outdated forms is over
-                            </h2>
-                        </div>
-                    </div>
-                </section>
 
-                <!-- 4. Export Formats Section -->
+                <!-- 4. How It Works Section -->
             <section class="export-formats-section black-section-overlay">
-                <h2 class="export-formats-title">We integrate with your data system</h2>
+                <h2 class="export-formats-title">How it works</h2>
+                <p class="export-formats-subtitle">Simple 3-step process for instant data sharing</p>
                     
                     <div class="export-formats-container">
                         <div class="export-formats-track">
-                            <!-- First set of formats -->
                             <div class="export-format-item">
-                                <div class="export-format-name">CSV</div>
-                    </div>
-                            <div class="export-format-item">
-                                <div class="export-format-name">EXCEL</div>
+                                <div class="export-format-name">1. Tap an NFC sticker with your phone.</div>
                             </div>
                             <div class="export-format-item">
-                                <div class="export-format-name">PDF</div>
+                                <div class="export-format-name">2. Approve the data request in Tap.</div>
                             </div>
                             <div class="export-format-item">
-                                <div class="export-format-name">JSON</div>
-                            </div>
-                            <div class="export-format-item">
-                                <div class="export-format-name">XML</div>
-                            </div>
-                            <div class="export-format-item">
-                                <div class="export-format-name">SQL</div>
-                            </div>
-                            <div class="export-format-item">
-                                <div class="export-format-name">TSV</div>
-                            </div>
-                            <div class="export-format-item">
-                                <div class="export-format-name">ZIP</div>
-                            </div>
-                            
-                            <!-- Second set for seamless loop -->
-                            <div class="export-format-item">
-                                <div class="export-format-name">CSV</div>
-                </div>
-                            <div class="export-format-item">
-                                <div class="export-format-name">EXCEL</div>
-                            </div>
-                            <div class="export-format-item">
-                                <div class="export-format-name">PDF</div>
-                            </div>
-                            <div class="export-format-item">
-                                <div class="export-format-name">JSON</div>
-                            </div>
-                            <div class="export-format-item">
-                                <div class="export-format-name">XML</div>
-                            </div>
-                            <div class="export-format-item">
-                                <div class="export-format-name">SQL</div>
-                            </div>
-                            <div class="export-format-item">
-                                <div class="export-format-name">TSV</div>
-                            </div>
-                            <div class="export-format-item">
-                                <div class="export-format-name">ZIP</div>
-            </div>
-
-                            <!-- Third set for complete circle -->
-                            <div class="export-format-item">
-                                <div class="export-format-name">CSV</div>
-                                </div>
-                            <div class="export-format-item">
-                                <div class="export-format-name">EXCEL</div>
-                                </div>
-                            <div class="export-format-item">
-                                <div class="export-format-name">PDF</div>
-                                </div>
-                            <div class="export-format-item">
-                                <div class="export-format-name">JSON</div>
-                                </div>
-                            <div class="export-format-item">
-                                <div class="export-format-name">XML</div>
-                            </div>
-                            <div class="export-format-item">
-                                <div class="export-format-name">SQL</div>
-                            </div>
-                            <div class="export-format-item">
-                                <div class="export-format-name">TSV</div>
-                            </div>
-                            <div class="export-format-item">
-                                <div class="export-format-name">ZIP</div>
-                        </div>
-
-                            <!-- Fourth set for perfect seamless loop -->
-                            <div class="export-format-item">
-                                <div class="export-format-name">CSV</div>
-                            </div>
-                            <div class="export-format-item">
-                                <div class="export-format-name">EXCEL</div>
-                            </div>
-                            <div class="export-format-item">
-                                <div class="export-format-name">PDF</div>
-                            </div>
-                            <div class="export-format-item">
-                                <div class="export-format-name">JSON</div>
-                            </div>
-                            <div class="export-format-item">
-                                <div class="export-format-name">XML</div>
-                            </div>
-                            <div class="export-format-item">
-                                <div class="export-format-name">SQL</div>
-                            </div>
-                            <div class="export-format-item">
-                                <div class="export-format-name">TSV</div>
-                            </div>
-                            <div class="export-format-item">
-                                <div class="export-format-name">ZIP</div>
+                                <div class="export-format-name">3. Your system receives structured data via integration or export.</div>
                             </div>
                     </div>
                 </div>
@@ -1124,7 +1066,7 @@
                                 <p class="plan-subtitle">For Small Businesses</p>
                                 <div class="plan-price" style="font-size: 2rem;">Custom</div>
                                 <div class="plan-period">pricing</div>
-                                <button class="plan-button free" onclick="openContactForm()">Start trial</button>
+                                <button class="plan-button free" onclick="openContactForm()">Get a Demo</button>
                                 
                                 <ul class="plan-features">
                                     <li class="plan-feature">
@@ -1148,7 +1090,7 @@
                                 <p class="plan-subtitle">For Multi-Site Businesses</p>
                                 <div class="plan-price" style="font-size: 2rem;">Custom</div>
                                 <div class="plan-period">pricing</div>
-                                <button class="plan-button free" onclick="openContactForm()">Start trial</button>
+                                <button class="plan-button free" onclick="openContactForm()">Get a Demo</button>
                                 
                                 <ul class="plan-features">
                                     <li class="plan-feature">
@@ -1176,7 +1118,7 @@
                                 <p class="plan-subtitle">For Regional Businesses</p>
                                 <div class="plan-price" style="font-size: 2rem;">Custom</div>
                                 <div class="plan-period">pricing</div>
-                                <button class="plan-button free" onclick="openContactForm()">Start trial</button>
+                                <button class="plan-button free" onclick="openContactForm()">Get a Demo</button>
                                 
                                 <ul class="plan-features">
                                     <li class="plan-feature">
@@ -1353,7 +1295,7 @@
                         </div>
             <div class="flex items-center gap-4">
                 <button onclick="openContactForm()" class="bg-white text-black px-4 py-2 rounded-lg text-sm font-bold hover:bg-gray-200 active:bg-gray-300 active:scale-95 transform transition-all duration-150 ease-in-out shadow-md hover:shadow-lg active:shadow-sm">
-                    Get in Touch
+                    Get a Demo
                 </button>
             </div>
         </div>
@@ -1363,7 +1305,7 @@
     <div id="contactPopup" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
         <div class="bg-white border border-gray-300 rounded-2xl p-8 w-96 max-w-sm shadow-2xl text-center backdrop-blur-sm">
             <div class="mb-6">
-                <h3 class="text-2xl font-bold text-black mb-3" style="font-family: sans-serif;">Get in Touch</h3>
+                <h3 class="text-2xl font-bold text-black mb-3" style="font-family: sans-serif;">Get a Demo</h3>
                 <p class="text-gray-600 mb-6 text-lg" style="font-family: sans-serif;">Send us a message and we'll get back to you soon.</p>
             </div>
             
@@ -1491,6 +1433,19 @@
             // Open clicked item if it wasn't already active
             if (!isActive) {
                 item.classList.add('active');
+            }
+        }
+        
+        // Carousel functionality
+        function scrollCarousel(direction) {
+            const carousel = document.getElementById('carousel');
+            if (carousel) {
+                const scrollAmount = 320; // Width of one card + gap
+                if (direction === 'left') {
+                    carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+                } else {
+                    carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                }
             }
         }
 
