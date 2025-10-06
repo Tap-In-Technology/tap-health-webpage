@@ -1,0 +1,27 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": [
+          "C6UBM72DUX.com.tap-technology.tap"
+        ],
+        "components": [
+          {
+            "/": "/tap/*",
+            "comment": "Matches any URL whose path starts with /tap/"
+          }
+        ]
+      }
+    ]
+  },
+  "activitycontinuation": {
+    "apps": [
+      "C6UBM72DUX.com.tap-technology.tap"
+    ]
+  },
+  "webcredentials": {
+    "apps": [
+      "C6UBM72DUX.com.tap-technology.tap"
+    ]
+  }
+}
