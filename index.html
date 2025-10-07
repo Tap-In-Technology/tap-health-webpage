@@ -922,7 +922,12 @@
                     <!-- Hamburger Menu Button -->
                     <div class="relative">
                         <button id="hamburgerMenu" onclick="toggleHamburgerMenu()" class="flex items-center justify-center w-10 h-10 cursor-pointer focus:outline-none">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Hamburger Icon (default) -->
+                            <svg id="hamburgerIcon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M3 12H21M3 6H21M3 18H21" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <!-- X Icon (hidden by default) -->
+                            <svg id="xIcon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="hidden">
                                 <path d="M18 6L6 18M6 6L18 18" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </button>
@@ -1491,16 +1496,24 @@
         function toggleHamburgerMenu() {
             const hamburgerMenu = document.getElementById('hamburgerMenu');
             const dropdownMenu = document.getElementById('dropdownMenu');
+            const hamburgerIcon = document.getElementById('hamburgerIcon');
+            const xIcon = document.getElementById('xIcon');
             
-            if (hamburgerMenu && dropdownMenu) {
+            if (hamburgerMenu && dropdownMenu && hamburgerIcon && xIcon) {
                 const isVisible = !dropdownMenu.classList.contains('hidden');
                 
                 if (isVisible) {
+                    // Close menu - show hamburger, hide X
                     dropdownMenu.classList.remove('show');
                     dropdownMenu.classList.add('hidden');
+                    hamburgerIcon.classList.remove('hidden');
+                    xIcon.classList.add('hidden');
                 } else {
+                    // Open menu - hide hamburger, show X
                     dropdownMenu.classList.remove('hidden');
                     dropdownMenu.classList.add('show');
+                    hamburgerIcon.classList.add('hidden');
+                    xIcon.classList.remove('hidden');
                 }
             }
         }
@@ -1509,10 +1522,14 @@
         document.addEventListener('click', function(event) {
             const hamburgerMenu = document.getElementById('hamburgerMenu');
             const dropdownMenu = document.getElementById('dropdownMenu');
+            const hamburgerIcon = document.getElementById('hamburgerIcon');
+            const xIcon = document.getElementById('xIcon');
             
-            if (hamburgerMenu && dropdownMenu && !hamburgerMenu.contains(event.target) && !dropdownMenu.contains(event.target)) {
+            if (hamburgerMenu && dropdownMenu && hamburgerIcon && xIcon && !hamburgerMenu.contains(event.target) && !dropdownMenu.contains(event.target)) {
                 dropdownMenu.classList.remove('show');
                 dropdownMenu.classList.add('hidden');
+                hamburgerIcon.classList.remove('hidden');
+                xIcon.classList.add('hidden');
             }
         });
 
