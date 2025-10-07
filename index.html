@@ -833,7 +833,7 @@
         }
         
         #hamburgerMenu.active .hamburger-line:nth-child(1) {
-            transform: rotate(45deg) translate(6px, 6px);
+            transform: rotate(45deg) translate(0, 0);
         }
         
         #hamburgerMenu.active .hamburger-line:nth-child(2) {
@@ -841,7 +841,7 @@
         }
         
         #hamburgerMenu.active .hamburger-line:nth-child(3) {
-            transform: rotate(-45deg) translate(6px, -6px);
+            transform: rotate(-45deg) translate(0, 0);
         }
         
         /* Dropdown Menu Animation */
@@ -929,10 +929,10 @@
                 <div class="flex items-center gap-6">
                     <!-- Hamburger Menu Button -->
                     <div class="relative">
-                        <button id="hamburgerMenu" onclick="toggleHamburgerMenu()" class="flex flex-col justify-center items-center w-8 h-8 space-y-1 cursor-pointer focus:outline-none">
-                            <span class="hamburger-line block w-6 h-0.5 bg-black transition-all duration-300"></span>
-                            <span class="hamburger-line block w-6 h-0.5 bg-black transition-all duration-300"></span>
-                            <span class="hamburger-line block w-6 h-0.5 bg-black transition-all duration-300"></span>
+                        <button id="hamburgerMenu" onclick="toggleHamburgerMenu()" class="flex flex-col justify-center items-center w-10 h-10 space-y-1.5 cursor-pointer focus:outline-none">
+                            <span class="hamburger-line block w-7 h-1 bg-black transition-all duration-300"></span>
+                            <span class="hamburger-line block w-7 h-1 bg-black transition-all duration-300"></span>
+                            <span class="hamburger-line block w-7 h-1 bg-black transition-all duration-300"></span>
                         </button>
                         
                         <!-- Dropdown Menu -->
