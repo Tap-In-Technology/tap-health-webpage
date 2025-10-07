@@ -827,21 +827,13 @@
             51%, 100% { opacity: 0; }
         }
         
-        /* Hamburger Menu Styles */
-        .hamburger-line {
+        /* Menu Button Styles */
+        #hamburgerMenu {
             transition: all 0.3s ease;
         }
         
-        #hamburgerMenu.active .hamburger-line:nth-child(1) {
-            transform: rotate(45deg) translate(0, 0);
-        }
-        
-        #hamburgerMenu.active .hamburger-line:nth-child(2) {
-            opacity: 0;
-        }
-        
-        #hamburgerMenu.active .hamburger-line:nth-child(3) {
-            transform: rotate(-45deg) translate(0, -4px);
+        #hamburgerMenu:hover {
+            transform: scale(1.1);
         }
         
         /* Dropdown Menu Animation */
@@ -929,10 +921,10 @@
                 <div class="flex items-center gap-6">
                     <!-- Hamburger Menu Button -->
                     <div class="relative">
-                        <button id="hamburgerMenu" onclick="toggleHamburgerMenu()" class="flex flex-col justify-center items-center w-10 h-10 space-y-1.5 cursor-pointer focus:outline-none">
-                            <span class="hamburger-line block w-7 h-1 bg-black transition-all duration-300"></span>
-                            <span class="hamburger-line block w-7 h-1 bg-black transition-all duration-300"></span>
-                            <span class="hamburger-line block w-7 h-1 bg-black transition-all duration-300"></span>
+                        <button id="hamburgerMenu" onclick="toggleHamburgerMenu()" class="flex items-center justify-center w-10 h-10 cursor-pointer focus:outline-none">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18 6L6 18M6 6L18 18" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
                         </button>
                         
                         <!-- Dropdown Menu -->
@@ -1495,33 +1487,30 @@
             }
         }
         
-        // Hamburger Menu functionality
+        // Menu functionality
         function toggleHamburgerMenu() {
             const hamburgerMenu = document.getElementById('hamburgerMenu');
             const dropdownMenu = document.getElementById('dropdownMenu');
             
             if (hamburgerMenu && dropdownMenu) {
-                const isActive = hamburgerMenu.classList.contains('active');
+                const isVisible = !dropdownMenu.classList.contains('hidden');
                 
-                if (isActive) {
-                    hamburgerMenu.classList.remove('active');
+                if (isVisible) {
                     dropdownMenu.classList.remove('show');
                     dropdownMenu.classList.add('hidden');
                 } else {
-                    hamburgerMenu.classList.add('active');
                     dropdownMenu.classList.remove('hidden');
                     dropdownMenu.classList.add('show');
                 }
             }
         }
         
-        // Close hamburger menu when clicking outside
+        // Close menu when clicking outside
         document.addEventListener('click', function(event) {
             const hamburgerMenu = document.getElementById('hamburgerMenu');
             const dropdownMenu = document.getElementById('dropdownMenu');
             
             if (hamburgerMenu && dropdownMenu && !hamburgerMenu.contains(event.target) && !dropdownMenu.contains(event.target)) {
-                hamburgerMenu.classList.remove('active');
                 dropdownMenu.classList.remove('show');
                 dropdownMenu.classList.add('hidden');
             }
