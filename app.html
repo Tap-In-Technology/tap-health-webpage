@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Open in Tap</title>
+    <meta
+      name="description"
+      content="Open this link in the Tap app or download it from the store."
+    />
+    <script>
+      // Compute the current path (e.g. "/dir/id23")
+      const currentPath = window.location.pathname;
+
+      // Create and inject the meta tag dynamically
+      const meta = document.createElement("meta");
+      meta.name = "apple-itunes-app";
+      meta.content = `app-id=6753735547, app-argument=${currentPath}`;
+      document.head.appendChild(meta);
+    </script>
+    <style>
+      :root {
+        --bg: #ffffff;
+        --fg: #000000;
+        --muted: #666666;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        font-family: sans-serif;
+        color: var(--fg);
+        background: var(--bg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: 1;
+        overflow: hidden;
+      }
+      .wrapper {
+        width: 100%;
+        height: 100%;
+        max-width: 720px;
+        padding: 40px 20px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .brand {
+        flex: 2;
+        display: flex;
+        justify-content: center;
+        align-items: end;
+      }
+      .content {
+        flex: 7;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      .brand img {
+        height: 64px;
+      }
+      h1 {
+        font-size: 2.25rem;
+        line-height: 1.2;
+        margin: 0 0 12px 0;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+      }
+      p.lead {
+        margin: 0 0 28px 0;
+        color: var(--muted);
+        font-size: 1.0625rem;
+        margin-bottom: 4rem;
+      }
+      .badges {
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        height: 56px;
+      }
+      .badge img,
+      .badge svg {
+        height: 100%;
+        width: auto;
+        display: block;
+      }
+      .coming-soon {
+        padding: 0 16px;
+        border: 1px solid #000000;
+        border-radius: 8px;
+        font-weight: 600;
+        color: #000000;
+        background: #ffffff;
+        align-items: center;
+        display: inline-flex;
+      }
+      .subtle {
+        margin-top: 24px;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="brand">
+        <img src="/media/Logo.svg" alt="Tap Technology Logo" />
+      </div>
+      <div class="content">
+        <h1>Opening Tap</h1>
+        <p class="lead">
+          If the app doesn’t open automatically, download the app below.
+        </p>
+        <div class="badges">
+          <a
+            id="ios-badge"
+            class="badge"
+            href="#"
+            rel="noopener"
+            aria-label="Download on the App Store"
+          >
+            <img
+              alt="Download on the App Store"
+              src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83"
+            />
+          </a>
+          <a
+            id="android-badge"
+            class="badge"
+            href="#"
+            rel="noopener"
+            aria-label="Get it on Google Play"
+          >
+            <img
+              alt="Get it on Google Play"
+              src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
+            />
+          </a>
+          <span
+            id="android-soon"
+            class="badge coming-soon"
+            style="display: none"
+            >Android coming soon</span
+          >
+        </div>
+        <div class="subtle" id="subtle-help">
+          You can close this page after the app opens.
+        </div>
+      </div>
+    </div>
+    <script>
+      const LINKS = {
+        IOS_APP_STORE_URL: "https://apps.apple.com/app/id6753735547",
+        ANDROID_PLAY_STORE_URL:
+          "https://play.google.com/store/apps/details?id=YOUR_PACKAGE_NAME",
+        APP_SCHEME_URL: "tapapp://open",
+        WEB_HOME_URL: "https://tap-technology.com",
+      };
+
+      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+      const IS_ANDROID = /android/i.test(userAgent);
+      const IS_IOS = /iphone|ipad|ipod/i.test(userAgent);
+
+      const iosBadge = document.getElementById("ios-badge");
+      const androidBadge = document.getElementById("android-badge");
+      const androidSoon = document.getElementById("android-soon");
+      const subtle = document.getElementById("subtle-help");
+
+      iosBadge.href = LINKS.IOS_APP_STORE_URL;
+      androidBadge.href = LINKS.ANDROID_PLAY_STORE_URL;
+
+      function attemptOpen() {
+        if (IS_IOS) {
+          const start = Date.now();
+          setTimeout(function () {
+            if (Date.now() - start < 2000) {
+              //   window.location.href = LINKS.IOS_APP_STORE_URL;
+            }
+          }, 500);
+        } else if (IS_ANDROID) {
+          if (androidBadge) androidBadge.style.display = "none";
+          if (androidSoon) androidSoon.style.display = "inline-flex";
+          subtle.textContent =
+            "Android app is coming soon. Please check back later.";
+        } else {
+          window.location.replace("index.html");
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", attemptOpen);
+      if (IS_IOS) {
+        androidBadge.style.display = "none";
+      }
+      if (IS_ANDROID) {
+        iosBadge.style.display = "none";
+        if (androidBadge) androidBadge.style.display = "none";
+        if (androidSoon) androidSoon.style.display = "inline-flex";
+      }
+    </script>
+  </body>
+</html>
