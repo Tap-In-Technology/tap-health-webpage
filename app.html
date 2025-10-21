@@ -187,7 +187,7 @@
           const start = Date.now();
           setTimeout(function () {
             if (Date.now() - start < 2000) {
-              //   window.location.href = LINKS.IOS_APP_STORE_URL;
+              window.location.href = LINKS.IOS_APP_STORE_URL;
             }
           }, 500);
         } else if (IS_ANDROID) {
@@ -196,7 +196,7 @@
           subtle.textContent =
             "Android app is coming soon. Please check back later.";
         } else {
-          window.location.replace("index.html");
+          window.location.replace("../index.html");
         }
       }
 
