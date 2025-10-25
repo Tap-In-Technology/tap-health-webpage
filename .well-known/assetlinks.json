@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.tap_technology.tap",
+      "sha256_cert_fingerprints": [
+        "04:D1:61:0E:A7:48:75:59:C4:AC:92:FD:09:0F:0E:EF:58:13:41:8D:C7:82:45:DA:B8:5A:E7:3A:7F:B8:94:73"
+      ]
+    }
+  }
+]
