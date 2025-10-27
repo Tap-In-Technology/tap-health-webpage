@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Account Deletion</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+      }
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Oxygen, Ubuntu, Cantarell, "Helvetica Neue", Arial,
+          "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        display: grid;
+        place-items: center;
+        min-height: 100vh;
+        background: #0b1020;
+        background: radial-gradient(
+            1200px 600px at 10% 10%,
+            rgba(255, 255, 255, 0.06),
+            transparent 60%
+          ),
+          radial-gradient(
+            1000px 500px at 90% 20%,
+            rgba(0, 150, 255, 0.08),
+            transparent 60%
+          ),
+          radial-gradient(
+            900px 500px at 50% 90%,
+            rgba(0, 255, 200, 0.06),
+            transparent 60%
+          ),
+          #0b1020;
+        color: #e8eefc;
+      }
+      .card {
+        width: min(680px, 92vw);
+        background: rgba(20, 26, 46, 0.8);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 16px;
+        padding: 28px 24px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+        backdrop-filter: blur(6px);
+      }
+      h1 {
+        margin: 0 0 8px;
+        font-size: 1.6rem;
+        letter-spacing: 0.2px;
+      }
+      p {
+        margin: 12px 0;
+      }
+      .muted {
+        color: #b9c5e1;
+      }
+      a {
+        color: #8bd3ff;
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      .actions {
+        margin-top: 16px;
+      }
+      .btn {
+        display: inline-block;
+        padding: 10px 14px;
+        background: #0ea5e9;
+        color: white;
+        border-radius: 10px;
+        font-weight: 600;
+        letter-spacing: 0.2px;
+      }
+      .btn:hover {
+        background: #0284c7;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="card" role="main">
+      <h1>Account Deletion</h1>
+      <p class="muted">
+        To delete your account, please send us an email from the
+        <strong>same email address associated with your account</strong>.
+      </p>
+      <p>
+        Email:
+        <a href="mailto:kayden@tap-technology?subject=Account%20Deletion"
+          >kayden@tap-technology</a
+        ><br />
+        Subject line: <strong>Account Deletion</strong>
+      </p>
+      <div class="actions">
+        <a
+          class="btn"
+          href="mailto:kayden@tap-technology?subject=Account%20Deletion"
+          >Open email to request deletion</a
+        >
+      </div>
+    </main>
+  </body>
+</html>
