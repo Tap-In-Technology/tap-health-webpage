@@ -313,6 +313,8 @@
                 <div class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-500">
                     <a href="#how-it-works" class="hover:text-gray-900 transition-colors">How It Works</a>
                     <a href="#for-organizers" class="hover:text-gray-900 transition-colors">For Organizers</a>
+                    <a href="#for-exhibitors" class="hover:text-gray-900 transition-colors">For Exhibitors</a>
+                    <a href="#why-tap" class="hover:text-gray-900 transition-colors">Why Tap</a>
                     <a href="#faq" class="hover:text-gray-900 transition-colors">FAQ</a>
                 </div>
 
@@ -373,8 +375,8 @@
                             </p>
                         </div>
                     </div>
-                    <div class="screenshot-placeholder h-80 lg:h-[400px]">
-                        Screenshot: Problem illustration
+                    <div class="h-80 lg:h-[400px] overflow-hidden" style="border: 1px solid #d1d5db;">
+                        <img src="/media/AERIAL_CAREER_FAIR.jpg" alt="Aerial view of a career fair" class="w-full h-full object-cover" style="filter: grayscale(100%);">
                     </div>
                 </div>
             </div>
@@ -465,8 +467,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="screenshot-placeholder h-80 lg:h-[500px] lg:sticky lg:top-32">
-                        Screenshot: Organizer dashboard
+                    <div class="lg:sticky lg:top-32" style="perspective: 1000px;">
+                        <img src="/media/dashboard.png" alt="Organizer dashboard"
+                             class="w-full rounded-2xl shadow-2xl"
+                             style="filter: grayscale(100%); transform: rotateY(-8deg) rotateX(4deg); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);">
                     </div>
                 </div>
             </div>
@@ -476,9 +480,7 @@
         <section id="for-exhibitors" class="py-24 bg-white">
             <div class="max-w-6xl mx-auto px-6">
                 <div class="grid lg:grid-cols-2 gap-16 items-start">
-                    <div class="screenshot-placeholder h-80 lg:h-[500px] lg:sticky lg:top-32 order-2 lg:order-1">
-                        Screenshot: Exhibitor view
-                    </div>
+                    <div id="tag-3d-container" class="h-80 lg:h-[500px] order-2 lg:order-1 rounded-2xl overflow-hidden bg-white"></div>
                     <div class="order-1 lg:order-2">
                         <p class="section-label">For Your Exhibitors</p>
                         <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-8">
@@ -723,8 +725,9 @@
         </div>
     </div>
 
-    <!-- Gradient Script -->
+    <!-- Scripts -->
     <script src="/js/gradient.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
         // Contact form functions
         function openContactForm() {
@@ -749,6 +752,162 @@
             }
         }
 
+        // 3D Tag initialization
+        function initTag3D() {
+            const container = document.getElementById('tag-3d-container');
+            if (!container) return;
+
+            const width = container.clientWidth;
+            const height = container.clientHeight;
+
+            const scene = new THREE.Scene();
+            scene.background = new THREE.Color(0xffffff);
+
+            const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
+            camera.position.set(0, 2, 4);
+            camera.lookAt(0, 0, 0);
+
+            const renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setSize(width, height);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            renderer.shadowMap.enabled = true;
+            container.appendChild(renderer.domElement);
+
+            // Lighting
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+            scene.add(ambientLight);
+
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+            directionalLight.position.set(5, 10, 5);
+            directionalLight.castShadow = true;
+            scene.add(directionalLight);
+
+            const fillLight = new THREE.DirectionalLight(0xffffff, 0.3);
+            fillLight.position.set(-5, 5, -5);
+            scene.add(fillLight);
+
+            // Puck setup
+            const radius = 1;
+            const thickness = 0.25;
+            const segments = 64;
+
+            const darkGrayMaterial = new THREE.MeshStandardMaterial({
+                color: 0x1a1a1a,
+                roughness: 0.3,
+                metalness: 0.1
+            });
+
+            let puck;
+
+            // Load logo
+            const logoImg = new Image();
+            logoImg.crossOrigin = 'anonymous';
+            logoImg.src = '/media/tap-icon.png';
+
+            logoImg.onload = function() {
+                const topCanvas = document.createElement('canvas');
+                topCanvas.width = 512;
+                topCanvas.height = 512;
+                const ctx = topCanvas.getContext('2d');
+
+                ctx.fillStyle = '#1a1a1a';
+                ctx.fillRect(0, 0, 512, 512);
+
+                ctx.fillStyle = '#ffffff';
+                ctx.beginPath();
+                ctx.arc(256, 256, 250, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Preserve aspect ratio - larger to compensate for whitespace in PNG
+                const maxSize = 450;
+                const aspectRatio = logoImg.naturalWidth / logoImg.naturalHeight;
+                let logoWidth, logoHeight;
+                if (aspectRatio >= 1) {
+                    logoWidth = maxSize;
+                    logoHeight = maxSize / aspectRatio;
+                } else {
+                    logoHeight = maxSize;
+                    logoWidth = maxSize * aspectRatio;
+                }
+                const logoX = (512 - logoWidth) / 2;
+                const logoY = (512 - logoHeight) / 2;
+                ctx.drawImage(logoImg, logoX, logoY, logoWidth, logoHeight);
+
+                const topTexture = new THREE.CanvasTexture(topCanvas);
+                const topMaterial = new THREE.MeshStandardMaterial({
+                    map: topTexture,
+                    roughness: 0.4,
+                    metalness: 0.1
+                });
+
+                const geometry = new THREE.CylinderGeometry(radius, radius, thickness, segments);
+                const materials = [darkGrayMaterial, topMaterial, darkGrayMaterial];
+
+                puck = new THREE.Mesh(geometry, materials);
+                puck.castShadow = true;
+                puck.receiveShadow = true;
+                puck.rotation.x = -0.3;
+                puck.rotation.z = 0.1;
+                scene.add(puck);
+            };
+
+            // Mouse interaction
+            let isDragging = false;
+            let previousMousePosition = { x: 0, y: 0 };
+
+            container.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                previousMousePosition = { x: e.clientX, y: e.clientY };
+            });
+
+            document.addEventListener('mouseup', () => { isDragging = false; });
+
+            document.addEventListener('mousemove', (e) => {
+                if (!isDragging || !puck) return;
+                const deltaX = e.clientX - previousMousePosition.x;
+                const deltaY = e.clientY - previousMousePosition.y;
+                puck.rotation.y += deltaX * 0.01;
+                puck.rotation.x += deltaY * 0.01;
+                previousMousePosition = { x: e.clientX, y: e.clientY };
+            });
+
+            // Touch support
+            container.addEventListener('touchstart', (e) => {
+                isDragging = true;
+                previousMousePosition = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+            });
+            container.addEventListener('touchend', () => { isDragging = false; });
+            container.addEventListener('touchmove', (e) => {
+                if (!isDragging || !puck) return;
+                const deltaX = e.touches[0].clientX - previousMousePosition.x;
+                const deltaY = e.touches[0].clientY - previousMousePosition.y;
+                puck.rotation.y += deltaX * 0.01;
+                puck.rotation.x += deltaY * 0.01;
+                previousMousePosition = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+            });
+
+            let time = 0;
+            function animate() {
+                requestAnimationFrame(animate);
+                if (!isDragging && puck) {
+                    time += 0.02;
+                    puck.position.y = Math.sin(time) * 0.05;
+                    puck.rotation.y += 0.003;
+                }
+                renderer.render(scene, camera);
+            }
+            animate();
+
+            // Resize handler
+            window.addEventListener('resize', () => {
+                const newWidth = container.clientWidth;
+                const newHeight = container.clientHeight;
+                camera.aspect = newWidth / newHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(newWidth, newHeight);
+            });
+        }
+
         // Initialize on page load
         document.addEventListener('DOMContentLoaded', function() {
             // Initialize gradients
@@ -761,6 +920,9 @@
             } catch (error) {
                 console.error('Failed to initialize gradient:', error);
             }
+
+            // Initialize 3D Tag
+            initTag3D();
 
             // FAQ accordion
             document.querySelectorAll('.faq-question').forEach(button => {
