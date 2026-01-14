@@ -1,1519 +1,988 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tap Technology - One Tap Autofill - Anywhere</title>
-    <meta name="description" content="Tap Technology In-person autofill. Skip forms and securely share verified info from your phone—built for healthcare, banking, retail, and more.">
-    
+    <title>Tap - Lead Capture for Event Organizers</title>
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <meta name="cache-bust" content="v2">
-    <script src="https://cdn.tailwindcss.com?v=4"></script>
     <link rel="icon" href="favicon.ico" />
-    
-    <!-- JSON-LD Schema -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Tap Technology",
-        "url": "https://taptechnology.com",
-        "logo": "https://taptechnology.com/media/tap_health_logo.png",
-        "sameAs": [
-            "https://linkedin.com/company/tap-technology",
-            "https://twitter.com/taptechnology"
-        ],
-        "contactPoint": {
-            "@type": "ContactPoint",
-            "contactType": "customer service",
-            "email": "support@taptechnology.com"
-        },
-        "makesOffer": {
-            "@type": "Product",
-            "name": "Tap",
-            "description": "One-tap check-ins and sign-ups. Skip forms and securely share verified info from your phone.",
-            "category": "Identity Verification Software"
-        }
-    }
-    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        :root {
+            --gradient-color-1: #2ECC71;
+            --gradient-color-2: #6DD5A0;
+            --gradient-color-3: #8FD96A;
+            --gradient-color-4: #C6E530;
+            --background: hsl(0 0% 100%);
+            --foreground: hsl(0 0% 3.9%);
+            --muted-foreground: hsl(0 0% 45.1%);
+            --border: hsl(0 0% 89.8%);
+            --primary: hsl(0 0% 9%);
+            --card: hsl(0 0% 100%);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
         html {
             scroll-behavior: smooth;
-            margin: 0;
-            padding: 0;
+            scroll-padding-top: 100px;
         }
 
-        /* Pure white background */
-        .futuristic-bg {
-            background: #ffffff;
-            min-height: 100vh;
-            position: relative;
-        }
-        
-        /* Content overlay */
-        .content-overlay {
-            position: relative;
-            z-index: 3;
-        }
-        
-        /* Futuristic typography with sans-serif font */
-        .futuristic-title {
-            font-family: sans-serif;
-            font-weight: 800;
-            color: #000000;
-            letter-spacing: -0.03em;
-        }
-        
-        .futuristic-subtitle {
-            font-family: sans-serif;
-            font-weight: 400;
-            color: #404040;
-            letter-spacing: -0.01em;
-        }
-        
-        /* Apply sans-serif font to all text elements */
         body {
-            font-family: sans-serif;
+            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--background);
+            color: var(--foreground);
             margin: 0;
             padding: 0;
-            background-color: #ffffff;
-            color: #000000;
         }
-        
-        
-        /* Simple white background */
-        .lightning-page-bg {
-            background-color: #ffffff;
-            position: fixed;
-            top: 0;
-            left: 0;
+
+        /* Gradient Canvas Styles */
+        .gradient-canvas {
             width: 100%;
             height: 100%;
-            z-index: -2;
-        }
-        
-        /* White overlay for all sections */
-        .black-section-overlay {
-            background-color: #ffffff;
-            position: relative;
-            z-index: 10;
-        }
-        
-        /* Simple white background */
-        .lightning-bg {
-            background-color: #ffffff;
-            min-height: 120vh;
-            position: relative;
-        }
-        
-        
-        
-        /* Typing animation styles */
-        .typing-text {
-            font-family: 'Courier New', monospace;
-            font-size: 1rem;
-            color: #000000;
-            min-height: 1.25rem;
-            white-space: nowrap;
-        }
-        
-        .typing-cursor {
-            display: inline-block;
-            width: 2px;
-            height: 1rem;
-            background-color: #000000;
-            animation: blink 1s infinite;
-        }
-        
-        @keyframes blink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0; }
-        }
-        
-        
-        /* Hero section styling - slash.com inspired */
-        .hero-section {
-            background: transparent;
-            padding: 120px 0;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        
-        .hero-content {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 0 20px;
-            position: relative;
-            z-index: 10;
-        }
-        
-        .hero-title {
-            font-size: 5rem;
-            font-weight: 800;
-            color: #000000;
-            margin-bottom: 40px;
-            line-height: 1.1;
-            font-family: sans-serif;
-            position: relative;
-        }
-        
-        
-        .hero-description {
-            font-size: 1.2rem;
-            color: rgba(0, 0, 0, 0.8);
-            margin-bottom: 50px;
-            line-height: 1.6;
-            font-family: sans-serif;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .hero-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .hero-cta-button {
-            padding: 18px 40px;
-            border-radius: 10px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: sans-serif;
-            border: none;
-        }
-        
-        .hero-cta-button.primary {
-            background: #000000;
-            color: #ffffff;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-        }
-        
-        .hero-cta-button.primary:hover {
-            background: rgba(0, 0, 0, 0.9);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-        }
-        
-        .hero-cta-button.secondary {
-            background: transparent;
-            color: #000000;
-            border: 1px solid rgba(0, 0, 0, 0.3);
-        }
-        
-        .hero-cta-button.secondary:hover {
-            background: rgba(0, 0, 0, 0.1);
-            border-color: rgba(0, 0, 0, 0.5);
-            transform: translateY(-2px);
-        }
-        
-        /* Who We're Built For section */
-        .who-built-for-section {
-            margin: 200px 0;
-        }
-        
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 40px;
-        }
-        
-        .carousel-controls {
-            display: flex;
-            gap: 10px;
-        }
-        
-        .carousel-btn {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(0, 0, 0, 0.2);
-            color: #000000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .carousel-btn:hover {
-            background: rgba(0, 0, 0, 0.2);
-            border-color: rgba(0, 0, 0, 0.4);
-        }
-        
-        .carousel-container {
-            display: flex;
-            gap: 20px;
-            overflow-x: auto;
-            scroll-behavior: smooth;
-            padding: 20px 0;
-        }
-        
-        .carousel-container::-webkit-scrollbar {
-            display: none;
-        }
-        
-        .carousel-container {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-        
-        .business-card {
-            min-width: 300px;
-            height: 400px;
-            background: rgba(0, 0, 0, 0.02);
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            border-radius: 20px;
-            padding: 30px;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-        
-        .business-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(0, 0, 0, 0.3);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .business-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: #000000;
-        }
-        
-        .business-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #000000;
-            margin-bottom: 20px;
-        }
-        
-        .business-content {
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            vertical-align: top;
-        }
-        
-        
-        /* Pricing Section */
-        .pricing-section {
-            margin: 200px 0;
-        }
-        
-        .pricing-title {
-            font-size: 3rem;
-            font-weight: 700;
-            color: #000000;
-            text-align: center;
-            margin-bottom: 20px;
-            font-family: sans-serif;
-        }
-        
-        .pricing-divider {
-            width: 100px;
-            height: 1px;
-            background: rgba(0, 0, 0, 0.3);
-            margin: 0 auto 60px;
-        }
-        
-        .pricing-container {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            max-width: 1400px;
-            margin: 0 auto;
-            width: 100%;
-        }
-        
-        .pricing-plan {
-            background: rgba(0, 0, 0, 0.02);
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            border-radius: 20px;
-            padding: 40px 30px;
-            text-align: center;
-            position: relative;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .pricing-plan:hover {
-            background: rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(0, 0, 0, 0.3);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        }
-        
-        .plan-title {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #000000;
-            margin-bottom: 10px;
-            font-family: sans-serif;
-        }
-        
-        .plan-subtitle {
-            font-size: 1rem;
-            color: #666666;
-            margin-bottom: 20px;
-            font-family: sans-serif;
-        }
-        
-        .plan-price {
-            font-size: 4rem;
-            font-weight: 800;
-            color: #000000;
-            margin-bottom: 5px;
-            font-family: sans-serif;
-        }
-        
-        .plan-period {
-            font-size: 1rem;
-            color: #666666;
-            margin-bottom: 20px;
-            font-family: sans-serif;
-        }
-        
-        .plan-description {
-            font-size: 1rem;
-            color: #666666;
-            margin-bottom: 30px;
-            line-height: 1.5;
-            font-family: sans-serif;
-        }
-        
-        .plan-button {
-            width: 100%;
-            padding: 15px 30px;
-            border-radius: 10px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-bottom: 30px;
-            font-family: sans-serif;
-        }
-        
-        .plan-button.free {
-            background: transparent;
-            border: 1px solid #000000;
-            color: #000000;
-        }
-        
-        .plan-button.free:hover {
-            background: white;
-            color: black;
-        }
-        
-        .plan-button.pro {
-            background: white;
-            border: 1px solid white;
-            color: black;
-        }
-        
-        .plan-button.pro:hover {
-            background: transparent;
-            color: #000000;
-        }
-        
-        .plan-features {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            text-align: left;
-        }
-        
-        .plan-feature {
-            display: flex;
-            align-items: center;
-            margin-bottom: 12px;
-            font-size: 0.95rem;
-            color: #000000;
-            font-family: sans-serif;
-        }
-        
-        .plan-feature:last-child {
-            margin-bottom: 0;
-        }
-        
-        .feature-checkmark {
-            color: #000000;
-            margin-right: 12px;
-            font-size: 1.1rem;
-        }
-        
-        /* FAQ Section */
-        .faq-section {
-            margin: 100px 0 50px 0;
-        }
-        
-        .faq-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: start;
-        }
-        
-        .faq-header {
-            padding-right: 40px;
-        }
-        
-        .faq-title {
-            font-size: 4rem;
-            font-weight: 800;
-            line-height: 0.9;
-            color: #000000;
-            margin-bottom: 30px;
-            font-family: sans-serif;
-        }
-        
-        .faq-subtitle {
-            font-size: 1.1rem;
-            color: #666666;
-            margin-bottom: 10px;
-            font-family: sans-serif;
-        }
-        
-        .faq-cta {
-            color: #000000;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1.1rem;
-            transition: color 0.3s ease;
-            font-family: sans-serif;
-        }
-        
-        .faq-cta:hover {
-            color: #333333;
-        }
-        
-        .faq-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        
-        .faq-item {
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 25px 0;
-        }
-        
-        .faq-item:last-child {
-            border-bottom: none;
-        }
-        
-        .faq-question {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            color: #000000;
-            font-size: 1.1rem;
-            font-weight: 500;
-            transition: color 0.3s ease;
-            font-family: sans-serif;
-        }
-        
-        .faq-question:hover {
-            color: #333333;
-        }
-        
-        .faq-chevron {
-            width: 16px;
-            height: 16px;
-            transition: transform 0.3s ease;
-        }
-        
-        .faq-item.active .faq-chevron {
-            transform: rotate(180deg);
-        }
-        
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-            color: #666666;
-            font-size: 1rem;
-            line-height: 1.6;
-            margin-top: 15px;
-            font-family: sans-serif;
-            position: relative;
-        }
-        
-        .faq-item.active .faq-answer {
-            max-height: 150px;
-        }
-        
-        
-        
-        /* Spotlight section */
-        .spotlight-section {
-            margin: 200px 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .spotlight-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            position: relative;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
-        }
-
-        .spotlight-left {
-            position: relative;
-            z-index: 2;
-        }
-
-        .spotlight-right {
-            position: relative;
-            z-index: 2;
-            text-align: right;
-        }
-
-        .spotlight-title {
-            font-size: 4rem;
-            font-weight: 800;
-            color: #000000;
-            margin-bottom: 30px;
-            line-height: 1.1;
-            font-family: sans-serif;
-            position: relative;
-            z-index: 2;
-        }
-
-
-        .spotlight-description {
-            font-size: 1.2rem;
-            color: #666666;
-            line-height: 1.6;
-            font-family: sans-serif;
-        }
-        
-        @media (max-width: 1024px) {
-            .pricing-container {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 20px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .spotlight-content {
-                grid-template-columns: 1fr;
-                gap: 40px;
-                text-align: center;
-            }
-            
-            .spotlight-right {
-                text-align: center;
-            }
-            
-            .spotlight-title {
-                font-size: 3rem;
-            }
-        }
-
-        /* Export Formats Section */
-        .export-formats-section {
-            margin: 200px 0;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            padding: 60px 0;
-        }
-
-        /* Huge outlined text behind ticker */
-        .export-formats-section::before {
-            content: 'ANY FORMAT';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 12vw;
-            font-weight: 900;
-            font-family: sans-serif;
-            color: transparent;
-            -webkit-text-stroke: 2px rgba(0, 0, 0, 0.1);
-            text-stroke: 2px rgba(0, 0, 0, 0.1);
-            white-space: nowrap;
-            z-index: 0;
-            letter-spacing: 0.05em;
-            pointer-events: none;
-            width: 100vw;
-            max-width: 100vw;
-            overflow: hidden;
-            text-align: center;
-        }
-
-        /* Responsive font size adjustments */
-        @media (max-width: 1200px) {
-            .export-formats-section::before {
-                font-size: 10vw;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .export-formats-section::before {
-                display: none;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .export-formats-section::before {
-                display: none;
-            }
-        }
-
-        .export-formats-title {
-            font-size: 3rem;
-            font-weight: 700;
-            color: #000000;
-            margin-bottom: 20px;
-            font-family: sans-serif;
-            position: relative;
-            z-index: 10;
-        }
-
-        .export-formats-subtitle {
-            font-size: 1.2rem;
-            color: #666666;
-            margin-bottom: 60px;
-            font-family: sans-serif;
-            position: relative;
-            z-index: 10;
-        }
-
-        .export-formats-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 60px;
-            overflow: hidden;
-            position: relative;
-            transform: rotate(-5deg);
-            margin: 40px 0;
-            z-index: 10;
-        }
-
-        .export-formats-track {
-            display: flex;
-            gap: 0;
-            width: calc(100% * 4);
-        }
-
-        .export-format-item {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-width: 120px;
-            height: 60px;
-            background: white;
-            color: black;
-            border: 2px solid black;
-            border-radius: 0;
-            transition: all 0.3s ease;
-            position: relative;
-            font-family: sans-serif;
-            font-weight: 600;
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .export-format-item:hover {
-            background: #000000;
-            color: #ffffff;
-            transform: translateY(-2px);
-        }
-
-        .export-format-item:not(:last-child)::after {
-            content: '';
-            position: absolute;
-            right: -2px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 4px;
-            height: 20px;
-            background: black;
-            z-index: 1;
-        }
-
-        .export-format-name {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: inherit;
-            text-align: center;
-            font-family: sans-serif;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        @keyframes scrollExportFormats {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(-25%);
-            }
-        }
-
-        .export-formats-track:hover {
-            animation-play-state: paused;
-        }
-
-        /* CTA Section with black background */
-        .cta-gradient-section {
-            background: #000000;
-            padding: 600px 0 0px 0;
-            margin: 0;
-            width: 100vw;
-            margin-left: calc(-50vw + 50%);
-            position: relative;
-        }
-
-        /* Ensure animation is always running */
-        .export-formats-track {
-            animation: scrollExportFormats 30s linear infinite;
-        }
-
-        /* Landing Page Section Styles */
-        .landing-page-section {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .typing-container {
-            display: inline-block;
-            font-family: 'Courier New', monospace;
-            font-size: 1rem;
-            color: #000000;
-            min-height: 1.25rem;
-            white-space: nowrap;
-        }
-
-        .typing-cursor {
-            display: inline-block;
-            width: 2px;
-            height: 1rem;
-            background-color: #000000;
-            animation: blink 1s infinite;
-        }
-
-        @keyframes blink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0; }
-        }
-
-        /* Menu Button Styles */
-        #hamburgerMenu {
-            transition: all 0.3s ease;
-        }
-
-        #hamburgerMenu:hover {
-            transform: scale(1.1);
-        }
-
-        /* Dropdown Menu Animation */
-        #dropdownMenu {
-            transform: translateY(-10px);
+            --gradient-color-1: #2ECC71;
+            --gradient-color-2: #6DD5A0;
+            --gradient-color-3: #8FD96A;
+            --gradient-color-4: #C6E530;
             opacity: 0;
-            transition: all 0.3s ease;
+            transition: opacity 1s ease-in-out;
         }
 
-        #dropdownMenu.show {
-            transform: translateY(0);
+        .gradient-canvas.isLoaded {
             opacity: 1;
         }
 
-        @media (max-width: 768px) {
-            .hero-title {
-                font-size: 3.5rem;
+        /* Floating Navbar */
+        .floating-navbar {
+            position: fixed;
+            z-index: 50;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 1rem;
+            width: 90%;
+            max-width: 72rem;
+            animation: slideDown 0.5s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(-20px);
             }
-            
-            .hero-buttons {
-                flex-direction: column;
-                gap: 15px;
-            }
-            
-            .hero-cta-button {
-                width: 100%;
-                max-width: 300px;
-            }
-            
-            /* Hide page title on mobile to save space */
-            header .futuristic-title {
-                display: none;
-            }
-            
-            .faq-container {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-            
-            .faq-title {
-                font-size: 3rem;
-            }
-            
-            .faq-header {
-                padding-right: 0;
-            }
-            
-            .pricing-container {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-            
-            .pricing-title {
-                font-size: 2.5rem;
-            }
-            
-            .plan-price {
-                font-size: 3rem;
-            }
-            
-            .future-content {
-                padding: 0 20px;
-            }
-            
-            .spotlight-title {
-                font-size: 3rem;
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
             }
         }
-        
+
+        .navbar-pill {
+            position: absolute;
+            inset: 0;
+            border-radius: 9999px;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .navbar-content {
+            position: relative;
+            width: 100%;
+            padding: 0.75rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            min-height: 90vh;
+            position: relative;
+            padding-top: 8rem;
+            padding-bottom: 5rem;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+
+        @media (min-width: 768px) {
+            .hero-section {
+                padding-top: 10rem;
+                padding-bottom: 8rem;
+            }
+        }
+
+        .gradient-container {
+            position: absolute;
+            inset: 0;
+            height: 100%;
+            z-index: 0;
+            opacity: 0;
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        /* Buttons */
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 3.25rem;
+            padding: 0 2.5rem;
+            font-size: 1rem;
+            font-weight: 500;
+            border-radius: 9999px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+            transform: translateY(-2px);
+        }
+
+        .btn-cta {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 3.5rem;
+            padding: 0 2.5rem;
+            font-size: 1.125rem;
+            font-weight: 500;
+            border-radius: 9999px;
+            background: white;
+            color: var(--primary);
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+
+        .btn-cta:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: translateY(-2px);
+        }
+
+        /* Section styles */
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #6b7280;
+            margin-bottom: 1rem;
+        }
+
+        /* Screenshot placeholder */
+        .screenshot-placeholder {
+            background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+            border: 2px dashed #d1d5db;
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #9ca3af;
+            font-size: 0.875rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            position: relative;
+            overflow: hidden;
+            background: var(--primary);
+            padding: 6rem 0;
+        }
+
+        .cta-gradient {
+            position: absolute;
+            inset: 0;
+            height: 100%;
+            z-index: 10;
+        }
+
+        .cta-blur-overlay {
+            position: absolute;
+            inset: 0;
+            height: 100%;
+            z-index: 20;
+            backdrop-filter: blur(60px);
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 25;
+        }
+
+        /* FAQ Accordion */
+        .faq-item {
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .faq-question {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+            background: none;
+            border: none;
+            cursor: pointer;
+            text-align: left;
+            font-size: 1.125rem;
+            font-weight: 500;
+        }
+
+        .faq-question:hover {
+            color: #4b5563;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+
+        .faq-item.open .faq-answer {
+            max-height: 500px;
+            padding-bottom: 1.5rem;
+        }
+
+        .faq-item.open .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-icon {
+            transition: transform 0.3s ease;
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: #9ca3af;
+        }
+
+        /* Footer */
+        .footer-link {
+            color: rgb(107 114 128);
+            transition: color 0.2s;
+            text-decoration: none;
+        }
+
+        .footer-link:hover {
+            color: rgb(17 24 39);
+        }
+
+        /* Step connector line */
+        .step-line {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            width: calc(100% - 4rem);
+            height: 2px;
+            background: #e5e7eb;
+            z-index: 0;
+        }
+
+        @media (max-width: 768px) {
+            .step-line {
+                display: none;
+            }
+        }
     </style>
 </head>
+<body>
+    <div class="min-h-screen">
+        <!-- Floating Pill Navbar -->
+        <nav class="floating-navbar">
+            <div class="navbar-pill"></div>
+            <div class="navbar-content">
+                <a href="/" class="flex items-center">
+                    <img src="/media/Logo.svg" alt="Tap Logo" class="h-8 w-auto object-contain" style="width: 180px;">
+                </a>
 
-<body class="bg-white text-black">
-    <!-- Lightning background as true page background -->
-    <div class="lightning-page-bg"></div>
-    
-    <!-- Futuristic Background -->
-    <div class="futuristic-bg black-section-overlay">
-        <div class="content-overlay">
-            <!-- Header -->
-            <header class="fixed top-0 left-0 w-full z-50 py-4 px-6 flex justify-between items-center">
-                <div class="flex items-center">
-                    <img src="/media/tap_health_logo.png" alt="Tap Technology Logo" class="h-16 md:h-20 lg:h-24 mr-4">
+                <div class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-500">
+                    <a href="#how-it-works" class="hover:text-gray-900 transition-colors">How It Works</a>
+                    <a href="#for-organizers" class="hover:text-gray-900 transition-colors">For Organizers</a>
+                    <a href="#for-exhibitors" class="hover:text-gray-900 transition-colors">For Exhibitors</a>
+                    <a href="#why-tap" class="hover:text-gray-900 transition-colors">Why Tap</a>
+                    <a href="#faq" class="hover:text-gray-900 transition-colors">FAQ</a>
                 </div>
-                <div class="flex items-center gap-6">
-                    <div class="relative">
-                        <button id="hamburgerMenu" onclick="toggleHamburgerMenu()" class="flex items-center justify-center w-10 h-10 cursor-pointer focus:outline-none">
-                            <svg id="hamburgerIcon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M3 12H21M3 6H21M3 18H21" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                            <svg id="xIcon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="hidden">
-                                <path d="M18 6L6 18M6 6L18 18" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </button>
-                        <div id="dropdownMenu" class="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg hidden z-50">
-                            <div class="py-2">
-                                <a href="https://console.tap-technology.com" target="_blank" class="block px-4 py-3 text-base font-semibold text-gray-700 hover:bg-gray-100 hover:text-black transition-colors duration-200" style="font-family: sans-serif;">
-                                    Access Console
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </header>
-            
-            <!-- Main Content -->
-            <main class="relative z-10 pt-24 pb-16 px-6">
-                <!-- 1. Our Solution Section -->
-                <section class="hero-section">
-                    <div class="hero-content">
-                        <h2 class="hero-title">
-                            One Tap Autofill<br>
-                            Anywhere.
-                        </h2>
-                        <p class="hero-description">
-                            Your phone's NFC chip is used everywhere to pay—so why not use it for everything? <br> Collect accurate information from your customers instantly with a Tap. 
-                        </p>
-                        <div class="hero-buttons">
-                            <button class="hero-cta-button primary" onclick="openContactForm()">Get a Demo</button>
-                        </div>
-                    </div>
-                </section>
-                
-                <!-- 2. Who We're Built For Section -->
-                <section class="who-built-for-section black-section-overlay">
-                    <div class="max-w-7xl mx-auto">
-                        <div class="section-header">
-                            <h2 class="text-5xl md:text-6xl font-bold futuristic-title">
-                                Who We're Built For
-                            </h2>
-                            <div class="carousel-controls">
-                                <button class="carousel-btn" onclick="scrollCarousel('left')">
-                                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                                        <path d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
-                                    </svg>
-                        </button>
-                                <button class="carousel-btn" onclick="scrollCarousel('right')">
-                                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                                        <path d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
-                                    </svg>
-                            </button>
-                        </div>
-                    </div>
-                        
-                        <div class="carousel-container" id="carousel">
-                            <div class="business-card">
-                                <div class="business-title">Clinical Settings</div>
-                                <div class="business-content">
-                                    <p class="futuristic-subtitle">
-                                        Cut intake time, fewer typos, happier patients.
-                                    </p>
-                </div>
-        </div>
 
-                            <div class="business-card">
-                                <div class="business-title">Banking</div>
-                                <div class="business-content">
-                                    <p class="futuristic-subtitle">
-                                        Instant KYC prefill at branch.
-                                    </p>
+                <div class="flex items-center gap-4">
+                    <button onclick="openContactForm()" class="btn-primary text-sm" style="height: 2.25rem; padding: 0 1.25rem; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);">
+                        Request Demo
+                    </button>
+                </div>
             </div>
-                            </div>
-                            
-                            <div class="business-card">
-                                <div class="business-title">Retail</div>
-                                <div class="business-content">
-                                    <p class="futuristic-subtitle">
-                                        1-Tap loyalty—no phone numbers or QR at checkout.
-                                    </p>
-                    </div>
-                            </div>
-                            
-                            <div class="business-card">
-                                <div class="business-title">Hospitality</div>
-                                <div class="business-content">
-                                    <p class="futuristic-subtitle">
-                                        Faster check-in; optional mobile key.
-                                    </p>
-                                </div>
-                        </div>
+        </nav>
 
-                            <div class="business-card">
-                                <div class="business-title">Workplaces</div>
-                                <div class="business-content">
-                                    <p class="futuristic-subtitle">
-                                        Badge-free access with audit trails.
-                                    </p>
-                                </div>
-                            </div>
-                            
-                            <div class="business-card">
-                                <div class="business-title">Global ID</div>
-                                <div class="business-content">
-                                    <p class="futuristic-subtitle">
-                                        Verified ID with limitless applications.
-                                    </p>
-                                </div>
-                            </div>
-                            
-                            <div class="business-card">
-                                <div class="business-title">Anywhere</div>
-                                <div class="business-content">
-                                    <p class="futuristic-subtitle">
-                                        Have a place you would rather Tap than manually enter your info? <a href="#" onclick="openContactForm(); return false;" style="color: #000000; text-decoration: underline; cursor: pointer;">Contact us here</a>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                
+        <!-- Hero Section -->
+        <section id="home" class="hero-section">
+            <!-- Gradient Background -->
+            <div class="gradient-container">
+                <canvas id="gradient-canvas-hero" class="gradient-canvas"></canvas>
+            </div>
 
-              
-                <!-- 4. How It Works Section -->
-                <section class="spotlight-section black-section-overlay">
-                    <div class="spotlight-content">
-                        <div class="spotlight-left">
-                            <h2 class="spotlight-title">
-                                How it works
-                            </h2>
-                            <p class="spotlight-description">
-                                Simple 3-step process for instant data sharing
+            <div class="w-full max-w-6xl mx-auto px-6 relative z-10">
+                <div class="max-w-4xl">
+                    <p class="section-label" style="animation: fadeIn 0.5s ease forwards;">For Event Organizers</p>
+
+                    <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-gray-900 mb-8 leading-[1.1]" style="animation: fadeIn 0.5s ease 0.1s both;">
+                        Bring effortless lead capture to every booth.
+                    </h1>
+
+                    <p class="text-xl md:text-2xl text-gray-600 mb-12 max-w-2xl leading-relaxed" style="animation: fadeIn 0.5s ease 0.2s both;">
+                        Zero friction for attendees. More leads for exhibitors. Complete visibility for organizers.
+                    </p>
+
+                    <div style="animation: fadeIn 0.5s ease 0.3s both;">
+                        <button onclick="openContactForm()" class="btn-primary">
+                            Request a Demo
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Problem Section -->
+        <section id="problem" class="py-24 bg-gray-50">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="grid lg:grid-cols-2 gap-16 items-center">
+                    <div>
+                        <p class="section-label">The Problem</p>
+                        <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-8">
+                            Lead capture at events is still broken
+                        </h2>
+                        <div class="space-y-6 text-lg text-gray-600">
+                            <p>
+                                <strong class="text-gray-900">Attendees</strong> face "form fatigue," re-entering the same information at every booth. Long lines cause them to skip booths entirely.
+                            </p>
+                            <p>
+                                <strong class="text-gray-900">Exhibitors</strong> generate fewer leads and deal with messy, inconsistent data they can't use.
+                            </p>
+                            <p>
+                                <strong class="text-gray-900">You</strong> are left without booth-level analytics, making it impossible to prove event ROI or justify sponsor pricing.
                             </p>
                         </div>
-                        <div class="spotlight-right">
-                            <div class="space-y-8">
-                                <div class="flex items-start space-x-4">
-                                    <div class="flex-shrink-0 w-8 h-8 bg-black text-white rounded-full flex items-center justify-center font-bold">1</div>
-                                    <div>
-                                        <h3 class="text-xl font-semibold mb-2 text-left">The user simply taps their phone on the NFC tag to initiate the process</h3>
-                                        <p class="text-gray-600 text-left"></p>
-                                    </div>
-                                </div>
-                                <div class="flex items-start space-x-4">
-                                    <div class="flex-shrink-0 w-8 h-8 bg-black text-white rounded-full flex items-center justify-center font-bold">2</div>
-                                    <div>
-                                        <h3 class="text-xl font-semibold mb-2 text-left">The user is prompted to review and approve the information the business is requesting</h3>
-                                        <p class="text-gray-600 text-left"></p>
-                                    </div>
-                                </div>
-                                <div class="flex items-start space-x-4">
-                                    <div class="flex-shrink-0 w-8 h-8 bg-black text-white rounded-full flex items-center justify-center font-bold">3</div>
-                                    <div>
-                                        <h3 class="text-xl font-semibold mb-2 text-left">Data flows seamlessly into existing platforms via integration or export</h3>
-                                        <p class="text-gray-600 text-left"></p>
-                                    </div>
-                                </div>
+                    </div>
+                    <div class="h-80 lg:h-[400px] overflow-hidden" style="border: 1px solid #d1d5db;">
+                        <img src="/media/AERIAL_CAREER_FAIR.jpg" alt="Aerial view of a career fair" class="w-full h-full object-cover" style="filter: grayscale(100%);">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section id="how-it-works" class="py-24 bg-white">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="text-center max-w-2xl mx-auto mb-20">
+                    <p class="section-label">How It Works</p>
+                    <h2 class="text-3xl md:text-5xl font-bold tracking-tight">
+                        Tap. Confirm. Done.
+                    </h2>
+                </div>
+
+                <div class="relative">
+                    <div class="step-line"></div>
+
+                    <div class="grid md:grid-cols-3 gap-12">
+                        <!-- Step 1 -->
+                        <div class="relative">
+                            <div class="w-16 h-16 rounded-full bg-gray-900 text-white flex items-center justify-center text-xl font-bold mb-6 relative z-10">
+                                1
                             </div>
+                            <h3 class="text-xl font-semibold mb-3">Attendee taps</h3>
+                            <p class="text-gray-600 leading-relaxed">
+                                Every booth gets a tag. Attendees tap their phone—no app download required.
+                            </p>
+                        </div>
+
+                        <!-- Step 2 -->
+                        <div class="relative">
+                            <div class="w-16 h-16 rounded-full bg-gray-900 text-white flex items-center justify-center text-xl font-bold mb-6 relative z-10">
+                                2
+                            </div>
+                            <h3 class="text-xl font-semibold mb-3">Pre-filled form</h3>
+                            <p class="text-gray-600 leading-relaxed">
+                                Info auto-fills from their profile. They confirm and submit in seconds. New fields are a quick type-in.
+                            </p>
+                        </div>
+
+                        <!-- Step 3 -->
+                        <div class="relative">
+                            <div class="w-16 h-16 rounded-full bg-gray-900 text-white flex items-center justify-center text-xl font-bold mb-6 relative z-10">
+                                3
+                            </div>
+                            <h3 class="text-xl font-semibold mb-3">Leads flow instantly</h3>
+                            <p class="text-gray-600 leading-relaxed">
+                                Exhibitors get clean, export-ready leads. You get booth-level engagement analytics across every exhibitor.
+                            </p>
                         </div>
                     </div>
-                </section>
+                </div>
+            </div>
+        </section>
 
-                <!-- 5. Pricing Section -->
-                <section class="pricing-section black-section-overlay">
-                    <div class="max-w-7xl mx-auto">
-                        <h2 class="pricing-title">
-                            Simple pricing for every business
+        <!-- For Organizers Section -->
+        <section id="for-organizers" class="py-24 bg-gray-50">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="grid lg:grid-cols-2 gap-16 items-center">
+                    <div>
+                        <p class="section-label">For Organizers</p>
+                        <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-8">
+                            Finally, visibility into what's happening at every booth
                         </h2>
-                        <div class="pricing-divider"></div>
-                        
-                        <div class="pricing-container">
-                            <!-- Starter Plan -->
-                            <div class="pricing-plan">
-                                <h3 class="plan-title">Starter</h3>
-                                <p class="plan-subtitle">For Small Businesses</p>
-                                <div class="plan-price">$29</div>
-                                <div class="plan-period">per month</div>
-                                <button class="plan-button free" onclick="openContactForm()">Get a Demo</button>
-                                
-                                <ul class="plan-features">
-                                    <li class="plan-feature">
-                                        <span class="feature-checkmark">✓</span>
-                                        First 30 days free
-                                    </li>
-                                    <li class="plan-feature">
-                                        <span class="feature-checkmark">✓</span>
-                                        1 location
-                                    </li>
-                                    <li class="plan-feature">
-                                        <span class="feature-checkmark">✓</span>
-                                        Basic email support
-                                    </li>
-                                </ul>
+
+                        <div class="space-y-8">
+                            <div>
+                                <h3 class="text-lg font-semibold mb-2">Event-wide analytics dashboard</h3>
+                                <p class="text-gray-600">See booth traffic, engagement patterns, and which exhibitors are drawing crowds—in real time.</p>
                             </div>
-                            
-                            <!-- Launch Plan -->
-                            <div class="pricing-plan">
-                                <h3 class="plan-title">Launch</h3>
-                                <p class="plan-subtitle">For Multi-Site Businesses</p>
-                                <div class="plan-price">$99</div>
-                                <div class="plan-period">per month</div>
-                                <button class="plan-button free" onclick="openContactForm()">Get a Demo</button>
-                                
-                                <ul class="plan-features">
-                                    <li class="plan-feature">
-                                        <span class="feature-checkmark">✓</span>
-                                        First 30 days free
-                                    </li>
-                                    <li class="plan-feature">
-                                        <span class="feature-checkmark">✓</span>
-                                        Up to 3 locations
-                                    </li>
-                                    <li class="plan-feature">
-                                        <span class="feature-checkmark">✓</span>
-                                        Basic email support
-                                    </li>
-                                    <li class="plan-feature">
-                                        <span class="feature-checkmark">✓</span>
-                                        Eligible to earn per tap
-                                    </li>
-                                </ul>
+                            <div>
+                                <h3 class="text-lg font-semibold mb-2">Prove event ROI</h3>
+                                <p class="text-gray-600">Real data to justify sponsor pricing and demonstrate measurable value to stakeholders.</p>
                             </div>
-                            
-                            <!-- Growth Plan -->
-                            <div class="pricing-plan">
-                                <h3 class="plan-title">Growth</h3>
-                                <p class="plan-subtitle">For Regional Businesses</p>
-                                <div class="plan-price">$499</div>
-                                <div class="plan-period">per month</div>
-                                <button class="plan-button free" onclick="openContactForm()">Get a Demo</button>
-                                
-                                <ul class="plan-features">
-                                    <li class="plan-feature">
-                                        <span class="feature-checkmark">✓</span>
-                                        First 30 days free
-                                    </li>
-                                    <li class="plan-feature">
-                                        <span class="feature-checkmark">✓</span>
-                                        Up to 10 locations
-                                    </li>
-                                    <li class="plan-feature">
-                                        <span class="feature-checkmark">✓</span>
-                                        Dedicated account manager
-                                    </li>
-                                    <li class="plan-feature">
-                                        <span class="feature-checkmark">✓</span>
-                                        Eligible to earn per tap
-                                    </li>
-                                </ul>
+                            <div>
+                                <h3 class="text-lg font-semibold mb-2">One standardized system</h3>
+                                <p class="text-gray-600">One platform for all exhibitors. No more fragmented tools or missing data.</p>
                             </div>
-                            
-                            <!-- Enterprise Plan -->
-                            <div class="pricing-plan">
-                                <h3 class="plan-title">Enterprise</h3>
-                                <p class="plan-subtitle">For Large Enterprises</p>
-                                <div class="plan-price" style="font-size: 2rem;"></div>
-                                <div class="plan-period">Custom pricing</div>
-                                <button class="plan-button pro" onclick="openContactForm()">Contact us</button>
-                                
-                                <ul class="plan-features">
-                                    <li class="plan-feature">
-                                        <span class="feature-checkmark">✓</span>
-                                        10+ locations
-                                    </li>
-                                    <li class="plan-feature">
-                                        <span class="feature-checkmark">✓</span>
-                                        Dedicated account manager + white glove engineering support
-                                    </li>
-                                    <li class="plan-feature">
-                                        <span class="feature-checkmark">✓</span>
-                                        Custom pricing
-                                    </li>
-                                </ul>
-                            </div>
-                    </div>
-                    
-
-
-                <!-- 6. FAQ Section -->
-                <section class="faq-section black-section-overlay">
-                    <div class="max-w-7xl mx-auto">
-                        <div class="faq-container">
-                            <div class="faq-header">
-                                <h2 class="faq-title">
-                                    Frequently<br>
-                                    asked questions
-                                </h2>
-                                <p class="faq-subtitle">Don't see the answer you're looking for?</p>
-                                <a href="#" class="faq-cta" onclick="openContactForm(); return false;">Get in touch.</a>
-                            </div>
-                            
-                            <div class="faq-list">
-                                <div class="faq-item" onclick="toggleFAQ(this)">
-                                    <div class="faq-question">
-                                        <span>What is Tap?</span>
-                                        <svg class="faq-chevron" fill="currentColor" viewBox="0 0 16 16">
-                                            <path d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 0-.708z"/>
-                                        </svg>
-                                    </div>
-                                    <div class="faq-answer">
-                                        Tap lets people use one profile everywhere to sign in or sign up- just Tap your phone once to share info instantly.
-                                    </div>
-                                </div>
-
-                                <div class="faq-item" onclick="toggleFAQ(this)">
-                                    <div class="faq-question">
-                                        <span>How does Tap work?</span>
-                                        <svg class="faq-chevron" fill="currentColor" viewBox="0 0 16 16">
-                                            <path d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 0-.708z"/>
-                                        </svg>
-                                    </div>
-                                    <div class="faq-answer">
-                                        We use NFC tags (the same tech used in Tap to pay). A person Taps their phone, sees a quick approval screen, and shares the fields you request from their Tap profile.
-                                    </div>
-                                </div>
-
-                                <div class="faq-item" onclick="toggleFAQ(this)">
-                                    <div class="faq-question">
-                                        <span>Does Tap replace our portal or tools? And why add it if we already have one?</span>
-                                        <svg class="faq-chevron" fill="currentColor" viewBox="0 0 16 16">
-                                            <path d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 0-.708z"/>
-                                        </svg>
-                                    </div>
-                                    <div class="faq-answer">
-                                        No. Tap works side-by-side with what you already use. Keep your portal and forms. Tap simply removes typing and password hurdles so check-ins move faster and records stay more accurate.
-                                    </div>
-                                </div>
-                                
-                                <div class="faq-item" onclick="toggleFAQ(this)">
-                                    <div class="faq-question">
-                                        <span>What data can we collect?</span>
-                                        <svg class="faq-chevron" fill="currentColor" viewBox="0 0 16 16">
-                                            <path d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 0-.708z"/>
-                                        </svg>
-                                    </div>
-                                    <div class="faq-answer">
-                                        Basics like name, phone, address, email- plus insurance details, emergency contacts, signatures, and photos (e.g., insurance card). Fields are totally customizable.
-                                    </div>
-                                </div>
-
-                                <div class="faq-item" onclick="toggleFAQ(this)">
-                                    <div class="faq-question">
-                                        <span>Is Tap secure and HIPAA compliant?</span>
-                                        <svg class="faq-chevron" fill="currentColor" viewBox="0 0 16 16">
-                                            <path d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 0-.708z"/>
-                                        </svg>
-                                    </div>
-                                    <div class="faq-answer">
-                                        Yes. We use encryption in transit and at rest, access controls, and consent-based sharing. We support HIPAA-compliant deployments and will sign a BAA when handling PHI.
-                                    </div>
-                                </div>
-
-                                <div class="faq-item" onclick="toggleFAQ(this)">
-                                    <div class="faq-question">
-                                        <span>What hardware do we need?</span>
-                                        <svg class="faq-chevron" fill="currentColor" viewBox="0 0 16 16">
-                                            <path d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 0-.708z"/>
-                                        </svg>
-                                    </div>
-                                    <div class="faq-answer">
-                                        Just the NFC tags we provide. Works with modern iPhone and Android devices- no special readers.
-                                    </div>
-                                </div>
-
-                                <div class="faq-item" onclick="toggleFAQ(this)">
-                                    <div class="faq-question">
-                                        <span>We ask a few specific questions Tap users probably don't have stored- what then?</span>
-                                        <svg class="faq-chevron" fill="currentColor" viewBox="0 0 16 16">
-                                            <path d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 0-.708z"/>
-                                        </svg>
-                                    </div>
-                                    <div class="faq-answer">
-                                        After the Tap, any missing or one-off fields prompt a quick type-in. All the known, redundant info is shared instantly, and the few specific questions get answered in seconds with the same flow.
-                                    </div>
-                                </div>
+                            <div>
+                                <h3 class="text-lg font-semibold mb-2">Happier attendees</h3>
+                                <p class="text-gray-600">Faster experience means more booths visited and more networking value for everyone.</p>
                             </div>
                         </div>
                     </div>
-                </section>
-                
-            </main>
-        </div>
-    </div>
-    
-    
-    <!-- Footer -->
-    <footer class="bg-black text-white py-4 px-6 relative z-10" style="margin: 0; padding: 16px 24px;">
-        <div class="w-full flex justify-between items-center">
-            <div class="flex items-center gap-4">
-                <a href="privacy.html" class="text-gray-400 hover:text-white transition-colors" style="font-size: 12px;">Privacy Policy</a>
-                <div class="text-gray-400 text-xs">
-                    © 2025 Tap Technology, Inc. All rights reserved.
+                    <div style="perspective: 1000px;">
+                        <img src="/media/dashboard.png" alt="Organizer dashboard"
+                             class="rounded-xl"
+                             style="filter: grayscale(100%); box-shadow: 0 50px 100px -20px rgba(0, 0, 0, 0.25); width: 220%; max-width: none; transform: rotateY(-30deg) rotateZ(-2deg);">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- For Exhibitors Section -->
+        <section id="for-exhibitors" class="py-24 bg-white">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="grid lg:grid-cols-2 gap-16 items-start">
+                    <div id="tag-3d-container" class="h-80 lg:h-[500px] order-2 lg:order-1 rounded-2xl overflow-hidden bg-white"></div>
+                    <div class="order-1 lg:order-2">
+                        <p class="section-label">For Your Exhibitors</p>
+                        <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-8">
+                            Give your exhibitors a better lead capture experience
+                        </h2>
+
+                        <div class="space-y-8">
+                            <div>
+                                <h3 class="text-lg font-semibold mb-2">Custom booth fields</h3>
+                                <p class="text-gray-600">Each exhibitor can define exactly what info they need—or use the defaults you set.</p>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold mb-2">Clean CRM exports</h3>
+                                <p class="text-gray-600">No more transcribing business cards or deciphering paper forms. Data exports to any CRM.</p>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold mb-2">Instant access</h3>
+                                <p class="text-gray-600">Leads appear in their dashboard the moment they're captured. Follow up while it's fresh.</p>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold mb-2">Reusable attendee profiles</h3>
+                                <p class="text-gray-600">Returning attendees submit even faster. Every tap after the first takes seconds.</p>
                             </div>
                         </div>
-            <div class="flex items-center gap-4">
-                <button onclick="openContactForm()" class="bg-white text-black border border-black px-4 py-2 rounded-lg text-sm font-bold hover:bg-gray-200 active:bg-gray-300 active:scale-95 transform transition-all duration-150 ease-in-out shadow-md hover:shadow-lg active:shadow-sm">
-                    Get a Demo
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Tap Section -->
+        <section id="why-tap" class="py-24 bg-gray-50">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <p class="section-label">Why Tap</p>
+                    <h2 class="text-3xl md:text-4xl font-bold tracking-tight">
+                        Why event organizers choose Tap
+                    </h2>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-x-16 gap-y-12 max-w-4xl mx-auto">
+                    <div>
+                        <h3 class="text-lg font-semibold mb-2">No app download required</h3>
+                        <p class="text-gray-600">Works instantly via App Clip on iPhone.* Attendees get an app-like experience without the friction of downloading anything.</p>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold mb-2">Privacy by design</h3>
+                        <p class="text-gray-600">Consent-based sharing every time. Attendees control what information they share with each booth.</p>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold mb-2">Reusable profiles</h3>
+                        <p class="text-gray-600">Faster taps, cleaner data, less drop-off. Profiles persist across events, making repeat attendees even more efficient.</p>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold mb-2">Flexible platform</h3>
+                        <p class="text-gray-600">Limitless custom fields, works for career fairs, trade shows, conferences—any event with exhibitors.</p>
+                    </div>
+                </div>
+
+                <p class="text-center text-sm text-gray-400 mt-12">* App Clip available on iPhone 7 and later running iOS 14+. QR codes available as fallback for all devices.</p>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="py-24 bg-white">
+            <div class="max-w-3xl mx-auto px-6">
+                <div class="text-center mb-16">
+                    <p class="section-label">FAQ</p>
+                    <h2 class="text-3xl md:text-4xl font-bold tracking-tight">
+                        Common questions
+                    </h2>
+                </div>
+
+                <div class="divide-y divide-gray-200">
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>What if attendees don't have NFC-enabled phones?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer text-gray-600">
+                            All smartphones since 2014 support NFC. For edge cases, QR codes are available as a backup in the organizer console, and manual entries can be added by booth staff.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Do exhibitors need to set up anything ahead of time?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer text-gray-600">
+                            No. Each tag comes with a default form created by you (the organizer) already attached—ready to accept taps immediately. Exhibitors can create custom forms if they want, but it's not required. They can claim their account and access their leads before, during, or after the event without losing any data.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>What types of events does Tap work for?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer text-gray-600">
+                            Tap is built for any event with exhibitors: career fairs, trade shows, conferences, university recruiting events, and more. If attendees are visiting booths and sharing contact info, Tap makes it faster and cleaner.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>How do exhibitors access their leads?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer text-gray-600">
+                            Exhibitors can view leads in real-time through their dashboard and export to CSV or directly to their CRM at any time. No data is ever lost—even if they create their account after the event ends.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section with Gradient -->
+        <section id="contact" class="cta-section">
+            <!-- Gradient Background -->
+            <div class="cta-gradient">
+                <canvas id="gradient-canvas-cta" class="gradient-canvas"></canvas>
+            </div>
+            <!-- Blur Overlay -->
+            <div class="cta-blur-overlay"></div>
+
+            <div class="cta-content max-w-4xl mx-auto px-6 text-center">
+                <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-white mb-6">
+                    Ready to modernize your events?
+                </h2>
+                <p class="text-xl text-white/80 mb-10 max-w-2xl mx-auto leading-relaxed">
+                    See how Tap can transform lead capture for your next event.
+                </p>
+
+                <button onclick="openContactForm()" class="btn-cta">
+                    Request a Demo
                 </button>
             </div>
-        </div>
-    </footer>
-    
-    <!-- Contact Form Popup -->
-    <div id="contactPopup" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-white border border-gray-300 rounded-2xl p-8 w-96 max-w-sm shadow-2xl text-center backdrop-blur-sm">
-            <div class="mb-6">
-                <h3 class="text-2xl font-bold text-black mb-3" style="font-family: sans-serif;">Get a Demo</h3>
-                <p class="text-gray-600 mb-6 text-lg" style="font-family: sans-serif;">Send us a message and we'll get back to you soon.</p>
+        </section>
+
+        <!-- Footer -->
+        <footer class="py-12 border-t border-gray-100 bg-white text-sm">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+                    <!-- Brand Column -->
+                    <div class="col-span-2">
+                        <div class="flex items-center gap-2 mb-4">
+                            <a href="/" class="flex items-center">
+                                <img src="/media/Logo.svg" alt="Tap Logo" class="h-8 w-auto object-contain" style="width: 120px;">
+                            </a>
+                        </div>
+                        <p class="text-gray-500 max-w-xs mb-6">
+                            The lead capture layer for events. Tap replaces paper forms and business cards with one simple interaction.
+                        </p>
+                    </div>
+
+                    <!-- Product Column -->
+                    <div>
+                        <h4 class="font-semibold mb-4">Product</h4>
+                        <ul class="space-y-3 text-gray-500">
+                            <li><a href="#how-it-works" class="footer-link">How It Works</a></li>
+                            <li><a href="#for-organizers" class="footer-link">For Organizers</a></li>
+                            <li><a href="#for-exhibitors" class="footer-link">For Exhibitors</a></li>
+                            <li><a href="#faq" class="footer-link">FAQ</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Company Column -->
+                    <div>
+                        <h4 class="font-semibold mb-4">Company</h4>
+                        <ul class="space-y-3 text-gray-500">
+                            <li><a href="#" onclick="openContactForm(); return false;" class="footer-link">Request Demo</a></li>
+                            <li><a href="#" onclick="openContactForm(); return false;" class="footer-link">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="pt-8 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-4 text-gray-500">
+                    <div>&copy; 2026 Tap Technology, Inc.</div>
+                    <div class="flex gap-6">
+                        <a href="/privacy.html" class="footer-link">Privacy Policy</a>
+                        <a href="/terms.html" class="footer-link">Terms of Service</a>
+                    </div>
+                </div>
             </div>
-            
+        </footer>
+    </div>
+
+    <!-- Contact Form Popup -->
+    <div id="contactPopup" class="fixed inset-0 bg-black bg-opacity-50 z-[100] hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl p-8 w-full max-w-md shadow-2xl">
+            <div class="mb-6">
+                <h3 class="text-2xl font-bold text-gray-900 mb-2">Request a Demo</h3>
+                <p class="text-gray-500">Send us a message and we'll get back to you soon.</p>
+            </div>
+
             <form id="contactForm" class="space-y-4">
                 <div>
-                    <input type="text" id="contactName" placeholder="Your Name" required 
-                           class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-black placeholder-gray-500 focus:outline-none focus:border-gray-500" 
-                           style="font-family: sans-serif;">
+                    <input type="text" id="contactName" placeholder="Your Name" required
+                           class="w-full px-4 py-3 bg-white border border-gray-200 rounded-lg text-gray-900 placeholder-gray-400 focus:outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-400">
                 </div>
                 <div>
-                    <input type="email" id="contactEmail" placeholder="Your Email" required 
-                           class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-black placeholder-gray-500 focus:outline-none focus:border-gray-500" 
-                           style="font-family: sans-serif;">
+                    <input type="email" id="contactEmail" placeholder="Your Email" required
+                           class="w-full px-4 py-3 bg-white border border-gray-200 rounded-lg text-gray-900 placeholder-gray-400 focus:outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-400">
                 </div>
                 <div>
-                    <textarea id="contactMessage" placeholder="Your Message" required rows="4"
-                              class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-black placeholder-gray-500 focus:outline-none focus:border-gray-500 resize-none" 
-                              style="font-family: sans-serif;"></textarea>
+                    <input type="text" id="contactOrg" placeholder="Organization (optional)"
+                           class="w-full px-4 py-3 bg-white border border-gray-200 rounded-lg text-gray-900 placeholder-gray-400 focus:outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-400">
                 </div>
-                <div class="flex gap-3">
-                    <button type="button" onclick="closeContactPopup()" 
-                            class="flex-1 px-6 py-3 bg-transparent border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100 hover:text-black transition-all duration-300 font-semibold" 
-                            style="font-family: sans-serif;">
+                <div>
+                    <textarea id="contactMessage" placeholder="Tell us about your events" required rows="3"
+                              class="w-full px-4 py-3 bg-white border border-gray-200 rounded-lg text-gray-900 placeholder-gray-400 focus:outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-400 resize-none"></textarea>
+                </div>
+                <div class="flex gap-3 pt-2">
+                    <button type="button" onclick="closeContactPopup()"
+                            class="flex-1 px-6 py-3 bg-white border border-gray-200 text-gray-600 rounded-full hover:bg-gray-50 hover:text-gray-900 transition-all font-medium">
                         Cancel
                     </button>
-                    <button type="submit" 
-                            class="flex-1 px-6 py-3 bg-black text-white rounded-lg hover:bg-gray-800 transition-all duration-300 font-semibold" 
-                            style="font-family: sans-serif;">
+                    <button type="submit"
+                            class="flex-1 px-6 py-3 bg-gray-900 text-white rounded-full hover:bg-gray-800 transition-all font-medium">
                         Send
                     </button>
                 </div>
             </form>
         </div>
     </div>
-    
+
     <!-- Success Confirmation Popup -->
-    <div id="successPopup" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-white border border-gray-300 rounded-2xl p-8 w-96 max-w-sm shadow-2xl text-center backdrop-blur-sm">
+    <div id="successPopup" class="fixed inset-0 bg-black bg-opacity-50 z-[100] hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl p-8 w-full max-w-md shadow-2xl text-center">
             <div class="mb-6">
-                <div class="w-20 h-20 bg-black rounded-full flex items-center justify-center mx-auto shadow-lg">
-                    <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                <div class="w-16 h-16 bg-gray-900 rounded-full flex items-center justify-center mx-auto">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
                     </svg>
                 </div>
             </div>
-            <h3 class="text-2xl font-bold text-black mb-3" style="font-family: sans-serif;">Message Sent!</h3>
-            <p class="text-gray-600 mb-6 text-lg" style="font-family: sans-serif;">Thank you for reaching out. We'll get back to you soon.</p>
-            <button onclick="closeSuccessPopup()" class="bg-black text-white px-8 py-3 rounded-xl hover:bg-gray-800 transition-all duration-300 font-semibold shadow-lg hover:shadow-xl transform hover:scale-105" style="font-family: sans-serif;">
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">Message Sent!</h3>
+            <p class="text-gray-500 mb-8">Thank you for reaching out. We'll get back to you soon.</p>
+            <button onclick="closeSuccessPopup()" class="px-8 py-3 bg-gray-900 text-white rounded-full hover:bg-gray-800 transition-all font-medium">
                 Close
             </button>
         </div>
     </div>
 
-    
-    <!-- JavaScript -->
+    <!-- Scripts -->
+    <script src="/js/gradient.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
+        // Contact form functions
         function openContactForm() {
             const contactPopup = document.getElementById('contactPopup');
             if (contactPopup) {
                 contactPopup.classList.remove('hidden');
             }
         }
-        
+
         function closeContactPopup() {
             const contactPopup = document.getElementById('contactPopup');
             if (contactPopup) {
                 contactPopup.classList.add('hidden');
-                // Clear form fields
                 document.getElementById('contactForm').reset();
             }
         }
-            
+
         function closeSuccessPopup() {
             const successPopup = document.getElementById('successPopup');
             if (successPopup) {
                 successPopup.classList.add('hidden');
             }
         }
-        
-        // Load page
+
+        // 3D Tag initialization
+        function initTag3D() {
+            const container = document.getElementById('tag-3d-container');
+            if (!container) return;
+
+            const width = container.clientWidth;
+            const height = container.clientHeight;
+
+            const scene = new THREE.Scene();
+            scene.background = new THREE.Color(0xffffff);
+
+            const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
+            camera.position.set(0, 2, 4);
+            camera.lookAt(0, 0, 0);
+
+            const renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setSize(width, height);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            renderer.shadowMap.enabled = true;
+            container.appendChild(renderer.domElement);
+
+            // Lighting
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+            scene.add(ambientLight);
+
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+            directionalLight.position.set(5, 10, 5);
+            directionalLight.castShadow = true;
+            scene.add(directionalLight);
+
+            const fillLight = new THREE.DirectionalLight(0xffffff, 0.3);
+            fillLight.position.set(-5, 5, -5);
+            scene.add(fillLight);
+
+            // Puck setup
+            const radius = 1;
+            const thickness = 0.25;
+            const segments = 64;
+
+            const darkGrayMaterial = new THREE.MeshStandardMaterial({
+                color: 0x1a1a1a,
+                roughness: 0.3,
+                metalness: 0.1
+            });
+
+            let puck;
+
+            // Load logo
+            const logoImg = new Image();
+            logoImg.crossOrigin = 'anonymous';
+            logoImg.src = '/media/tap-icon.png';
+
+            logoImg.onload = function() {
+                const topCanvas = document.createElement('canvas');
+                topCanvas.width = 512;
+                topCanvas.height = 512;
+                const ctx = topCanvas.getContext('2d');
+
+                ctx.fillStyle = '#1a1a1a';
+                ctx.fillRect(0, 0, 512, 512);
+
+                ctx.fillStyle = '#ffffff';
+                ctx.beginPath();
+                ctx.arc(256, 256, 250, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Preserve aspect ratio - larger to compensate for whitespace in PNG
+                const maxSize = 650;
+                const aspectRatio = logoImg.naturalWidth / logoImg.naturalHeight;
+                let logoWidth, logoHeight;
+                if (aspectRatio >= 1) {
+                    logoWidth = maxSize;
+                    logoHeight = maxSize / aspectRatio;
+                } else {
+                    logoHeight = maxSize;
+                    logoWidth = maxSize * aspectRatio;
+                }
+                const logoX = (512 - logoWidth) / 2;
+                const logoY = (512 - logoHeight) / 2;
+                ctx.drawImage(logoImg, logoX, logoY, logoWidth, logoHeight);
+
+                const topTexture = new THREE.CanvasTexture(topCanvas);
+                const topMaterial = new THREE.MeshStandardMaterial({
+                    map: topTexture,
+                    roughness: 0.4,
+                    metalness: 0.1
+                });
+
+                const geometry = new THREE.CylinderGeometry(radius, radius, thickness, segments);
+                const materials = [darkGrayMaterial, topMaterial, darkGrayMaterial];
+
+                puck = new THREE.Mesh(geometry, materials);
+                puck.castShadow = true;
+                puck.receiveShadow = true;
+                puck.rotation.x = -0.3;
+                puck.rotation.z = 0.1;
+                scene.add(puck);
+            };
+
+            // Mouse interaction
+            let isDragging = false;
+            let previousMousePosition = { x: 0, y: 0 };
+
+            container.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                previousMousePosition = { x: e.clientX, y: e.clientY };
+            });
+
+            document.addEventListener('mouseup', () => { isDragging = false; });
+
+            document.addEventListener('mousemove', (e) => {
+                if (!isDragging || !puck) return;
+                const deltaX = e.clientX - previousMousePosition.x;
+                const deltaY = e.clientY - previousMousePosition.y;
+                puck.rotation.y += deltaX * 0.01;
+                puck.rotation.x += deltaY * 0.01;
+                previousMousePosition = { x: e.clientX, y: e.clientY };
+            });
+
+            // Touch support
+            container.addEventListener('touchstart', (e) => {
+                isDragging = true;
+                previousMousePosition = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+            });
+            container.addEventListener('touchend', () => { isDragging = false; });
+            container.addEventListener('touchmove', (e) => {
+                if (!isDragging || !puck) return;
+                const deltaX = e.touches[0].clientX - previousMousePosition.x;
+                const deltaY = e.touches[0].clientY - previousMousePosition.y;
+                puck.rotation.y += deltaX * 0.01;
+                puck.rotation.x += deltaY * 0.01;
+                previousMousePosition = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+            });
+
+            let time = 0;
+            function animate() {
+                requestAnimationFrame(animate);
+                if (!isDragging && puck) {
+                    time += 0.02;
+                    puck.position.y = Math.sin(time) * 0.05;
+                    puck.rotation.y += 0.003;
+                }
+                renderer.render(scene, camera);
+            }
+            animate();
+
+            // Resize handler
+            window.addEventListener('resize', () => {
+                const newWidth = container.clientWidth;
+                const newHeight = container.clientHeight;
+                camera.aspect = newWidth / newHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(newWidth, newHeight);
+            });
+        }
+
+        // Initialize on page load
         document.addEventListener('DOMContentLoaded', function() {
-            
+            // Initialize gradients
+            try {
+                const heroGradient = new Gradient();
+                heroGradient.initGradient('#gradient-canvas-hero');
+
+                const ctaGradient = new Gradient();
+                ctaGradient.initGradient('#gradient-canvas-cta');
+            } catch (error) {
+                console.error('Failed to initialize gradient:', error);
+            }
+
+            // Initialize 3D Tag
+            initTag3D();
+
+            // FAQ accordion
+            document.querySelectorAll('.faq-question').forEach(button => {
+                button.addEventListener('click', () => {
+                    const item = button.parentElement;
+                    const isOpen = item.classList.contains('open');
+
+                    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+
+                    if (!isOpen) {
+                        item.classList.add('open');
+                    }
+                });
+            });
+
+            // Contact form submission
             const contactForm = document.getElementById('contactForm');
             if (contactForm) {
                 contactForm.addEventListener('submit', function(e) {
                     e.preventDefault();
-                    
+
                     const name = document.getElementById('contactName').value;
                     const email = document.getElementById('contactEmail').value;
                     const message = document.getElementById('contactMessage').value;
-            
-            if (!name || !email || !message) {
-                        alert('Please fill in all fields.');
-                return;
-            }
-            
+
+                    if (!name || !email || !message) {
+                        alert('Please fill in all required fields.');
+                        return;
+                    }
+
                     // Close contact popup and show success popup
                     closeContactPopup();
-            
-            const successPopup = document.getElementById('successPopup');
-            if (successPopup) {
-                successPopup.classList.remove('hidden');
-            }
+
+                    const successPopup = document.getElementById('successPopup');
+                    if (successPopup) {
+                        successPopup.classList.remove('hidden');
+                    }
                 });
             }
-        });
-        
-        // Simple scroll to top function
-        function scrollToTop() {
-            window.scrollTo({
-                top: 0,
-                    behavior: 'smooth'
-                });
-        }
-        
-        // FAQ toggle functionality
-        function toggleFAQ(item) {
-            const isActive = item.classList.contains('active');
-            
-            // Close all FAQ items
-            document.querySelectorAll('.faq-item').forEach(faqItem => {
-                faqItem.classList.remove('active');
+
+            // Close popups on backdrop click
+            document.getElementById('contactPopup').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeContactPopup();
+                }
             });
-            
-            // Open clicked item if it wasn't already active
-            if (!isActive) {
-                item.classList.add('active');
-            }
-        }
-        
-        // Carousel functionality
-        function scrollCarousel(direction) {
-            const carousel = document.getElementById('carousel');
-            if (carousel) {
-                const scrollAmount = 320; // Width of one card + gap
-                if (direction === 'left') {
-                    carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-                } else {
-                    carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+
+            document.getElementById('successPopup').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeSuccessPopup();
                 }
-            }
-        }
+            });
+        });
 
-        // Menu functionality
-        function toggleHamburgerMenu() {
-            const hamburgerMenu = document.getElementById('hamburgerMenu');
-            const dropdownMenu = document.getElementById('dropdownMenu');
-            const hamburgerIcon = document.getElementById('hamburgerIcon');
-            const xIcon = document.getElementById('xIcon');
-
-            if (hamburgerMenu && dropdownMenu && hamburgerIcon && xIcon) {
-                const isVisible = !dropdownMenu.classList.contains('hidden');
-
-                if (isVisible) {
-                    dropdownMenu.classList.remove('show');
-                    dropdownMenu.classList.add('hidden');
-                    hamburgerIcon.classList.remove('hidden');
-                    xIcon.classList.add('hidden');
-                } else {
-                    dropdownMenu.classList.remove('hidden');
-                    dropdownMenu.classList.add('show');
-                    hamburgerIcon.classList.add('hidden');
-                    xIcon.classList.remove('hidden');
+        // Smooth scroll for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.getElementById(this.getAttribute('href').substring(1));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                    history.pushState(null, '', this.getAttribute('href'));
                 }
-            }
-        }
-
-        // Close menu when clicking outside
-        document.addEventListener('click', function(event) {
-            const hamburgerMenu = document.getElementById('hamburgerMenu');
-            const dropdownMenu = document.getElementById('dropdownMenu');
-            const hamburgerIcon = document.getElementById('hamburgerIcon');
-            const xIcon = document.getElementById('xIcon');
-
-            if (hamburgerMenu && dropdownMenu && hamburgerIcon && xIcon && !hamburgerMenu.contains(event.target) && !dropdownMenu.contains(event.target)) {
-                dropdownMenu.classList.remove('show');
-                dropdownMenu.classList.add('hidden');
-                hamburgerIcon.classList.remove('hidden');
-                xIcon.classList.add('hidden');
-            }
+            });
         });
     </script>
 </body>
-
 </html>
-

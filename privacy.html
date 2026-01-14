@@ -1,552 +1,172 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Privacy Policy - Tap Technology</title>
-
-    <meta
-      http-equiv="Cache-Control"
-      content="no-cache, no-store, must-revalidate"
-    />
-    <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Expires" content="0" />
-    <script src="https://cdn.tailwindcss.com?v=4"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Tap</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <link rel="icon" href="favicon.ico" />
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-      html {
-        scroll-behavior: smooth;
-        margin: 0;
-        padding: 0;
-      }
-
-      /* Pure white background */
-      .futuristic-bg {
-        background: #ffffff;
-        min-height: 100vh;
-        position: relative;
-      }
-
-      /* Content overlay */
-      .content-overlay {
-        position: relative;
-        z-index: 3;
-      }
-
-      /* Futuristic typography with sans-serif font */
-      .futuristic-title {
-        font-family: sans-serif;
-        font-weight: 800;
-        color: #000000;
-        letter-spacing: -0.03em;
-      }
-
-      .futuristic-subtitle {
-        font-family: sans-serif;
-        font-weight: 400;
-        color: #404040;
-        letter-spacing: -0.01em;
-      }
-
-      /* Apply sans-serif font to all text elements */
-      body {
-        font-family: sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: #ffffff;
-        color: #000000;
-      }
-
-      /* Simple white background */
-      .lightning-page-bg {
-        background-color: #ffffff;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -2;
-      }
-
-      /* White overlay for all sections */
-      .black-section-overlay {
-        background-color: #ffffff;
-        position: relative;
-        z-index: 10;
-      }
-
-      /* Privacy content styling */
-      .privacy-content {
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 40px 20px;
-      }
-
-      .privacy-title {
-        font-size: 4rem;
-        font-weight: 800;
-        color: #000000;
-        margin-bottom: 20px;
-        font-family: sans-serif;
-        text-align: center;
-      }
-
-      .privacy-subtitle {
-        font-size: 1.2rem;
-        color: #666666;
-        margin-bottom: 60px;
-        font-family: sans-serif;
-        text-align: center;
-      }
-
-      .privacy-section {
-        margin-bottom: 40px;
-      }
-
-      .privacy-section-title {
-        font-size: 1.8rem;
-        font-weight: 700;
-        color: #000000;
-        margin-bottom: 20px;
-        font-family: sans-serif;
-      }
-
-      .privacy-text {
-        font-size: 1rem;
-        color: #666666;
-        line-height: 1.6;
-        margin-bottom: 15px;
-        font-family: sans-serif;
-      }
-
-      .privacy-list {
-        list-style: none;
-        padding: 0;
-        margin: 20px 0;
-      }
-
-      .privacy-list li {
-        display: flex;
-        align-items: center;
-        margin-bottom: 12px;
-        font-size: 1rem;
-        color: #000000;
-        font-family: sans-serif;
-      }
-
-      .privacy-list li::before {
-        content: "•";
-        color: #000000;
-        margin-right: 12px;
-        font-size: 1.2rem;
-      }
-
-      /* App-specific list style to avoid flex-based bullets and force normal wrapping */
-      .app-list {
-        list-style: disc;
-        padding-left: 1.25rem;
-      }
-      .app-list li {
-        display: list-item;
-        align-items: unset;
-        margin-bottom: 12px;
-        font-size: 1rem;
-        color: #000000;
-        font-family: sans-serif;
-      }
-      .app-list li::before {
-        content: none;
-      }
-
-      .back-button {
-        display: inline-block;
-        padding: 15px 30px;
-        background: #000000;
-        color: #ffffff;
-        text-decoration: none;
-        border-radius: 10px;
-        font-weight: 600;
-        font-size: 1.1rem;
-        transition: all 0.3s ease;
-        font-family: sans-serif;
-        margin-top: 40px;
-      }
-
-      .back-button:hover {
-        background: rgba(0, 0, 0, 0.9);
-        transform: translateY(-2px);
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-      }
-
-      @media (max-width: 768px) {
-        .privacy-title {
-          font-size: 3rem;
+        body {
+            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
         }
-
-        .privacy-content {
-          padding: 20px 15px;
-        }
-      }
     </style>
-  </head>
+</head>
+<body class="bg-white text-gray-900">
+    <!-- Header -->
+    <header class="py-6 px-6 border-b border-gray-100">
+        <div class="max-w-4xl mx-auto">
+            <a href="/" class="flex items-center">
+                <img src="/media/Logo.svg" alt="Tap Logo" class="h-8 w-auto" style="width: 140px;">
+            </a>
+        </div>
+    </header>
 
-  <body class="bg-white text-black">
-    <!-- Lightning background as true page background -->
-    <div class="lightning-page-bg"></div>
+    <!-- Main Content -->
+    <main class="py-16 px-6">
+        <div class="max-w-3xl mx-auto">
+            <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-4">Privacy Policy</h1>
+            <p class="text-gray-500 mb-12">Last updated: January 2026</p>
 
-    <!-- Futuristic Background -->
-    <div class="futuristic-bg black-section-overlay">
-      <div class="content-overlay">
-        <!-- Header -->
-        <header
-          class="fixed top-0 left-0 w-full z-50 py-4 px-6 flex justify-between items-center"
-        >
-          <div class="flex items-center">
-            <img
-              src="/media/tap_health_logo.png"
-              alt="Tap Technology Logo"
-              class="h-16 md:h-20 lg:h-24 mr-4"
-            />
-          </div>
-        </header>
+            <!-- Website Privacy Policy -->
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold mb-4">Website Privacy Policy</h2>
+                <p class="text-gray-600 leading-relaxed">
+                    This section describes our website practices.
+                </p>
+            </section>
 
-        <!-- Main Content -->
-        <main class="relative z-10 pt-24 pb-16 px-6">
-          <div class="privacy-content">
-            <h1 class="privacy-title">Privacy Policy</h1>
-            <p class="privacy-subtitle">Last updated: September 2025</p>
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold mb-4">Information We Collect</h2>
+                <p class="text-gray-600 leading-relaxed mb-4">
+                    When you use our contact form, we collect the following information:
+                </p>
+                <ul class="list-disc list-inside text-gray-600 space-y-2">
+                    <li>Name (required)</li>
+                    <li>Email address (required)</li>
+                    <li>Phone number (optional)</li>
+                    <li>Message content (required)</li>
+                </ul>
+            </section>
 
-            <!-- Website Privacy Policy Header -->
-            <div class="privacy-section">
-              <h2 class="privacy-section-title">Website Privacy Policy</h2>
-              <p class="privacy-text">
-                This section describes our website practices.
-              </p>
-            </div>
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold mb-4">How We Use Your Information</h2>
+                <p class="text-gray-600 leading-relaxed mb-4">We use the information you provide to:</p>
+                <ul class="list-disc list-inside text-gray-600 space-y-2">
+                    <li>Respond to your inquiries and messages</li>
+                    <li>Provide customer support</li>
+                    <li>Improve our services</li>
+                    <li>Send you updates about Tap Technology (with your consent)</li>
+                </ul>
+            </section>
 
-            <div class="privacy-section">
-              <h2 class="privacy-section-title">Information We Collect</h2>
-              <p class="privacy-text">
-                When you use our contact form, we collect the following
-                information:
-              </p>
-              <ul class="privacy-list">
-                <li>Name (required)</li>
-                <li>Email address (required)</li>
-                <li>Phone number (optional)</li>
-                <li>Message content (required)</li>
-              </ul>
-            </div>
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold mb-4">Data Protection</h2>
+                <p class="text-gray-600 leading-relaxed mb-4">
+                    We take your privacy seriously. Your information is:
+                </p>
+                <ul class="list-disc list-inside text-gray-600 space-y-2">
+                    <li>Stored securely and encrypted</li>
+                    <li>Never sold to third parties</li>
+                    <li>Only shared with authorized personnel</li>
+                    <li>Retained only as long as necessary</li>
+                </ul>
+            </section>
 
-            <div class="privacy-section">
-              <h2 class="privacy-section-title">How We Use Your Information</h2>
-              <p class="privacy-text">We use the information you provide to:</p>
-              <ul class="privacy-list">
-                <li>Respond to your inquiries and messages</li>
-                <li>Provide customer support</li>
-                <li>Improve our services</li>
-                <li>
-                  Send you updates about Tap Technology (with your consent)
-                </li>
-              </ul>
-            </div>
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold mb-4">Your Rights</h2>
+                <p class="text-gray-600 leading-relaxed mb-4">You have the right to:</p>
+                <ul class="list-disc list-inside text-gray-600 space-y-2">
+                    <li>Access your personal data</li>
+                    <li>Request correction of inaccurate data</li>
+                    <li>Request deletion of your data</li>
+                    <li>Opt-out of marketing communications</li>
+                </ul>
+            </section>
 
-            <div class="privacy-section">
-              <h2 class="privacy-section-title">Data Protection</h2>
-              <p class="privacy-text">
-                We take your privacy seriously. Your information is:
-              </p>
-              <ul class="privacy-list">
-                <li>Stored securely and encrypted</li>
-                <li>Never sold to third parties</li>
-                <li>Only shared with authorized personnel</li>
-                <li>Retained only as long as necessary</li>
-              </ul>
-            </div>
-
-            <div class="privacy-section">
-              <h2 class="privacy-section-title">Your Rights</h2>
-              <p class="privacy-text">You have the right to:</p>
-              <ul class="privacy-list">
-                <li>Access your personal data</li>
-                <li>Request correction of inaccurate data</li>
-                <li>Request deletion of your data</li>
-                <li>Opt-out of marketing communications</li>
-              </ul>
-            </div>
-
-            <div class="privacy-section">
-              <h2 class="privacy-section-title">Security & Compliance</h2>
-              <p class="privacy-text">
-                Tap Technology maintains the highest standards of security and
-                compliance:
-              </p>
-              <ul class="privacy-list">
-                <li>HIPAA-aligned practices for healthcare data</li>
-                <li>Data encrypted in transit and at rest</li>
-                <li>Least-privilege access controls</li>
-                <li>Comprehensive audit logs</li>
-                <li>
-                  Business Associate Agreement (BAA) available for Enterprise
-                  customers
-                </li>
-              </ul>
-            </div>
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold mb-4">Security & Compliance</h2>
+                <p class="text-gray-600 leading-relaxed mb-4">
+                    Tap Technology maintains the highest standards of security and compliance:
+                </p>
+                <ul class="list-disc list-inside text-gray-600 space-y-2">
+                    <li>Data encrypted in transit and at rest</li>
+                    <li>Least-privilege access controls</li>
+                    <li>Comprehensive audit logs</li>
+                </ul>
+            </section>
 
             <!-- App Privacy Policy -->
-            <div class="privacy-section">
-              <h2 class="privacy-section-title">App Privacy Policy</h2>
-              <p class="privacy-text">
-                This section describes our Tap mobile app (the “App”) practices.
-              </p>
-            </div>
+            <section class="mb-12 pt-8 border-t border-gray-200">
+                <h2 class="text-2xl font-semibold mb-4">App Privacy Policy</h2>
+                <p class="text-gray-600 leading-relaxed">
+                    This section describes our Tap mobile app (the "App") practices.
+                </p>
+            </section>
 
-            <div class="privacy-section">
-              <h2 class="privacy-section-title">
-                Information We Collect (App)
-              </h2>
-              <ul class="app-list">
-                <li>
-                  <strong>Account Information</strong>: Email and password for
-                  authentication, plus session tokens stored securely on-device.
-                </li>
-                <li>
-                  <strong>Profile Information</strong>: Fields you choose to
-                  store (e.g., name, birthdate, address). Profile field contents
-                  are encrypted on-device before upload; our servers store only
-                  encrypted data.
-                </li>
-                <li>
-                  <strong>Location Data</strong>: Precise location information
-                  is only collected when you explicitly authorize it for a
-                  specific sharing session. Location data is never stored on our
-                  servers and is only shared with the specific organization you
-                  choose to share it with during that session.
-                </li>
-                <li>
-                  <strong>Technical</strong>: Limited operational data (e.g.,
-                  OS, device capability) needed for security and updates. We do
-                  not collect contacts, photos, camera, or microphone data.
-                </li>
-                <li>
-                  <strong>Recovery</strong>: A 24-word recovery phrase derived
-                  from your device-stored key; it is not sent to us.
-                </li>
-              </ul>
-            </div>
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold mb-4">Information We Collect (App)</h2>
+                <ul class="text-gray-600 space-y-4">
+                    <li><strong>Account Information</strong>: Email and password for authentication, plus session tokens stored securely on-device.</li>
+                    <li><strong>Profile Information</strong>: Fields you choose to store (e.g., name, birthdate, address). Profile field contents are encrypted on-device before upload; our servers store only encrypted data.</li>
+                    <li><strong>Location Data</strong>: Precise location information is only collected when you explicitly authorize it for a specific sharing session. Location data is never stored on our servers.</li>
+                    <li><strong>Technical</strong>: Limited operational data (e.g., OS, device capability) needed for security and updates. We do not collect contacts, photos, camera, or microphone data.</li>
+                    <li><strong>Recovery</strong>: A 24-word recovery phrase derived from your device-stored key; it is not sent to us.</li>
+                </ul>
+            </section>
 
-            <div class="privacy-section">
-              <h2 class="privacy-section-title">
-                How We Use Your Information (App)
-              </h2>
-              <ul class="privacy-list">
-                <li>Authenticate your account and provide the App.</li>
-                <li>
-                  Securely store your encrypted profile fields and make them
-                  available across sessions.
-                </li>
-                <li>
-                  Enable voluntary, user-confirmed sharing of selected data with
-                  third parties, including location data when you explicitly
-                  authorize it for a specific sharing session.
-                </li>
-                <li>
-                  Operate, maintain, and improve reliability of the App,
-                  including delivering updates.
-                </li>
-              </ul>
-              <p class="privacy-text">
-                We do not use your data for targeted advertising and we do not
-                sell your personal information.
-              </p>
-            </div>
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold mb-4">How We Use Your Information (App)</h2>
+                <ul class="list-disc list-inside text-gray-600 space-y-2">
+                    <li>Authenticate your account and provide the App.</li>
+                    <li>Securely store your encrypted profile fields and make them available across sessions.</li>
+                    <li>Enable voluntary, user-confirmed sharing of selected data with third parties.</li>
+                    <li>Operate, maintain, and improve reliability of the App.</li>
+                </ul>
+                <p class="text-gray-600 mt-4">
+                    We do not use your data for targeted advertising and we do not sell your personal information.
+                </p>
+            </section>
 
-            <div class="privacy-section">
-              <h2 class="privacy-section-title">Service Providers (App)</h2>
-              <p class="privacy-text">
-                We use third-party service providers (processors) to operate the
-                App. These providers act on our behalf under contractual
-                obligations and may process information only to deliver services
-                to us, such as:
-              </p>
-              <ul class="privacy-list">
-                <li>Authentication and account management</li>
-                <li>
-                  Cloud hosting and databases (storing only encrypted field
-                  data)
-                </li>
-                <li>Secure on-device storage and cryptography runtimes</li>
-                <li>
-                  Application delivery and updates, including over-the-air
-                  updates
-                </li>
-                <li>
-                  Error handling and operational diagnostics (non-personal,
-                  where applicable)
-                </li>
-              </ul>
-              <p class="privacy-text">
-                We require providers to implement appropriate security measures
-                and prohibit them from using your information for their own
-                independent purposes.
-              </p>
-            </div>
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold mb-4">Security & Compliance (App)</h2>
+                <ul class="text-gray-600 space-y-4">
+                    <li><strong>End-to-end encryption</strong>: A user master key is generated and stored in your device's secure storage; it never leaves your device.</li>
+                    <li><strong>Per-field keys</strong>: Derived on-device; profile fields are encrypted with authenticated encryption before upload.</li>
+                    <li><strong>Session security</strong>: Auth tokens are encrypted at rest on-device; encryption keys are held in secure device storage.</li>
+                </ul>
+                <p class="text-gray-600 mt-4">
+                    No security practice can be guaranteed; keep your recovery phrase safe.
+                </p>
+            </section>
 
-            <div class="privacy-section">
-              <h2 class="privacy-section-title">Location Data Sharing (App)</h2>
-              <p class="privacy-text">
-                When you choose to share location data with an organization:
-              </p>
-              <ul class="privacy-list">
-                <li>
-                  Location access is requested only when you initiate a sharing
-                  session that requires it
-                </li>
-                <li>
-                  You must explicitly authorize location access each time it is
-                  requested
-                </li>
-                <li>
-                  Location data is only shared with the specific organization
-                  you choose to share it with during that session
-                </li>
-                <li>
-                  Location data is never stored on our servers or retained after
-                  the sharing session
-                </li>
-                <li>
-                  You can revoke location access at any time through your device
-                  settings
-                </li>
-              </ul>
-            </div>
+            <section class="mb-12">
+                <h2 class="text-2xl font-semibold mb-4">Contact</h2>
+                <p class="text-gray-600 leading-relaxed">
+                    For privacy questions or requests, contact us at <a href="mailto:privacy@tap-technology.com" class="text-gray-900 underline">privacy@tap-technology.com</a>.
+                </p>
+            </section>
 
-            <div class="privacy-section">
-              <h2 class="privacy-section-title">Security & Compliance (App)</h2>
-              <ul class="app-list">
-                <li>
-                  <strong>End-to-end encryption</strong>: A user master key is
-                  generated and stored in your device’s secure storage; it never
-                  leaves your device.
-                </li>
-                <li>
-                  <strong>Per-field keys</strong>: Derived on-device; profile
-                  fields are encrypted with authenticated encryption before
-                  upload.
-                </li>
-                <li>
-                  <strong>Key hash</strong>: A one-way hash of your key may be
-                  stored server-side solely for recovery phrase verification
-                  (does not allow decryption).
-                </li>
-                <li>
-                  <strong>Session security</strong>: Auth tokens are encrypted
-                  at rest on-device; encryption keys are held in secure device
-                  storage.
-                </li>
-              </ul>
-              <p class="privacy-text">
-                No security practice can be guaranteed; keep your recovery
-                phrase safe.
-              </p>
+            <div class="pt-8">
+                <a href="/index.html" class="inline-flex items-center justify-center h-12 px-8 font-medium rounded-full bg-gray-900 text-white hover:bg-gray-800 transition-colors">
+                    Back to Home
+                </a>
             </div>
-
-            <div class="privacy-section">
-              <h2 class="privacy-section-title">Data Retention (App)</h2>
-              <p class="privacy-text">
-                App account data is retained while your account is active.
-                Encrypted profile fields are retained until you remove them or
-                request deletion. Minimal records may be retained where required
-                by law, dispute resolution, or security. Your recovery phrase is
-                never sent to or stored by us.
-              </p>
-            </div>
-
-            <div class="privacy-section">
-              <h2 class="privacy-section-title">Your Rights (App)</h2>
-              <p class="privacy-text">
-                You may access/update profile fields in the App, control sharing
-                (no data is shared without your confirmation at the time of
-                sharing), and request deletion via our support channels, subject
-                to applicable law.
-              </p>
-            </div>
-
-            <div class="privacy-section">
-              <h2 class="privacy-section-title">
-                International Transfers (App)
-              </h2>
-              <p class="privacy-text">
-                Our service providers may process data in various jurisdictions.
-                Where required, we rely on appropriate safeguards (e.g.,
-                standard contractual clauses).
-              </p>
-            </div>
-
-            <div class="privacy-section">
-              <h2 class="privacy-section-title">Children’s Privacy (App)</h2>
-              <p class="privacy-text">
-                The App is not intended for children under 13 (or the applicable
-                local age). We do not knowingly collect personal information
-                from children. If you believe a child has provided information,
-                contact us to remove it.
-              </p>
-            </div>
-
-            <div class="privacy-section">
-              <h2 class="privacy-section-title">Third-Party Links (App)</h2>
-              <p class="privacy-text">
-                The App may open external websites (e.g., Support Center). Your
-                interactions there are governed by those sites’ policies.
-              </p>
-            </div>
-
-            <div class="privacy-section">
-              <h2 class="privacy-section-title">Changes & Contact (App)</h2>
-              <p class="privacy-text">
-                We may update this App policy from time to time. Continued use
-                after changes constitutes acceptance. For privacy questions or
-                requests, visit
-                <a href="https://tap-technology.com/support" class="underline"
-                  >https://tap-technology.com/support</a
-                >.
-              </p>
-            </div>
-
-            <div class="text-center">
-              <a href="index.html" class="back-button">Back to Home</a>
-            </div>
-          </div>
-        </main>
-      </div>
-    </div>
+        </div>
+    </main>
 
     <!-- Footer -->
-    <footer
-      class="bg-black text-white py-4 px-6 relative z-10"
-      style="margin: 0; padding: 16px 24px"
-    >
-      <div class="w-full flex justify-between items-center">
-        <div class="flex items-center gap-4">
-          <a
-            href="privacy.html"
-            class="text-gray-400 hover:text-white transition-colors"
-            style="font-size: 12px"
-            >Privacy Policy</a
-          >
-          <div class="text-gray-400 text-xs">
-            © 2025 Tap Technology. All rights reserved.
-          </div>
+    <footer class="py-8 px-6 border-t border-gray-100">
+        <div class="max-w-4xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
+            <div>&copy; 2026 Tap Technology, Inc.</div>
+            <div class="flex gap-6">
+                <a href="/privacy.html" class="hover:text-gray-900 transition-colors">Privacy Policy</a>
+                <a href="/terms.html" class="hover:text-gray-900 transition-colors">Terms of Service</a>
+            </div>
         </div>
-        <div class="flex items-center gap-4">
-          <a
-            href="index.html"
-            class="bg-white text-black px-4 py-2 rounded-lg text-sm font-bold hover:bg-gray-200 active:bg-gray-300 active:scale-95 transform transition-all duration-150 ease-in-out shadow-md hover:shadow-lg active:shadow-sm"
-          >
-            Get a Demo
-          </a>
-        </div>
-      </div>
     </footer>
-  </body>
+</body>
 </html>
