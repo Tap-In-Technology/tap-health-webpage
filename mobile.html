@@ -139,27 +139,6 @@
             }
         }
         
-        /* Tiny black section */
-        .black-section {
-            background-color: #000000;
-            min-height: 10vh; /* Half the size - very small section */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            z-index: 10;
-        }
-        
-        
-        
-        /* Smooth parallax effect */
-        .parallax-smooth {
-            will-change: transform;
-            backface-visibility: hidden;
-            transform: translateZ(0);
-        }
-        
-        
         /* Typing animation */
         .typing-container {
             display: flex;
@@ -367,31 +346,6 @@
         });
 
 
-        // Smooth parallax scrolling effect
-        let ticking = false;
-        
-        function updateParallax() {
-            const scrolled = window.pageYOffset;
-            const parallaxRate = 0.3; // Gentler movement
-            
-            
-            ticking = false;
-        }
-        
-        function requestParallaxUpdate() {
-            if (!ticking) {
-                requestAnimationFrame(updateParallax);
-                ticking = true;
-            }
-        }
-        
-        window.addEventListener('scroll', requestParallaxUpdate, { passive: true });
-
-        // Mobile doesn't have typing animation - removed
-        
-        // Mobile doesn't have typing animation - removed
-        
-        // Mobile doesn't have scroll-based typing animation - removed
 
         // Opacity shift text transitions
         let currentTextIndex = 0;

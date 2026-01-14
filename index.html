@@ -826,28 +826,28 @@
             0%, 50% { opacity: 1; }
             51%, 100% { opacity: 0; }
         }
-        
+
         /* Menu Button Styles */
         #hamburgerMenu {
             transition: all 0.3s ease;
         }
-        
+
         #hamburgerMenu:hover {
             transform: scale(1.1);
         }
-        
+
         /* Dropdown Menu Animation */
         #dropdownMenu {
             transform: translateY(-10px);
             opacity: 0;
             transition: all 0.3s ease;
         }
-        
+
         #dropdownMenu.show {
             transform: translateY(0);
             opacity: 1;
         }
-        
+
         @media (max-width: 768px) {
             .hero-title {
                 font-size: 3.5rem;
@@ -917,10 +917,9 @@
             <header class="fixed top-0 left-0 w-full z-50 py-4 px-6 flex justify-between items-center">
                 <div class="flex items-center">
                     <img src="/media/tap_health_logo.png" alt="Tap Technology Logo" class="h-16 md:h-20 lg:h-24 mr-4">
-                    </div>
+                </div>
                 <div class="flex items-center gap-6">
-                    <!-- Hamburger Menu Button -->
-                    <!-- <div class="relative">
+                    <div class="relative">
                         <button id="hamburgerMenu" onclick="toggleHamburgerMenu()" class="flex items-center justify-center w-10 h-10 cursor-pointer focus:outline-none">
                             <svg id="hamburgerIcon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M3 12H21M3 6H21M3 18H21" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -929,7 +928,6 @@
                                 <path d="M18 6L6 18M6 6L18 18" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </button>
-                    
                         <div id="dropdownMenu" class="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg hidden z-50">
                             <div class="py-2">
                                 <a href="https://console.tap-technology.com" target="_blank" class="block px-4 py-3 text-base font-semibold text-gray-700 hover:bg-gray-100 hover:text-black transition-colors duration-200" style="font-family: sans-serif;">
@@ -937,7 +935,7 @@
                                 </a>
                             </div>
                         </div>
-                    </div> -->
+                    </div>
                 </div>
             </header>
             
@@ -1475,25 +1473,23 @@
                 }
             }
         }
-        
+
         // Menu functionality
         function toggleHamburgerMenu() {
             const hamburgerMenu = document.getElementById('hamburgerMenu');
             const dropdownMenu = document.getElementById('dropdownMenu');
             const hamburgerIcon = document.getElementById('hamburgerIcon');
             const xIcon = document.getElementById('xIcon');
-            
+
             if (hamburgerMenu && dropdownMenu && hamburgerIcon && xIcon) {
                 const isVisible = !dropdownMenu.classList.contains('hidden');
-                
+
                 if (isVisible) {
-                    // Close menu - show hamburger, hide X
                     dropdownMenu.classList.remove('show');
                     dropdownMenu.classList.add('hidden');
                     hamburgerIcon.classList.remove('hidden');
                     xIcon.classList.add('hidden');
                 } else {
-                    // Open menu - hide hamburger, show X
                     dropdownMenu.classList.remove('hidden');
                     dropdownMenu.classList.add('show');
                     hamburgerIcon.classList.add('hidden');
@@ -1501,14 +1497,14 @@
                 }
             }
         }
-        
+
         // Close menu when clicking outside
         document.addEventListener('click', function(event) {
             const hamburgerMenu = document.getElementById('hamburgerMenu');
             const dropdownMenu = document.getElementById('dropdownMenu');
             const hamburgerIcon = document.getElementById('hamburgerIcon');
             const xIcon = document.getElementById('xIcon');
-            
+
             if (hamburgerMenu && dropdownMenu && hamburgerIcon && xIcon && !hamburgerMenu.contains(event.target) && !dropdownMenu.contains(event.target)) {
                 dropdownMenu.classList.remove('show');
                 dropdownMenu.classList.add('hidden');
@@ -1516,8 +1512,7 @@
                 xIcon.classList.add('hidden');
             }
         });
-
-            </script>
+    </script>
 </body>
 
 </html>
