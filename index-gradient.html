@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tap Health - The modern way to accept donations</title>
+    <title>Tap - Lead Capture for Event Organizers</title>
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
@@ -100,9 +100,9 @@
 
         /* Hero Section */
         .hero-section {
-            min-height: 50vh;
+            min-height: 90vh;
             position: relative;
-            padding-top: 4rem;
+            padding-top: 8rem;
             padding-bottom: 5rem;
             overflow: hidden;
             display: flex;
@@ -111,7 +111,7 @@
 
         @media (min-width: 768px) {
             .hero-section {
-                padding-top: 7.5rem;
+                padding-top: 10rem;
                 padding-bottom: 8rem;
             }
         }
@@ -120,8 +120,7 @@
             position: absolute;
             inset: 0;
             height: 100%;
-            z-index: 10;
-            clip-path: polygon(0 0, 100% 0, 100% 25%, 0 73%);
+            z-index: 0;
             opacity: 0;
             animation: fadeIn 0.5s ease forwards;
         }
@@ -130,106 +129,13 @@
             to { opacity: 1; }
         }
 
-        /* Layered Title Effect */
-        .title-container {
-            position: relative;
-            margin-bottom: 2.5rem;
-        }
-
-        @media (min-width: 1024px) {
-            .title-container {
-                width: 40em;
-            }
-        }
-
-        .title-base {
-            position: relative;
-            font-size: 3rem;
-            font-weight: 700;
-            letter-spacing: -0.025em;
-            color: #bdc6d2;
-            line-height: 1.05;
-            z-index: 0;
-            -webkit-font-smoothing: antialiased;
-            user-select: none;
-        }
-
-        .title-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            font-size: 3rem;
-            font-weight: 700;
-            letter-spacing: -0.025em;
-            color: #3a3a3a;
-            line-height: 1.05;
-            z-index: 20;
-            mix-blend-mode: color-burn;
-            -webkit-font-smoothing: antialiased;
-            user-select: none;
-        }
-
-        .title-shadow {
-            position: absolute;
-            top: 0;
-            left: 0;
-            font-size: 3rem;
-            font-weight: 700;
-            letter-spacing: -0.025em;
-            color: #3a3a3a;
-            line-height: 1.05;
-            z-index: 21;
-            opacity: 0.3;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        @media (min-width: 768px) {
-            .title-base, .title-overlay, .title-shadow {
-                font-size: 4.5rem;
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .title-base, .title-overlay, .title-shadow {
-                font-size: 6rem;
-            }
-        }
-
-        /* Badge */
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.375rem 1rem;
-            font-size: 0.875rem;
-            border-radius: 9999px;
-            border: 1px solid rgb(191 219 254);
-            background: rgb(239 246 255 / 0.8);
-            color: rgb(29 78 216);
-            backdrop-filter: blur(4px);
-            margin-bottom: 2rem;
-        }
-
-        .badge-dot {
-            width: 0.5rem;
-            height: 0.5rem;
-            border-radius: 9999px;
-            background: rgb(59 130 246);
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-
         /* Buttons */
         .btn-primary {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            height: 3rem;
-            padding: 0 2rem;
+            height: 3.25rem;
+            padding: 0 2.5rem;
             font-size: 1rem;
             font-weight: 500;
             border-radius: 9999px;
@@ -247,135 +153,48 @@
             transform: translateY(-2px);
         }
 
-        .btn-outline {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            height: 3rem;
-            padding: 0 2rem;
-            font-size: 1rem;
-            font-weight: 500;
-            border-radius: 9999px;
-            background: transparent;
-            color: var(--foreground);
-            border: 1px solid var(--border);
-            cursor: pointer;
-            transition: all 0.2s;
-            text-decoration: none;
-        }
-
-        .btn-outline:hover {
-            background: rgb(0 0 0 / 0.05);
-        }
-
         .btn-cta {
             display: inline-flex;
             align-items: center;
             justify-content: center;
             height: 3.5rem;
-            padding: 0 2rem;
+            padding: 0 2.5rem;
             font-size: 1.125rem;
             font-weight: 500;
             border-radius: 9999px;
-            background: transparent;
-            color: white;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: white;
+            color: var(--primary);
+            border: none;
             cursor: pointer;
             transition: all 0.2s;
             text-decoration: none;
         }
 
         .btn-cta:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.9);
+            transform: translateY(-2px);
         }
 
-        /* Card Styles */
-        .dashboard-card {
-            background: rgb(255 255 255 / 0.9);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgb(0 0 0 / 0.05);
-            border-radius: 0.75rem;
-            box-shadow: 0 50px 100px -20px rgb(0 0 0 / 0.25);
-            overflow: hidden;
-            transform: perspective(1000px) rotateX(20deg) rotateY(-20deg);
-            transform-style: preserve-3d;
+        /* Section styles */
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #6b7280;
+            margin-bottom: 1rem;
         }
 
-        .floating-card {
-            position: absolute;
-            right: -3rem;
-            top: 3rem;
-            z-index: 20;
-            animation: float 4s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        .floating-card-inner {
-            width: 16rem;
-            background: var(--card);
-            border: 1px solid var(--border);
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
-            border-radius: 0.75rem;
-            padding: 1rem;
-            display: flex;
-            align-items: flex-start;
-            gap: 0.75rem;
-        }
-
-        /* Chart bars */
-        .chart-bar {
-            background: hsl(221 84% 54%);
-            border-radius: 2px 2px 0 0;
-            opacity: 0.9;
-            animation: growBar 0.6s ease-out forwards;
-            transform-origin: bottom;
-        }
-
-        @keyframes growBar {
-            from { transform: scaleY(0); }
-            to { transform: scaleY(1); }
-        }
-
-        /* Transaction list animation */
-        .transaction-item {
-            opacity: 0;
-            transform: translateX(-20px);
-            animation: slideIn 0.5s ease forwards;
-            animation-delay: 0.8s;
-        }
-
-        @keyframes slideIn {
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        /* Feature Cards */
-        .feature-card {
-            background: white;
-            border: 1px solid rgba(0, 0, 0, 0.05);
+        /* Screenshot placeholder */
+        .screenshot-placeholder {
+            background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+            border: 2px dashed #d1d5db;
             border-radius: 1rem;
-            padding: 1.5rem;
-            transition: all 0.3s;
-        }
-
-        .feature-card:hover {
-            border-color: rgba(0, 0, 0, 0.1);
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-        }
-
-        .feature-card:hover .feature-icon {
-            transform: scale(1.1);
-        }
-
-        .feature-icon {
-            transition: transform 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #9ca3af;
+            font-size: 0.875rem;
         }
 
         /* CTA Section */
@@ -383,7 +202,7 @@
             position: relative;
             overflow: hidden;
             background: var(--primary);
-            padding: 8rem 0;
+            padding: 6rem 0;
         }
 
         .cta-gradient {
@@ -399,7 +218,7 @@
             height: 100%;
             z-index: 20;
             backdrop-filter: blur(60px);
-            background: rgba(0, 0, 0, 0.2);
+            background: rgba(0, 0, 0, 0.3);
         }
 
         .cta-content {
@@ -407,7 +226,52 @@
             z-index: 25;
         }
 
-        /* Footer Links */
+        /* FAQ Accordion */
+        .faq-item {
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .faq-question {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+            background: none;
+            border: none;
+            cursor: pointer;
+            text-align: left;
+            font-size: 1.125rem;
+            font-weight: 500;
+        }
+
+        .faq-question:hover {
+            color: #4b5563;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+
+        .faq-item.open .faq-answer {
+            max-height: 500px;
+            padding-bottom: 1.5rem;
+        }
+
+        .faq-item.open .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-icon {
+            transition: transform 0.3s ease;
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: #9ca3af;
+        }
+
+        /* Footer */
         .footer-link {
             color: rgb(107 114 128);
             transition: color 0.2s;
@@ -416,6 +280,23 @@
 
         .footer-link:hover {
             color: rgb(17 24 39);
+        }
+
+        /* Step connector line */
+        .step-line {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            width: calc(100% - 4rem);
+            height: 2px;
+            background: #e5e7eb;
+            z-index: 0;
+        }
+
+        @media (max-width: 768px) {
+            .step-line {
+                display: none;
+            }
         }
     </style>
 </head>
@@ -426,23 +307,19 @@
             <div class="navbar-pill"></div>
             <div class="navbar-content">
                 <a href="/" class="flex items-center">
-                    <img src="/media/Logo.svg" alt="Tap Health Logo" class="h-8 w-auto object-contain" style="width: 180px;">
+                    <img src="/media/Logo.svg" alt="Tap Logo" class="h-8 w-auto object-contain" style="width: 180px;">
                 </a>
 
                 <div class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-500">
-                    <a href="#features" class="hover:text-gray-900 transition-colors">Features</a>
-                    <a href="#solutions" class="hover:text-gray-900 transition-colors">Solutions</a>
-                    <a href="#pricing" class="hover:text-gray-900 transition-colors">Pricing</a>
-                    <a href="#resources" class="hover:text-gray-900 transition-colors">Resources</a>
+                    <a href="#how-it-works" class="hover:text-gray-900 transition-colors">How It Works</a>
+                    <a href="#for-organizers" class="hover:text-gray-900 transition-colors">For Organizers</a>
+                    <a href="#faq" class="hover:text-gray-900 transition-colors">FAQ</a>
                 </div>
 
                 <div class="flex items-center gap-4">
-                    <a href="/login" class="hidden sm:inline-flex text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors px-4 py-2 rounded-full">
-                        Sign In
-                    </a>
-                    <a href="/sales" class="btn-primary text-sm" style="height: 2.25rem; padding: 0 1.25rem; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);">
-                        Get Started
-                    </a>
+                    <button onclick="openContactForm()" class="btn-primary text-sm" style="height: 2.25rem; padding: 0 1.25rem; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);">
+                        Request Demo
+                    </button>
                 </div>
             </div>
         </nav>
@@ -454,126 +331,176 @@
                 <canvas id="gradient-canvas-hero" class="gradient-canvas"></canvas>
             </div>
 
-            <div class="w-[90%] max-w-6xl mx-auto px-6 relative flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
-                <!-- Title Section -->
-                <div class="flex-1 max-w-2xl text-center lg:text-left">
-                    <div class="relative z-20" style="animation: fadeIn 0.5s ease forwards;">
-                        <span class="badge">
-                            <span class="badge-dot"></span>
-                            New: Instant Global Payouts
-                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                            </svg>
-                        </span>
-                    </div>
+            <div class="w-full max-w-6xl mx-auto px-6 relative z-10">
+                <div class="max-w-4xl">
+                    <p class="section-label" style="animation: fadeIn 0.5s ease forwards;">For Event Organizers</p>
 
-                    <div class="title-container">
-                        <h1 class="title-base">The modern way to accept donations</h1>
-                        <h1 class="title-overlay" aria-hidden="true">The modern way to accept donations</h1>
-                        <h1 class="title-shadow" aria-hidden="true">The modern way to accept donations</h1>
-                    </div>
+                    <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-gray-900 mb-8 leading-[1.1]" style="animation: fadeIn 0.5s ease 0.1s both;">
+                        Bring effortless lead capture to every booth.
+                    </h1>
 
-                    <p class="text-xl text-gray-500 mb-10 leading-relaxed max-w-2xl mx-auto lg:mx-0 relative z-20" style="animation: fadeIn 0.5s ease 0.2s both;">
-                        Organizations of all sizes use Tap's software to accept payments, send payouts, and manage their businesses online.
+                    <p class="text-xl md:text-2xl text-gray-600 mb-12 max-w-2xl leading-relaxed" style="animation: fadeIn 0.5s ease 0.2s both;">
+                        Zero friction for attendees. More leads for exhibitors. Complete visibility for organizers.
                     </p>
 
-                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start relative z-20" style="animation: fadeIn 0.5s ease 0.3s both;">
-                        <a href="/login" class="btn-primary">
-                            Start now
-                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                            </svg>
-                        </a>
-                        <a href="/sales" class="btn-outline">
-                            Contact sales
-                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                            </svg>
-                        </a>
+                    <div style="animation: fadeIn 0.5s ease 0.3s both;">
+                        <button onclick="openContactForm()" class="btn-primary">
+                            Request a Demo
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Problem Section -->
+        <section id="problem" class="py-24 bg-gray-50">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="grid lg:grid-cols-2 gap-16 items-center">
+                    <div>
+                        <p class="section-label">The Problem</p>
+                        <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-8">
+                            Lead capture at events is still broken
+                        </h2>
+                        <div class="space-y-6 text-lg text-gray-600">
+                            <p>
+                                <strong class="text-gray-900">Attendees</strong> face "form fatigue," re-entering the same information at every booth. Long lines cause them to skip booths entirely.
+                            </p>
+                            <p>
+                                <strong class="text-gray-900">Exhibitors</strong> generate fewer leads and deal with messy, inconsistent data they can't use.
+                            </p>
+                            <p>
+                                <strong class="text-gray-900">You</strong> are left without booth-level analytics, making it impossible to prove event ROI or justify sponsor pricing.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="screenshot-placeholder h-80 lg:h-[400px]">
+                        Screenshot: Problem illustration
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section id="how-it-works" class="py-24 bg-white">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="text-center max-w-2xl mx-auto mb-20">
+                    <p class="section-label">How It Works</p>
+                    <h2 class="text-3xl md:text-5xl font-bold tracking-tight">
+                        Tap. Confirm. Done.
+                    </h2>
+                </div>
+
+                <div class="relative">
+                    <div class="step-line"></div>
+
+                    <div class="grid md:grid-cols-3 gap-12">
+                        <!-- Step 1 -->
+                        <div class="relative">
+                            <div class="w-16 h-16 rounded-full bg-gray-900 text-white flex items-center justify-center text-xl font-bold mb-6 relative z-10">
+                                1
+                            </div>
+                            <h3 class="text-xl font-semibold mb-3">Attendee taps</h3>
+                            <p class="text-gray-600 leading-relaxed">
+                                Every booth gets a tag. Attendees tap their phone—no app download required.
+                            </p>
+                        </div>
+
+                        <!-- Step 2 -->
+                        <div class="relative">
+                            <div class="w-16 h-16 rounded-full bg-gray-900 text-white flex items-center justify-center text-xl font-bold mb-6 relative z-10">
+                                2
+                            </div>
+                            <h3 class="text-xl font-semibold mb-3">Pre-filled form</h3>
+                            <p class="text-gray-600 leading-relaxed">
+                                Info auto-fills from their profile. They confirm and submit in seconds. New fields are a quick type-in.
+                            </p>
+                        </div>
+
+                        <!-- Step 3 -->
+                        <div class="relative">
+                            <div class="w-16 h-16 rounded-full bg-gray-900 text-white flex items-center justify-center text-xl font-bold mb-6 relative z-10">
+                                3
+                            </div>
+                            <h3 class="text-xl font-semibold mb-3">Leads flow instantly</h3>
+                            <p class="text-gray-600 leading-relaxed">
+                                Exhibitors get clean, export-ready leads. You get booth-level engagement analytics across every exhibitor.
+                            </p>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Dashboard Visual -->
-                <div class="flex-none w-full lg:w-[800px] relative z-20 hidden lg:block" style="perspective: 1000px;">
-                    <div class="relative z-10" style="animation: fadeIn 0.8s ease forwards;">
-                        <!-- Main Card -->
-                        <div class="dashboard-card">
-                            <div class="flex flex-row items-center justify-between p-6 pb-4 border-b border-gray-100">
-                                <div class="flex items-center gap-3">
-                                    <div class="h-10 w-10 rounded-full bg-blue-50 flex items-center justify-center">
-                                        <div class="h-5 w-5 rounded-full bg-blue-600"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-sm font-semibold">Tap Balance</div>
-                                        <p class="text-xs text-gray-500 uppercase tracking-wider">US Dollar</p>
-                                    </div>
-                                </div>
-                                <span class="px-3 py-1 text-xs border border-gray-200 rounded-full">View Payouts</span>
+                <!-- Screenshot area -->
+                <div class="mt-20 screenshot-placeholder h-80 lg:h-[500px]">
+                    Screenshot: Product demo / flow
+                </div>
+            </div>
+        </section>
+
+        <!-- For Organizers Section -->
+        <section id="for-organizers" class="py-24 bg-gray-50">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="grid lg:grid-cols-2 gap-16 items-start">
+                    <div>
+                        <p class="section-label">For Organizers</p>
+                        <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-8">
+                            Finally, visibility into what's happening at every booth
+                        </h2>
+
+                        <div class="space-y-8">
+                            <div>
+                                <h3 class="text-lg font-semibold mb-2">Event-wide analytics dashboard</h3>
+                                <p class="text-gray-600">See booth traffic, engagement patterns, and which exhibitors are drawing crowds—in real time.</p>
                             </div>
-                            <div class="p-6 pt-6">
-                                <!-- Balance -->
-                                <div class="mb-8">
-                                    <div class="text-sm font-medium text-gray-500 mb-1">Available to pay out</div>
-                                    <div class="text-4xl font-bold tracking-tight">$24,593.00</div>
-                                </div>
-
-                                <!-- Chart -->
-                                <div class="h-48 flex items-end justify-between gap-1 mb-6">
-                                    <div class="chart-bar w-full" style="height: 40%; animation-delay: 0.33s;"></div>
-                                    <div class="chart-bar w-full" style="height: 25%; animation-delay: 0.36s;"></div>
-                                    <div class="chart-bar w-full" style="height: 55%; animation-delay: 0.39s;"></div>
-                                    <div class="chart-bar w-full" style="height: 45%; animation-delay: 0.42s;"></div>
-                                    <div class="chart-bar w-full" style="height: 70%; animation-delay: 0.45s;"></div>
-                                    <div class="chart-bar w-full" style="height: 50%; animation-delay: 0.48s;"></div>
-                                    <div class="chart-bar w-full" style="height: 85%; animation-delay: 0.51s;"></div>
-                                    <div class="chart-bar w-full" style="height: 65%; animation-delay: 0.54s;"></div>
-                                    <div class="chart-bar w-full" style="height: 90%; animation-delay: 0.57s;"></div>
-                                    <div class="chart-bar w-full" style="height: 75%; animation-delay: 0.60s;"></div>
-                                    <div class="chart-bar w-full" style="height: 60%; animation-delay: 0.63s;"></div>
-                                    <div class="chart-bar w-full" style="height: 95%; animation-delay: 0.66s;"></div>
-                                </div>
-
-                                <!-- Transactions -->
-                                <div class="space-y-3">
-                                    <div class="transaction-item flex items-center justify-between py-2 border-b border-gray-100">
-                                        <div class="flex items-center gap-3">
-                                            <div class="h-2 w-2 rounded-full bg-green-500"></div>
-                                            <span class="text-sm font-medium">Acme Corp</span>
-                                        </div>
-                                        <span class="text-sm font-bold">+$1,200.00</span>
-                                    </div>
-                                    <div class="transaction-item flex items-center justify-between py-2 border-b border-gray-100" style="animation-delay: 0.9s;">
-                                        <div class="flex items-center gap-3">
-                                            <div class="h-2 w-2 rounded-full bg-yellow-500"></div>
-                                            <span class="text-sm font-medium">Global Relief</span>
-                                        </div>
-                                        <span class="text-sm font-bold">+$450.00</span>
-                                    </div>
-                                    <div class="transaction-item flex items-center justify-between py-2" style="animation-delay: 1.0s;">
-                                        <div class="flex items-center gap-3">
-                                            <div class="h-2 w-2 rounded-full bg-green-500"></div>
-                                            <span class="text-sm font-medium">Donation #492</span>
-                                        </div>
-                                        <span class="text-sm font-bold">+$50.00</span>
-                                    </div>
-                                </div>
+                            <div>
+                                <h3 class="text-lg font-semibold mb-2">Prove event ROI</h3>
+                                <p class="text-gray-600">Real data to justify sponsor pricing and demonstrate measurable value to stakeholders.</p>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold mb-2">One standardized system</h3>
+                                <p class="text-gray-600">One platform for all exhibitors. No more fragmented tools or missing data.</p>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold mb-2">Happier attendees</h3>
+                                <p class="text-gray-600">Faster experience means more booths visited and more networking value for everyone.</p>
                             </div>
                         </div>
+                    </div>
+                    <div class="screenshot-placeholder h-80 lg:h-[500px] lg:sticky lg:top-32">
+                        Screenshot: Organizer dashboard
+                    </div>
+                </div>
+            </div>
+        </section>
 
-                        <!-- Floating Success Card -->
-                        <div class="floating-card">
-                            <div class="floating-card-inner">
-                                <div class="h-8 w-8 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
-                                    <svg class="h-5 w-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <div class="text-sm font-bold">Payment Succeeded</div>
-                                    <div class="text-xs text-gray-500 mt-1 leading-tight">
-                                        Donation received from <span class="font-medium text-gray-900">john@example.com</span>
-                                    </div>
-                                </div>
+        <!-- For Exhibitors Section -->
+        <section id="for-exhibitors" class="py-24 bg-white">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="grid lg:grid-cols-2 gap-16 items-start">
+                    <div class="screenshot-placeholder h-80 lg:h-[500px] lg:sticky lg:top-32 order-2 lg:order-1">
+                        Screenshot: Exhibitor view
+                    </div>
+                    <div class="order-1 lg:order-2">
+                        <p class="section-label">For Your Exhibitors</p>
+                        <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-8">
+                            Give your exhibitors a better lead capture experience
+                        </h2>
+
+                        <div class="space-y-8">
+                            <div>
+                                <h3 class="text-lg font-semibold mb-2">Custom booth fields</h3>
+                                <p class="text-gray-600">Each exhibitor can define exactly what info they need—or use the defaults you set.</p>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold mb-2">Clean CRM exports</h3>
+                                <p class="text-gray-600">No more transcribing business cards or deciphering paper forms. Data exports to any CRM.</p>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold mb-2">Instant access</h3>
+                                <p class="text-gray-600">Leads appear in their dashboard the moment they're captured. Follow up while it's fresh.</p>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold mb-2">Reusable attendee profiles</h3>
+                                <p class="text-gray-600">Returning attendees submit even faster. Every tap after the first takes seconds.</p>
                             </div>
                         </div>
                     </div>
@@ -581,86 +508,88 @@
             </div>
         </section>
 
-        <!-- Features Section -->
-        <section id="features" class="py-24 bg-white relative overflow-hidden">
-            <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent"></div>
-
-            <div class="max-w-6xl mx-auto px-6 relative z-10">
-                <div class="text-center max-w-3xl mx-auto mb-20">
-                    <div class="text-sm font-semibold tracking-wide uppercase text-gray-900 mb-3">Features</div>
-                    <h2 class="text-4xl md:text-5xl font-bold tracking-tight text-gray-900 mb-6">
-                        Everything you need to <br> scale your impact
+        <!-- Why Tap Section -->
+        <section id="why-tap" class="py-24 bg-gray-50">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <p class="section-label">Why Tap</p>
+                    <h2 class="text-3xl md:text-4xl font-bold tracking-tight">
+                        Why event organizers choose Tap
                     </h2>
-                    <p class="text-xl text-gray-500 leading-relaxed">
-                        A complete platform built to help you manage donations, understand your donors, and grow your organization.
-                    </p>
                 </div>
 
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Feature 1 -->
-                    <div class="feature-card">
-                        <div class="feature-icon h-12 w-12 rounded-xl bg-gray-100 text-gray-900 flex items-center justify-center mb-4">
-                            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path>
-                            </svg>
+                <div class="grid md:grid-cols-2 gap-x-16 gap-y-12 max-w-4xl mx-auto">
+                    <div>
+                        <h3 class="text-lg font-semibold mb-2">No app download required</h3>
+                        <p class="text-gray-600">Works instantly via App Clip on iPhone.* Attendees get an app-like experience without the friction of downloading anything.</p>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold mb-2">Privacy by design</h3>
+                        <p class="text-gray-600">Consent-based sharing every time. Attendees control what information they share with each booth.</p>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold mb-2">Reusable profiles</h3>
+                        <p class="text-gray-600">Faster taps, cleaner data, less drop-off. Profiles persist across events, making repeat attendees even more efficient.</p>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold mb-2">Flexible platform</h3>
+                        <p class="text-gray-600">Limitless custom fields, works for career fairs, trade shows, conferences—any event with exhibitors.</p>
+                    </div>
+                </div>
+
+                <p class="text-center text-sm text-gray-400 mt-12">* App Clip available on iPhone 7 and later running iOS 14+. QR codes available as fallback for all devices.</p>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="py-24 bg-white">
+            <div class="max-w-3xl mx-auto px-6">
+                <div class="text-center mb-16">
+                    <p class="section-label">FAQ</p>
+                    <h2 class="text-3xl md:text-4xl font-bold tracking-tight">
+                        Common questions
+                    </h2>
+                </div>
+
+                <div class="divide-y divide-gray-200">
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>What if attendees don't have NFC-enabled phones?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer text-gray-600">
+                            All smartphones since 2014 support NFC. For edge cases, QR codes are available as a backup in the organizer console, and manual entries can be added by booth staff.
                         </div>
-                        <h3 class="text-xl font-semibold mb-2">Custom Branding</h3>
-                        <p class="text-gray-500">Customize your donation page with your logo and colors to match your organization's identity.</p>
                     </div>
 
-                    <!-- Feature 2 -->
-                    <div class="feature-card">
-                        <div class="feature-icon h-12 w-12 rounded-xl bg-gray-100 text-gray-900 flex items-center justify-center mb-4">
-                            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                            </svg>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Do exhibitors need to set up anything ahead of time?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer text-gray-600">
+                            No. Each tag comes with a default form created by you (the organizer) already attached—ready to accept taps immediately. Exhibitors can create custom forms if they want, but it's not required. They can claim their account and access their leads before, during, or after the event without losing any data.
                         </div>
-                        <h3 class="text-xl font-semibold mb-2">Instant Payouts</h3>
-                        <p class="text-gray-500">Get access to your funds immediately with automated daily payouts via Stripe Connect.</p>
                     </div>
 
-                    <!-- Feature 3 -->
-                    <div class="feature-card">
-                        <div class="feature-icon h-12 w-12 rounded-xl bg-gray-100 text-gray-900 flex items-center justify-center mb-4">
-                            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
-                            </svg>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>What types of events does Tap work for?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer text-gray-600">
+                            Tap is built for any event with exhibitors: career fairs, trade shows, conferences, university recruiting events, and more. If attendees are visiting booths and sharing contact info, Tap makes it faster and cleaner.
                         </div>
-                        <h3 class="text-xl font-semibold mb-2">Team Collaboration</h3>
-                        <p class="text-gray-500">Invite your team, assign roles, and manage permissions securely from one dashboard.</p>
                     </div>
 
-                    <!-- Feature 4 -->
-                    <div class="feature-card">
-                        <div class="feature-icon h-12 w-12 rounded-xl bg-gray-100 text-gray-900 flex items-center justify-center mb-4">
-                            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
-                            </svg>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>How do exhibitors access their leads?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer text-gray-600">
+                            Exhibitors can view leads in real-time through their dashboard and export to CSV or directly to their CRM at any time. No data is ever lost—even if they create their account after the event ends.
                         </div>
-                        <h3 class="text-xl font-semibold mb-2">Real-time Analytics</h3>
-                        <p class="text-gray-500">Track donations, donor growth, and campaign performance with real-time reporting.</p>
-                    </div>
-
-                    <!-- Feature 5 -->
-                    <div class="feature-card">
-                        <div class="feature-icon h-12 w-12 rounded-xl bg-gray-100 text-gray-900 flex items-center justify-center mb-4">
-                            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-2">Mobile-Ready Checkout</h3>
-                        <p class="text-gray-500">A conversion-optimized checkout experience with support for Apple Pay and Google Pay.</p>
-                    </div>
-
-                    <!-- Feature 6 -->
-                    <div class="feature-card">
-                        <div class="feature-icon h-12 w-12 rounded-xl bg-gray-100 text-gray-900 flex items-center justify-center mb-4">
-                            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-2">Enterprise Security</h3>
-                        <p class="text-gray-500">Bank-grade encryption and fraud detection powered by Stripe's infrastructure.</p>
                     </div>
                 </div>
             </div>
@@ -675,88 +604,44 @@
             <!-- Blur Overlay -->
             <div class="cta-blur-overlay"></div>
 
-            <div class="cta-content max-w-6xl mx-auto px-6 text-center">
-                <h2 class="text-4xl md:text-6xl font-bold tracking-tight text-white mb-8">
-                    Ready to transform your fundraising?
+            <div class="cta-content max-w-4xl mx-auto px-6 text-center">
+                <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-white mb-6">
+                    Ready to modernize your events?
                 </h2>
-                <p class="text-xl text-white/80 mb-12 max-w-2xl mx-auto leading-relaxed">
-                    Start using Tap today to process donations, manage donors, and grow your mission.
+                <p class="text-xl text-white/80 mb-10 max-w-2xl mx-auto leading-relaxed">
+                    See how Tap can transform lead capture for your next event.
                 </p>
 
-                <div class="flex flex-col sm:flex-row justify-center gap-4 mb-16">
-                    <a href="/sales" class="btn-cta">
-                        Contact sales
-                    </a>
-                </div>
-
-                <div class="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto border-t border-white/10 pt-12">
-                    <div class="flex items-center justify-center gap-2 text-white/90 font-medium">
-                        <div class="h-6 w-6 rounded-full bg-white/10 flex items-center justify-center">
-                            <svg class="h-3 w-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
-                            </svg>
-                        </div>
-                        No subscription
-                    </div>
-                    <div class="flex items-center justify-center gap-2 text-white/90 font-medium">
-                        <div class="h-6 w-6 rounded-full bg-white/10 flex items-center justify-center">
-                            <svg class="h-3 w-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
-                            </svg>
-                        </div>
-                        Industry-leading low fees
-                    </div>
-                    <div class="flex items-center justify-center gap-2 text-white/90 font-medium">
-                        <div class="h-6 w-6 rounded-full bg-white/10 flex items-center justify-center">
-                            <svg class="h-3 w-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
-                            </svg>
-                        </div>
-                        Stop using anytime
-                    </div>
-                </div>
+                <button onclick="openContactForm()" class="btn-cta">
+                    Request a Demo
+                </button>
             </div>
         </section>
 
         <!-- Footer -->
         <footer class="py-12 border-t border-gray-100 bg-white text-sm">
             <div class="max-w-6xl mx-auto px-6">
-                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-12">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
                     <!-- Brand Column -->
-                    <div class="col-span-2 lg:col-span-2">
+                    <div class="col-span-2">
                         <div class="flex items-center gap-2 mb-4">
                             <a href="/" class="flex items-center">
-                                <img src="/media/tap_health_logo.png" alt="Tap Health Logo" class="h-8 w-auto object-contain">
+                                <img src="/media/Logo.svg" alt="Tap Logo" class="h-8 w-auto object-contain" style="width: 120px;">
                             </a>
                         </div>
                         <p class="text-gray-500 max-w-xs mb-6">
-                            Financial infrastructure for the internet. We help non-profits and organizations grow.
+                            The lead capture layer for events. Tap replaces paper forms and business cards with one simple interaction.
                         </p>
-                        <div class="flex gap-4">
-                            <div class="h-8 w-8 bg-gray-100 rounded-full hover:bg-gray-200 transition-colors cursor-pointer"></div>
-                            <div class="h-8 w-8 bg-gray-100 rounded-full hover:bg-gray-200 transition-colors cursor-pointer"></div>
-                            <div class="h-8 w-8 bg-gray-100 rounded-full hover:bg-gray-200 transition-colors cursor-pointer"></div>
-                        </div>
                     </div>
 
                     <!-- Product Column -->
                     <div>
                         <h4 class="font-semibold mb-4">Product</h4>
                         <ul class="space-y-3 text-gray-500">
-                            <li><a href="#" class="footer-link">Payments</a></li>
-                            <li><a href="#" class="footer-link">Billing</a></li>
-                            <li><a href="#" class="footer-link">Connect</a></li>
-                            <li><a href="#" class="footer-link">Payouts</a></li>
-                        </ul>
-                    </div>
-
-                    <!-- Resources Column -->
-                    <div>
-                        <h4 class="font-semibold mb-4">Resources</h4>
-                        <ul class="space-y-3 text-gray-500">
-                            <li><a href="#" class="footer-link">Documentation</a></li>
-                            <li><a href="#" class="footer-link">Guides</a></li>
-                            <li><a href="#" class="footer-link">Support</a></li>
+                            <li><a href="#how-it-works" class="footer-link">How It Works</a></li>
+                            <li><a href="#for-organizers" class="footer-link">For Organizers</a></li>
+                            <li><a href="#for-exhibitors" class="footer-link">For Exhibitors</a></li>
+                            <li><a href="#faq" class="footer-link">FAQ</a></li>
                         </ul>
                     </div>
 
@@ -764,16 +649,14 @@
                     <div>
                         <h4 class="font-semibold mb-4">Company</h4>
                         <ul class="space-y-3 text-gray-500">
-                            <li><a href="#" class="footer-link">About</a></li>
-                            <li><a href="#" class="footer-link">Jobs</a></li>
-                            <li><a href="#" class="footer-link">Blog</a></li>
-                            <li><a href="#" class="footer-link">Contact</a></li>
+                            <li><a href="#" onclick="openContactForm(); return false;" class="footer-link">Request Demo</a></li>
+                            <li><a href="#" onclick="openContactForm(); return false;" class="footer-link">Contact</a></li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="pt-8 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-4 text-gray-500">
-                    <div>&copy; 2024 Tap Technology, Inc.</div>
+                    <div>&copy; 2025 Tap Technology, Inc.</div>
                     <div class="flex gap-6">
                         <a href="/privacy.html" class="footer-link">Privacy Policy</a>
                         <a href="#" class="footer-link">Terms of Service</a>
@@ -783,22 +666,153 @@
         </footer>
     </div>
 
+    <!-- Contact Form Popup -->
+    <div id="contactPopup" class="fixed inset-0 bg-black bg-opacity-50 z-[100] hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl p-8 w-full max-w-md shadow-2xl">
+            <div class="mb-6">
+                <h3 class="text-2xl font-bold text-gray-900 mb-2">Request a Demo</h3>
+                <p class="text-gray-500">Send us a message and we'll get back to you soon.</p>
+            </div>
+
+            <form id="contactForm" class="space-y-4">
+                <div>
+                    <input type="text" id="contactName" placeholder="Your Name" required
+                           class="w-full px-4 py-3 bg-white border border-gray-200 rounded-lg text-gray-900 placeholder-gray-400 focus:outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-400">
+                </div>
+                <div>
+                    <input type="email" id="contactEmail" placeholder="Your Email" required
+                           class="w-full px-4 py-3 bg-white border border-gray-200 rounded-lg text-gray-900 placeholder-gray-400 focus:outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-400">
+                </div>
+                <div>
+                    <input type="text" id="contactOrg" placeholder="Organization (optional)"
+                           class="w-full px-4 py-3 bg-white border border-gray-200 rounded-lg text-gray-900 placeholder-gray-400 focus:outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-400">
+                </div>
+                <div>
+                    <textarea id="contactMessage" placeholder="Tell us about your events" required rows="3"
+                              class="w-full px-4 py-3 bg-white border border-gray-200 rounded-lg text-gray-900 placeholder-gray-400 focus:outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-400 resize-none"></textarea>
+                </div>
+                <div class="flex gap-3 pt-2">
+                    <button type="button" onclick="closeContactPopup()"
+                            class="flex-1 px-6 py-3 bg-white border border-gray-200 text-gray-600 rounded-full hover:bg-gray-50 hover:text-gray-900 transition-all font-medium">
+                        Cancel
+                    </button>
+                    <button type="submit"
+                            class="flex-1 px-6 py-3 bg-gray-900 text-white rounded-full hover:bg-gray-800 transition-all font-medium">
+                        Send
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Success Confirmation Popup -->
+    <div id="successPopup" class="fixed inset-0 bg-black bg-opacity-50 z-[100] hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl p-8 w-full max-w-md shadow-2xl text-center">
+            <div class="mb-6">
+                <div class="w-16 h-16 bg-gray-900 rounded-full flex items-center justify-center mx-auto">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                </div>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">Message Sent!</h3>
+            <p class="text-gray-500 mb-8">Thank you for reaching out. We'll get back to you soon.</p>
+            <button onclick="closeSuccessPopup()" class="px-8 py-3 bg-gray-900 text-white rounded-full hover:bg-gray-800 transition-all font-medium">
+                Close
+            </button>
+        </div>
+    </div>
+
     <!-- Gradient Script -->
     <script src="/js/gradient.js"></script>
     <script>
-        // Initialize gradients on page load
+        // Contact form functions
+        function openContactForm() {
+            const contactPopup = document.getElementById('contactPopup');
+            if (contactPopup) {
+                contactPopup.classList.remove('hidden');
+            }
+        }
+
+        function closeContactPopup() {
+            const contactPopup = document.getElementById('contactPopup');
+            if (contactPopup) {
+                contactPopup.classList.add('hidden');
+                document.getElementById('contactForm').reset();
+            }
+        }
+
+        function closeSuccessPopup() {
+            const successPopup = document.getElementById('successPopup');
+            if (successPopup) {
+                successPopup.classList.add('hidden');
+            }
+        }
+
+        // Initialize on page load
         document.addEventListener('DOMContentLoaded', function() {
+            // Initialize gradients
             try {
-                // Hero gradient
                 const heroGradient = new Gradient();
                 heroGradient.initGradient('#gradient-canvas-hero');
 
-                // CTA gradient
                 const ctaGradient = new Gradient();
                 ctaGradient.initGradient('#gradient-canvas-cta');
             } catch (error) {
                 console.error('Failed to initialize gradient:', error);
             }
+
+            // FAQ accordion
+            document.querySelectorAll('.faq-question').forEach(button => {
+                button.addEventListener('click', () => {
+                    const item = button.parentElement;
+                    const isOpen = item.classList.contains('open');
+
+                    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+
+                    if (!isOpen) {
+                        item.classList.add('open');
+                    }
+                });
+            });
+
+            // Contact form submission
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+
+                    const name = document.getElementById('contactName').value;
+                    const email = document.getElementById('contactEmail').value;
+                    const message = document.getElementById('contactMessage').value;
+
+                    if (!name || !email || !message) {
+                        alert('Please fill in all required fields.');
+                        return;
+                    }
+
+                    // Close contact popup and show success popup
+                    closeContactPopup();
+
+                    const successPopup = document.getElementById('successPopup');
+                    if (successPopup) {
+                        successPopup.classList.remove('hidden');
+                    }
+                });
+            }
+
+            // Close popups on backdrop click
+            document.getElementById('contactPopup').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeContactPopup();
+                }
+            });
+
+            document.getElementById('successPopup').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeSuccessPopup();
+                }
+            });
         });
 
         // Smooth scroll for nav links
