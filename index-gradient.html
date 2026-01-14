@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tap Health - The modern way to accept donations</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <link rel="icon" href="favicon.ico" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --gradient-color-1: #a960ee;
+            --gradient-color-2: #ff333d;
+            --gradient-color-3: #90e0ff;
+            --gradient-color-4: #ffcb57;
+            --background: hsl(0 0% 100%);
+            --foreground: hsl(0 0% 3.9%);
+            --muted-foreground: hsl(0 0% 45.1%);
+            --border: hsl(0 0% 89.8%);
+            --primary: hsl(0 0% 9%);
+            --card: hsl(0 0% 100%);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 100px;
+        }
+
+        body {
+            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--background);
+            color: var(--foreground);
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Gradient Canvas Styles */
+        .gradient-canvas {
+            width: 100%;
+            height: 100%;
+            --gradient-color-1: #a960ee;
+            --gradient-color-2: #ff333d;
+            --gradient-color-3: #90e0ff;
+            --gradient-color-4: #ffcb57;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .gradient-canvas.isLoaded {
+            opacity: 1;
+        }
+
+        /* Floating Navbar */
+        .floating-navbar {
+            position: fixed;
+            z-index: 50;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 1rem;
+            width: 90%;
+            max-width: 72rem;
+            animation: slideDown 0.5s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+
+        .navbar-pill {
+            position: absolute;
+            inset: 0;
+            border-radius: 9999px;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .navbar-content {
+            position: relative;
+            width: 100%;
+            padding: 0.75rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            min-height: 50vh;
+            position: relative;
+            padding-top: 4rem;
+            padding-bottom: 5rem;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+
+        @media (min-width: 768px) {
+            .hero-section {
+                padding-top: 7.5rem;
+                padding-bottom: 8rem;
+            }
+        }
+
+        .gradient-container {
+            position: absolute;
+            inset: 0;
+            height: 100%;
+            z-index: 10;
+            clip-path: polygon(0 0, 100% 0, 100% 25%, 0 73%);
+            opacity: 0;
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        /* Layered Title Effect */
+        .title-container {
+            position: relative;
+            margin-bottom: 2.5rem;
+        }
+
+        @media (min-width: 1024px) {
+            .title-container {
+                width: 40em;
+            }
+        }
+
+        .title-base {
+            position: relative;
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            color: #bdc6d2;
+            line-height: 1.05;
+            z-index: 0;
+            -webkit-font-smoothing: antialiased;
+            user-select: none;
+        }
+
+        .title-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            color: #3a3a3a;
+            line-height: 1.05;
+            z-index: 20;
+            mix-blend-mode: color-burn;
+            -webkit-font-smoothing: antialiased;
+            user-select: none;
+        }
+
+        .title-shadow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            color: #3a3a3a;
+            line-height: 1.05;
+            z-index: 21;
+            opacity: 0.3;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        @media (min-width: 768px) {
+            .title-base, .title-overlay, .title-shadow {
+                font-size: 4.5rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .title-base, .title-overlay, .title-shadow {
+                font-size: 6rem;
+            }
+        }
+
+        /* Badge */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.375rem 1rem;
+            font-size: 0.875rem;
+            border-radius: 9999px;
+            border: 1px solid rgb(191 219 254);
+            background: rgb(239 246 255 / 0.8);
+            color: rgb(29 78 216);
+            backdrop-filter: blur(4px);
+            margin-bottom: 2rem;
+        }
+
+        .badge-dot {
+            width: 0.5rem;
+            height: 0.5rem;
+            border-radius: 9999px;
+            background: rgb(59 130 246);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Buttons */
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 3rem;
+            padding: 0 2rem;
+            font-size: 1rem;
+            font-weight: 500;
+            border-radius: 9999px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 3rem;
+            padding: 0 2rem;
+            font-size: 1rem;
+            font-weight: 500;
+            border-radius: 9999px;
+            background: transparent;
+            color: var(--foreground);
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+
+        .btn-outline:hover {
+            background: rgb(0 0 0 / 0.05);
+        }
+
+        .btn-cta {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 3.5rem;
+            padding: 0 2rem;
+            font-size: 1.125rem;
+            font-weight: 500;
+            border-radius: 9999px;
+            background: transparent;
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+
+        .btn-cta:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        /* Card Styles */
+        .dashboard-card {
+            background: rgb(255 255 255 / 0.9);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgb(0 0 0 / 0.05);
+            border-radius: 0.75rem;
+            box-shadow: 0 50px 100px -20px rgb(0 0 0 / 0.25);
+            overflow: hidden;
+            transform: perspective(1000px) rotateX(20deg) rotateY(-20deg);
+            transform-style: preserve-3d;
+        }
+
+        .floating-card {
+            position: absolute;
+            right: -3rem;
+            top: 3rem;
+            z-index: 20;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .floating-card-inner {
+            width: 16rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            border-radius: 0.75rem;
+            padding: 1rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+
+        /* Chart bars */
+        .chart-bar {
+            background: hsl(221 84% 54%);
+            border-radius: 2px 2px 0 0;
+            opacity: 0.9;
+            animation: growBar 0.6s ease-out forwards;
+            transform-origin: bottom;
+        }
+
+        @keyframes growBar {
+            from { transform: scaleY(0); }
+            to { transform: scaleY(1); }
+        }
+
+        /* Transaction list animation */
+        .transaction-item {
+            opacity: 0;
+            transform: translateX(-20px);
+            animation: slideIn 0.5s ease forwards;
+            animation-delay: 0.8s;
+        }
+
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Feature Cards */
+        .feature-card {
+            background: white;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            border-color: rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1);
+        }
+
+        .feature-icon {
+            transition: transform 0.3s;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            position: relative;
+            overflow: hidden;
+            background: var(--primary);
+            padding: 8rem 0;
+        }
+
+        .cta-gradient {
+            position: absolute;
+            inset: 0;
+            height: 100%;
+            z-index: 10;
+        }
+
+        .cta-blur-overlay {
+            position: absolute;
+            inset: 0;
+            height: 100%;
+            z-index: 20;
+            backdrop-filter: blur(60px);
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 25;
+        }
+
+        /* Footer Links */
+        .footer-link {
+            color: rgb(107 114 128);
+            transition: color 0.2s;
+            text-decoration: none;
+        }
+
+        .footer-link:hover {
+            color: rgb(17 24 39);
+        }
+    </style>
+</head>
+<body>
+    <div class="min-h-screen">
+        <!-- Floating Pill Navbar -->
+        <nav class="floating-navbar">
+            <div class="navbar-pill"></div>
+            <div class="navbar-content">
+                <a href="/" class="flex items-center">
+                    <img src="/media/tap_health_logo.png" alt="Tap Health Logo" class="h-8 w-auto object-contain">
+                </a>
+
+                <div class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-500">
+                    <a href="#features" class="hover:text-gray-900 transition-colors">Features</a>
+                    <a href="#solutions" class="hover:text-gray-900 transition-colors">Solutions</a>
+                    <a href="#pricing" class="hover:text-gray-900 transition-colors">Pricing</a>
+                    <a href="#resources" class="hover:text-gray-900 transition-colors">Resources</a>
+                </div>
+
+                <div class="flex items-center gap-4">
+                    <a href="/login" class="hidden sm:inline-flex text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors px-4 py-2 rounded-full">
+                        Sign In
+                    </a>
+                    <a href="/sales" class="btn-primary text-sm" style="height: 2.25rem; padding: 0 1.25rem; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);">
+                        Get Started
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section id="home" class="hero-section">
+            <!-- Gradient Background -->
+            <div class="gradient-container">
+                <canvas id="gradient-canvas-hero" class="gradient-canvas"></canvas>
+            </div>
+
+            <div class="w-[90%] max-w-6xl mx-auto px-6 relative flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+                <!-- Title Section -->
+                <div class="flex-1 max-w-2xl text-center lg:text-left">
+                    <div class="relative z-20" style="animation: fadeIn 0.5s ease forwards;">
+                        <span class="badge">
+                            <span class="badge-dot"></span>
+                            New: Instant Global Payouts
+                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </span>
+                    </div>
+
+                    <div class="title-container">
+                        <h1 class="title-base">The modern way to accept donations</h1>
+                        <h1 class="title-overlay" aria-hidden="true">The modern way to accept donations</h1>
+                        <h1 class="title-shadow" aria-hidden="true">The modern way to accept donations</h1>
+                    </div>
+
+                    <p class="text-xl text-gray-500 mb-10 leading-relaxed max-w-2xl mx-auto lg:mx-0 relative z-20" style="animation: fadeIn 0.5s ease 0.2s both;">
+                        Organizations of all sizes use Tap's software to accept payments, send payouts, and manage their businesses online.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start relative z-20" style="animation: fadeIn 0.5s ease 0.3s both;">
+                        <a href="/login" class="btn-primary">
+                            Start now
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                            </svg>
+                        </a>
+                        <a href="/sales" class="btn-outline">
+                            Contact sales
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Dashboard Visual -->
+                <div class="flex-none w-full lg:w-[800px] relative z-20 hidden lg:block" style="perspective: 1000px;">
+                    <div class="relative z-10" style="animation: fadeIn 0.8s ease forwards;">
+                        <!-- Main Card -->
+                        <div class="dashboard-card">
+                            <div class="flex flex-row items-center justify-between p-6 pb-4 border-b border-gray-100">
+                                <div class="flex items-center gap-3">
+                                    <div class="h-10 w-10 rounded-full bg-blue-50 flex items-center justify-center">
+                                        <div class="h-5 w-5 rounded-full bg-blue-600"></div>
+                                    </div>
+                                    <div>
+                                        <div class="text-sm font-semibold">Tap Balance</div>
+                                        <p class="text-xs text-gray-500 uppercase tracking-wider">US Dollar</p>
+                                    </div>
+                                </div>
+                                <span class="px-3 py-1 text-xs border border-gray-200 rounded-full">View Payouts</span>
+                            </div>
+                            <div class="p-6 pt-6">
+                                <!-- Balance -->
+                                <div class="mb-8">
+                                    <div class="text-sm font-medium text-gray-500 mb-1">Available to pay out</div>
+                                    <div class="text-4xl font-bold tracking-tight">$24,593.00</div>
+                                </div>
+
+                                <!-- Chart -->
+                                <div class="h-48 flex items-end justify-between gap-1 mb-6">
+                                    <div class="chart-bar w-full" style="height: 40%; animation-delay: 0.33s;"></div>
+                                    <div class="chart-bar w-full" style="height: 25%; animation-delay: 0.36s;"></div>
+                                    <div class="chart-bar w-full" style="height: 55%; animation-delay: 0.39s;"></div>
+                                    <div class="chart-bar w-full" style="height: 45%; animation-delay: 0.42s;"></div>
+                                    <div class="chart-bar w-full" style="height: 70%; animation-delay: 0.45s;"></div>
+                                    <div class="chart-bar w-full" style="height: 50%; animation-delay: 0.48s;"></div>
+                                    <div class="chart-bar w-full" style="height: 85%; animation-delay: 0.51s;"></div>
+                                    <div class="chart-bar w-full" style="height: 65%; animation-delay: 0.54s;"></div>
+                                    <div class="chart-bar w-full" style="height: 90%; animation-delay: 0.57s;"></div>
+                                    <div class="chart-bar w-full" style="height: 75%; animation-delay: 0.60s;"></div>
+                                    <div class="chart-bar w-full" style="height: 60%; animation-delay: 0.63s;"></div>
+                                    <div class="chart-bar w-full" style="height: 95%; animation-delay: 0.66s;"></div>
+                                </div>
+
+                                <!-- Transactions -->
+                                <div class="space-y-3">
+                                    <div class="transaction-item flex items-center justify-between py-2 border-b border-gray-100">
+                                        <div class="flex items-center gap-3">
+                                            <div class="h-2 w-2 rounded-full bg-green-500"></div>
+                                            <span class="text-sm font-medium">Acme Corp</span>
+                                        </div>
+                                        <span class="text-sm font-bold">+$1,200.00</span>
+                                    </div>
+                                    <div class="transaction-item flex items-center justify-between py-2 border-b border-gray-100" style="animation-delay: 0.9s;">
+                                        <div class="flex items-center gap-3">
+                                            <div class="h-2 w-2 rounded-full bg-yellow-500"></div>
+                                            <span class="text-sm font-medium">Global Relief</span>
+                                        </div>
+                                        <span class="text-sm font-bold">+$450.00</span>
+                                    </div>
+                                    <div class="transaction-item flex items-center justify-between py-2" style="animation-delay: 1.0s;">
+                                        <div class="flex items-center gap-3">
+                                            <div class="h-2 w-2 rounded-full bg-green-500"></div>
+                                            <span class="text-sm font-medium">Donation #492</span>
+                                        </div>
+                                        <span class="text-sm font-bold">+$50.00</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Floating Success Card -->
+                        <div class="floating-card">
+                            <div class="floating-card-inner">
+                                <div class="h-8 w-8 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
+                                    <svg class="h-5 w-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <div class="text-sm font-bold">Payment Succeeded</div>
+                                    <div class="text-xs text-gray-500 mt-1 leading-tight">
+                                        Donation received from <span class="font-medium text-gray-900">john@example.com</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="py-24 bg-white relative overflow-hidden">
+            <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent"></div>
+
+            <div class="max-w-6xl mx-auto px-6 relative z-10">
+                <div class="text-center max-w-3xl mx-auto mb-20">
+                    <div class="text-sm font-semibold tracking-wide uppercase text-gray-900 mb-3">Features</div>
+                    <h2 class="text-4xl md:text-5xl font-bold tracking-tight text-gray-900 mb-6">
+                        Everything you need to <br> scale your impact
+                    </h2>
+                    <p class="text-xl text-gray-500 leading-relaxed">
+                        A complete platform built to help you manage donations, understand your donors, and grow your organization.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Feature 1 -->
+                    <div class="feature-card">
+                        <div class="feature-icon h-12 w-12 rounded-xl bg-gray-100 text-gray-900 flex items-center justify-center mb-4">
+                            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Custom Branding</h3>
+                        <p class="text-gray-500">Customize your donation page with your logo and colors to match your organization's identity.</p>
+                    </div>
+
+                    <!-- Feature 2 -->
+                    <div class="feature-card">
+                        <div class="feature-icon h-12 w-12 rounded-xl bg-gray-100 text-gray-900 flex items-center justify-center mb-4">
+                            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Instant Payouts</h3>
+                        <p class="text-gray-500">Get access to your funds immediately with automated daily payouts via Stripe Connect.</p>
+                    </div>
+
+                    <!-- Feature 3 -->
+                    <div class="feature-card">
+                        <div class="feature-icon h-12 w-12 rounded-xl bg-gray-100 text-gray-900 flex items-center justify-center mb-4">
+                            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Team Collaboration</h3>
+                        <p class="text-gray-500">Invite your team, assign roles, and manage permissions securely from one dashboard.</p>
+                    </div>
+
+                    <!-- Feature 4 -->
+                    <div class="feature-card">
+                        <div class="feature-icon h-12 w-12 rounded-xl bg-gray-100 text-gray-900 flex items-center justify-center mb-4">
+                            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Real-time Analytics</h3>
+                        <p class="text-gray-500">Track donations, donor growth, and campaign performance with real-time reporting.</p>
+                    </div>
+
+                    <!-- Feature 5 -->
+                    <div class="feature-card">
+                        <div class="feature-icon h-12 w-12 rounded-xl bg-gray-100 text-gray-900 flex items-center justify-center mb-4">
+                            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Mobile-Ready Checkout</h3>
+                        <p class="text-gray-500">A conversion-optimized checkout experience with support for Apple Pay and Google Pay.</p>
+                    </div>
+
+                    <!-- Feature 6 -->
+                    <div class="feature-card">
+                        <div class="feature-icon h-12 w-12 rounded-xl bg-gray-100 text-gray-900 flex items-center justify-center mb-4">
+                            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Enterprise Security</h3>
+                        <p class="text-gray-500">Bank-grade encryption and fraud detection powered by Stripe's infrastructure.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section with Gradient -->
+        <section id="contact" class="cta-section">
+            <!-- Gradient Background -->
+            <div class="cta-gradient">
+                <canvas id="gradient-canvas-cta" class="gradient-canvas"></canvas>
+            </div>
+            <!-- Blur Overlay -->
+            <div class="cta-blur-overlay"></div>
+
+            <div class="cta-content max-w-6xl mx-auto px-6 text-center">
+                <h2 class="text-4xl md:text-6xl font-bold tracking-tight text-white mb-8">
+                    Ready to transform your fundraising?
+                </h2>
+                <p class="text-xl text-white/80 mb-12 max-w-2xl mx-auto leading-relaxed">
+                    Start using Tap today to process donations, manage donors, and grow your mission.
+                </p>
+
+                <div class="flex flex-col sm:flex-row justify-center gap-4 mb-16">
+                    <a href="/sales" class="btn-cta">
+                        Contact sales
+                    </a>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto border-t border-white/10 pt-12">
+                    <div class="flex items-center justify-center gap-2 text-white/90 font-medium">
+                        <div class="h-6 w-6 rounded-full bg-white/10 flex items-center justify-center">
+                            <svg class="h-3 w-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                        </div>
+                        No subscription
+                    </div>
+                    <div class="flex items-center justify-center gap-2 text-white/90 font-medium">
+                        <div class="h-6 w-6 rounded-full bg-white/10 flex items-center justify-center">
+                            <svg class="h-3 w-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                        </div>
+                        Industry-leading low fees
+                    </div>
+                    <div class="flex items-center justify-center gap-2 text-white/90 font-medium">
+                        <div class="h-6 w-6 rounded-full bg-white/10 flex items-center justify-center">
+                            <svg class="h-3 w-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                        </div>
+                        Stop using anytime
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="py-12 border-t border-gray-100 bg-white text-sm">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-12">
+                    <!-- Brand Column -->
+                    <div class="col-span-2 lg:col-span-2">
+                        <div class="flex items-center gap-2 mb-4">
+                            <a href="/" class="flex items-center">
+                                <img src="/media/tap_health_logo.png" alt="Tap Health Logo" class="h-8 w-auto object-contain">
+                            </a>
+                        </div>
+                        <p class="text-gray-500 max-w-xs mb-6">
+                            Financial infrastructure for the internet. We help non-profits and organizations grow.
+                        </p>
+                        <div class="flex gap-4">
+                            <div class="h-8 w-8 bg-gray-100 rounded-full hover:bg-gray-200 transition-colors cursor-pointer"></div>
+                            <div class="h-8 w-8 bg-gray-100 rounded-full hover:bg-gray-200 transition-colors cursor-pointer"></div>
+                            <div class="h-8 w-8 bg-gray-100 rounded-full hover:bg-gray-200 transition-colors cursor-pointer"></div>
+                        </div>
+                    </div>
+
+                    <!-- Product Column -->
+                    <div>
+                        <h4 class="font-semibold mb-4">Product</h4>
+                        <ul class="space-y-3 text-gray-500">
+                            <li><a href="#" class="footer-link">Payments</a></li>
+                            <li><a href="#" class="footer-link">Billing</a></li>
+                            <li><a href="#" class="footer-link">Connect</a></li>
+                            <li><a href="#" class="footer-link">Payouts</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Resources Column -->
+                    <div>
+                        <h4 class="font-semibold mb-4">Resources</h4>
+                        <ul class="space-y-3 text-gray-500">
+                            <li><a href="#" class="footer-link">Documentation</a></li>
+                            <li><a href="#" class="footer-link">Guides</a></li>
+                            <li><a href="#" class="footer-link">Support</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Company Column -->
+                    <div>
+                        <h4 class="font-semibold mb-4">Company</h4>
+                        <ul class="space-y-3 text-gray-500">
+                            <li><a href="#" class="footer-link">About</a></li>
+                            <li><a href="#" class="footer-link">Jobs</a></li>
+                            <li><a href="#" class="footer-link">Blog</a></li>
+                            <li><a href="#" class="footer-link">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="pt-8 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-4 text-gray-500">
+                    <div>&copy; 2024 Tap Technology, Inc.</div>
+                    <div class="flex gap-6">
+                        <a href="/privacy.html" class="footer-link">Privacy Policy</a>
+                        <a href="#" class="footer-link">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Gradient Script -->
+    <script src="/js/gradient.js"></script>
+    <script>
+        // Initialize gradients on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            try {
+                // Hero gradient
+                const heroGradient = new Gradient();
+                heroGradient.initGradient('#gradient-canvas-hero');
+
+                // CTA gradient
+                const ctaGradient = new Gradient();
+                ctaGradient.initGradient('#gradient-canvas-cta');
+            } catch (error) {
+                console.error('Failed to initialize gradient:', error);
+            }
+        });
+
+        // Smooth scroll for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.getElementById(this.getAttribute('href').substring(1));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                    history.pushState(null, '', this.getAttribute('href'));
+                }
+            });
+        });
+    </script>
+</body>
+</html>
