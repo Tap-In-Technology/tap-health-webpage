@@ -116,10 +116,24 @@
     </style>
 
     <!-- Apollo Website Tracker -->
-    <script>function initApollo(){var n=Math.random().toString(36).substring(7),o=document.createElement("script");
-    o.src="https://assets.apollo.io/micro/website-tracker/tracker.iife.js?nocache="+n,o.async=!0,o.defer=!0,
-    o.onload=function(){window.trackingFunctions.onLoad({appId:"6969296afef8f30019195ad1"})},
-    document.head.appendChild(o)}initApollo();</script>
+    <script>
+      function initApollo() {
+        var n = Math.random().toString(36).substring(7),
+          o = document.createElement("script");
+        (o.src =
+          "https://assets.apollo.io/micro/website-tracker/tracker.iife.js?nocache=" +
+          n),
+          (o.async = !0),
+          (o.defer = !0),
+          (o.onload = function () {
+            window.trackingFunctions.onLoad({
+              appId: "6969296afef8f30019195ad1",
+            });
+          }),
+          document.head.appendChild(o);
+      }
+      initApollo();
+    </script>
   </head>
   <body>
     <div class="wrapper">
@@ -129,7 +143,7 @@
       <div class="content">
         <h1>Opening Tap</h1>
         <p class="lead">
-          If the app doesn’t open automatically, download the app below.
+          If the app doesn't open automatically, download the app below.
         </p>
         <div class="badges">
           <a
@@ -172,8 +186,7 @@
       const LINKS = {
         IOS_APP_STORE_URL: "https://apps.apple.com/app/id6753735547",
         ANDROID_PLAY_STORE_URL:
-          "https://play.google.com/store/apps/details?id=YOUR_PACKAGE_NAME",
-        APP_SCHEME_URL: "tapapp://open",
+          "https://play.google.com/store/apps/details?id=com.tap_technology.tap",
         WEB_HOME_URL: "https://tap-technology.com",
       };
 
@@ -184,25 +197,75 @@
       const iosBadge = document.getElementById("ios-badge");
       const androidBadge = document.getElementById("android-badge");
       const androidSoon = document.getElementById("android-soon");
-      const subtle = document.getElementById("subtle-help");
 
       iosBadge.href = LINKS.IOS_APP_STORE_URL;
       androidBadge.href = LINKS.ANDROID_PLAY_STORE_URL;
 
+      // Robust app opening detection with fallback to app stores
       function attemptOpen() {
-        if (IS_IOS) {
-          const start = Date.now();
-          setTimeout(function () {
-            if (Date.now() - start < 2000) {
-              window.location.href = LINKS.IOS_APP_STORE_URL;
+        let appOpened = false;
+        let redirectTimer = null;
+        const FALLBACK_DELAY = 750; // 750 milliseconds to detect if app opened
+
+        // Function to redirect to app store if app didn't open
+        function redirectToStore() {
+          if (appOpened) return; // Don't redirect if app already opened
+
+          if (IS_IOS) {
+            window.location.href = LINKS.IOS_APP_STORE_URL;
+          } else if (IS_ANDROID) {
+            window.location.href = LINKS.ANDROID_PLAY_STORE_URL;
+          } else {
+            window.location.replace("../index.html");
+          }
+        }
+
+        // Mark app as opened when page becomes hidden (user switched to app)
+        function handleVisibilityChange() {
+          if (document.hidden) {
+            appOpened = true;
+            if (redirectTimer) {
+              clearTimeout(redirectTimer);
             }
-          }, 500);
+          }
+        }
+
+        // Mark app as opened when window loses focus (user switched to app)
+        function handleBlur() {
+          appOpened = true;
+          if (redirectTimer) {
+            clearTimeout(redirectTimer);
+          }
+        }
+
+        // Set up event listeners for detection
+        document.addEventListener("visibilitychange", handleVisibilityChange);
+        window.addEventListener("blur", handleBlur);
+
+        // Set up fallback timer - redirect to store if app didn't open
+        redirectTimer = setTimeout(() => {
+          if (!appOpened) {
+            redirectToStore();
+          }
+        }, FALLBACK_DELAY);
+
+        // Platform-specific handling
+        if (IS_IOS) {
+          // iOS universal links should trigger automatically via apple-itunes-app meta tag
+          // The visibility/blur detection will catch if it worked
+          // No additional action needed - universal links handle it
         } else if (IS_ANDROID) {
-          if (androidBadge) androidBadge.style.display = "none";
-          if (androidSoon) androidSoon.style.display = "inline-flex";
-          subtle.textContent =
-            "Android app is coming soon. Please check back later.";
+          // Attempt to open the Android app via intent as a secondary method
+          // Universal links should trigger automatically via assetlinks.json
+          // This intent URL provides an additional fallback
+          const intentUrl =
+            "intent://open#Intent;scheme=tap;package=com.tap_technology.tap;S.browser_fallback_url=" +
+            encodeURIComponent(LINKS.ANDROID_PLAY_STORE_URL) +
+            ";end";
+          // Navigate to the intent URL to trigger App Link / app open
+          window.location.href = intentUrl;
         } else {
+          // Desktop/other - redirect to home
           window.location.replace("../index.html");
         }
       }
@@ -213,8 +276,8 @@
       }
       if (IS_ANDROID) {
         iosBadge.style.display = "none";
-        if (androidBadge) androidBadge.style.display = "none";
-        if (androidSoon) androidSoon.style.display = "inline-flex";
+        if (androidBadge) androidBadge.style.display = "inline-flex";
+        if (androidSoon) androidSoon.style.display = "none";
       }
     </script>
   </body>
