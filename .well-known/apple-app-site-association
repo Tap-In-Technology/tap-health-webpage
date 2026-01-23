@@ -23,5 +23,10 @@
     "apps": [
       "C6UBM72DUX.com.tap-technology.tap"
     ]
+  },
+  "appclips": {
+    "apps": [
+      "C6UBM72DUX.com.tap-technology.tap.Clip"
+    ]
   }
 }

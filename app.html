@@ -16,7 +16,7 @@
       // Create and inject the meta tag dynamically
       const meta = document.createElement("meta");
       meta.name = "apple-itunes-app";
-      meta.content = `app-id=6753735547, app-argument=${currentPath}`;
+      meta.content = `app-id=6753735547, app-argument=${currentPath}, app-clip-bundle-id=com.tap-technology.tap.Clip, app-clip-display=card`;
       document.head.appendChild(meta);
     </script>
     <style>
@@ -212,7 +212,7 @@
           if (appOpened) return; // Don't redirect if app already opened
 
           if (IS_IOS) {
-            window.location.href = LINKS.IOS_APP_STORE_URL;
+            // window.location.href = LINKS.IOS_APP_STORE_URL;
           } else if (IS_ANDROID) {
             window.location.href = LINKS.ANDROID_PLAY_STORE_URL;
           } else {
