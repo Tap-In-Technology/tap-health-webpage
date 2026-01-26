@@ -2,4 +2,6 @@
 http://tap-technology.com/*  https://www.tap-technology.com/:splat 301!
 http://www.tap-technology.com/* https://www.tap-technology.com/:splat 301!
 
+/tapped/* /app2.html 200
+
 /tap/* /app.html 200

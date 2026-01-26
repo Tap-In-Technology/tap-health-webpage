@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Redirecting…</title>
+    <meta http-equiv="cache-control" content="no-store" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+    <script>
+      (function () {
+        var path = window.location.pathname || "/";
+
+        // Netlify rewrites /tapped/* to this page; convert it to the desired /tap/* route.
+        var newPath = path.replace(/^\/tapped(?=\/|$)/, "/tap");
+
+        // Fallback in case something unexpected hits this page directly.
+        if (newPath === path) newPath = "/tap";
+
+        var next = newPath + (window.location.search || "") + (window.location.hash || "");
+        window.location.replace(next);
+      })();
+    </script>
+  </head>
+  <body>
+    <noscript>This page redirects to the Tap app. Please enable JavaScript.</noscript>
+  </body>
+</html>
+
+
